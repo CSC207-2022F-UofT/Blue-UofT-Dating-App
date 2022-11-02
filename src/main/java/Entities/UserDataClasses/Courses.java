@@ -1,11 +1,8 @@
 package Entities.UserDataClasses;
 
-import Entities.UserDataClasses.PublicDataClasses.Photo;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Courses extends UserData<ArrayList<Course>>{
+public class Courses extends HideableData<ArrayList<Course>>{
     public ArrayList<Course> data;
     public boolean hidden;
 
