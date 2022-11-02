@@ -1,9 +1,8 @@
 package Entities.UserDataClasses.PublicDataClasses;
 
-import Entities.UserDataClasses.FreeWritten;
 import Entities.UserDataClasses.UserData;
 
-public class Photo extends UserData<String> implements FreeWritten {
+public class Photo extends UserData<String> {
     public String data;
     // Precondition: filePath is a valid file path to a photo
 
