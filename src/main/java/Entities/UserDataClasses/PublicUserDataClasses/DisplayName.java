@@ -1,4 +1,4 @@
-package Entities.UserDataClasses.PublicDataClasses;
+package Entities.UserDataClasses.PublicUserDataClasses;
 
 import Entities.UserDataClasses.UserData;
 

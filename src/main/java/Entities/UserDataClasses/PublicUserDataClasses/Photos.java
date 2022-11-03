@@ -1,10 +1,8 @@
-package Entities.UserDataClasses.PublicDataClasses;
+package Entities.UserDataClasses.PublicUserDataClasses;
 
 import Entities.UserDataClasses.UserData;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public class Photos extends UserData<ArrayList<Photo>> {
     public ArrayList<Photo> data;
