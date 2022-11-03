@@ -1,10 +1,18 @@
-package Entities.UserDataClasses;
+package Entities.UserDataClasses.HideableUserDataClasses;
+
+import Entities.UserDataClasses.HideableData;
+import Entities.UserDataClasses.HideableUserDataClasses.Course;
 
 import java.util.ArrayList;
 
-public class Courses extends HideableData<ArrayList<Course>>{
+public class Courses extends HideableData<ArrayList<Course>> {
     public ArrayList<Course> data;
     public boolean hidden;
+
+    public Courses(){
+        super(new ArrayList<Course>());
+        this.data = super.data;
+    }
 
     public Courses(ArrayList<Course> courses){
         super(courses);

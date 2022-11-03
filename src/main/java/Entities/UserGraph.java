@@ -21,7 +21,7 @@ private ArrayList<UserEdge> userEdges;
     public boolean userInGraph(User userCheck) {
         //checks if username
         for (User user : this.users) {
-            if(user.getUsername == userCheck.getUsername){
+            if(user.getUsername() == userCheck.getUsername()){
                 //theoretical getter methods of User
                 return true;
             }
@@ -34,7 +34,7 @@ private ArrayList<UserEdge> userEdges;
         for (User otherUser : this.users) {
            this.createEdge(user, otherUser);
            user.addNeighbor(otherUser);
-           otherUser.addNeighbour(user);
+           otherUser.addNeighbor(user);
            //more theoretical User methods
     }
     }

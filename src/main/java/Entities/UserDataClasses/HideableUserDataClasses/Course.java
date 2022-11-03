@@ -1,4 +1,7 @@
-package Entities.UserDataClasses;
+package Entities.UserDataClasses.HideableUserDataClasses;
+
+import Entities.UserDataClasses.CourseCode;
+import Entities.UserDataClasses.HideableData;
 
 public class Course extends HideableData<CourseCode> {
     public CourseCode data;

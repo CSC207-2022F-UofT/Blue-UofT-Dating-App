@@ -1,4 +1,6 @@
-package Entities.UserDataClasses;
+package Entities.UserDataClasses.HideableUserDataClasses;
+
+import Entities.UserDataClasses.HideableData;
 
 import java.util.HashMap;
 
@@ -6,10 +8,7 @@ public class Interests extends HideableData<HashMap<Integer, Boolean>> {
 
     public HashMap<Integer, Boolean> data;
     public boolean hidden;
-//    public void populateInterests(){
-//        for(int i = 0; i <= InterestsDict.interestMap.size(); i++)
-//        this.data.put(, true);
-//    }
+
     public Interests(){
         super(new HashMap<Integer, Boolean>(), false);
         this.data = super.data;

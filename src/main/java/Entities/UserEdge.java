@@ -18,7 +18,7 @@ public class UserEdge {
     }
     public void likes(User likee){
         //In this case 'likes' is like a verb, the passed in user is 'liked' by the other user
-        if(this.users[0].getUsername == likee.getUsername){
+        if(this.users[0].getUsername() == likee.getUsername()){
             //these are theoretical getter methods of User
             this.likeBackwards = true;
         }

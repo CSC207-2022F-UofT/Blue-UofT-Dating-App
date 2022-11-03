@@ -1,4 +1,4 @@
-package Entities.UserDataClasses;
+package Entities.UserDataClasses.UserDataDictionaries;
 
 import java.util.HashMap;
 

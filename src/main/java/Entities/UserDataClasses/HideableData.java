@@ -1,6 +1,6 @@
 package Entities.UserDataClasses;
 
-public class HideableData<H> extends UserData<H> {
+public abstract class HideableData<H> extends UserData<H> {
 
     public H data;
     public boolean hidden;

@@ -7,6 +7,11 @@ import java.util.ArrayList;
 public class Photos extends UserData<ArrayList<Photo>> {
     public ArrayList<Photo> data;
 
+    public Photos(){
+        super(new ArrayList<Photo>());
+        this.data = super.data;
+    }
+
     public Photos(ArrayList<Photo> photos){
         super(photos);
         this.data = photos;
