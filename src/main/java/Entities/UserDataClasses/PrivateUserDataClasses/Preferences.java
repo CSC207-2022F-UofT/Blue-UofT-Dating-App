@@ -25,7 +25,7 @@ public class Preferences extends UserData<ArrayList<int[]>> implements Serializa
         this.data.add(keyDict);
     }
 
-    public void removePreferences(Integer attributeKey){
-        this.data.remove();
-    }
+//    public void removePreferences(Integer attributeKey){
+//        this.data.remove();
+//    }
 }
