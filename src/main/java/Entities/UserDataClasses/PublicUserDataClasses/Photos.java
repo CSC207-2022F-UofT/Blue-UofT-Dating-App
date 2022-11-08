@@ -2,9 +2,10 @@ package Entities.UserDataClasses.PublicUserDataClasses;
 
 import Entities.UserDataClasses.UserData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Photos extends UserData<ArrayList<Photo>> {
+public class Photos extends UserData<ArrayList<Photo>> implements Serializable {
     public ArrayList<Photo> data;
 
     public Photos(){

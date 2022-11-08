@@ -1,6 +1,8 @@
 package Entities;
 
-public class UserEdge {
+import java.io.Serializable;
+
+public class UserEdge implements Serializable {
     private User[] users;
     private float weight;
     private boolean hiddenForwards;

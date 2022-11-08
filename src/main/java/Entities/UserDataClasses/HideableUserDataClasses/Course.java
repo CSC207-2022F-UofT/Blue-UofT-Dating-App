@@ -3,7 +3,9 @@ package Entities.UserDataClasses.HideableUserDataClasses;
 import Entities.UserDataClasses.CourseCode;
 import Entities.UserDataClasses.HideableData;
 
-public class Course extends HideableData<CourseCode> {
+import java.io.Serializable;
+
+public class Course extends HideableData<CourseCode> implements Serializable {
     public CourseCode data;
     public boolean hidden;
 

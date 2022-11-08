@@ -11,10 +11,11 @@ import Entities.UserDataClasses.PublicUserDataClasses.Photo;
 import Entities.UserDataClasses.PublicUserDataClasses.Photos;
 import Entities.UserDataClasses.UserData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class User {
+public class User implements Serializable {
 
     private UserData<String> username;
 //    private UserData<String> passwordHash; // Idk if this will be a string tbh

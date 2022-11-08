@@ -1,6 +1,8 @@
 package Entities.UserDataClasses;
 
-public class CourseCode {
+import java.io.Serializable;
+
+public class CourseCode implements Serializable {
 
     public final String code;
     // Precondition: code is a valid UofT course code in the form AAA111 (no

@@ -1,6 +1,8 @@
 package Entities.UserDataClasses.PrivateUserDataClasses;
 
-public class PostalCode {
+import java.io.Serializable;
+
+public class PostalCode implements Serializable {
     public final String code;
     // Precondition: code is a valid canadian postal code in the form A1B2C3
 

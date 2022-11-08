@@ -2,7 +2,9 @@ package Entities.UserDataClasses.PublicUserDataClasses;
 
 import Entities.UserDataClasses.UserData;
 
-public class Location extends UserData<String> {
+import java.io.Serializable;
+
+public class Location extends UserData<String> implements Serializable {
     public String data;
     // Idea: the user write whatever they want as their location, ideally
     // helping other users get the idea of where they live. Then, if users

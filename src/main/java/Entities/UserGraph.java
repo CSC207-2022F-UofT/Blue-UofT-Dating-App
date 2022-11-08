@@ -1,9 +1,10 @@
 package Entities;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class UserGraph{
+public class UserGraph implements Serializable {
 private ArrayList<User> users;
 private ArrayList<UserEdge> userEdges;
     public UserGraph(){

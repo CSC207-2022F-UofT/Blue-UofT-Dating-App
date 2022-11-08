@@ -1,6 +1,8 @@
 package Entities.UserDataClasses;
 
-public abstract class HideableData<H> extends UserData<H> {
+import java.io.Serializable;
+
+public abstract class HideableData<H> extends UserData<H> implements Serializable {
 
     public H data;
     public boolean hidden;

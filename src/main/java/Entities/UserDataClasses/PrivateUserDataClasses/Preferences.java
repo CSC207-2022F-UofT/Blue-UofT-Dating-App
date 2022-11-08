@@ -2,10 +2,11 @@ package Entities.UserDataClasses.PrivateUserDataClasses;
 
 import Entities.UserDataClasses.UserData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Preferences extends UserData<ArrayList<int[]>> {
+public class Preferences extends UserData<ArrayList<int[]>> implements Serializable {
     // this.data consists of an ArrayList of pairs of integers, where the first
     // integer in each pair corresponds to the type of attribute,
     public ArrayList<int[]> data;

@@ -2,7 +2,9 @@ package Entities.UserDataClasses.PublicUserDataClasses;
 
 import Entities.UserDataClasses.UserData;
 
-public class DisplayName extends UserData<String> {
+import java.io.Serializable;
+
+public class DisplayName extends UserData<String> implements Serializable {
     public String data;
 
     public DisplayName(String name){
