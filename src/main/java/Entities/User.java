@@ -5,10 +5,7 @@ import Entities.UserDataClasses.HideableUserDataClasses.Course;
 import Entities.UserDataClasses.HideableUserDataClasses.Courses;
 import Entities.UserDataClasses.HideableUserDataClasses.Interests;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
-import Entities.UserDataClasses.PublicUserDataClasses.DisplayName;
-import Entities.UserDataClasses.PublicUserDataClasses.Location;
-import Entities.UserDataClasses.PublicUserDataClasses.Photo;
-import Entities.UserDataClasses.PublicUserDataClasses.Photos;
+import Entities.UserDataClasses.PublicUserDataClasses.*;
 import Entities.UserDataClasses.UserData;
 
 import java.util.ArrayList;
@@ -28,12 +25,14 @@ public class User {
 //    private UserData<HashMap<Integer, ArrayList<Object>>> preferences;
     private ArrayList<User> neighbors;
 
-    public User(String username, // password,
-            String displayName, String location){
+    // Constructors
+    public User(String username // String password)
+    ){
         this.username = new Username(username);
 //        this.passwordHash =
-        this.displayName = new DisplayName(displayName);
-        this.location = new Location(location);
+        this.displayName = new DisplayName();
+        this.bio = new Bio();
+        this.location = new Location();
         this.photos = new Photos();
         this.courses = new Courses();
         this.interests = new Interests();
@@ -42,6 +41,7 @@ public class User {
         this.neighbors = new ArrayList<User>();
     }
 
+    // Getter Functions
     public UserData<String> getUsername() {
         return username;
     }
@@ -70,6 +70,27 @@ public class User {
         return neighbors;
     }
 
+    // Setter Functions
+    public void setUsername(String newUsername){
+        this.username = new Username(newUsername);
+    }
+    public void setUsername(Username newUsername){
+        this.username = newUsername;
+    }
+    public void setDisplayName(String newDisplayName){
+        this.displayName = new DisplayName(newDisplayName);
+    }
+    public void setDisplayName(DisplayName newDisplayName){
+        this.displayName = newDisplayName;
+    }
+    public void setBio(String newBio){
+        this.bio = new Bio(newBio);
+    }
+    public void setBio(Bio newBio){
+        this.bio = newBio;
+    }
+
+    // UserGraph Functions
     public void addNeighbor(User otherUser){
         neighbors.add(otherUser);
     }

@@ -9,4 +9,8 @@ public class DisplayName extends UserData<String> {
         super(name);
         this.data = name;
     }
+    public DisplayName(){
+        super("Majed ElKhalifa");
+        this.data = "Majed ElKhalifa";
+    }
 }

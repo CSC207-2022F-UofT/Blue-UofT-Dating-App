@@ -9,4 +9,8 @@ public class Bio extends UserData<String> {
         super(bio);
         this.data = bio;
     }
+    public Bio(){
+        super("Just your average UofT student.");
+        this.data = "Just your average UofT student.";
+    }
 }

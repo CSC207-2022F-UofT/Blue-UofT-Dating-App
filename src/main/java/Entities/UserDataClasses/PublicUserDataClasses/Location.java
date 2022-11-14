@@ -13,4 +13,8 @@ public class Location extends UserData<String> {
         super(location);
         this.data = location;
     }
+    public Location() {
+        super("2nd Massey");
+        this.data = "2nd Massey";
+    }
 }
