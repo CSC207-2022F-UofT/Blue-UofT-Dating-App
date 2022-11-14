@@ -11,4 +11,8 @@ public class DisplayName extends UserData<String> implements Serializable {
         super(name);
         this.data = name;
     }
+    public DisplayName(){
+        super("Majed ElKhalifa");
+        this.data = "Majed ElKhalifa";
+    }
 }

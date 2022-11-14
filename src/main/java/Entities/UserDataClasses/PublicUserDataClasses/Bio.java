@@ -11,4 +11,8 @@ public class Bio extends UserData<String> implements Serializable {
         super(bio);
         this.data = bio;
     }
+    public Bio(){
+        super("Just your average UofT student.");
+        this.data = "Just your average UofT student.";
+    }
 }

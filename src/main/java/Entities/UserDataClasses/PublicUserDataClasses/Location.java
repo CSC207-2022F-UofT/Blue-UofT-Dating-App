@@ -15,4 +15,8 @@ public class Location extends UserData<String> implements Serializable {
         super(location);
         this.data = location;
     }
+    public Location() {
+        super("2nd Massey");
+        this.data = "2nd Massey";
+    }
 }
