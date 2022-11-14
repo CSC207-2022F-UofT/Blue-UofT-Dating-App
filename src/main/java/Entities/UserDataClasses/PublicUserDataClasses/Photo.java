@@ -1,8 +1,10 @@
-package Entities.UserDataClasses.PublicDataClasses;
+package Entities.UserDataClasses.PublicUserDataClasses;
 
 import Entities.UserDataClasses.UserData;
 
-public class Photo extends UserData<String> {
+import java.io.Serializable;
+
+public class Photo extends UserData<String> implements Serializable {
     public String data;
     // Precondition: filePath is a valid file path to a photo
 

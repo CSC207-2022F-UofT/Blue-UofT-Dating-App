@@ -1,6 +1,8 @@
 package Entities.UserDataClasses;
 
-public abstract class UserData<T> {
+import java.io.Serializable;
+
+public abstract class UserData<T> implements Serializable {
 
     public T data;
 

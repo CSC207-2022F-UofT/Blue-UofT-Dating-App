@@ -1,26 +1,31 @@
 package Entities.UserDataClasses;
 
-public class Course extends UserData<String> {
-    public CourseCode data;
+import java.io.Serializable;
+
+public abstract class HideableData<H> extends UserData<H> implements Serializable {
+
+    public H data;
     public boolean hidden;
 
-    public Course(CourseCode courseCode){
-        super(courseCode.toString());
-        this.data = courseCode;
+    public HideableData(H data){
+        super(data);
+        this.data = data;
         this.hidden = true;
     }
-    public Course(CourseCode courseCode, boolean hidden){
-        super(courseCode.toString());
-        this.data = courseCode;
+    public HideableData(H data, boolean hidden){
+        super(data);
+        this.data = data;
         this.hidden = hidden;
     }
 
     public void hide(){
         this.hidden = true;
     }
+
     public void show(){
         this.hidden = false;
     }
+
     public void setHidden(boolean hidden){
         this.hidden = hidden;
     }
