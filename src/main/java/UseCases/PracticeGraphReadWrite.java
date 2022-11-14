@@ -10,11 +10,11 @@ public class PracticeGraphReadWrite {
     UserGraphReadWriter readWriter = new UserGraphReadWriter();
     public PracticeGraphReadWrite(UserGraph userGraph){
         this.userGraph = userGraph;
-//        try {
-//            readWriter.saveToFile("userGraph.ser", userGraph);
-//        } catch (IOException e) {
-//            System.out.println("User list did not save.");
-//        }
+        try {
+            readWriter.saveToFile("userGraph.ser", userGraph);
+        } catch (IOException e) {
+            System.out.println("User list did not save.");
+        }
         try {
             UserGraph readGraph = (UserGraph) readWriter.readFromFile("userGraph.ser");
             for(String name: readGraph.getUsernames()){
