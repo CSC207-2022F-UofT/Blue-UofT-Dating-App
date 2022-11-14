@@ -3,7 +3,7 @@ package InterfaceAdapters;
 public class AccountPresenter implements View {
     // View interface
     public void back(){
-        //calls method to change
+        //calls some method idk
     }
     public void edit(){
         // create use case object
