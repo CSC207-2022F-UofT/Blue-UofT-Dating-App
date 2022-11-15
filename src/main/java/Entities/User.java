@@ -4,6 +4,8 @@ import Entities.UserDataClasses.HideableUserDataClasses.Attributes;
 import Entities.UserDataClasses.HideableUserDataClasses.Course;
 import Entities.UserDataClasses.HideableUserDataClasses.Courses;
 import Entities.UserDataClasses.HideableUserDataClasses.Interests;
+import Entities.UserDataClasses.PrivateUserDataClasses.Password;
+import Entities.UserDataClasses.PrivateUserDataClasses.Preferences;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
 import Entities.UserDataClasses.PublicUserDataClasses.*;
 import Entities.UserDataClasses.UserData;
@@ -15,7 +17,7 @@ import java.util.HashMap;
 public class User implements Serializable {
 
     private UserData<String> username;
-//    private UserData<String> passwordHash; // Idk if this will be a string tbh
+    private UserData<String> password;
     private UserData<String> displayName;
     private UserData<String> bio;
     private UserData<String> location;
@@ -23,14 +25,13 @@ public class User implements Serializable {
     private UserData<ArrayList<Course>> courses;
     private UserData<HashMap<Integer, Boolean>> interests;
     private UserData<HashMap<Integer, ArrayList<Object>>> attributes;
-//    private UserData<HashMap<Integer, ArrayList<Object>>> preferences;
+    private UserData<ArrayList<ArrayList<Integer>>> preferences;
     private ArrayList<User> neighbors;
 
     // Constructors
-    public User(String username // String password)
-    ){
+    public User(String username, String password){
         this.username = new Username(username);
-//        this.passwordHash =
+        this.password = new Password(password);
         this.displayName = new DisplayName();
         this.bio = new Bio();
         this.location = new Location();
@@ -38,13 +39,16 @@ public class User implements Serializable {
         this.courses = new Courses();
         this.interests = new Interests();
         this.attributes = new Attributes();
-//        this.preferences =
+        this.preferences = new Preferences();
         this.neighbors = new ArrayList<User>();
     }
 
     // Getter Functions
     public UserData<String> getUsername() {
         return username;
+    }
+    public UserData<String> getPassword(){
+        return password;
     }
     public UserData<String> getDisplayName() {
         return displayName;
@@ -66,6 +70,10 @@ public class User implements Serializable {
     }
     public UserData<HashMap<Integer, ArrayList<Object>>> getAttributes() {
         return attributes;
+    }
+
+    public UserData<ArrayList<ArrayList<Integer>>> getPreferences() {
+        return preferences;
     }
     public ArrayList<User> getNeighbors() {
         return neighbors;
