@@ -1,3 +1,5 @@
-package InterfaceAdapters;
-
-
+//package InterfaceAdapters;
+//
+//public class AccountPresenter implements View{
+//
+//}

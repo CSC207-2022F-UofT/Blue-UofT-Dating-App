@@ -16,16 +16,16 @@ public class Label {
 
     /**
      * Creates a label and (optionally) adds it to an existing Dialog Box.
-     * @param dialogBox
+     * @param jpanel
      * @param labelText
      * @param foregroundColor
      */
-    public void createLabel(int boundX, int boundY, int boundWidth, int boundHeight, JFrame dialogBox, String labelText, Color foregroundColor) {
+    public void createLabel(int boundX, int boundY, int boundWidth, int boundHeight, JPanel jpanel, String labelText, Color foregroundColor) {
         label = new JLabel(labelText);
         label.setBounds(boundX, boundY, boundWidth, boundHeight);
         label.setForeground(foregroundColor);
-        if (dialogBox != null) {
-            dialogBox.add(label);
+        if (jpanel != null) {
+            jpanel.add(label);
         }
     }
 }
