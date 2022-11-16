@@ -2,7 +2,9 @@ package Entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Chatroom implements Serializable {
 
@@ -12,14 +14,14 @@ public class Chatroom implements Serializable {
     private List<Message> conversation;
 
     //users in the chatroom
-    private User[] users;
+    private Set<User> users;
 
     //precondition: user1 and user2 have matched / like each other
     public Chatroom(User user1, User user2) {
         this.conversation = new ArrayList<Message>();
-        this.users = new User[2];
-        this.users[0] = user1;
-        this.users[1] = user2;
+        this.users = new HashSet<User>();
+        this.users.add(user1);
+        this.users.add(user2);
     }
 
     //add message to conversation
@@ -29,7 +31,7 @@ public class Chatroom implements Serializable {
 
     //getters
 
-    public User[] getUsers() {
+    public Set<User> getUsers() {
         return this.users;
     }
 
