@@ -20,6 +20,7 @@ public class TestAccount implements ActionListener {
 
         //Add ur code for your panel below VVVVV
         this.panel = new JPanel();
+
         JButton button = new JButton("Dont do it");
         button.addActionListener(this);
         this.panel.setLayout(new GridLayout(3, 3));

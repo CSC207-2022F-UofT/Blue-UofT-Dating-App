@@ -19,7 +19,7 @@ public class ViewUI {
         //initial panel
         TestAccount testAccount =  new TestAccount(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
-
+        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout);
 
         //Send the paths to other pages that your page will have
         //I.E login -> main
@@ -27,7 +27,8 @@ public class ViewUI {
         testAccount.sendPaths(testAccountPaths);
         Object[] otherAccountPaths = {testAccount};
         otherAccount.sendPaths(otherAccountPaths);
-
+        Object[] userEditPaths = {accountView};
+        userEditView.sendPaths(userEditPaths);
         layout.show(this.masterPanel, "testAccount");
 
         this.frame.add(masterPanel);
