@@ -9,6 +9,7 @@ public class Course extends HideableData<CourseCode> implements Serializable {
     public CourseCode data;
     public boolean hidden;
 
+    // Constructors
     public Course(CourseCode courseCode){
         super(courseCode);
         this.data = courseCode;

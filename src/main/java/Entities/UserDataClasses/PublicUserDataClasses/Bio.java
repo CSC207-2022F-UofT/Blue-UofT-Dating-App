@@ -7,6 +7,7 @@ import java.io.Serializable;
 public class Bio extends UserData<String> implements Serializable {
     public String data;
 
+    // Constructors
     public Bio(String bio){
         super(bio);
         this.data = bio;

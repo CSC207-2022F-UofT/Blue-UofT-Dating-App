@@ -11,6 +11,7 @@ public class Location extends UserData<String> implements Serializable {
     // match more often with users they know are near them, the algorithm can
     // find some sort of connection between postal codes
 
+    // Constructors
     public Location(String location){
         super(location);
         this.data = location;

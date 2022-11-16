@@ -12,6 +12,7 @@ public class Preferences extends UserData<ArrayList<ArrayList<Integer>>> {
     // attribute is being restricted
     public ArrayList<ArrayList<Integer>> data;
 
+    // Constructor
     public Preferences(){
         super(new ArrayList<ArrayList<Integer>>());
         this.data = super.data;
@@ -19,6 +20,8 @@ public class Preferences extends UserData<ArrayList<ArrayList<Integer>>> {
             this.data.add(new ArrayList<Integer>());
         }
     }
+
+    // Methods
     public void addPreferences(Integer preferenceKey, ArrayList<Integer> valueKeys){
         // Adds preferences in <valueKeys> (e.g. brown, blue, green) to attribute
         // category <preferenceKey> (e.g. eye color), as determined by AttributesDict

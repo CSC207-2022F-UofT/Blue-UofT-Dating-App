@@ -7,6 +7,7 @@ import java.io.Serializable;
 public class DisplayName extends UserData<String> implements Serializable {
     public String data;
 
+    // Constructors
     public DisplayName(String name){
         super(name);
         this.data = name;
