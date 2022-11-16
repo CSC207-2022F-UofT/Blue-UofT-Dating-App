@@ -1,7 +1,7 @@
 package FrameworksDrivers;
 import InterfaceAdapters.OtherAccountPresenter;
 import InterfaceAdapters.TestPresenter;
-
+import FrameworksDrivers.UIElements.Button;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,9 +19,9 @@ public class OtherAccount implements ActionListener {
     public OtherAccount(JPanel masterPanel, CardLayout layout) {
         this.masterPanel = masterPanel;
         this.layout = layout;
-        this.panel = new JPanel();
 
         //Add ur code for your panel below VVVVV
+        this.panel = new JPanel();
         this.panel.setLayout(new GridLayout(3, 3));
         JButton button = new JButton("cats");
         button.addActionListener(this);
@@ -39,6 +39,7 @@ public class OtherAccount implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         //create presenter
+
         OtherAccountPresenter presenter = new OtherAccountPresenter();
 
         //this.paths[0] refers to te first path in the paths array, which is testAccount.

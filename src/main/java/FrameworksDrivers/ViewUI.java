@@ -17,6 +17,7 @@ public class ViewUI {
 
 
         //initial panel
+
         TestAccount testAccount =  new TestAccount(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
 
