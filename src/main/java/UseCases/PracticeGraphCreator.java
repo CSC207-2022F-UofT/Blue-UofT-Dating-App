@@ -6,9 +6,8 @@ import Entities.UserGraph;
 public class PracticeGraphCreator {
     public static UserGraph createGraph(){
         UserGraph userGraph = new UserGraph();
-        User user1 = new User("Ewan","EWiebob", "Toronto");
-        User user2 = new User("Jay","Jaybob2", "Toronto");
-        //THis is bad ik, just for practice
+        User user1 = new User("EwanBob76","EWiebob");
+        User user2 = new User("TheBoyJay","moose321");
         userGraph.addUser(user1);
         userGraph.addUser(user2);
         return userGraph;
