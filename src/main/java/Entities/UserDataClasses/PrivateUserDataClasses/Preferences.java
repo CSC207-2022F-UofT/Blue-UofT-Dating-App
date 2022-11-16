@@ -25,6 +25,7 @@ public class Preferences extends UserData<ArrayList<int[]>> {
     }
 
     public void removePreferences(Integer attributeKey){
-        this.data.remove();
+        //commented out so I can run view
+        //this.data.remove();
     }
 }
