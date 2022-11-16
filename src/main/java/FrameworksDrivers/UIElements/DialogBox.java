@@ -21,7 +21,7 @@ public class DialogBox {
      * @param height
      */
     public void createDialogBox(String boxTitle, int width, int height) {
-        jframe = new JFrame("Nimbus Look and Feel");
+        jframe = new JFrame("Application");
         Color c = new Color(204, 255, 255);
         // Setting background color for JFrame
         jframe.getContentPane().setBackground(c);
