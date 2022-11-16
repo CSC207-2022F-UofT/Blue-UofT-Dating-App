@@ -1,10 +1,12 @@
 package Entities;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class UserGraph{
+public class UserGraph implements Serializable {
 private ArrayList<User> users;
+private static final long serialVersionUID = 1L;
 private ArrayList<UserEdge> userEdges;
     public UserGraph(){
         this.users = new ArrayList<>();
@@ -32,9 +34,12 @@ private ArrayList<UserEdge> userEdges;
         //Preconditions: user not in users
         this.users.add(user);
         for (User otherUser : this.users) {
-           this.createEdge(user, otherUser);
-           user.addNeighbor(otherUser);
-           otherUser.addNeighbor(user);
+            if(otherUser.getUsername() != user.getUsername()){
+                this.createEdge(user, otherUser);
+                user.addNeighbor(otherUser);
+                otherUser.addNeighbor(user);
+            }
+
     }
     }
     public void deleteUser(User user){
@@ -64,5 +69,13 @@ private ArrayList<UserEdge> userEdges;
             if(edge.isEdge(user1, user2)){ return edge;}
         }
         return createEdge(user1, user2);
+    }
+    public ArrayList<String> getUsernames(){
+        ArrayList<String> users = new ArrayList<String>();
+        for(User user: this.users){
+
+            users.add(user.getUsername().getData());
+        }
+        return users;
     }
 }

@@ -2,9 +2,10 @@ package Entities.UserDataClasses.HideableUserDataClasses;
 
 import Entities.UserDataClasses.HideableData;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Interests extends HideableData<HashMap<Integer, Boolean>> {
+public class Interests extends HideableData<HashMap<Integer, Boolean>> implements Serializable {
 
     public HashMap<Integer, Boolean> data;
     public boolean hidden;

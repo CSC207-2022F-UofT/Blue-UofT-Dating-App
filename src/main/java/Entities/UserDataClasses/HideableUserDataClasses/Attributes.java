@@ -2,10 +2,11 @@ package Entities.UserDataClasses.HideableUserDataClasses;
 
 import Entities.UserDataClasses.HideableData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Attributes extends HideableData<HashMap<Integer, ArrayList<Object>>> {
+public class Attributes extends HideableData<HashMap<Integer, ArrayList<Object>>> implements Serializable {
 
     // this.data consists of an integer key (which corresponds to the type of attribute) and
     // an ArrayList value, which consists of an integer at index 0 (which corresponds to the value of
