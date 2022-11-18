@@ -33,7 +33,7 @@ public class User implements Serializable {
     private ArrayList<User> neighbors;
 
     // Constructor
-    public User(String username, String password){
+    public User(String username, String password) {
         // Always hidden from other Users
         this.username = new Username(username);
         this.password = new Password(password);
@@ -59,102 +59,132 @@ public class User implements Serializable {
     public UserData<String> getUsername() {
         return username;
     }
-    public UserData<String> getPassword(){
+
+    public UserData<String> getPassword() {
         return password;
     }
+
     public UserData<String> getDisplayName() {
         return displayName;
     }
+
     public UserData<String> getBio() {
         return bio;
     }
+
     public UserData<String> getLocation() {
         return location;
     }
-    public UserData<String> getPostalCode(){
+
+    public UserData<String> getPostalCode() {
         return this.postalCode;
     }
+
     public UserData<ArrayList<Photo>> getPhotos() {
         return photos;
     }
+
     public UserData<ArrayList<Course>> getCourses() {
         return courses;
     }
+
     public UserData<HashMap<Integer, Boolean>> getInterests() {
         return interests;
     }
+
     public UserData<HashMap<Integer, ArrayList<Object>>> getAttributes() {
         return attributes;
     }
+
     public UserData<ArrayList<ArrayList<Integer>>> getPreferences() {
         return preferences;
     }
+
     public ArrayList<User> getNeighbors() {
         return neighbors;
     }
 
     // Setters
-    public void setPassword(String newPassword){
+    public void setPassword(String newPassword) {
         this.password = new Password(newPassword);
     }
-    public void setPassword(Password newPassword){
+
+    public void setPassword(Password newPassword) {
         this.password = newPassword;
     }
-    public void setDisplayName(String newDisplayName){
+
+    public void setDisplayName(String newDisplayName) {
         this.displayName = new DisplayName(newDisplayName);
     }
-    public void setDisplayName(DisplayName newDisplayName){
+
+    public void setDisplayName(DisplayName newDisplayName) {
         this.displayName = newDisplayName;
     }
-    public void setBio(String newBio){
+
+    public void setBio(String newBio) {
         this.bio = new Bio(newBio);
     }
-    public void setBio(Bio newBio){
+
+    public void setBio(Bio newBio) {
         this.bio = newBio;
     }
-    public void setLocation(String newLocation){
+
+    public void setLocation(String newLocation) {
         this.location = new Location(newLocation);
     }
-    public void setLocation(Location newLocation){
+
+    public void setLocation(Location newLocation) {
         this.location = newLocation;
     }
-    public void setPostalCode(String newPostalCode){
+
+    public void setPostalCode(String newPostalCode) {
         // Precondition: newPostalCode is of the format a1b2c3
         this.postalCode = new PostalCode(newPostalCode);
     }
-    public void setPostalCode(PostalCode newPostalCode){
+
+    public void setPostalCode(PostalCode newPostalCode) {
         this.postalCode = newPostalCode;
     }
-    public void setPhotos(ArrayList<Photo> newPhotos){
+
+    public void setPhotos(ArrayList<Photo> newPhotos) {
         this.photos = new Photos(newPhotos);
     }
-    public void setPhotos(Photos newPhotos){
+
+    public void setPhotos(Photos newPhotos) {
         this.photos = newPhotos;
     }
-    public void setCourses(ArrayList<Course> newCourses){
+
+    public void setCourses(ArrayList<Course> newCourses) {
         this.courses = new Courses(newCourses);
     }
-    public void setCourses(Courses newCourses){
+
+    public void setCourses(Courses newCourses) {
         this.courses = newCourses;
     }
-    public void setInterests(HashMap<Integer, Boolean> newInterests){
+
+    public void setInterests(HashMap<Integer, Boolean> newInterests) {
         this.interests = new Interests();
         this.interests.setData(newInterests);
     }
-    public void setInterests(Interests newInterests){
+
+    public void setInterests(Interests newInterests) {
         this.interests = newInterests;
     }
+
     public void setAttributes(HashMap<Integer, ArrayList<Object>> newAttributes) {
         this.attributes = new Attributes();
         this.attributes.setData(newAttributes);
     }
+
     public void setAttributes(Attributes newAttributes) {
         this.attributes = newAttributes;
     }
+
     public void setPreferences(ArrayList<ArrayList<Integer>> newPreferences) {
         this.preferences = new Preferences();
         this.preferences.setData(newPreferences);
     }
+
     public void setPreferences(Preferences newPreferences) {
         this.preferences = newPreferences;
     }
@@ -163,78 +193,124 @@ public class User implements Serializable {
     // // UserEdit Methods
 
     // Photos
-    public void addPhoto(Photo newPhoto){
+    public void addPhoto(Photo newPhoto) {
         this.photos.addPhoto(newPhoto);
     }
-    public void addPhotos(ArrayList<Photo> newPhotos){
+
+    public void addPhotos(ArrayList<Photo> newPhotos) {
         this.photos.addPhotos(newPhotos);
     }
-    public void removePhoto(Photo oldPhoto){
+
+    public void removePhoto(Photo oldPhoto) {
         this.photos.removePhoto(oldPhoto);
     }
-    public void removePhotos(ArrayList<Photo> oldPhotos){
+
+    public void removePhotos(ArrayList<Photo> oldPhotos) {
         this.photos.removePhotos(oldPhotos);
     }
-    public Photo getPhotoAt(int index){
+
+    public Photo getPhotoAt(int index) {
         return this.photos.getData().get(index);
     }
 
     // Courses
-    public void addCourse(Course newCourse){
+    public void addCourse(Course newCourse) {
         this.courses.addCourse(newCourse);
     }
-    public void addCourses(ArrayList<Course> newCourses){
+
+    public void addCourses(ArrayList<Course> newCourses) {
         this.courses.addCourses(newCourses);
     }
-    public void removeCourse(Course oldCourse){
+
+    public void removeCourse(Course oldCourse) {
         this.courses.removeCourse(oldCourse);
     }
-    public void removeCourses(ArrayList<Course> oldCourses){
+
+    public void removeCourses(ArrayList<Course> oldCourses) {
         this.courses.removeCourses(oldCourses);
     }
-    public Course getCourseAt(int index){
+
+    public Course getCourseAt(int index) {
         return this.courses.getData().get(index);
     }
 
     // Interests
-    public void addInterest(int newInterest){
+    public void addInterest(int newInterest) {
         this.interests.addInterest(newInterest);
     }
-    public void addInterests(ArrayList<Integer> newInterests){
+
+    public void addInterests(ArrayList<Integer> newInterests) {
         this.interests.addInterests(newInterests);
     }
-    public void removeInterest(int oldInterest){
+
+    public void removeInterest(int oldInterest) {
         this.interests.removeInterest(oldInterest);
     }
-    public void removeInterests(ArrayList<Integer> oldInterests){
+
+    public void removeInterests(ArrayList<Integer> oldInterests) {
         this.interests.removeInterests(oldInterests);
     }
-    public String getInterestAt(int interestKey){
+
+    public String getInterestAt(int interestKey) {
         return this.interests.getInterestAt(interestKey);
     }
 
     // Attributes
-    public void addAttribute(int attributeType, int attributeValue){
+    public void addAttribute(int attributeType, int attributeValue) {
         this.attributes.addAttribute(attributeType, attributeValue);
     }
-//    public void addAttributes(ArrayList<Integer[]> newAttributes){
-//        this.attributes.addInterests(newInterests);
-//    }
-    public void removeAttribute(int attributeType, int attributeValue){
+    public void addAttributes(ArrayList<ArrayList<Integer>> newAttributes) {
+        this.attributes.addAttributes(newAttributes);
+    }
+    public void removeAttribute(int attributeType, int attributeValue) {
         this.attributes.removeAttribute(attributeType);
     }
-//    public void removeAttributes(ArrayList<Integer[]> oldAttributes){
-//        this.attributes.removeInterests(oldInterests);
-//    }
-    public void changeAttribute(int attributeType, int newAttributeValue){
+    public void removeAttributes(ArrayList<Integer> oldAttributes) {
+        this.attributes.removeAttributes(oldAttributes);
+    }
+    public void changeAttribute(int attributeType, int newAttributeValue) {
         // Precondition: Only call this function if the attribute with key
         // attributeType has been set to a value before
         this.attributes.changeAttribute(attributeType, newAttributeValue);
     }
-//    public String getAttributeType(int attributeType){
-//        return this.attributes.getInterestAt(interestKey);
-//    }
-//    public String getAttributeValue(int attributeType, int attributeValue)
+    public String getAttributeType(int attributeKey) {
+        return this.attributes.getTypeAt(attributeKey);
+    }
+    public String getAttributeValue(int attributeType, int attributeValue){
+        return this.attributes.getValueAt(attributeType, attributeValue);
+    }
+
+    // Preferences
+    public void addPreference(int attributeType, int attributeValue) {
+        ArrayList<Integer> valueList = new ArrayList<Integer>();
+        valueList.add(attributeValue);
+        this.preferences.addPreferences(attributeType, valueList);
+    }
+    public void addPreferences(int attributeType, ArrayList<Integer> valueList) {
+        this.preferences.addPreferences(attributeType, valueList);
+    }
+    public void removePreference(int attributeType, int attributeValue) {
+        // Use when you want to remove one value in a preference but keep
+        // the others
+        ArrayList<Integer> valueList = new ArrayList<Integer>();
+        valueList.add(attributeValue);
+        this.preferences.removePreferences(attributeType, valueList);
+    }
+    public void removePreferences(int attributeType, ArrayList<Integer> valueList) {
+        // Use when you want to remove some values in a preference but keep
+        // the others
+        this.preferences.removePreferences(attributeType, valueList);
+    }
+    public void removeEntirePreference(int attributeType) {
+        // Use when you want to remove a preference type entirely
+        this.preferences.removeEntirePreference(attributeType);
+    }
+    public String getPreferenceType(int attributeKey) {
+        return this.preferences.getTypeAt(attributeKey);
+    }
+    public String getPreferenceValue(int attributeType, int attributeValue){
+        return this.preferences.getValueAt(attributeType, attributeValue);
+    }
 
     // Hide and Show Methods
     public void hideInterests(){
@@ -287,5 +363,8 @@ public class User implements Serializable {
     }
     public void removeNeighbor(User otherUser){
         neighbors.remove(otherUser);
+    }
+    public void removeAllNeighbors(){
+        neighbors.clear();
     }
 }

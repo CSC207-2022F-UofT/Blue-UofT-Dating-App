@@ -1,6 +1,9 @@
 package Entities.UserDataClasses.HideableUserDataClasses;
 
 import Entities.UserDataClasses.HideableData;
+import Entities.UserDataClasses.UserDataDictionaries.AttributeValueDict;
+import Entities.UserDataClasses.UserDataDictionaries.AttributesDict;
+import Entities.UserDataClasses.UserDataDictionaries.InterestsDict;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -39,8 +42,22 @@ public class Attributes extends HideableData<HashMap<Integer, ArrayList<Object>>
         this.data.get(attributeKey).add(valueKey);
         this.data.get(attributeKey).add(hidden);
     }
+    public void addAttributes(ArrayList<ArrayList<Integer>> attributeValuePairs){
+        // Precondition: Each sublist must be exactly of length 2, and the first
+        // number in each sublist should not be repeated
+        for(int i = 0; i < attributeValuePairs.size(); i++){
+            this.addAttribute(attributeValuePairs.get(i).get(0),
+                    attributeValuePairs.get(i).get(1));
+        }
+    }
     public void removeAttribute(Integer attributeKey){
         this.data.remove(attributeKey);
+    }
+    public void removeAttributes(ArrayList<Integer> attributeKeys){
+        // Precondition: Each integer in attributeKeys should be unique
+        for(int i = 0; i < attributeKeys.size(); i++){
+            this.removeAttribute(attributeKeys.get(i));
+        }
     }
     public void changeAttribute(Integer attributeKey, Integer newValueKey){
         // Precondition: Attribute with attributeKey has already been set to
@@ -57,5 +74,13 @@ public class Attributes extends HideableData<HashMap<Integer, ArrayList<Object>>
     }
     public void setAttributeVisibility(Integer attributeKey, boolean hidden){
         this.data.get(attributeKey).set(1, hidden);
+    }
+    public String getTypeAt(int attributeKey){
+        AttributesDict dict = new AttributesDict();
+        return dict.attributeAt(attributeKey);
+    }
+    public String getValueAt(int attributeKey, int valueKey) {
+        AttributeValueDict dict = new AttributeValueDict();
+        return dict.valueAt(attributeKey, valueKey);
     }
 }
