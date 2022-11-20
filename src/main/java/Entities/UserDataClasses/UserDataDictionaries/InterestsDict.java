@@ -69,4 +69,8 @@ public class InterestsDict {
         interestMap.put(49, "Rap Music");
         interestMap.put(50, "Country Music");
     }
+
+    public String interestAt(int interestKey){
+        return interestMap.get(interestKey);
+    }
 }

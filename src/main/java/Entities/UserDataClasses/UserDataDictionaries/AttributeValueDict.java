@@ -1,6 +1,5 @@
 package Entities.UserDataClasses.UserDataDictionaries;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AttributeValueDict {
@@ -146,5 +145,8 @@ public class AttributeValueDict {
         valuesMap.get(11).put(4, "Friend");
         valuesMap.get(11).put(5, "Study Partner");
         valuesMap.get(11).put(6, "Other");
+    }
+    public String valueAt(int attributeKey, int valueKey){
+        return valuesMap.get(attributeKey).get(valueKey);
     }
 }
