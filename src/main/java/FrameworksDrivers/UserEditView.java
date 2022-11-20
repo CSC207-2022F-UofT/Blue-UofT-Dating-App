@@ -74,13 +74,18 @@ public class UserEditView implements ActionListener {
         interestsLabel = new Label();
         interestsLabel.createLabel(20, 120, 300, 30, this.panel, "Interests");
         interestsLabel.setFontSize(20);
-
         InterestsDict update = new InterestsDict();
         interests = new CheckBox[50];
-        for(int i = 0; i <= 10; i++){
+        for(int i = 0; i <= 25; i++){
               interests[i] = new CheckBox();
-               interests[i].createCheckbox(this.panel, InterestsDict.interestMap.get(i), 20, 150 + 10*i,
-                    100, 5, user.getInterests().getData().get(i));
+               interests[i].createCheckbox(this.panel, InterestsDict.interestMap.get(i), 20, 150 + 15*i,
+                    150, 12, this.user.getInterests().getData().get(i));
+
+        }
+        for(int i = 26; i <= 49; i++){
+            interests[i] = new CheckBox();
+            interests[i].createCheckbox(this.panel, InterestsDict.interestMap.get(i), 170, 150 + 15*i - 390,
+                    150, 12, this.user.getInterests().getData().get(i));
 
         }
 

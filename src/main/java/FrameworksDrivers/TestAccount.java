@@ -55,8 +55,8 @@ public class TestAccount implements ActionListener {
             this.panel.add(label);
         }
         else{
-            JLabel label = (JLabel) this.panel.getComponents()[1];
-            label.setText(this.dummyInfo);
+//            JLabel label = (JLabel) this.panel.getComponents()[1];
+//            label.setText(this.dummyInfo);
         }
 
         //updates panel VVVVV

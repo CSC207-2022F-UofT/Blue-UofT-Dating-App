@@ -36,7 +36,6 @@ public class ViewUI {
         otherAccount.sendPaths(otherAccountPaths);
         Object[] userEditPaths = {accountView, testAccount};
         userEditView.sendPaths(userEditPaths);
-        layout.show(this.masterPanel, "testAccount");
 
 
         layout.show(this.masterPanel, "userEditView");
