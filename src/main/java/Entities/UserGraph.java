@@ -78,4 +78,14 @@ private ArrayList<UserEdge> userEdges;
         }
         return users;
     }
+    // currently using username as refernce to get user, not sure if we will be sending
+    // displayname or username to presenters yet.
+    public User getUser(String userID){
+        for (int i = 0; i < this.users.size(); i++) {
+            if (this.users.get(i).getUsername().getData().equals(userID)) {
+                return this.users.get(i);
+            }
+        }
+        return null;
+    }
 }

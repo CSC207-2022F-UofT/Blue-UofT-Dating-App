@@ -28,4 +28,12 @@ public class Label {
             jpanel.add(label);
         }
     }
+    public void createLabelCentered(int boundX, int boundY, int boundWidth, int boundHeight, JPanel jpanel, String labelText, Color foregroundColor) {
+        label = new JLabel(labelText, SwingConstants.CENTER);
+        label.setBounds(boundX, boundY, boundWidth, boundHeight);
+        label.setForeground(foregroundColor);
+        if (jpanel != null) {
+            jpanel.add(label);
+        }
+    }
 }

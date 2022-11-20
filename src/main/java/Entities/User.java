@@ -19,6 +19,7 @@ public class User implements Serializable {
     private UserData<String> username;
     private UserData<String> password;
     private UserData<String> displayName;
+
     private UserData<String> bio;
     private UserData<String> location;
     private UserData<ArrayList<Photo>> photos;

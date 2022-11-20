@@ -25,6 +25,7 @@ public class Button {
                                      int boundY, int boundWidth, int boundHeight) {
         button = new JButton(buttonText);
         button.setBounds(boundX,boundY,boundWidth,boundHeight);
+
         jpanel.add(button);
     }
 }
