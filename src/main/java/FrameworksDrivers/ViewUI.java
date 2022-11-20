@@ -21,6 +21,7 @@ public class ViewUI {
         //initial panel
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
         AccountView accountView = new AccountView(this.masterPanel, this.layout);
+
         TestAccount testAccount =  new TestAccount(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
 
@@ -35,6 +36,7 @@ public class ViewUI {
         otherAccount.sendPaths(otherAccountPaths);
         Object[] userEditPaths = {accountView, testAccount};
         userEditView.sendPaths(userEditPaths);
+        layout.show(this.masterPanel, "testAccount");
 
 
         layout.show(this.masterPanel, "userEditView");

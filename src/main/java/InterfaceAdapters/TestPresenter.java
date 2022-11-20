@@ -12,7 +12,8 @@ public class TestPresenter implements View{
             case "otherAccount":
                 OtherAccount otherAccount = (OtherAccount) pageObject;
 
-                //Would call UseCase and Presenter interface here to get data from entities VVV
+                //Would call UseCase and Presenter interface here to get data from entities
+
                 String dummy = "snowmannnnnnn";
 
                 //send it back up to ui, upadte the next page to be loaded VVV
