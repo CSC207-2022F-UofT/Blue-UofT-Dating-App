@@ -1,6 +1,8 @@
 package FrameworksDrivers.UIElements;
 
 import javax.swing.*;
+import java.awt.*;
+
 public class Button {
     JButton button;
 
@@ -24,8 +26,10 @@ public class Button {
     public void createButton(JPanel jpanel, String buttonText, int boundX,
                                      int boundY, int boundWidth, int boundHeight) {
         button = new JButton(buttonText);
-        button.setBounds(boundX,boundY,boundWidth,boundHeight);
         jpanel.add(button);
+        button.setBounds(boundX, boundY, boundWidth, boundHeight);
+        button.setLocation(new Point(boundX, boundY));
+
     }
 }
 
