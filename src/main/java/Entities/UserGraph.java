@@ -20,7 +20,7 @@ private ArrayList<UserEdge> userEdges;
         this.users = users;
         this.userEdges = userEdges;
     }
-    public boolean userInGraph(User userCheck) {
+    public static boolean userInGraph(User userCheck) {
         //checks if username
         for (User user : this.users) {
             if(user.getUsername() == userCheck.getUsername()){
