@@ -22,4 +22,7 @@ public class AttributesDict {
         attributesMap.put(12, "Religion");
         attributesMap.put(13, "What are you looking for?");
     }
+    public String attributeAt(int attributeKey){
+        return attributesMap.get(attributeKey);
+    }
 }

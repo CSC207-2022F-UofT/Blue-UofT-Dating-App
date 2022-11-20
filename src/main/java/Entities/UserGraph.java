@@ -1,8 +1,11 @@
 package Entities;
 
+import Entities.UserDataClasses.UserData;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class UserGraph implements Serializable {
 private ArrayList<User> users;
@@ -23,7 +26,7 @@ private ArrayList<UserEdge> userEdges;
     public boolean userInGraph(User userCheck) {
         //checks if username
         for (User user : this.users) {
-            if(user.getUsername() == userCheck.getUsername()){
+            if(Objects.equals(user.getUsername().getData(), userCheck.getUsername().getData())){
                 //theoretical getter methods of User
                 return true;
             }
@@ -45,11 +48,11 @@ private ArrayList<UserEdge> userEdges;
     public void deleteUser(User user){
         //This method likely won't be used that much, likely more common to just use the hidden method.
         for(UserEdge edge: this.userEdges){
-            if(edge.getUsers()[0] == user){
+            if(Objects.equals(edge.getUsers()[0].getUsername().getData(), user.getUsername().getData())){
                 edge.getUsers()[1].removeNeighbor(user);
                 this.userEdges.remove(edge);
             }
-            else if(edge.getUsers()[1] == user){
+            else if(Objects.equals(edge.getUsers()[1].getUsername().getData(), user.getUsername().getData())){
                 edge.getUsers()[0].removeNeighbor(user);
                 this.userEdges.remove(edge);
             }
@@ -78,14 +81,15 @@ private ArrayList<UserEdge> userEdges;
         }
         return users;
     }
-    // currently using username as refernce to get user, not sure if we will be sending
-    // displayname or username to presenters yet.
-    public User getUser(String userID){
-        for (int i = 0; i < this.users.size(); i++) {
-            if (this.users.get(i).getUsername().getData().equals(userID)) {
-                return this.users.get(i);
+    //gets user from username
+    //Preconditions: user with username username in usergraph
+    public User getUser(UserData<String> username){
+        for(User user: this.users){
+            if(Objects.equals(user.getUsername().getData(), username.getData())){
+                return user;
             }
+
         }
-        return null;
+        return new User("null","null");
     }
 }
