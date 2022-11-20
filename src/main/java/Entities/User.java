@@ -279,6 +279,13 @@ public class User implements Serializable {
     public String getAttributeValue(int attributeType, int attributeValue){
         return this.attributes.getValueAt(attributeType, attributeValue);
     }
+    public boolean containsAttribute(int attributeType, int attributeValue){
+        if(this.attributes.getData().containsKey(attributeType)){
+            if (this.attributes.getData().get(attributeType).contains(attributeValue)){
+                return true;
+            }}
+        return false;
+    }
 
     // Preferences
     public void addPreference(int attributeType, int attributeValue) {
