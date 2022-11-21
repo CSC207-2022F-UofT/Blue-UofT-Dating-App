@@ -21,6 +21,8 @@ public class ViewUI {
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout);
 
+        // Main Page
+        Object[] mainPagePaths = {};
         //Send the paths to other pages that your page will have
         //I.E login -> main
         Object[] testAccountPaths = {otherAccount};
