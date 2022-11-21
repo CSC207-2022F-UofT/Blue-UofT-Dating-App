@@ -13,21 +13,24 @@ public class UserRegPresenter implements View{
                 LogInView failView = (LogInView) page;
 
                 // call Interactor & Presenter
-
                 // sending back to ui
+
+                // don't have a the view message yet
                 failView.updateFailView("");
                 break;
         }
     }
 
     @Override
-    public void updatePage(String view, Object page) {
+    public void updatePage(String logInView, LogInView page) {
         switch(page) {
             case "Passwords don't match.":
                 LogInView failView = (LogInView) page;
 
                 // call Interactor & Presenter
                 // sending back to ui
+
+                // don't have a  view message yet
                 failView.updateFailView("");
                 break;
         }
@@ -39,8 +42,9 @@ public class UserRegPresenter implements View{
                 LogInView successView = (LogInView) page;
 
                 // call Interactor & Presenter
-
                 // sending back to ui
+
+                // don't have a view message yet
                 successView.updateSucessView("");
                 break;
         }
