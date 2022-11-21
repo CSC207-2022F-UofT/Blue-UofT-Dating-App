@@ -1,5 +1,7 @@
 package FrameworksDrivers;
 
+import Entities.User;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,9 +19,14 @@ public class ViewUI {
 
 
         //initial panel
+        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
+        AccountView accountView = new AccountView(this.masterPanel, this.layout);
+
         TestAccount testAccount =  new TestAccount(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
-        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout);
+
+
+
 
         //Send the paths to other pages that your page will have
         //I.E login -> main
@@ -27,10 +34,12 @@ public class ViewUI {
         testAccount.sendPaths(testAccountPaths);
         Object[] otherAccountPaths = {testAccount};
         otherAccount.sendPaths(otherAccountPaths);
-        Object[] userEditPaths = {accountView};
+        Object[] userEditPaths = {accountView, testAccount};
         userEditView.sendPaths(userEditPaths);
         layout.show(this.masterPanel, "testAccount");
 
+
+        layout.show(this.masterPanel, "userEditView");
         this.frame.add(masterPanel);
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
         this.frame.setTitle("MainPage");

@@ -26,6 +26,8 @@ public class TestAccount implements ActionListener {
         this.panel.setLayout(new GridLayout(3, 3));
         this.panel.setBackground(Color.blue);
         this.panel.add(button);
+        JPanel anotherPAnel = new JPanel();
+        this.panel.add(anotherPAnel);
 
 
         this.masterPanel.add(this.panel, "testAccount");

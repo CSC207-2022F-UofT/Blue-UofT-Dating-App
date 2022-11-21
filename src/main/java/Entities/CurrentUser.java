@@ -1,21 +1,18 @@
 package Entities;
+
+import Entities.UserDataClasses.PrivateUserDataClasses.Username;
+import Entities.UserDataClasses.UserData;
+
 public class CurrentUser {
-    private User currentUser;
-    private boolean loggedIn;
-    public CurrentUser(User user){
-        this.currentUser = user;
-        this.logIn();
+    private static UserData<String> currentUser;
+    private static boolean loggedIn;
+    public void setUser(UserData<String> username){currentUser = username;
     }
-    public void setUser(User user){
-        this.currentUser = user;
-    }
-    public User getUser(){
-        return this.currentUser;
-    }
+    public UserData<String> getUser(){return currentUser;}
     public void logOut() {
-        this.loggedIn = false;
+        loggedIn = false;
     }
     public void logIn(){
-        this.loggedIn = true;
+        loggedIn = true;
     }
 }
