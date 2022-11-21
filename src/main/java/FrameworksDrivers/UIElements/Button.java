@@ -31,5 +31,16 @@ public class Button {
         button.setLocation(new Point(boundX, boundY));
 
     }
+    public void setHorizontalAlignment(String align) {
+        if (align.equals("left")) {
+            this.button.setHorizontalAlignment(SwingConstants.LEFT);
+        }
+        else if (align.equals("center")) {
+            this.button.setHorizontalAlignment(SwingConstants.CENTER);
+        }
+        else {
+            this.button.setHorizontalAlignment(SwingConstants.RIGHT);
+        }
+    }
 }
 
