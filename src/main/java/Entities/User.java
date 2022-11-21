@@ -255,6 +255,10 @@ public class User implements Serializable {
         return this.interests.getInterestAt(interestKey);
     }
 
+    public boolean containsInterest(int interestKey){
+        return this.interests.data.containsKey(interestKey);
+    }
+
     // Attributes
     public void addAttribute(int attributeType, int attributeValue) {
         this.attributes.addAttribute(attributeType, attributeValue);
@@ -281,9 +285,8 @@ public class User implements Serializable {
     }
     public boolean containsAttribute(int attributeType, int attributeValue){
         if(this.attributes.getData().containsKey(attributeType)){
-            if (this.attributes.getData().get(attributeType).contains(attributeValue)){
-                return true;
-            }}
+            return this.attributes.getData().get(attributeType).contains(attributeValue);
+        }
         return false;
     }
 
