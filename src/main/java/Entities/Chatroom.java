@@ -45,3 +45,4 @@ public class Chatroom implements Serializable {
         return this.conversation.get(this.conversation.size() - 1);
     }
 }
+
