@@ -25,6 +25,7 @@ public class ViewUI {
         TestAccount testAccount =  new TestAccount(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
 
+        SignUpView signUpView = new SignUpView(this.masterPanel);
 
 
 
@@ -36,6 +37,8 @@ public class ViewUI {
         otherAccount.sendPaths(otherAccountPaths);
         Object[] userEditPaths = {accountView, testAccount};
         userEditView.sendPaths(userEditPaths);
+        Object[] LogInPath = {accountView, testAccount, signUpView};
+        LogInView.sendPaths(LogInPath);
         layout.show(this.masterPanel, "testAccount");
 
 
@@ -45,6 +48,8 @@ public class ViewUI {
         this.frame.setTitle("MainPage");
         this.frame.pack();
         this.frame.setVisible(true);
+
+        layout.show(this.masterPanel, "LogInView");
 
     }
 
