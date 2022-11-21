@@ -1,6 +1,8 @@
 package FrameworksDrivers;
 
 import Entities.User;
+import Entities.UserDataClasses.UserDataDictionaries.AttributeValueDict;
+import Entities.UserDataClasses.UserDataDictionaries.AttributesDict;
 import Entities.UserDataClasses.UserDataDictionaries.InterestsDict;
 import FrameworksDrivers.UIElements.*;
 import FrameworksDrivers.UIElements.Button;
@@ -32,6 +34,13 @@ public class UserEditView implements ActionListener {
     Label bioLabel;
     Label coursesLabel;
     Label interestsLabel;
+    Label attributeLabel;
+    Label[] attributesLabel;
+    Label dealbreakerLabel;
+    Label[] dealbreakerLabels;
+    RadioButton[][] attributesRadioButtons;
+    RadioButton[][] dealbreakerRadioButtons;
+    CheckBox[] attributesHidden;
     Button buttonSubmit;
     Button buttonBack;
     CheckBox[] interests;
@@ -47,7 +56,8 @@ public class UserEditView implements ActionListener {
         Color c = new Color(204, 255, 255);
         Color r = new Color(255,204,208);
         Color g = new Color(144, 238, 144);
-        this.panel.setBounds(0,0,800, 600);
+        this.panel.setBounds(0,0,800, 1600);
+        this.panel.setPreferredSize(new Dimension(800,1600));
 
         this.panel.setLayout(null);
         titleLabel = new Label();
@@ -94,29 +104,101 @@ public class UserEditView implements ActionListener {
         courseField = new textArea();
         courseField.createTextArea(this.panel, this.user.getCourses().toString(), 480, 230, 300, 70);
 
-        preferencesLabel = new Label();
-        preferencesLabel.createLabel(500, 300, 500, 30 ,this.panel, "Interests");
-        preferencesLabel.setFontSize(20);
+
+        attributeLabel = new Label();
+        attributeLabel.createLabel(400, 310, 500, 30 ,this.panel, "Personal Details (please choose one)");
+        attributeLabel.setFontSize(20);
+
+        AttributesDict attributesDict = new AttributesDict();
+        AttributeValueDict attributeValueDict = new AttributeValueDict();
+
+        attributesLabel = new Label[14];
+        attributesRadioButtons = new RadioButton[14][];
+        attributesHidden = new CheckBox[14];
+        int items = 0;
+        for(int i = 0; i<=5; i++){
+            attributesLabel[i] = new Label();
+            attributesLabel[i].createLabel(400, 350 + 15*items, 300, 30, this.panel, attributesDict.attributeAt(i));
+            attributesHidden[i] = new CheckBox();
+            attributesHidden[i].createCheckbox(this.panel, "Hidden", 500,360+15*items,70,20,false);
+            items += 1;
+            attributesRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
+            for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
+                attributesRadioButtons[i][j] = new RadioButton();
+                attributesRadioButtons[i][j].createRadioButton(this.panel, attributeValueDict.valueAt(i, j), 400, 360 + 15*items,
+                        150, 12, false);
+                items+=1;
+            }
+        }
+        items = 0;
+        for(int i = 6; i<=13; i++){
+            attributesLabel[i] = new Label();
+            attributesLabel[i].createLabel(600, 350 + 15*items, 300, 30, this.panel, attributesDict.attributeAt(i));
+            attributesHidden[i] = new CheckBox();
+            attributesHidden[i].createCheckbox(this.panel, "Hidden", 700,360+15*items,70,10,false);
+            items += 1;
+            attributesRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
+            for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
+                attributesRadioButtons[i][j] = new RadioButton();
+                attributesRadioButtons[i][j].createRadioButton(this.panel, attributeValueDict.valueAt(i, j), 600, 360 + 15*items,
+                        150, 12, false);
+                items+=1;
+            }
+        }
+
+        dealbreakerLabel = new Label();
+        dealbreakerLabel.createLabel(100, 560, 500, 30 ,this.panel, "Deal-breakers");
+        dealbreakerLabel.setFontSize(20);
+
+
+        dealbreakerLabels = new Label[14];
+        dealbreakerRadioButtons = new RadioButton[14][];
+
+        int itemsd = 0;
+        for(int i = 0; i<=5; i++){
+            dealbreakerLabels[i] = new Label();
+            dealbreakerLabels[i].createLabel(20, 580 + 15*itemsd, 300, 30, this.panel, attributesDict.attributeAt(i));
+            itemsd += 1;
+            dealbreakerRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
+            for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
+                dealbreakerRadioButtons[i][j] = new RadioButton();
+                dealbreakerRadioButtons[i][j].createRadioButton(this.panel, attributeValueDict.valueAt(i, j), 20, 590 + 15*itemsd,
+                        150, 12, false);
+                itemsd+=1;
+            }
+        }
+        itemsd = 0;
+        for(int i = 6; i<=13; i++){
+            dealbreakerLabels[i] = new Label();
+            dealbreakerLabels[i].createLabel(220, 580 + 15 * itemsd, 300, 30, this.panel, attributesDict.attributeAt(i));
+            itemsd += 1;
+            dealbreakerRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
+            for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
+                dealbreakerRadioButtons[i][j] = new RadioButton();
+                dealbreakerRadioButtons[i][j].createRadioButton(this.panel, attributeValueDict.valueAt(i, j), 220, 590 + 15*itemsd,
+                        150, 12, false);
+                itemsd+=1;
+            }
+        }
 
 
 
         buttonSubmit = new Button();
-        buttonSubmit.createButton(this.panel, "Submit Changes", 550, 550, 200, 30);
+        buttonSubmit.createButton(this.panel, "Submit Changes", 550, 1500, 200, 30);
         buttonSubmit.getButton().addActionListener(this);
         buttonSubmit.getButton().setBackground(g);
 
         buttonBack = new Button();
-        buttonBack.createButton(this.panel, "Back", 50, 550, 200, 30);
+        buttonBack.createButton(this.panel, "Back", 50, 1500, 200, 30);
         buttonBack.getButton().addActionListener(this);
         buttonBack.getButton().setBackground(r);
 
 
 
 
-
+        JScrollPane scroller = new JScrollPane( this.panel );
         this.panel.setBackground(Color.lightGray);
-
-        this.masterPanel.add(this.panel, "");
+        this.masterPanel.add(scroller, "");
     }
 
     public void sendPaths(Object[] paths) {
@@ -125,7 +207,7 @@ public class UserEditView implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonSubmit.getButton()) {
-            // change graph
+
         }
         else if(e.getSource() == buttonBack.getButton()){
             UserEditPresenter userEditPresenter = new UserEditPresenter();
