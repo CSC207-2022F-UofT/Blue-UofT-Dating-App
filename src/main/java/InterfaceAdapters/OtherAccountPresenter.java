@@ -13,8 +13,8 @@ public class OtherAccountPresenter{
                 OtherAccountCases updateCase = new OtherAccountCases();
 
                 //Not sure if mainpageview will send displayname or username, will chance once I know.
-                String[] updateInformation = updateCase.getUserInfo(this.user);
-                account.updatePage(updateInformation);
+                //String[] updateInformation = updateCase.getUserInfo(this.user);
+                //account.updatePage(updateInformation);
         }
     }
 }

@@ -17,12 +17,9 @@ public class ViewUI {
         this.masterPanel.setLayout(layout);
         this.masterPanel.setPreferredSize(new Dimension(800, 600));;
 
-
         //initial panel
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
         AccountView accountView = new AccountView(this.masterPanel, this.layout);
-
-        TestAccount testAccount =  new TestAccount(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
 
         SignUpView signUpView = new SignUpView(this.masterPanel);
@@ -31,23 +28,21 @@ public class ViewUI {
 
         //Send the paths to other pages that your page will have
         //I.E login -> main
-        Object[] testAccountPaths = {otherAccount};
-        testAccount.sendPaths(testAccountPaths);
-        Object[] otherAccountPaths = {testAccount};
+        Object[] otherAccountPaths = {};
         otherAccount.sendPaths(otherAccountPaths);
-        Object[] userEditPaths = {accountView, testAccount};
+        Object[] userEditPaths = {accountView};
         userEditView.sendPaths(userEditPaths);
         Object[] LogInPath = {accountView, testAccount, signUpView};
         LogInView.sendPaths(LogInPath);
         layout.show(this.masterPanel, "testAccount");
-
-
         layout.show(this.masterPanel, "userEditView");
-        this.frame.add(masterPanel);
+        JScrollPane scroller = new JScrollPane( this.masterPanel );
+        this.frame.add(scroller);
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
         this.frame.setTitle("MainPage");
         this.frame.pack();
         this.frame.setVisible(true);
+        this.frame.setResizable(false);
 
         layout.show(this.masterPanel, "LogInView");
 

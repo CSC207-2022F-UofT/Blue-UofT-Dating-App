@@ -137,14 +137,14 @@ public class AttributeValueDict {
         valuesMap.get(12).put(7, "Other");
 
         // What are you looking for?
-        valuesMap.put(11, new HashMap<Integer, String>());
-        valuesMap.get(11).put(0, "Life Partner");
-        valuesMap.get(11).put(1, "Serious Dating");
-        valuesMap.get(11).put(2, "Casual Dating");
-        valuesMap.get(11).put(3, "Hookup");
-        valuesMap.get(11).put(4, "Friend");
-        valuesMap.get(11).put(5, "Study Partner");
-        valuesMap.get(11).put(6, "Other");
+        valuesMap.put(13, new HashMap<Integer, String>());
+        valuesMap.get(13).put(0, "Life Partner");
+        valuesMap.get(13).put(1, "Serious Dating");
+        valuesMap.get(13).put(2, "Casual Dating");
+        valuesMap.get(13).put(3, "Hookup");
+        valuesMap.get(13).put(4, "Friend");
+        valuesMap.get(13).put(5, "Study Partner");
+        valuesMap.get(13).put(6, "Other");
     }
     public String valueAt(int attributeKey, int valueKey){
         return valuesMap.get(attributeKey).get(valueKey);

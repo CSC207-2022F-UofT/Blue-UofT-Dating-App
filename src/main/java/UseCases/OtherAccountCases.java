@@ -4,7 +4,9 @@ import Entities.UserDataClasses.UserData;
 import Entities.UserGraph;
 
 public class OtherAccountCases {
+    /*
     public String[] getUserInfo(String userid) {
+
         UserGraphReadWriter reader = new UserGraphReadWriter();
         UserGraph graph = reader.readFromFile("dog.png");
         User userclass = graph.getUserByString(userid);
@@ -13,4 +15,5 @@ public class OtherAccountCases {
                 userclass.getBio().getData()};
         return userInfo;
     }
+     */
 }
