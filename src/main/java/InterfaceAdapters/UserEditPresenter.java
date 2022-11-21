@@ -9,11 +9,12 @@ import UseCases.DataRetrieval.CurrentUserGateway;
 
 import java.util.ArrayList;
 
-public class UserEditPresenter{
+public class UserEditPresenter {
 
     public void saveUserInfo(){
 
     }
+
 
     public void updatePage(String page, Object pageObject) {
         switch (page) {
@@ -27,10 +28,6 @@ public class UserEditPresenter{
                 //accountView.updateAccountView();
 
                 break;
-            case "testAccount":
-                //TestAccount testAccount = (TestAccount) pageObject;
-                //testAccount.updateTestAccount("");
-
         }
     }
     public User getCurrentUser(){

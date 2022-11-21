@@ -17,10 +17,9 @@ public class ViewUI {
         this.masterPanel.setLayout(layout);
         this.masterPanel.setPreferredSize(new Dimension(800, 600));;
 
-
         //initial panel
-        //UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
-        //AccountView accountView = new AccountView(this.masterPanel, this.layout);
+        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
+        AccountView accountView = new AccountView(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
 
 
@@ -30,8 +29,8 @@ public class ViewUI {
         //I.E login -> main
         Object[] otherAccountPaths = {};
         otherAccount.sendPaths(otherAccountPaths);
-        //Object[] userEditPaths = {accountView};
-        //userEditView.sendPaths(userEditPaths);
+        Object[] userEditPaths = {accountView};
+        userEditView.sendPaths(userEditPaths);
         layout.show(this.masterPanel, "testAccount");
         layout.show(this.masterPanel, "userEditView");
         JScrollPane scroller = new JScrollPane( this.masterPanel );

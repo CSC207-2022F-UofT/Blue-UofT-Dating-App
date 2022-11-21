@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UserEditView implements ActionListener {
+public class UserEditView implements ActionListener, View {
     private JPanel masterPanel;
     private CardLayout layout;
     private JPanel panel;
@@ -47,7 +47,7 @@ public class UserEditView implements ActionListener {
     Label titleLabel;
     ArrayList<Icon> photos;
 
-    public UserEditView(JPanel masterPanel, CardLayout layout, User user) {
+    public UserEditView(JPanel masterPanel, CardLayout layout, User user){
         this.user = user;
         this.masterPanel = masterPanel;
         this.layout = layout;
@@ -215,7 +215,9 @@ public class UserEditView implements ActionListener {
             this.layout.show(this.masterPanel, "otherAccount");
         }
     }
-    public void updateUserEditView(){
+
+    @Override
+    public void updatePage(Object[] info) {
         UserEditPresenter userEditPresenter = new UserEditPresenter();
         this.user = userEditPresenter.getCurrentUser();
     }
