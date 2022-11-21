@@ -1,7 +1,7 @@
 package Entities;
 
 public class ChatroomFactory {
-    public Chatroom create(User u1, User u2) {
-        return new Chatroom(u1, u2);
+    public Chatroom create(User user1, User user2) {
+        return new Chatroom(user1, user2);
     }
 }
