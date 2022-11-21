@@ -59,11 +59,9 @@ public class User implements Serializable {
     public UserData<String> getUsername() {
         return username;
     }
-
     public UserData<String> getPassword() {
         return password;
     }
-
     public UserData<String> getDisplayName() {
         return displayName;
     }
@@ -99,7 +97,6 @@ public class User implements Serializable {
     public UserData<ArrayList<ArrayList<Integer>>> getPreferences() {
         return preferences;
     }
-
     public ArrayList<User> getNeighbors() {
         return neighbors;
     }
