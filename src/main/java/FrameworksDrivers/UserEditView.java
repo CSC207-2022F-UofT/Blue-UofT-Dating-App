@@ -23,7 +23,7 @@ public class UserEditView implements ActionListener {
     private User user;
     textField nameField;
     textArea bioField;
-
+    textArea courseField;
     Label labelTitle;
     Label nameLabel;
     Label preferencesLabel;
@@ -50,7 +50,6 @@ public class UserEditView implements ActionListener {
         this.panel.setBounds(0,0,800, 600);
 
         this.panel.setLayout(null);
-
         titleLabel = new Label();
         titleLabel.createLabel(250, 10, 300, 30 ,this.panel, "Update User Profile");
         titleLabel.setFontSize(30);
@@ -61,7 +60,7 @@ public class UserEditView implements ActionListener {
 
         nameField = new textField();
         nameField.createTextField(this.panel, 20, 90, 300, 30);
-        nameField.setText(this.user.getUsername().getData());
+        nameField.setText(this.user.getDisplayName().getData());
 
         bioLabel = new Label();
         bioLabel.createLabel(600, 50, 300, 30 ,this.panel, "Bio");
@@ -88,6 +87,16 @@ public class UserEditView implements ActionListener {
                     150, 12, this.user.getInterests().getData().get(i));
 
         }
+        coursesLabel = new Label();
+        coursesLabel.createLabel(400, 200, 500, 30 ,this.panel, "Courses (Valid UofT course codes only)");
+        coursesLabel.setFontSize(20);
+
+        courseField = new textArea();
+        courseField.createTextArea(this.panel, this.user.getCourses().toString(), 480, 230, 300, 70);
+
+        preferencesLabel = new Label();
+        preferencesLabel.createLabel(500, 300, 500, 30 ,this.panel, "Interests");
+        preferencesLabel.setFontSize(20);
 
 
 

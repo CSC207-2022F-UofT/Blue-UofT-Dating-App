@@ -37,7 +37,6 @@ public class ViewUI {
         Object[] userEditPaths = {accountView, testAccount};
         userEditView.sendPaths(userEditPaths);
 
-
         layout.show(this.masterPanel, "userEditView");
         this.frame.add(masterPanel);
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
