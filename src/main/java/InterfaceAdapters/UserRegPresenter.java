@@ -15,7 +15,7 @@ public class UserRegPresenter implements View{
                 // call Interactor & Presenter
 
                 // sending back to ui
-                failView.updateFailView();
+                failView.updateFailView("");
                 break;
         }
     }
@@ -27,9 +27,8 @@ public class UserRegPresenter implements View{
                 LogInView failView = (LogInView) page;
 
                 // call Interactor & Presenter
-                String dummy = "dummy";
                 // sending back to ui
-                failView.updateFailView(dummy);
+                failView.updateFailView("");
                 break;
         }
     }
@@ -40,9 +39,9 @@ public class UserRegPresenter implements View{
                 LogInView successView = (LogInView) page;
 
                 // call Interactor & Presenter
-                String dummy = "dummy";
+
                 // sending back to ui
-                successView.updateSucessView(dummy);
+                successView.updateSucessView("");
                 break;
         }
     }
