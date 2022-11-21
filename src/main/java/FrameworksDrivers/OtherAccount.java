@@ -1,10 +1,13 @@
 package FrameworksDrivers;
+import InterfaceAdapters.MainPagePresenter;
 import InterfaceAdapters.OtherAccountPresenter;
 import FrameworksDrivers.UIElements.Label;
+import FrameworksDrivers.UIElements.Button;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 public class OtherAccount implements ActionListener, View {
     private JPanel masterPanel;
@@ -23,14 +26,16 @@ public class OtherAccount implements ActionListener, View {
 
         //Add ur code for your panel below VVVVV
         this.panel = new JPanel();
-        this.panel.setLayout(new GridLayout(2, 0));
+        JPanel inner = new JPanel();
+        inner.setPreferredSize(new Dimension(600, 750));
+        inner.setLayout(new GridLayout(2, 1));
 
+        //photo
         JPanel upper = new JPanel();
         upper.setBackground(Color.blue);
 
+        //Person information
         JPanel lower = new JPanel();
-
-
         Label nameLabel = new Label();
         nameLabel.createLabelCentered(40, 40, 40, 40, null, "Name", Color.blue);
         Label locationLabel = new Label();
@@ -38,27 +43,36 @@ public class OtherAccount implements ActionListener, View {
         JPanel topInfo = new JPanel();
         topInfo.setPreferredSize(new Dimension(600, 100));
         topInfo.setLayout(new GridLayout(1, 2));
-        topInfo.setBackground(Color.red);
+
+        //name location
         topInfo.add(nameLabel.getLabel());
         topInfo.add(locationLabel.getLabel());
         lower.add(topInfo);
 
+        //biograph
         JPanel botInfo = new JPanel();
-        botInfo.setPreferredSize(new Dimension(450, 250));
-        botInfo.setLayout(new GridLayout(0, 1));
-        botInfo.setBackground(Color.yellow);
+        botInfo.setPreferredSize(new Dimension(400, 200));
+        botInfo.setLayout(new BoxLayout(botInfo, BoxLayout.Y_AXIS));
         Label biography = new Label();
-        biography.createLabel(40, 40, 40, 40, botInfo, "bio", Color.blue);
-        //biography.getLabel().setText("<html>"+ "IVEL OVBIRDS I ReALLY LOVE BIRSDS??? DPNT IU :OVE BRIDS BIDS BIRDS BNIRFDS FUCK DUCKS GOOSE GEESE BIRDS" +"</html>");
+        biography.createLabel(100, 100, 100, 100, botInfo, "<html> hi </html>");
+        biography.setHorizontalAlignment("left");
+        biography.setVerticalAlignment("top");
         lower.add(botInfo);
 
+        JPanel buttonAlign = new JPanel();
+        buttonAlign.setPreferredSize(new Dimension(600, 20));
+        buttonAlign.setLayout(new BoxLayout(buttonAlign, BoxLayout.X_AXIS));
+        Button backToMain = new Button();
+        backToMain.createButton(buttonAlign, "Back", 20, 20, 10, 10);
+        backToMain.getButton().addActionListener(this);
+        backToMain.setHorizontalAlignment("left");
 
-        this.panel.add(upper);
-        this.panel.add(lower);
+        this.panel.add(buttonAlign);
+        this.panel.add(inner);
+        inner.add(upper);
+        inner.add(lower);
 
-        //Button newButton = new Button();
-        //newButton.createButton(this.panel, "shot", 50, 50, 50, 50);
-        //newButton.getButton().addActionListener(this);
+
         this.masterPanel.add(this.panel, "otherAccount");
     }
 
@@ -72,20 +86,20 @@ public class OtherAccount implements ActionListener, View {
     public void actionPerformed(ActionEvent e) {
         //create presenter
 
-        OtherAccountPresenter presenter = new OtherAccountPresenter("dog");
-
+        MainPagePresenter presenter = new MainPagePresenter();
+        System.out.print("test");
         //this.paths[0] refers to te first path in the paths array, which is testAccount.
-        presenter.updatePage("testAccount", this.paths[0]);
+        //presenter.updatePage("testAccount", this.paths[0]);
 
         //switches the panel
-        this.layout.show(this.masterPanel, "testAccount");
+        //this.layout.show(this.masterPanel, "testAccount");
 
     }
 
     public void updatePage(Object[] info){
         this.name.getLabel().setText((String) info[0]);
         this.bio.getLabel().setText((String) info[1]);
-        this.bio.getLabel().setText((String) info[2]);
+        this.bio.getLabel().setText("<html>" + (String) info[2] + "</html>");
 
         //updates panel VVVVV
         this.panel.revalidate();

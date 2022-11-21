@@ -4,19 +4,17 @@ import Entities.User;
 import Entities.UserDataClasses.PublicUserDataClasses.Bio;
 import FrameworksDrivers.AccountView;
 import FrameworksDrivers.OtherAccount;
-import FrameworksDrivers.TestAccount;
 import FrameworksDrivers.View;
 import UseCases.DataRetrieval.CurrentUserGateway;
 
 import java.util.ArrayList;
 
-public class UserEditPresenter implements View {
+public class UserEditPresenter{
 
     public void saveUserInfo(){
 
     }
 
-    @Override
     public void updatePage(String page, Object pageObject) {
         switch (page) {
             case "accountView":
@@ -30,8 +28,8 @@ public class UserEditPresenter implements View {
 
                 break;
             case "testAccount":
-                TestAccount testAccount = (TestAccount) pageObject;
-                testAccount.updateTestAccount("");
+                //TestAccount testAccount = (TestAccount) pageObject;
+                //testAccount.updateTestAccount("");
 
         }
     }
