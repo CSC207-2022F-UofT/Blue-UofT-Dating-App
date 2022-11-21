@@ -1,0 +1,14 @@
+package UseCases;
+
+import Entities.User;
+import Entities.UserGraph;
+
+public class EditEdgeWeightUseCase {
+
+    public void editUserEdgeWeight(User user1, User user2){
+        CompatibilityFunction weightCalc = new CompatibilityFunction();
+        int weight = weightCalc.getCompatibility(user1, user2);
+        UserGraph graph = new UserGraph();
+        graph.getEdge(user1, user2).setWeight(weight);
+    }
+}
