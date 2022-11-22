@@ -18,13 +18,12 @@ public class ViewUI {
         this.masterPanel.setPreferredSize(new Dimension(800, 600));;
 
         //initial panel
-        SignUpView signUpView = new SignUpView(this.masterPanel);
-
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
         AccountView accountView = new AccountView(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
         LogInView logInView = new LogInView(this.masterPanel);
 
+        SignUpView signUpView = new SignUpView(this.masterPanel);
 
 
 
@@ -46,6 +45,7 @@ public class ViewUI {
         this.frame.setVisible(true);
         this.frame.setResizable(false);
 
+        layout.show(this.masterPanel, "LogInView");
 
     }
 
