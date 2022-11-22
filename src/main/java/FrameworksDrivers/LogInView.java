@@ -31,7 +31,7 @@ public class LogInView implements ActionListener, View {
         //create components for username input
         //create label for username input
         userLabel = new Label();
-        userLabel.createLabel(40 , 40, 40, 40, newPanel, "Username", Color.BLUE);
+        userLabel.createLabel(40 , 40, 40, 40, newPanel, "Username");
 
         //create text field for inputting username
         textFieldUser = new textField();
@@ -41,7 +41,7 @@ public class LogInView implements ActionListener, View {
         //create components for password input
         //create label for password input
         passLabel = new Label();
-        passLabel.createLabel(40 , 40, 40, 40, newPanel, "Password", Color.BLUE);
+        passLabel.createLabel(40 , 40, 40, 40, newPanel, "Password");
 
         //create text field for inputting password
         textFieldPass = new textField();
@@ -51,7 +51,6 @@ public class LogInView implements ActionListener, View {
 
         logInB = new Button();
         logInB.createButton(newPanel, "Log In", 40, 40, 40, 40);
-        logInB
         signUpB = new Button();
         signUpB.createButton(newPanel, "Sign Up", 40, 40, 40, 40);
 
@@ -74,12 +73,6 @@ public class LogInView implements ActionListener, View {
 
 
     @Override
-    public void updatePage(...) {
-        ...
-
-    }
-
-    @Override
     public void actionPerformed(ActionEvent e) {
         // define action performed when button clicked
         // create presenter
@@ -88,7 +81,7 @@ public class LogInView implements ActionListener, View {
         if (e.getSource() == logInB) {
             // check info entered
             // pass to LogInUseCase
-            ...
+
 
         } else {
             // case e.getSource() == signUpB {
@@ -97,5 +90,16 @@ public class LogInView implements ActionListener, View {
             presenter.updatePage("signUpView", this.paths[2]);
         }
 
+    }
+
+    @Override
+    public void updatePage(Object[] info) {
+
+    }
+
+    public void updateFailView(String s) {
+    }
+
+    public void updateSucessView(String s) {
     }
 }

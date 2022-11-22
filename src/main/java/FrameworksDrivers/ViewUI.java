@@ -18,11 +18,13 @@ public class ViewUI {
         this.masterPanel.setPreferredSize(new Dimension(800, 600));;
 
         //initial panel
+        SignUpView signUpView = new SignUpView(this.masterPanel);
+
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
         AccountView accountView = new AccountView(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
+        LogInView logInView = new LogInView(this.masterPanel);
 
-        SignUpView signUpView = new SignUpView(this.masterPanel);
 
 
 
@@ -34,10 +36,8 @@ public class ViewUI {
         otherAccount.sendPaths(otherAccountPaths);
         Object[] userEditPaths = {accountView};
         userEditView.sendPaths(userEditPaths);
-        Object[] LogInPath = {accountView, testAccount, signUpView};
-        LogInView.sendPaths(LogInPath);
-        layout.show(this.masterPanel, "testAccount");
-        layout.show(this.masterPanel, "userEditView");
+        Object[] LogInPath = {accountView,signUpView};
+        logInView.sendPaths(LogInPath);
         JScrollPane scroller = new JScrollPane( this.masterPanel );
         this.frame.add(scroller);
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
@@ -46,7 +46,6 @@ public class ViewUI {
         this.frame.setVisible(true);
         this.frame.setResizable(false);
 
-        layout.show(this.masterPanel, "LogInView");
 
     }
 

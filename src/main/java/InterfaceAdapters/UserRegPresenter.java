@@ -3,12 +3,12 @@ import FrameworksDrivers.LogInView;
 import FrameworksDrivers.View;
 
 
-public class UserRegPresenter implements View{
+public class UserRegPresenter{
     // create fail and success views
 
-    @Override
+
     public void updatePage(String view, Object page) {
-        switch(page) {
+        switch(view) {
             case "Username already exists.":
                 LogInView failView = (LogInView) page;
 
@@ -21,9 +21,9 @@ public class UserRegPresenter implements View{
         }
     }
 
-    @Override
+
     public void updatePage(String logInView, LogInView page) {
-        switch(page) {
+        switch(logInView) {
             case "Passwords don't match.":
                 LogInView failView = (LogInView) page;
 
@@ -35,18 +35,6 @@ public class UserRegPresenter implements View{
                 break;
         }
     }
-    @Override
-    public void updatePage(String view, Object page) {
-        switch(page) {
-            case "Passwords don't match.":
-                LogInView successView = (LogInView) page;
 
-                // call Interactor & Presenter
-                // sending back to ui
 
-                // don't have a view message yet
-                successView.updateSucessView("");
-                break;
-        }
-    }
 }
