@@ -26,6 +26,8 @@ public class ViewUI {
 
 
 
+        // Main Page
+        Object[] mainPagePaths = {};
         //Send the paths to other pages that your page will have
         //I.E login -> main
         Object[] otherAccountPaths = {};
