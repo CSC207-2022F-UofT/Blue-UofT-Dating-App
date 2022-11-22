@@ -41,5 +41,13 @@ public class Courses extends HideableData<ArrayList<Course>> implements Serializ
     public void removeCourses(ArrayList<Course> courses){
         this.data.removeAll(courses);
     }
-
+    @Override
+    public String toString(){
+        StringBuilder returnString = new StringBuilder();
+        for(Course course: this.data){
+            returnString.append(course.getData().code);
+            returnString.append(", ");
+        }
+        return returnString.toString();
+    }
 }

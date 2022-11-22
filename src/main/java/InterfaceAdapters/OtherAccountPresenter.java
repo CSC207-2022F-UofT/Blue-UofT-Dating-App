@@ -1,20 +1,20 @@
 package InterfaceAdapters;
-
 import FrameworksDrivers.OtherAccount;
-import FrameworksDrivers.TestAccount;
-
-public class OtherAccountPresenter {
+import UseCases.OtherAccountCases;
+public class OtherAccountPresenter{
+    private String user;
+    public OtherAccountPresenter(String user) {
+        this.user = user;
+    }
     public void updatePage(String page, Object pageObject) {
         switch (page) {
-            case "testAccount":
-                TestAccount testAccount = (TestAccount) pageObject;
+            case "loadAccount":
+                OtherAccount account = (OtherAccount) pageObject;
+                OtherAccountCases updateCase = new OtherAccountCases();
 
-                //Would call UseCase and Presenter interface here to get data from entities VVV
-                String dummy = "dummy";
-
-                //send it back up to ui, upadte the next page to be loaded VVV
-                testAccount.updateTestAccount(dummy);
-                break;
+                //Not sure if mainpageview will send displayname or username, will chance once I know.
+                //String[] updateInformation = updateCase.getUserInfo(this.user);
+                //account.updatePage(updateInformation);
         }
     }
 }

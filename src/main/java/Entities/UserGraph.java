@@ -92,4 +92,12 @@ private ArrayList<UserEdge> userEdges;
         }
         return new User("null","null");
     }
+    public User getUserByString(String username) {
+        for (int i = 0; i < this.users.size(); i++) {
+            if (username.equals(this.users.get(i).getUsername().getData())) {
+                return (this.users.get(i));
+            }
+        }
+        return null;
+    }
 }
