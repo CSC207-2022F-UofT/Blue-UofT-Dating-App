@@ -17,28 +17,36 @@ public class ViewUI {
         this.masterPanel.setLayout(layout);
         this.masterPanel.setPreferredSize(new Dimension(600, 800));;
 
-
         //initial panel
-        //UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
-        //AccountView accountView = new AccountView(this.masterPanel, this.layout);
-        OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
-        ChatView chatView = new ChatView(this.masterPanel, this.layout);
 
+        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
+        AccountView accountView = new AccountView(this.masterPanel, this.layout);
+        OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
+
+        SignUpView signUpView = new SignUpView(this.masterPanel);
 
 
         //Send the paths to other pages that your page will have
         //I.E login -> main
         Object[] otherAccountPaths = {};
         otherAccount.sendPaths(otherAccountPaths);
-        //Object[] userEditPaths = {accountView};
-        //userEditView.sendPaths(userEditPaths);
-        layout.show(this.masterPanel, "chatView");
 
-        this.frame.add(masterPanel);
+        Object[] userEditPaths = {accountView};
+        userEditView.sendPaths(userEditPaths);
+        Object[] LogInPath = {accountView, testAccount, signUpView};
+        LogInView.sendPaths(LogInPath);
+        layout.show(this.masterPanel, "testAccount");
+        layout.show(this.masterPanel, "userEditView");
+        JScrollPane scroller = new JScrollPane( this.masterPanel );
+        this.frame.add(scroller);
+        
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
         this.frame.setTitle("MainPage");
         this.frame.pack();
         this.frame.setVisible(true);
+        this.frame.setResizable(false);
+
+        layout.show(this.masterPanel, "LogInView");
 
     }
 
