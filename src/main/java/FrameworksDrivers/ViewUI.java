@@ -15,9 +15,10 @@ public class ViewUI {
     public ViewUI() {
         //master panel
         this.masterPanel.setLayout(layout);
-        this.masterPanel.setPreferredSize(new Dimension(800, 600));;
+        this.masterPanel.setPreferredSize(new Dimension(600, 800));;
 
         //initial panel
+
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
         AccountView accountView = new AccountView(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
@@ -25,13 +26,11 @@ public class ViewUI {
         SignUpView signUpView = new SignUpView(this.masterPanel);
 
 
-
-        // Main Page
-        Object[] mainPagePaths = {};
         //Send the paths to other pages that your page will have
         //I.E login -> main
         Object[] otherAccountPaths = {};
         otherAccount.sendPaths(otherAccountPaths);
+
         Object[] userEditPaths = {accountView};
         userEditView.sendPaths(userEditPaths);
         Object[] LogInPath = {accountView, testAccount, signUpView};
@@ -40,6 +39,7 @@ public class ViewUI {
         layout.show(this.masterPanel, "userEditView");
         JScrollPane scroller = new JScrollPane( this.masterPanel );
         this.frame.add(scroller);
+        
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
         this.frame.setTitle("MainPage");
         this.frame.pack();
