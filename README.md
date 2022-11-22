@@ -22,7 +22,7 @@ Currently, all views which can be ran and viewed in a window are UserEditView, L
 //        Object[] LogInPath = {accountView,signUpView};
 //        logInView.sendPaths(LogInPath);
 ```
-
+To build the project, run the main method of ViewUI.
 
 # Project Template
 This is a template repository for CSC 207 projects. 
