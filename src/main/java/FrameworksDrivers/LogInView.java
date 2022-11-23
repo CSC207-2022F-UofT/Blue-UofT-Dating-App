@@ -88,7 +88,8 @@ public class LogInView implements ActionListener, View {
         if (e.getSource() == logInB) {
             // check info entered
             // pass to LogInUseCase
-            ...
+            String name = textFieldUser.getTextField().getText();
+
 
         } else {
             // case e.getSource() == signUpB {
