@@ -9,20 +9,15 @@ import UseCases.UserGraphReadWriter;
 import java.io.IOException;
 
 public class UserRegGateway {
-    UserData<String> username;
     UserGraphReadWriter readWriter = new UserGraphReadWriter();
     UserGraph readGraph;
-    User user;
-    // template for current user, change
 
-    // the gateway will use the current user graph and reference all the usernames already there
-    public User getCurrentUser(){
-        CurrentUser currentUser = new CurrentUser();
-        username = currentUser.getUser();
-
+    // the gateway will check if the username already exists
+    public User getUserExists(String newName) {
+        // should we refer to a general read graph function so there is not redunt code?
         try {
             UserGraph readGraph = (UserGraph) readWriter.readFromFile("userGraph.ser");
-            for(String name: readGraph.getUsernames()){
+            for (String name: readGraph.getUsernames()){
                 System.out.println(name);
             }
         } catch (IOException e) {
@@ -31,6 +26,6 @@ public class UserRegGateway {
             throw new RuntimeException(e);
         }
 
-        return readGraph.getUser(username);
+        return readGraph.getUserByString(newName);
     }
 }
