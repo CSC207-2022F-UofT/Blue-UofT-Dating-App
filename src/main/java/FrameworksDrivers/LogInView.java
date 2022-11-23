@@ -31,7 +31,7 @@ public class LogInView implements ActionListener, View {
         //create components for username input
         //create label for username input
         userLabel = new Label();
-        userLabel.createLabel(40 , 40, 40, 40, newPanel, "Username", Color.BLUE);
+        userLabel.createLabel(40 , 40, 40, 40, newPanel, "Username");
 
         //create text field for inputting username
         textFieldUser = new textField();
@@ -41,7 +41,7 @@ public class LogInView implements ActionListener, View {
         //create components for password input
         //create label for password input
         passLabel = new Label();
-        passLabel.createLabel(40 , 40, 40, 40, newPanel, "Password", Color.BLUE);
+        passLabel.createLabel(40 , 40, 40, 40, newPanel, "Password");
 
         //create text field for inputting password
         textFieldPass = new textField();
@@ -51,7 +51,6 @@ public class LogInView implements ActionListener, View {
 
         logInB = new Button();
         logInB.createButton(newPanel, "Log In", 40, 40, 40, 40);
-        logInB
         signUpB = new Button();
         signUpB.createButton(newPanel, "Sign Up", 40, 40, 40, 40);
 
@@ -75,7 +74,7 @@ public class LogInView implements ActionListener, View {
 
     @Override
     public void updatePage(...) {
-        ...
+        ...;
 
     }
 
@@ -88,8 +87,7 @@ public class LogInView implements ActionListener, View {
         if (e.getSource() == logInB) {
             // check info entered
             // pass to LogInUseCase
-            String name = textFieldUser.getTextField().getText();
-
+            ...
 
         } else {
             // case e.getSource() == signUpB {

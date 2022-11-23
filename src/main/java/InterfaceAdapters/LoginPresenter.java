@@ -15,7 +15,7 @@ public class LoginPresenter {
             case "signUpView":
                 LogInView login = (LogInView) pageObject;
 
-                login.updatePage("SignUp");
+                login.updatePage(new Object[0]);
         }
     }
 
