@@ -86,7 +86,7 @@ public class MainPageView implements ActionListener, View {
         image.createIcon(iconFilePath);
 
         // Add icon to panel
-        iconPanel.add(image.getIcon());
+       // iconPanel.add(image.getIcon());
 
         // Adding all panels to the masterPanel
         this.masterPanel.add(lowerPanel);
@@ -152,7 +152,7 @@ public class MainPageView implements ActionListener, View {
     }
 
     @Override
-    public void updatePage(String view, Object page) {
+    public void updatePage(Object[] info) {
 
     }
 }

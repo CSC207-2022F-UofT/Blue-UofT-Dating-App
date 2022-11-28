@@ -26,4 +26,7 @@ public class textField {
         textField.setBounds(boundX,boundY,boundWidth,boundHeight);
         jpanel.add(textField);
     }
+    public void setText(String text){
+        textField.setText(text);
+    }
 }

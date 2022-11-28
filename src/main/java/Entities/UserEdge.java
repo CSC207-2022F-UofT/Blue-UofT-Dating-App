@@ -1,6 +1,7 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class UserEdge implements Serializable {
     private User[] users;
@@ -24,16 +25,16 @@ public class UserEdge implements Serializable {
     }
     public void likes(User liked){
         //In this case 'likes' is like a verb, the passed in user is 'liked' by the other user.
-        if(this.users[0].getUsername() == liked.getUsername()){ this.likeBackwards = true;}
+        if(Objects.equals(this.users[0].getUsername().getData(), liked.getUsername().getData())){ this.likeBackwards = true;}
         else{ this.likeForwards = true;}
     }
     public void hideInFeed(User hidden){
         //Same logic as likes method, the passed in user is wanting to be hidden by the other user.
-        if(this.users[0].getUsername() == hidden.getUsername()){ this.hiddenBackwards = true;}
+        if(Objects.equals(this.users[0].getUsername().getData(), hidden.getUsername().getData())){ this.hiddenBackwards = true;}
         else{ this.hiddenForwards = true;}
     }
     public void unhideInFeed(User unhidden){
-        if(this.users[0].getUsername() == unhidden.getUsername()){ this.hiddenBackwards = false;}
+        if(Objects.equals(this.users[0].getUsername().getData(), unhidden.getUsername().getData())){ this.hiddenBackwards = false;}
         else{ this.hiddenForwards = false;}
     }
     public User[] getUsers(){
@@ -42,9 +43,9 @@ public class UserEdge implements Serializable {
     public boolean isEdge(User user1, User user2){
         //god this is ugly, if anyone can think of a better way to retrieve an edge of two users from one's neighbour
         // list please implement.
-        return (this.users[0].getUsername() == user1.getUsername() &&
-                this.users[1].getUsername() == user2.getUsername()) ||
-                (this.users[0].getUsername() == user2.getUsername() &&
-                this.users[1].getUsername() == user1.getUsername());
+        return (Objects.equals(this.users[0].getUsername().getData(), user1.getUsername().getData()) &&
+                Objects.equals(this.users[1].getUsername().getData(), user2.getUsername().getData())) ||
+                (Objects.equals(this.users[0].getUsername().getData(), user2.getUsername().getData()) &&
+                        Objects.equals(this.users[1].getUsername().getData(), user1.getUsername().getData()));
     }
 }

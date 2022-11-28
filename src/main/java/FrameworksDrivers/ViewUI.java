@@ -1,5 +1,7 @@
 package FrameworksDrivers;
 
+import Entities.User;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,31 +15,36 @@ public class ViewUI {
     public ViewUI() {
         //master panel
         this.masterPanel.setLayout(layout);
-        this.masterPanel.setPreferredSize(new Dimension(800, 600));;
-
+        this.masterPanel.setPreferredSize(new Dimension(600, 800));;
 
         //initial panel
-        TestAccount testAccount =  new TestAccount(this.masterPanel, this.layout);
+        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
+        AccountView accountView = new AccountView(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
-        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout);
+        LogInView logInView = new LogInView(this.masterPanel);
+        ChatView chatView = new ChatView(this.masterPanel, this.layout);
+        SignUpView signUpView = new SignUpView(this.masterPanel);
+
+
 
         // Main Page
         Object[] mainPagePaths = {testAccount, otherAccount};
         //Send the paths to other pages that your page will have
         //I.E login -> main
-        Object[] testAccountPaths = {otherAccount};
-        testAccount.sendPaths(testAccountPaths);
-        Object[] otherAccountPaths = {testAccount};
+        Object[] otherAccountPaths = {};
         otherAccount.sendPaths(otherAccountPaths);
         Object[] userEditPaths = {accountView};
         userEditView.sendPaths(userEditPaths);
-        layout.show(this.masterPanel, "testAccount");
-
-        this.frame.add(masterPanel);
+        Object[] LogInPath = {accountView,signUpView};
+        logInView.sendPaths(LogInPath);
+        JScrollPane scroller = new JScrollPane( this.masterPanel );
+        this.frame.add(scroller);
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
         this.frame.setTitle("MainPage");
         this.frame.pack();
         this.frame.setVisible(true);
+        this.frame.setResizable(true);
+
 
     }
 
