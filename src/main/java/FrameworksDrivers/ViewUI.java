@@ -22,7 +22,7 @@ public class ViewUI {
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout);
 
         // Main Page
-        Object[] mainPagePaths = {};
+        Object[] mainPagePaths = {testAccount, otherAccount};
         //Send the paths to other pages that your page will have
         //I.E login -> main
         Object[] testAccountPaths = {otherAccount};

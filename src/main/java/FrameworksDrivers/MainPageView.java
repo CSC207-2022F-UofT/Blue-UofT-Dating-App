@@ -13,19 +13,18 @@ public class MainPageView implements ActionListener, View {
     private Object[] paths;
     private CardLayout layout;
 
-    private Button homeButton;
-    private Button chatButton;
-    private Button myProfileButton;
-    private Button likeButton;
-    private Button dislikeButton;
-    private Button viewOtherAccount;
-    
-    
+    Button homeButton;
+    Button chatButton;
+    Button myProfileButton;
+    Button likeButton;
+    Button dislikeButton;
+    Button viewOtherAccount;
 
-    public void createMainView(String iconFilePath){
-        //MainPage Frame
-        JFrame mainFrame = new JFrame();
 
+
+    public MainPageView(JPanel masterPanel, CardLayout layout, String iconFilePath){
+        this.masterPanel = masterPanel;
+        this.layout = layout;
         // Create Lower Panel
         JPanel lowerPanel = new JPanel();
         lowerPanel.setLayout(new GridLayout(1, 3));
@@ -90,28 +89,27 @@ public class MainPageView implements ActionListener, View {
         iconPanel.add(image.getIcon());
 
         // Adding all panels to the masterPanel
-        masterPanel.add(lowerPanel);
-        masterPanel.add(middlePanel);
-        masterPanel.add(topPanel);
-        masterPanel.add(iconPanel);
+        this.masterPanel.add(lowerPanel);
+        this.masterPanel.add(middlePanel);
+        this.masterPanel.add(topPanel);
+        this.masterPanel.add(iconPanel);
 
-        //Frame compiling
-        mainFrame.add(masterPanel, BorderLayout.CENTER);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setTitle("MainPage");
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+//        //Frame compiling
+//        mainFrame.add(masterPanel, BorderLayout.CENTER);
+//        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        mainFrame.setTitle("MainPage");
+//        mainFrame.pack();
+//        mainFrame.setVisible(true);
     }
-    public void createWayFinder(){
 
-        // Generating a mini panel containing buttons
-
+    public void sendPaths(Object[] paths) {
+        this.paths = paths;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //create presenter
-        MainPagePresenter presenter = new MainPagePresenter();
+        MainPagePresenter mainPagePresenter = new MainPagePresenter();
 
         layout = new CardLayout();
 
@@ -132,10 +130,25 @@ public class MainPageView implements ActionListener, View {
 
         }
         if (viewOtherAccount.getButton().isSelected()){
-            this.layout.show(this.masterPanel, "Other Profile Page");
+            OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter();
+
+            otherAccountPresenter.updatePage();
+        }
+    }
+    public void updateMainPageView(Object[] info) {
+        this.dummyInfo += info;
+        System.out.print(this.dummyInfo);
+        if (this.panel.getComponents().length < 2){
+            JLabel label = new JLabel(this.dummyInfo);
+            this.panel.add(label);
+        }
+        else{
+            JLabel label = (JLabel) this.panel.getComponents()[1];
+            label.setText(this.dummyInfo);
         }
 
-
+        //updates panel VVVVV
+        this.panel.revalidate();
     }
 
     @Override
