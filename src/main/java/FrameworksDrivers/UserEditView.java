@@ -9,6 +9,7 @@ import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.Icon;
 import FrameworksDrivers.UIElements.Label;
 import InterfaceAdapters.UserEditPresenter;
+import UseCases.UserEditRequestModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -207,12 +208,48 @@ public class UserEditView implements ActionListener, View {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonSubmit.getButton()) {
+            String nameData = this.nameField.getTextField().getText();
+            String bioData = this.bioField.getTextArea().getText();
+            String coursesMetaData = this.courseField.getTextArea().getText().replace(" ","");
+            String[] coursesData = coursesMetaData.split(",");
+
+            HashMap<Integer, Boolean> interestsDictData = new HashMap<Integer, Boolean>();
+            for(int i = 0; i <= 49; i++){
+                CheckBox interest = this.interests[i];
+                if(interest.getCheckBox().isSelected()){
+                    interestsDictData.put(i, true);
+                }
+            }
+            HashMap<Integer, Integer> attributeDictData = new HashMap<Integer,Integer>();
+            HashMap<Integer, Boolean> hiddenDictData = new HashMap<Integer, Boolean>();
+            for(int i = 0; i <= 13; i++){
+                int attributeIndex = 0;
+                for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
+                    if(this.attributesRadioButtons[i][j].getRadioButton().isSelected()){ attributeIndex = j;}
+                }
+                hiddenDictData.put(i, this.attributesHidden[i].getCheckBox().isSelected());
+                attributeDictData.put(i, attributeIndex);
+            }
+
+            HashMap<Integer, Integer> breakersDictData = new HashMap<Integer,Integer>();
+            for(int i = 0; i <= 13; i++){
+                int breakerIndex = 0;
+                for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
+                    if(this.dealbreakerRadioButtons[i][j].getRadioButton().isSelected()){ breakerIndex = j;}
+                }
+                breakersDictData.put(i, breakerIndex);
+            }
+
+            UserEditPresenter userEditPresenter = new UserEditPresenter();
+            UserEditRequestModel data = new UserEditRequestModel(nameData, bioData, coursesData, interestsDictData,
+                    attributeDictData, breakersDictData, hiddenDictData);
+
 
         }
         else if(e.getSource() == buttonBack.getButton()){
             UserEditPresenter userEditPresenter = new UserEditPresenter();
-            userEditPresenter.updatePage("testAccount", this.paths[1]);
-            this.layout.show(this.masterPanel, "otherAccount");
+            userEditPresenter.updatePage("mainpageView", this.paths[1]);
+            this.layout.show(this.masterPanel, "mainpageView");
         }
     }
 

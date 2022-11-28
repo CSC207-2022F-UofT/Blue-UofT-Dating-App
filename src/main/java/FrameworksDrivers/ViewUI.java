@@ -19,23 +19,22 @@ public class ViewUI {
 
         //initial panel
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
-        AccountView accountView = new AccountView(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
         LogInView logInView = new LogInView(this.masterPanel);
         ChatView chatView = new ChatView(this.masterPanel, this.layout);
         SignUpView signUpView = new SignUpView(this.masterPanel);
-
-
-
-        // Main Page
+//
+//
+//
+//         Main Page
         Object[] mainPagePaths = {};
-        //Send the paths to other pages that your page will have
-        //I.E login -> main
+//        Send the paths to other pages that your page will have
+//        I.E login -> main
         Object[] otherAccountPaths = {};
         otherAccount.sendPaths(otherAccountPaths);
-        Object[] userEditPaths = {accountView};
+        Object[] userEditPaths = {};
         userEditView.sendPaths(userEditPaths);
-        Object[] LogInPath = {accountView,signUpView};
+        Object[] LogInPath = {signUpView};
         logInView.sendPaths(LogInPath);
         JScrollPane scroller = new JScrollPane( this.masterPanel );
         this.frame.add(scroller);

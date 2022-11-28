@@ -14,6 +14,11 @@ public class textArea {
             jpanel.add(TextArea);
         }
     }
+
+    public JTextArea getTextArea() {
+        return TextArea;
+    }
+
     public void setText(String text){
         TextArea.setText(text);
     }
