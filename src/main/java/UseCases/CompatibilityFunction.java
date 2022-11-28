@@ -14,10 +14,8 @@ public class CompatibilityFunction {
         // every additional interest
         float weight = 0;
 
-        Preferences user1Preferences = new Preferences();
-        Preferences user2Preferences = new Preferences();
-        user1Preferences.setData(user1.getPreferences().getData());
-        user2Preferences.setData(user2.getPreferences().getData());
+        Preferences user1Preferences = user1.getPreferences();
+        Preferences user2Preferences = user2.getPreferences();
 
         for(int i = 0; i < user2Preferences.getData().size(); i++){
             for(int k = 0; k < user2Preferences.getData().get(i).size(); k++){
@@ -30,10 +28,8 @@ public class CompatibilityFunction {
                 }}
         }
 
-        Interests user1Interests = new Interests();
-        Interests user2Interests = new Interests();
-        user1Interests.setData(user1.getInterests().getData());
-        user2Interests.setData(user2.getInterests().getData());
+        Interests user1Interests = user1.getInterests();
+        Interests user2Interests = user2.getInterests();
         int numInterests = InterestsDict.interestMap.size();
         weight += .5;
 

@@ -11,7 +11,6 @@ import Entities.UserDataClasses.PrivateUserDataClasses.Preferences;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
 import Entities.UserDataClasses.PublicUserDataClasses.*;
 import Entities.UserDataClasses.UserData;
-
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -56,45 +55,45 @@ public class User implements Serializable {
     }
 
     // Getters
-    public UserData<String> getUsername() {
+    public Username getUsername() {
         return username;
     }
-    public UserData<String> getPassword() {
+    public Password getPassword() {
         return password;
     }
-    public UserData<String> getDisplayName() {
+    public DisplayName getDisplayName() {
         return displayName;
     }
 
-    public UserData<String> getBio() {
+    public Bio getBio() {
         return bio;
     }
 
-    public UserData<String> getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public UserData<String> getPostalCode() {
+    public PostalCode getPostalCode() {
         return this.postalCode;
     }
 
-    public UserData<ArrayList<Photo>> getPhotos() {
+    public Photos getPhotos() {
         return photos;
     }
 
-    public UserData<ArrayList<Course>> getCourses() {
+    public Courses getCourses() {
         return courses;
     }
 
-    public UserData<HashMap<Integer, Boolean>> getInterests() {
+    public Interests getInterests() {
         return interests;
     }
 
-    public UserData<HashMap<Integer, ArrayList<Object>>> getAttributes() {
+    public Attributes getAttributes() {
         return attributes;
     }
 
-    public UserData<ArrayList<ArrayList<Integer>>> getPreferences() {
+    public Preferences getPreferences() {
         return preferences;
     }
     public ArrayList<User> getNeighbors() {
