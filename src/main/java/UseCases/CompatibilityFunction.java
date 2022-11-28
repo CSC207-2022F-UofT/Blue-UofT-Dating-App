@@ -10,7 +10,8 @@ public class CompatibilityFunction {
 
     public float getCompatibility(User user1, User user2){
         // Return 0 if two Users are incompatible (one user has an attribute
-        // which is a dealbreaker for the other), or 1 if they are compatible
+        // which is a dealbreaker for the other), or .5 + a small fraction for
+        // every additional interest
         float weight = 0;
 
         Preferences user1Preferences = new Preferences();
@@ -34,24 +35,13 @@ public class CompatibilityFunction {
         user1Interests.setData(user1.getInterests().getData());
         user2Interests.setData(user2.getInterests().getData());
         int numInterests = InterestsDict.interestMap.size();
+        weight += .5;
 
         for(int i = 0; i < numInterests; i++){
             if(user2.containsInterest(i) & user1.containsInterest(i)){
-                weight += 1.0 / numInterests;
+                weight += .5 / numInterests;
             }
         }
-//        Courses user1Courses = new Courses();
-//        Courses user2Courses = new Courses();
-//        user1Courses.setData(user1.getCourses().getData());
-//        user2Courses.setData(user2.getCourses().getData());
-//        int numU1Courses = user1Courses.data.size();
-//        int numU2Courses = user2Courses.data.size();
-//
-//        for(int i = 0; i < numU1Courses; i++){
-//            if(user2.containsInterest(i) & user1.containsInterest(i)){
-//                weight += .5 / numInterests;
-//            }
-//        }
         return weight;
     }
 }
