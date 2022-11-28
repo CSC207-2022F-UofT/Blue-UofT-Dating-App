@@ -26,7 +26,7 @@ public class ChatRepoUseCase implements Serializable {
         return currChatrooms.get(users);
     }
 
-    public Map<Set<User>, Chatroom> getAllChatrooms() {
+    public static Map<Set<User>, Chatroom> getAllChatrooms() {
         return currChatrooms;
     }
 
