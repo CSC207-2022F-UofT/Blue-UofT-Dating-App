@@ -21,9 +21,9 @@ public class ViewUI {
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
         AccountView accountView = new AccountView(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
-        LogInView logInView = new LogInView(this.masterPanel);
+        LogInView logInView = new LogInView(this.masterPanel, this.layout);
         ChatView chatView = new ChatView(this.masterPanel, this.layout);
-        SignUpView signUpView = new SignUpView(this.masterPanel);
+        SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
 
 
 
