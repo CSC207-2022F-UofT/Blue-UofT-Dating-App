@@ -1,6 +1,9 @@
 package FrameworksDrivers;
 
+import Entities.CurrentUser;
 import Entities.User;
+import Entities.UserDataClasses.PrivateUserDataClasses.Username;
+import UseCases.DataRetrieval.CurrentUserGateway;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +21,10 @@ public class ViewUI {
         this.masterPanel.setPreferredSize(new Dimension(600, 800));;
 
         //initial panel
-        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
+        CurrentUser currentUser = new CurrentUser();
+        currentUser.setUser(new Username("Ewan"));
+        CurrentUserGateway currentUserGateway = new CurrentUserGateway();
+        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, currentUserGateway.getCurrentUser());
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
         LogInView logInView = new LogInView(this.masterPanel);
         ChatView chatView = new ChatView(this.masterPanel, this.layout);
@@ -32,7 +38,7 @@ public class ViewUI {
 //        I.E login -> main
         Object[] otherAccountPaths = {};
         otherAccount.sendPaths(otherAccountPaths);
-        Object[] userEditPaths = {};
+        Object[] userEditPaths = {otherAccount};
         userEditView.sendPaths(userEditPaths);
         Object[] LogInPath = {signUpView};
         logInView.sendPaths(LogInPath);

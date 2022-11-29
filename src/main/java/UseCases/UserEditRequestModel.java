@@ -1,5 +1,7 @@
 package UseCases;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class UserEditRequestModel {
@@ -8,10 +10,10 @@ public class UserEditRequestModel {
     String[] courses;
     HashMap<Integer, Boolean> interestsDict;
     HashMap<Integer, Integer> attributeDict;
-    HashMap<Integer, Integer> breakersDict;
+    ArrayList<ArrayList<Integer>> breakersDict;
     HashMap<Integer, Boolean> hiddenDict;
     public UserEditRequestModel(String name, String bio, String[] courses, HashMap<Integer, Boolean> interestsDict,
-                                HashMap<Integer, Integer> attributeDict, HashMap<Integer, Integer> breakersDict,
+                                HashMap<Integer, Integer> attributeDict, ArrayList<ArrayList<Integer>> breakersDict,
                                 HashMap<Integer, Boolean> hiddenDict){
         this.bio = bio;
         this.name = name;

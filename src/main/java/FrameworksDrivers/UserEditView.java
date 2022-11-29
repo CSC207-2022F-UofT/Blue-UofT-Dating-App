@@ -79,7 +79,6 @@ public class UserEditView implements ActionListener, View {
 
         bioField = new textArea();
         bioField.createTextArea(this.panel, this.user.getBio().getData(), 480, 90, 300, 100);
-        bioField.setText(this.user.getUsername().getData());
 
         interestsLabel = new Label();
         interestsLabel.createLabel(20, 120, 300, 30, this.panel, "Interests");
@@ -88,14 +87,15 @@ public class UserEditView implements ActionListener, View {
         interests = new CheckBox[50];
         for(int i = 0; i <= 25; i++){
               interests[i] = new CheckBox();
+              Boolean checked = false;
                interests[i].createCheckbox(this.panel, InterestsDict.interestMap.get(i), 20, 150 + 15*i,
-                    150, 12, this.user.getInterests().getData().get(i));
+                    150, 12, this.user.getInterests().getData().containsKey(i));
 
         }
         for(int i = 26; i <= 49; i++){
             interests[i] = new CheckBox();
             interests[i].createCheckbox(this.panel, InterestsDict.interestMap.get(i), 170, 150 + 15*i - 390,
-                    150, 12, this.user.getInterests().getData().get(i));
+                    150, 12, this.user.getInterests().getData().containsKey(i));
 
         }
         coursesLabel = new Label();
@@ -121,13 +121,14 @@ public class UserEditView implements ActionListener, View {
             attributesLabel[i] = new Label();
             attributesLabel[i].createLabel(400, 350 + 15*items, 300, 30, this.panel, attributesDict.attributeAt(i));
             attributesHidden[i] = new CheckBox();
-            attributesHidden[i].createCheckbox(this.panel, "Hidden", 500,360+15*items,70,20,false);
+            attributesHidden[i].createCheckbox(this.panel, "Hidden", 500,360+15*items,70,20,
+                    (boolean) this.user.getAttributes().getData().get(i).get(1));
             items += 1;
             attributesRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
             for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
                 attributesRadioButtons[i][j] = new RadioButton();
                 attributesRadioButtons[i][j].createRadioButton(this.panel, attributeValueDict.valueAt(i, j), 400, 360 + 15*items,
-                        150, 12, false);
+                        150, 12, (int)this.user.getAttributes().getData().get(i).get(0) == j);
                 items+=1;
             }
         }
@@ -136,13 +137,14 @@ public class UserEditView implements ActionListener, View {
             attributesLabel[i] = new Label();
             attributesLabel[i].createLabel(600, 350 + 15*items, 300, 30, this.panel, attributesDict.attributeAt(i));
             attributesHidden[i] = new CheckBox();
-            attributesHidden[i].createCheckbox(this.panel, "Hidden", 700,360+15*items,70,10,false);
+            attributesHidden[i].createCheckbox(this.panel, "Hidden", 700,360+15*items,70,10,
+                    (boolean) this.user.getAttributes().getData().get(i).get(1));
             items += 1;
             attributesRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
             for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
                 attributesRadioButtons[i][j] = new RadioButton();
                 attributesRadioButtons[i][j].createRadioButton(this.panel, attributeValueDict.valueAt(i, j), 600, 360 + 15*items,
-                        150, 12, false);
+                        150, 12, (int)this.user.getAttributes().getData().get(i).get(0) == j);
                 items+=1;
             }
         }
@@ -164,7 +166,7 @@ public class UserEditView implements ActionListener, View {
             for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
                 dealbreakerRadioButtons[i][j] = new RadioButton();
                 dealbreakerRadioButtons[i][j].createRadioButton(this.panel, attributeValueDict.valueAt(i, j), 20, 590 + 15*itemsd,
-                        150, 12, false);
+                        150, 12, this.user.getPreferences().getData().get(i).contains(j));
                 itemsd+=1;
             }
         }
@@ -177,7 +179,7 @@ public class UserEditView implements ActionListener, View {
             for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
                 dealbreakerRadioButtons[i][j] = new RadioButton();
                 dealbreakerRadioButtons[i][j].createRadioButton(this.panel, attributeValueDict.valueAt(i, j), 220, 590 + 15*itemsd,
-                        150, 12, false);
+                        150, 12, this.user.getPreferences().getData().get(i).contains(j));
                 itemsd+=1;
             }
         }
@@ -231,24 +233,24 @@ public class UserEditView implements ActionListener, View {
                 attributeDictData.put(i, attributeIndex);
             }
 
-            HashMap<Integer, Integer> breakersDictData = new HashMap<Integer,Integer>();
+            ArrayList<ArrayList<Integer>> breakersDictData = new ArrayList<ArrayList<Integer>>();
             for(int i = 0; i <= 13; i++){
                 int breakerIndex = 0;
+                breakersDictData.add(i, new ArrayList<Integer>());
                 for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
-                    if(this.dealbreakerRadioButtons[i][j].getRadioButton().isSelected()){ breakerIndex = j;}
+                    if(this.dealbreakerRadioButtons[i][j].getRadioButton().isSelected()){ breakersDictData.get(i).add(j);}
                 }
-                breakersDictData.put(i, breakerIndex);
             }
 
             UserEditPresenter userEditPresenter = new UserEditPresenter();
             UserEditRequestModel data = new UserEditRequestModel(nameData, bioData, coursesData, interestsDictData,
                     attributeDictData, breakersDictData, hiddenDictData);
-
-
+            userEditPresenter.saveUserInfo(data, this.paths[0]);
+            this.layout.show(this.masterPanel, "otherAccount");
         }
         else if(e.getSource() == buttonBack.getButton()){
             UserEditPresenter userEditPresenter = new UserEditPresenter();
-            userEditPresenter.updatePage("mainpageView", this.paths[1]);
+            userEditPresenter.updatePage("mainpageView", this.paths[0]);
             this.layout.show(this.masterPanel, "mainpageView");
         }
     }
@@ -257,6 +259,7 @@ public class UserEditView implements ActionListener, View {
     public void updatePage(Object[] info) {
         UserEditPresenter userEditPresenter = new UserEditPresenter();
         this.user = userEditPresenter.getCurrentUser();
+
     }
 }
 

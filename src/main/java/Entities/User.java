@@ -165,6 +165,7 @@ public class User implements Serializable {
     public void setInterests(HashMap<Integer, Boolean> newInterests) {
         this.interests = new Interests();
         this.interests.setData(newInterests);
+        this.interests.data = newInterests;
     }
 
     public void setInterests(Interests newInterests) {
