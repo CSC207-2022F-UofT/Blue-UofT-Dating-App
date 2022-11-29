@@ -3,25 +3,22 @@ package InterfaceAdapters;
 
 import Entities.User;
 import FrameworksDrivers.View;
-import UseCases.ChatUseCases.ChatRegRequestModel;
-import UseCases.ChatUseCases.ChatRenderResponseModel;
-import UseCases.ChatUseCases.ChatRenderUseCase;
+import UseCases.ChatUseCases.*;
 
 import java.util.ArrayList;
 
-public class ChatViewPresenter {
-
-    private ChatRenderUseCase useCase;
-
+public class ChatViewPresenter implements ChatViewPresenterInterface {
     private View currView;
 
-    public ChatViewPresenter(ChatRenderUseCase useCase) {
-        this.useCase = useCase;
+    public ChatViewPresenter(View currView) {
+        this.currView = currView;
     }
 
     // updates chatView with array of Chatroom objects
+    @Override
     public void render() {
         ChatRenderResponseModel responseModel =  new ChatRenderUseCase().render();
         currView.updatePage(responseModel.getChatrooms().toArray());
     }
+
 }
