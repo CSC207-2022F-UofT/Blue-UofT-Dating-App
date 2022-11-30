@@ -13,7 +13,13 @@ public class textArea {
         if (jpanel != null) {
             jpanel.add(TextArea);
         }
+        TextArea.setText(textAreaText);
     }
+
+    public JTextArea getTextArea() {
+        return TextArea;
+    }
+
     public void setText(String text){
         TextArea.setText(text);
     }
