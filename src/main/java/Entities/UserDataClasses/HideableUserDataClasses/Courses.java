@@ -1,5 +1,6 @@
 package Entities.UserDataClasses.HideableUserDataClasses;
 
+import Entities.UserDataClasses.CourseCode;
 import Entities.UserDataClasses.HideableData;
 
 import java.io.Serializable;
@@ -26,6 +27,16 @@ public class Courses extends HideableData<ArrayList<Course>> implements Serializ
         this.data = super.data;
         this.hidden = true;
     }
+    public Courses(String[] courseStrings){
+        super(new ArrayList<Course>());
+        for(String courseCodeData: courseStrings){
+            super.data.add(new Course(new CourseCode(courseCodeData)));
+        }
+        this.data = super.data;
+
+
+
+    }
 
     // Methods
     public void addCourse(Course course){
@@ -43,6 +54,7 @@ public class Courses extends HideableData<ArrayList<Course>> implements Serializ
     @Override
     public String toString(){
         StringBuilder returnString = new StringBuilder();
+        if(this.data == null){return "";}
         for(Course course: this.data){
             returnString.append(course.getData().code);
             returnString.append(", ");

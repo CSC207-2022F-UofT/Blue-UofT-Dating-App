@@ -19,6 +19,10 @@ public class Attributes extends HideableData<HashMap<Integer, ArrayList<Object>>
     public Attributes(){
         super(new HashMap<Integer, ArrayList<Object>>(), false);
         this.data = super.data;
+        new AttributesDict();
+        for(int i: AttributesDict.attributesMap.keySet()){
+            this.addAttribute(i, 0, true);
+        }
         this.hidden = false;
     }
     public Attributes(boolean hidden){
