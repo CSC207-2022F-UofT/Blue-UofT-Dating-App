@@ -14,6 +14,16 @@ import java.io.*;
  * @since 1.0
  */
 public class ChatGateway implements ReadWriter {
+    /**
+     * Retrieves data from a serialized file. In particular,
+     * used to retrieve a ChatRepoUseCase object from the database
+     * to access the previously existing Chatrooms.
+     *
+     * @param filepath
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Override
     public Object readFromFile(String filepath) throws IOException, ClassNotFoundException {
         InputStream file = new FileInputStream(filepath);
