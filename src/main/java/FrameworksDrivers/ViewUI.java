@@ -1,8 +1,11 @@
 package FrameworksDrivers;
 
+import Entities.CurrentUser;
 import Entities.Chatroom;
 import Entities.Message;
 import Entities.User;
+import Entities.UserDataClasses.PrivateUserDataClasses.Username;
+import UseCases.DataRetrieval.CurrentUserGateway;
 import InterfaceAdapters.ChatViewPresenter;
 import UseCases.ChatUseCases.ChatRenderUseCase;
 import UseCases.ChatUseCases.ChatRepoUseCase;
@@ -22,16 +25,16 @@ public class ViewUI {
         //master panel
         this.masterPanel.setLayout(layout);
         this.masterPanel.setPreferredSize(new Dimension(600, 800));;
-
         //initial panel
-        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
+//        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
         AccountView accountView = new AccountView(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
-        LogInView logInView = new LogInView(this.masterPanel, this.layout);
+//        LogInView logInView = new LogInView(this.masterPanel, this.layout);
         ChatView chatView = new ChatView(this.masterPanel, this.layout);
+//        SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
 
         MainPageView mainPageView = new MainPageView(this.masterPanel, this.layout);
-        SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
+        //SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
 
         currView = chatView;
 
@@ -40,16 +43,15 @@ public class ViewUI {
 
         Object[] mainPagePaths = {otherAccount};
         mainPageView.sendPaths(mainPagePaths);
-        Object[] mainPagePaths = {};
 
-        //Send the paths to other pages that your page will have
-        //I.E login -> main
+//        Send the paths to other pages that your page will have
+//        I.E login -> main
         Object[] otherAccountPaths = {};
         otherAccount.sendPaths(otherAccountPaths);
         Object[] userEditPaths = {accountView};
-        userEditView.sendPaths(userEditPaths);
-        Object[] LogInPath = {accountView,signUpView};
-        logInView.sendPaths(LogInPath);
+//        userEditView.sendPaths(userEditPaths);
+//        Object[] LogInPath = {accountView,signUpView};
+//        logInView.sendPaths(LogInPath);
 //        Object[] chatViewPaths = {MainPageView};
 
         JScrollPane scroller = new JScrollPane( this.masterPanel);
