@@ -33,7 +33,6 @@ public class ChatRenderUseCase {
             username1List.add(username1);
             username2List.add(username2);
 
-
             //added just now
             currChatroomList.add(username1List);
             currChatroomList.add(username2List);
