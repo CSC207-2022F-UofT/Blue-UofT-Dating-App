@@ -121,8 +121,10 @@ public class UserEditView implements ActionListener, View {
             attributesLabel[i] = new Label();
             attributesLabel[i].createLabel(400, 350 + 15*items, 300, 30, this.panel, attributesDict.attributeAt(i));
             attributesHidden[i] = new CheckBox();
+            boolean checked;
+            try{ checked = (boolean) this.user.getAttributes().getData().get(i).get(1); }catch(Exception e){ checked = false;}
             attributesHidden[i].createCheckbox(this.panel, "Hidden", 500,360+15*items,70,20,
-                    (boolean) this.user.getAttributes().getData().get(i).get(1));
+                    checked);
             items += 1;
             attributesRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
             for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
@@ -137,8 +139,10 @@ public class UserEditView implements ActionListener, View {
             attributesLabel[i] = new Label();
             attributesLabel[i].createLabel(600, 350 + 15*items, 300, 30, this.panel, attributesDict.attributeAt(i));
             attributesHidden[i] = new CheckBox();
+            boolean checked;
+            try{ checked = (boolean) this.user.getAttributes().getData().get(i).get(1); }catch(Exception e){ checked = false;}
             attributesHidden[i].createCheckbox(this.panel, "Hidden", 700,360+15*items,70,10,
-                    (boolean) this.user.getAttributes().getData().get(i).get(1));
+                    checked);
             items += 1;
             attributesRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
             for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
@@ -201,7 +205,7 @@ public class UserEditView implements ActionListener, View {
 
         JScrollPane scroller = new JScrollPane( this.panel );
         this.panel.setBackground(Color.lightGray);
-        this.masterPanel.add(scroller, "");
+        this.masterPanel.add(scroller, "userEditView");
     }
 
     public void sendPaths(Object[] paths) {
