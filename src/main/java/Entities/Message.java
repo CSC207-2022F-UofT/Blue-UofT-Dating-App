@@ -27,6 +27,7 @@ public class Message implements Serializable {
 
     /**
      * Constructor for Message.
+     * Assigns the input arguments to their respective instance variables.
      *
      * @param user The user who sent this message. Must be a User object.
      * @param text The contents of the message.
