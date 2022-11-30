@@ -13,6 +13,10 @@ public class textField {
         return textField;
     }
 
+    public String getText() {
+        return textField.getText();
+    }
+
     /**
      * Creates a JTextField as per specified criteria and adds it to the dialogbox.
      * @param jpanel
