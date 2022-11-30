@@ -3,46 +3,47 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import Entities.User;
 import FrameworksDrivers.UIElements.Button;
-import FrameworksDrivers.UIElements.Icon;
+import FrameworksDrivers.UIElements.textField;
 import InterfaceAdapters.MainPagePresenter;
 import InterfaceAdapters.OtherAccountPresenter;
 
 public class MainPageView implements ActionListener, View {
     private JPanel masterPanel;
     private Object[] paths;
+    User displayUser;
     private CardLayout layout;
 
-    private Button homeButton;
-    private Button chatButton;
-    private Button myProfileButton;
-    private Button likeButton;
-    private Button dislikeButton;
-    private Button viewOtherAccount;
-    
-    
+    Button homeButton;
+    Button chatButton;
+    Button myProfileButton;
+    Button likeButton;
+    Button dislikeButton;
+    Button viewOtherAccount;
+    textField nameTextField;
 
-    public void createMainView(String iconFilePath){
-        //MainPage Frame
-        JFrame mainFrame = new JFrame();
-
+    public MainPageView(JPanel masterPanel, CardLayout layout){
+        this.masterPanel = masterPanel;
+        this.layout = layout;
         // Create Lower Panel
         JPanel lowerPanel = new JPanel();
         lowerPanel.setLayout(new GridLayout(1, 3));
 
         // Create HomeButton
         homeButton = new Button();
-        homeButton.createButton(lowerPanel, "Home", 130,195,100,30);
+        homeButton.createButton(lowerPanel, "Home", 0,600,200,200);
         homeButton.getButton().addActionListener(this);
 
         // Create ChatButton
         chatButton = new Button();
-        chatButton.createButton(lowerPanel, "Chats", 130,195,100,30);
+        chatButton.createButton(lowerPanel, "Chats", 200,600,200,200);
         chatButton.getButton().addActionListener(this);
 
         // Create MyProfileButton
         myProfileButton = new Button();
-        myProfileButton.createButton(lowerPanel, "My Profile", 130,195,100,30);
+        myProfileButton.createButton(lowerPanel, "My Profile", 400,600,200,200);
         myProfileButton.getButton().addActionListener(this);
 
         // Add these buttons to the lower panel
@@ -56,12 +57,12 @@ public class MainPageView implements ActionListener, View {
 
         // Create like button
         likeButton = new Button();
-        likeButton.createButton(lowerPanel, "Like", 130,195,100,30);
+        likeButton.createButton(lowerPanel, "Like", 0,500,300,100);
         likeButton.getButton().addActionListener(this);
 
         // Create like button
         dislikeButton = new Button();
-        dislikeButton.createButton(lowerPanel, "Dislike", 130,195,100,30);
+        dislikeButton.createButton(lowerPanel, "Dislike", 300,500,300,100);
         dislikeButton.getButton().addActionListener(this);
 
         // Add these buttons to the middle panel
@@ -73,50 +74,44 @@ public class MainPageView implements ActionListener, View {
 
         // Create viewOtherAccount Button
         viewOtherAccount = new Button();
-        viewOtherAccount.createButton(lowerPanel, "View Profile", 130,195,100,30);
+        viewOtherAccount.createButton(lowerPanel, "View Profile", 400,0,200,100);
         viewOtherAccount.getButton().addActionListener(this);
 
         // Add this button to the top panel
         topPanel.add(viewOtherAccount.getButton());
 
-        // Create Icon Panel
-        JPanel iconPanel = new JPanel();
+        // Create Name Text Panel
+        JPanel namePanel = new JPanel();
 
-        // Create Icon
-        Icon image = new Icon();
-        image.createIcon(iconFilePath);
+        // Create Text Field
+        nameTextField = new textField();
+        nameTextField.createTextField(namePanel,150,200,300,200);
+        nameTextField.setText(" ");
 
-        // Add icon to panel
-       // iconPanel.add(image.getIcon());
+        // Add Text Field to the Panel
+        namePanel.add(nameTextField.getTextField());
+
 
         // Adding all panels to the masterPanel
-        masterPanel.add(lowerPanel);
-        masterPanel.add(middlePanel);
-        masterPanel.add(topPanel);
-        masterPanel.add(iconPanel);
-
-        //Frame compiling
-        mainFrame.add(masterPanel, BorderLayout.CENTER);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setTitle("MainPage");
-        mainFrame.pack();
-        mainFrame.setVisible(true);
+        this.masterPanel.add(lowerPanel);
+        this.masterPanel.add(middlePanel);
+        this.masterPanel.add(topPanel);
+        this.masterPanel.add(namePanel);
     }
-    public void createWayFinder(){
 
-        // Generating a mini panel containing buttons
-
+    public void sendPaths(Object[] paths) {
+        this.paths = paths;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         //create presenter
-        MainPagePresenter presenter = new MainPagePresenter();
-
         layout = new CardLayout();
 
         // All button cases
         if (homeButton.getButton().isSelected()){
+            MainPagePresenter mainPagePresenter = new MainPagePresenter();
+
             this.layout.show(this.masterPanel, "Main Page");
         }
         if (chatButton.getButton().isSelected()){
@@ -132,14 +127,15 @@ public class MainPageView implements ActionListener, View {
 
         }
         if (viewOtherAccount.getButton().isSelected()){
-            this.layout.show(this.masterPanel, "Other Profile Page");
+            //OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(String user);
+            //otherAccountPresenter.updatePage("loadAccount", paths[0]);
+            this.layout.show(this.masterPanel, "otherAccount");
         }
-
-
     }
-
-    @Override
     public void updatePage(Object[] info) {
-
+        //Just switch the user
+        this.displayUser = (User) info[0];
+        this.nameTextField.setText(displayUser.getDisplayName().toString());
     }
+
 }

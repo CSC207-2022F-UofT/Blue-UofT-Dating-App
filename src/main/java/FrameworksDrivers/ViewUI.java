@@ -29,13 +29,19 @@ public class ViewUI {
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
         LogInView logInView = new LogInView(this.masterPanel, this.layout);
         ChatView chatView = new ChatView(this.masterPanel, this.layout);
+
+        MainPageView mainPageView = new MainPageView(this.masterPanel, this.layout);
         SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
 
         currView = chatView;
 
 
         // Main Page
+
+        Object[] mainPagePaths = {otherAccount};
+        mainPageView.sendPaths(mainPagePaths);
         Object[] mainPagePaths = {};
+
         //Send the paths to other pages that your page will have
         //I.E login -> main
         Object[] otherAccountPaths = {};
