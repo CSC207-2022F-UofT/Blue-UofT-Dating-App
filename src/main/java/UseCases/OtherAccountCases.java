@@ -68,10 +68,10 @@ public class OtherAccountCases {
                     ArrayList<Object> atr = map.get(i);
                     if (!(boolean) atr.get(1)) {
                         if (attributesString.equals("")) {
-                            attributesString += attributes.getTypeAt(i) + ": " + atr.get(0);
+                            attributesString += attributes.getTypeAt(i) + ": " + attributes.getValueAt(i, (int) atr.get(0));
                         }
                         else {
-                            attributesString += ", " + attributes.getTypeAt(i) + ": " + atr.get(0);
+                            attributesString += ", " + attributes.getTypeAt(i) + ": " + attributes.getValueAt(i, (int) atr.get(0));
                         }
                     }
                 }

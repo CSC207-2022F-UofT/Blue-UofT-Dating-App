@@ -95,6 +95,7 @@ public class OtherAccount implements ActionListener, View {
 
         //updates panel VVVVV
         this.panel.revalidate();
+
     }
 
 }
