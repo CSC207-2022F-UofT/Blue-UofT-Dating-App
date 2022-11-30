@@ -2,7 +2,6 @@ package InterfaceAdapters;
 import Entities.User;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import UseCases.LikeUseCase;
-import UseCases.DislikeUseCase;
 import FrameworksDrivers.MainPageView;
 
 import java.util.ArrayList;

@@ -33,17 +33,17 @@ public class MainPageView implements ActionListener, View {
 
         // Create HomeButton
         homeButton = new Button();
-        homeButton.createButton(lowerPanel, "Home", 130,195,100,30);
+        homeButton.createButton(lowerPanel, "Home", 0,600,200,200);
         homeButton.getButton().addActionListener(this);
 
         // Create ChatButton
         chatButton = new Button();
-        chatButton.createButton(lowerPanel, "Chats", 130,195,100,30);
+        chatButton.createButton(lowerPanel, "Chats", 200,600,200,200);
         chatButton.getButton().addActionListener(this);
 
         // Create MyProfileButton
         myProfileButton = new Button();
-        myProfileButton.createButton(lowerPanel, "My Profile", 130,195,100,30);
+        myProfileButton.createButton(lowerPanel, "My Profile", 400,600,200,200);
         myProfileButton.getButton().addActionListener(this);
 
         // Add these buttons to the lower panel
@@ -57,12 +57,12 @@ public class MainPageView implements ActionListener, View {
 
         // Create like button
         likeButton = new Button();
-        likeButton.createButton(lowerPanel, "Like", 130,195,100,30);
+        likeButton.createButton(lowerPanel, "Like", 0,500,300,100);
         likeButton.getButton().addActionListener(this);
 
         // Create like button
         dislikeButton = new Button();
-        dislikeButton.createButton(lowerPanel, "Dislike", 130,195,100,30);
+        dislikeButton.createButton(lowerPanel, "Dislike", 300,500,300,100);
         dislikeButton.getButton().addActionListener(this);
 
         // Add these buttons to the middle panel
@@ -74,7 +74,7 @@ public class MainPageView implements ActionListener, View {
 
         // Create viewOtherAccount Button
         viewOtherAccount = new Button();
-        viewOtherAccount.createButton(lowerPanel, "View Profile", 130,195,100,30);
+        viewOtherAccount.createButton(lowerPanel, "View Profile", 400,0,200,100);
         viewOtherAccount.getButton().addActionListener(this);
 
         // Add this button to the top panel
@@ -85,7 +85,7 @@ public class MainPageView implements ActionListener, View {
 
         // Create Text Field
         nameTextField = new textField();
-        nameTextField.createTextField(namePanel,130,195,100,30);
+        nameTextField.createTextField(namePanel,150,200,300,200);
         nameTextField.setText(" ");
 
         // Add Text Field to the Panel

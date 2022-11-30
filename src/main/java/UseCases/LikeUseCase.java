@@ -1,10 +1,15 @@
 package UseCases;
 import Entities.User;
 import Entities.UserEdge;
+import Entities.UserGraph;
+import UseCases.DataRetrieval.CurrentGraph;
+import UseCases.DataRetrieval.SaveGraph;
 
 public class LikeUseCase {
     public void updateEdge(User currentUser, User likedUser){
-        UserEdge userEdge = new UserEdge(currentUser, likedUser);
+        UserGraph editGraph = CurrentGraph.getGraph();
+        UserEdge userEdge = editGraph.getEdge(currentUser, likedUser);
         userEdge.likes(likedUser);
+        new SaveGraph(editGraph);
     }
 }
