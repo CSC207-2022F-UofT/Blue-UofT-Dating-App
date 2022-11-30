@@ -3,14 +3,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import Entities.User;
 import FrameworksDrivers.UIElements.Button;
-import FrameworksDrivers.UIElements.Icon;
+import FrameworksDrivers.UIElements.textField;
 import InterfaceAdapters.MainPagePresenter;
 import InterfaceAdapters.OtherAccountPresenter;
 
 public class MainPageView implements ActionListener, View {
     private JPanel masterPanel;
     private Object[] paths;
+    User displayUser;
     private CardLayout layout;
 
     Button homeButton;
@@ -19,10 +22,9 @@ public class MainPageView implements ActionListener, View {
     Button likeButton;
     Button dislikeButton;
     Button viewOtherAccount;
+    textField nameTextField;
 
-
-
-    public MainPageView(JPanel masterPanel, CardLayout layout, String iconFilePath){
+    public MainPageView(JPanel masterPanel, CardLayout layout){
         this.masterPanel = masterPanel;
         this.layout = layout;
         // Create Lower Panel
@@ -78,28 +80,23 @@ public class MainPageView implements ActionListener, View {
         // Add this button to the top panel
         topPanel.add(viewOtherAccount.getButton());
 
-        // Create Icon Panel
-        JPanel iconPanel = new JPanel();
+        // Create Name Text Panel
+        JPanel namePanel = new JPanel();
 
-        // Create Icon
-        Icon image = new Icon();
-        image.createIcon(iconFilePath);
+        // Create Text Field
+        nameTextField = new textField();
+        nameTextField.createTextField(namePanel,130,195,100,30);
+        nameTextField.setText(" ");
 
-        // Add icon to panel
-       // iconPanel.add(image.getIcon());
+        // Add Text Field to the Panel
+        namePanel.add(nameTextField.getTextField());
+
 
         // Adding all panels to the masterPanel
         this.masterPanel.add(lowerPanel);
         this.masterPanel.add(middlePanel);
         this.masterPanel.add(topPanel);
-        this.masterPanel.add(iconPanel);
-
-//        //Frame compiling
-//        mainFrame.add(masterPanel, BorderLayout.CENTER);
-//        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        mainFrame.setTitle("MainPage");
-//        mainFrame.pack();
-//        mainFrame.setVisible(true);
+        this.masterPanel.add(namePanel);
     }
 
     public void sendPaths(Object[] paths) {
@@ -109,12 +106,12 @@ public class MainPageView implements ActionListener, View {
     @Override
     public void actionPerformed(ActionEvent e) {
         //create presenter
-        MainPagePresenter mainPagePresenter = new MainPagePresenter();
-
         layout = new CardLayout();
 
         // All button cases
         if (homeButton.getButton().isSelected()){
+            MainPagePresenter mainPagePresenter = new MainPagePresenter();
+
             this.layout.show(this.masterPanel, "Main Page");
         }
         if (chatButton.getButton().isSelected()){
@@ -130,29 +127,15 @@ public class MainPageView implements ActionListener, View {
 
         }
         if (viewOtherAccount.getButton().isSelected()){
-            OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter();
-
-            otherAccountPresenter.updatePage();
+            //OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(String user);
+            //otherAccountPresenter.updatePage("loadAccount", paths[0]);
+            this.layout.show(this.masterPanel, "otherAccount");
         }
     }
-    public void updateMainPageView(Object[] info) {
-        this.dummyInfo += info;
-        System.out.print(this.dummyInfo);
-        if (this.panel.getComponents().length < 2){
-            JLabel label = new JLabel(this.dummyInfo);
-            this.panel.add(label);
-        }
-        else{
-            JLabel label = (JLabel) this.panel.getComponents()[1];
-            label.setText(this.dummyInfo);
-        }
-
-        //updates panel VVVVV
-        this.panel.revalidate();
-    }
-
-    @Override
     public void updatePage(Object[] info) {
-
+        //Just switch the user
+        this.displayUser = (User) info[0];
+        this.nameTextField.setText(displayUser.getDisplayName().toString());
     }
+
 }
