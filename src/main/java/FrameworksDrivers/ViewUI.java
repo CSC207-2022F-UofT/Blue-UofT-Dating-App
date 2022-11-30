@@ -26,12 +26,12 @@ public class ViewUI {
         this.masterPanel.setLayout(layout);
         this.masterPanel.setPreferredSize(new Dimension(600, 800));;
         //initial panel
-        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
+//        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
         AccountView accountView = new AccountView(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
-        LogInView logInView = new LogInView(this.masterPanel, this.layout);
+//        LogInView logInView = new LogInView(this.masterPanel, this.layout);
         ChatView chatView = new ChatView(this.masterPanel, this.layout);
-        SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
+//        SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
 
         currView = chatView;
 
@@ -43,13 +43,13 @@ public class ViewUI {
         Object[] otherAccountPaths = {};
         otherAccount.sendPaths(otherAccountPaths);
         Object[] userEditPaths = {accountView};
-        userEditView.sendPaths(userEditPaths);
-        Object[] LogInPath = {accountView,signUpView};
-        logInView.sendPaths(LogInPath);
+//        userEditView.sendPaths(userEditPaths);
+//        Object[] LogInPath = {accountView,signUpView};
+//        logInView.sendPaths(LogInPath);
 //        Object[] chatViewPaths = {MainPageView};
 
         JScrollPane scroller = new JScrollPane( this.masterPanel);
-        this.layout.show(this.masterPanel, "userEditView");
+        this.layout.show(this.masterPanel, "chatView");
         this.frame.add(scroller);
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
         this.frame.setTitle("MainPage");
