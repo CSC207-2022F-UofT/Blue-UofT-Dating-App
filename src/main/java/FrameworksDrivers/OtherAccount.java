@@ -97,9 +97,9 @@ public class OtherAccount implements ActionListener, View {
     }
 
     public void updatePage(Object[] info){
-//        this.name.getLabel().setText((String) info[0]);
-//        this.bio.getLabel().setText((String) info[1]);
-//        this.bio.getLabel().setText("<html>" + (String) info[2] + "</html>");
+        this.name.getLabel().setText((String) info[0]);
+        this.bio.getLabel().setText((String) info[1]);
+        this.bio.getLabel().setText("<html>" + (String) info[2] + "</html>");
 
         //updates panel VVVVV
         this.panel.revalidate();

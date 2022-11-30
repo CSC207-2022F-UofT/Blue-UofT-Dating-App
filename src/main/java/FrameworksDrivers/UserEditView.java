@@ -259,7 +259,21 @@ public class UserEditView implements ActionListener, View {
     public void updatePage(Object[] info) {
         UserEditPresenter userEditPresenter = new UserEditPresenter();
         this.user = userEditPresenter.getCurrentUser();
-
+        this.nameField.setText(this.user.getUsername().getData());
+        this.bioField.setText(this.user.getBio().getData());
+        this.courseField.setText(this.user.getCourses().toString());
+        for(int i = 0; i <= 49; i++){
+            this.interests[i].setChecked(this.user.getInterests().getData().containsKey(i));
+        }
+        for(int i = 0; i <= 13; i++){
+            this.attributesHidden[i].setChecked((boolean) this.user.getAttributes().getData().get(i).get(1));
+            for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
+                this.attributesRadioButtons[i][j].setChecked((int) this.user.getAttributes().getData().get(i).get(0) == j);
+                this.dealbreakerRadioButtons[i][j].setChecked(this.user.getPreferences().getData().get(i).contains(j));
+            }
+        }
+        this.panel.revalidate();
+        this.panel.repaint();
     }
 }
 

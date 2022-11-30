@@ -23,7 +23,7 @@ public class UserEditPresenter {
         UserGraph editedGraph = CurrentGraph.getGraph();
         User user = new CurrentUserGateway().getCurrentUser();
         UserEditInteractor userEditInteractor = new UserEditInteractor(data, editedGraph, user);
-        SaveGraph.saveGraph(editedGraph);
+        new SaveGraph(editedGraph);
         this.updatePage("otherAccount", pageObject);
     }
 
