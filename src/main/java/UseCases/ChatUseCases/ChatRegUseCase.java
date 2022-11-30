@@ -1,7 +1,6 @@
 package UseCases.ChatUseCases;
 
 import Entities.Chatroom;
-import Entities.ChatroomFactory;
 import Entities.User;
 
 import java.util.HashSet;

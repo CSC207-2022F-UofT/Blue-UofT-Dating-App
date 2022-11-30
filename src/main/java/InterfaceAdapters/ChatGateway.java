@@ -5,6 +5,14 @@ import UseCases.ReadWriter;
 
 import java.io.*;
 
+/**
+ * ChatGateway is an Interface Adapter class responsible for reading from and
+ * writing to the serialized files that correspond to the chat data that is
+ * stored.
+ *
+ * @author Rudy
+ * @since 1.0
+ */
 public class ChatGateway implements ReadWriter {
     @Override
     public Object readFromFile(String filepath) throws IOException, ClassNotFoundException {
