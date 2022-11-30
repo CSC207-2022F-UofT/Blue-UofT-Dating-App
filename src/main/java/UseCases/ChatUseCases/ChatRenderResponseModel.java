@@ -5,12 +5,12 @@ import Entities.Chatroom;
 import java.util.ArrayList;
 
 public class ChatRenderResponseModel {
-    private final ArrayList<Object> chatrooms;
+    private final ArrayList<ArrayList<ArrayList<String>>> chatrooms;
 
-    public ChatRenderResponseModel(ArrayList<Object> chatrooms) {
+    public ChatRenderResponseModel(ArrayList<ArrayList<ArrayList<String>>> chatrooms) {
         this.chatrooms = chatrooms;
     }
-    public ArrayList<Object> getChatrooms() {
+    public ArrayList<ArrayList<ArrayList<String>>> getChatrooms() {
         return chatrooms;
     }
 }

@@ -1,5 +1,30 @@
-# Project Template
 
+## Intructions for TA on running current work
+Currently, all views which can be ran and viewed in a window are UserEditView, LogInView, ChatView and OtherAccount. The functionality of their UI elements is still under construction (eg switching between views and modifying entities), but a bulk of that code is written and can be analyzed. Thus, only one view can be displayed on a given build. TO switch between which view is running, locate the ViewUI class, and comment out all of the view classes which aren't the the one you want to display, as well as all of the path arrays. Here is an example of the relevant code, showing how to run the UserEditView display.
+```java
+        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
+//        AccountView accountView = new AccountView(this.masterPanel, this.layout);
+//        OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
+//        LogInView logInView = new LogInView(this.masterPanel);
+//        ChatView chatView = new ChatView(this.masterPanel, this.layout);
+//        SignUpView signUpView = new SignUpView(this.masterPanel);
+
+
+
+        // Main Page
+        //Object[] mainPagePaths = {};
+        //Send the paths to other pages that your page will have
+        //I.E login -> main
+//        Object[] otherAccountPaths = {};
+//        otherAccount.sendPaths(otherAccountPaths);
+//        Object[] userEditPaths = {accountView};
+//        userEditView.sendPaths(userEditPaths);
+//        Object[] LogInPath = {accountView,signUpView};
+//        logInView.sendPaths(LogInPath);
+```
+To build the project, run the main method of ViewUI.
+
+# Project Template
 This is a template repository for CSC 207 projects. 
 This repository contains starter code for a gradle project.
 It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
@@ -37,3 +62,5 @@ Moving forward, we expect you to maintain this project structure. You *should* u
 ![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
 
 You can create another simple class and try generating a test for this class.
+
+

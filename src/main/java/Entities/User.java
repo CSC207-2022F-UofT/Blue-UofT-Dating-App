@@ -56,47 +56,45 @@ public class User implements Serializable {
     }
 
     // Getters
-    public UserData<String> getUsername() {
+    public Username getUsername() {
         return username;
     }
-
-    public UserData<String> getPassword() {
+    public Password getPassword() {
         return password;
     }
-
-    public UserData<String> getDisplayName() {
+    public DisplayName getDisplayName() {
         return displayName;
     }
 
-    public UserData<String> getBio() {
+    public Bio getBio() {
         return bio;
     }
 
-    public UserData<String> getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public UserData<String> getPostalCode() {
+    public PostalCode getPostalCode() {
         return this.postalCode;
     }
 
-    public UserData<ArrayList<Photo>> getPhotos() {
+    public Photos getPhotos() {
         return photos;
     }
 
-    public UserData<ArrayList<Course>> getCourses() {
+    public Courses getCourses() {
         return courses;
     }
 
-    public UserData<HashMap<Integer, Boolean>> getInterests() {
+    public Interests getInterests() {
         return interests;
     }
 
-    public UserData<HashMap<Integer, ArrayList<Object>>> getAttributes() {
+    public Attributes getAttributes() {
         return attributes;
     }
 
-    public UserData<ArrayList<ArrayList<Integer>>> getPreferences() {
+    public Preferences getPreferences() {
         return preferences;
     }
 
@@ -255,6 +253,9 @@ public class User implements Serializable {
     public String getInterestAt(int interestKey) {
         return this.interests.getInterestAt(interestKey);
     }
+    public boolean containsInterest(int interestKey){
+        return this.interests.data.containsKey(interestKey);
+    }
 
     // Attributes
     public void addAttribute(int attributeType, int attributeValue) {
@@ -279,6 +280,12 @@ public class User implements Serializable {
     }
     public String getAttributeValue(int attributeType, int attributeValue){
         return this.attributes.getValueAt(attributeType, attributeValue);
+    }
+    public boolean containsAttribute(int attributeType, int attributeValue){
+        if(this.attributes.getData().containsKey(attributeType)){
+            return this.attributes.getData().get(attributeType).contains(attributeValue);
+        }
+        return false;
     }
 
     // Preferences
