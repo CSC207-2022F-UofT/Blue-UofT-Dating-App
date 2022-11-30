@@ -14,5 +14,8 @@ public class RadioButton {
         radioButton.setBounds(boundX,boundY,boundWidth,boundHeight);
         jpanel.add(radioButton);
     }
+    public void setChecked(Boolean checked){
+        radioButton.setSelected(checked);
+    }
 }
 
