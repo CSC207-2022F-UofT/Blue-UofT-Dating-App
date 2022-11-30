@@ -1,11 +1,8 @@
 package FrameworksDrivers;
 
-import Entities.CurrentUser;
 import Entities.Chatroom;
 import Entities.Message;
 import Entities.User;
-import Entities.UserDataClasses.PrivateUserDataClasses.Username;
-import UseCases.DataRetrieval.CurrentUserGateway;
 import InterfaceAdapters.ChatViewPresenter;
 import UseCases.ChatUseCases.ChatRenderUseCase;
 import UseCases.ChatUseCases.ChatRepoUseCase;
@@ -25,6 +22,7 @@ public class ViewUI {
         //master panel
         this.masterPanel.setLayout(layout);
         this.masterPanel.setPreferredSize(new Dimension(600, 800));;
+
         //initial panel
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
         AccountView accountView = new AccountView(this.masterPanel, this.layout);
@@ -38,8 +36,8 @@ public class ViewUI {
 
         // Main Page
         Object[] mainPagePaths = {};
-//        Send the paths to other pages that your page will have
-//        I.E login -> main
+        //Send the paths to other pages that your page will have
+        //I.E login -> main
         Object[] otherAccountPaths = {};
         otherAccount.sendPaths(otherAccountPaths);
         Object[] userEditPaths = {accountView};
@@ -49,7 +47,7 @@ public class ViewUI {
 //        Object[] chatViewPaths = {MainPageView};
 
         JScrollPane scroller = new JScrollPane( this.masterPanel);
-        this.layout.show(this.masterPanel, "userEditView");
+        this.layout.show(this.masterPanel, "chatView");
         this.frame.add(scroller);
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
         this.frame.setTitle("MainPage");
