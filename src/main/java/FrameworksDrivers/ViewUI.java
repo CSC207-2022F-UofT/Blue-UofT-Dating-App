@@ -1,11 +1,8 @@
 package FrameworksDrivers;
 
-import Entities.CurrentUser;
 import Entities.Chatroom;
 import Entities.Message;
 import Entities.User;
-import Entities.UserDataClasses.PrivateUserDataClasses.Username;
-import UseCases.DataRetrieval.CurrentUserGateway;
 import InterfaceAdapters.ChatViewPresenter;
 import UseCases.ChatUseCases.ChatRenderUseCase;
 import UseCases.ChatUseCases.ChatRepoUseCase;
@@ -40,8 +37,10 @@ public class ViewUI {
 
 
         // Main Page
+
         Object[] mainPagePaths = {otherAccount};
         mainPageView.sendPaths(mainPagePaths);
+        Object[] mainPagePaths = {};
 
         //Send the paths to other pages that your page will have
         //I.E login -> main
@@ -54,7 +53,7 @@ public class ViewUI {
 //        Object[] chatViewPaths = {MainPageView};
 
         JScrollPane scroller = new JScrollPane( this.masterPanel);
-        this.layout.show(this.masterPanel, "userEditView");
+        this.layout.show(this.masterPanel, "chatView");
         this.frame.add(scroller);
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
         this.frame.setTitle("MainPage");
