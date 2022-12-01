@@ -1,5 +1,6 @@
 package UseCases.DataRetrieval;
 
+import Entities.User;
 import Entities.UserGraph;
 import UseCases.UserGraphReadWriter;
 
@@ -15,10 +16,16 @@ public class CurrentGraph {
             readGraph = (UserGraph) readWriter.readFromFile("userGraph.ser");
         } catch (
                 IOException e) {
-            System.out.println("User list did not save.");
+            System.out.println("User list did not read.");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
         return readGraph;
+    }
+
+    public static void main(String[] args) {
+        UserGraph user = getGraph();
+        System.out.println(user.getUsernames());
     }
 }

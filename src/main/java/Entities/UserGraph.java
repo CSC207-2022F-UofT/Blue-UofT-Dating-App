@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class UserGraph implements Serializable {
 private ArrayList<User> users;
-private static final long serialVersionUID = 1L;
+//private static final long serialVersionUID = 1L;
 private ArrayList<UserEdge> userEdges;
     public UserGraph(){
         this.users = new ArrayList<>();

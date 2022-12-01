@@ -12,9 +12,9 @@ public class ChatRenderUseCase {
 
     // assume that ChatRepo exist (static container)
 
-    public ChatRenderResponseModel render() {
+    public ChatRenderResponseModel render(User user) {
 
-        Map<Set<User>, Chatroom> map = ChatRepoUseCase.getAllChatrooms();
+        Map<Set<User>, Chatroom> map = ChatRepoUseCase.getUserChatrooms(user);
 
         ArrayList<ArrayList<ArrayList<String>>> responseModel = new ArrayList<>();
 

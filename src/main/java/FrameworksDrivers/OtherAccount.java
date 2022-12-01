@@ -15,6 +15,7 @@ public class OtherAccount implements ActionListener, View {
     private JPanel panel;
 
     private Object[] paths;
+    private Button backToMain;
     private Label bio;
     private Label name;
     private Label location;
@@ -62,7 +63,7 @@ public class OtherAccount implements ActionListener, View {
         JPanel buttonAlign = new JPanel();
         buttonAlign.setPreferredSize(new Dimension(600, 20));
         buttonAlign.setLayout(new BoxLayout(buttonAlign, BoxLayout.X_AXIS));
-        Button backToMain = new Button();
+        backToMain = new Button();
         backToMain.createButton(buttonAlign, "Back", 20, 20, 10, 10);
         backToMain.getButton().addActionListener(this);
         backToMain.setHorizontalAlignment("left");
@@ -84,14 +85,17 @@ public class OtherAccount implements ActionListener, View {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (prevpage.equals("main")) {}
-
+        if(e.getSource() == this.backToMain.getButton()){
+            OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(this.name.getLabel().getText());
+            this.layout.show(this.masterPanel, "mainpageView");
+        }
     }
 
     public void updatePage(Object[] info){
+
         this.name.getLabel().setText((String) info[0]);
         this.bio.getLabel().setText((String) info[1]);
-        this.bio.getLabel().setText("<html>" + (String) info[2] + "</html>");
+       // this.bio.getLabel().setText("<html>" + (String) info[2] + "</html>");
 
         //updates panel VVVVV
         this.panel.revalidate();

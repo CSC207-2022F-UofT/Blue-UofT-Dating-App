@@ -1,6 +1,9 @@
 package InterfaceAdapters;
+import FrameworksDrivers.MainPageView;
 import FrameworksDrivers.OtherAccount;
 import UseCases.OtherAccountCases;
+import com.sun.tools.javac.Main;
+
 public class OtherAccountPresenter{
     private String user;
     public OtherAccountPresenter(String user) {
@@ -14,6 +17,10 @@ public class OtherAccountPresenter{
 
                 String[] updateInformation = updateCase.getUserInfo(this.user);
                 account.updatePage(updateInformation);
+            case "mainpageView":
+                MainPageView mainPageView = (MainPageView) pageObject;
+                mainPageView.updatePage(null);
+
         }
 
     }

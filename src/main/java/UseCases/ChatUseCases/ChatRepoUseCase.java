@@ -4,9 +4,7 @@ import Entities.Chatroom;
 import Entities.User;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * ChatRepoUseCase is a Use Case class that is responsbile for keeping track
@@ -43,7 +41,16 @@ public class ChatRepoUseCase implements Serializable {
      * @return Boolean representing whether a Chatroom object exists or not.
      */
     public boolean checkForExistingChatroom(Set<User> users) {
-        return currChatrooms.containsKey(users);
+        Set<String> userSet = new HashSet<String>();
+        for(User user: users){userSet.add(user.getUsername().getData());}
+        for(Set<User> userChats: currChatrooms.keySet()){
+            HashSet<String> userChatsUsernames = new HashSet<String>();
+            for(User user: userChats){userChatsUsernames.add(user.getUsername().getData());}
+            if(userChatsUsernames.equals(userSet)){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -56,7 +63,17 @@ public class ChatRepoUseCase implements Serializable {
      * @return Chatroom corresponding to the input Set of users in the static Map.
      */
     public Chatroom getChatroom(Set<User> users) {
-        return currChatrooms.get(users);
+        Set<String> userSet = new HashSet<String>();
+        for(User user: users){userSet.add(user.getUsername().getData());}
+        for(Set<User> userChats: currChatrooms.keySet()){
+            HashSet<String> userChatsUsernames = new HashSet<String>();
+            for(User user: userChats){userChatsUsernames.add(user.getUsername().getData());}
+            if(userChatsUsernames.equals(userSet)){return currChatrooms.get(userChats);}
+        }
+        ChatRegUseCase chatRegUseCase = new ChatRegUseCase();
+        ArrayList<User> newChatUsers = new ArrayList<>(users);
+        chatRegUseCase.createChatroom(newChatUsers.get(0), newChatUsers.get(1));
+        return getChatroom(users);
     }
 
     /**
@@ -66,6 +83,17 @@ public class ChatRepoUseCase implements Serializable {
      */
     public static Map<Set<User>, Chatroom> getAllChatrooms() {
         return currChatrooms;
+    }
+    public static Map<Set<User>, Chatroom> getUserChatrooms(User user){
+        Map<Set<User>, Chatroom> userChatrooms = new HashMap<>();
+        for(Set<User> users: currChatrooms.keySet()){
+            for(User mapUser: users){
+                if(Objects.equals(mapUser.getUsername().getData(), user.getUsername().getData())){
+                    userChatrooms.put(users, currChatrooms.get(users));
+                }
+            }
+        }
+        return userChatrooms;
     }
 
 }
