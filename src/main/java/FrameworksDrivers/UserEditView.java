@@ -203,7 +203,7 @@ public class UserEditView implements ActionListener, View {
 
 
 
-        JScrollPane scroller = new JScrollPane( this.panel );
+        JScrollPane scroller = new JScrollPane(this.panel);
         this.panel.setBackground(Color.lightGray);
         this.masterPanel.add(scroller, "userEditView");
     }
@@ -250,7 +250,7 @@ public class UserEditView implements ActionListener, View {
             UserEditRequestModel data = new UserEditRequestModel(nameData, bioData, coursesData, interestsDictData,
                     attributeDictData, breakersDictData, hiddenDictData);
             userEditPresenter.saveUserInfo(data, this.paths[0]);
-            this.layout.show(this.masterPanel, "otherAccount");
+            this.layout.show(this.masterPanel, "mainpageView");
         }
         else if(e.getSource() == buttonBack.getButton()){
             UserEditPresenter userEditPresenter = new UserEditPresenter();
@@ -263,7 +263,7 @@ public class UserEditView implements ActionListener, View {
     public void updatePage(Object[] info) {
         UserEditPresenter userEditPresenter = new UserEditPresenter();
         this.user = userEditPresenter.getCurrentUser();
-        this.nameField.setText(this.user.getUsername().getData());
+        this.nameField.setText(this.user.getDisplayName().getData());
         this.bioField.setText(this.user.getBio().getData());
         this.courseField.setText(this.user.getCourses().toString());
         for(int i = 0; i <= 49; i++){

@@ -9,9 +9,11 @@ import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.textField;
 import InterfaceAdapters.MainPagePresenter;
 import InterfaceAdapters.OtherAccountPresenter;
+import com.sun.tools.javac.Main;
 
 public class MainPageView implements ActionListener, View {
     private JPanel masterPanel;
+    private JPanel panel;
     private Object[] paths;
     User displayUser;
     private CardLayout layout;
@@ -27,6 +29,8 @@ public class MainPageView implements ActionListener, View {
     public MainPageView(JPanel masterPanel, CardLayout layout){
         this.masterPanel = masterPanel;
         this.layout = layout;
+        this.panel = new JPanel();
+
         // Create Lower Panel
         JPanel lowerPanel = new JPanel();
         lowerPanel.setLayout(new GridLayout(1, 3));
@@ -93,10 +97,11 @@ public class MainPageView implements ActionListener, View {
 
 
         // Adding all panels to the masterPanel
-        this.masterPanel.add(lowerPanel);
-        this.masterPanel.add(middlePanel);
-        this.masterPanel.add(topPanel);
-        this.masterPanel.add(namePanel);
+        this.panel.add(lowerPanel);
+        this.panel.add(middlePanel);
+        this.panel.add(topPanel);
+        this.panel.add(namePanel);
+        this.masterPanel.add(this.panel, "mainpageView");
     }
 
     public void sendPaths(Object[] paths) {
@@ -106,36 +111,41 @@ public class MainPageView implements ActionListener, View {
     @Override
     public void actionPerformed(ActionEvent e) {
         //create presenter
-        layout = new CardLayout();
+        MainPagePresenter mainPagePreseter = new MainPagePresenter();
+
 
         // All button cases
-        if (homeButton.getButton().isSelected()){
-            MainPagePresenter mainPagePresenter = new MainPagePresenter();
+        if (e.getSource() == homeButton.getButton()){
+            mainPagePreseter.updatePage(this.displayUser, "mainpageView",this.paths[3]);
+            this.layout.show(this.masterPanel, "mainpageView");
+        }
+        if (e.getSource() == chatButton.getButton()){
+            mainPagePreseter.updatePage(this.displayUser, "chatView", this.paths[1]);
+            this.layout.show(this.masterPanel, "chatView");
+        }
+        if (e.getSource() == myProfileButton.getButton()){
+            mainPagePreseter.updatePage(this.displayUser, "usereditView", this.paths[2]);
+            this.layout.show(this.masterPanel, "userEditView");
+        }
 
-            this.layout.show(this.masterPanel, "Main Page");
+        if (e.getSource() == likeButton.getButton()){
+            mainPagePreseter.Like(this.displayUser);
+            mainPagePreseter.updatePage(this.displayUser, "mainpageView", this.paths[3]);
         }
-        if (chatButton.getButton().isSelected()){
-            this.layout.show(this.masterPanel, "Chat Page");
+        if (e.getSource() == dislikeButton.getButton()){
+            mainPagePreseter.updatePage(this.displayUser, "mainpageView", this.paths[3]);
         }
-        if (myProfileButton.getButton().isSelected()){
-            this.layout.show(this.masterPanel, "My Profile Page");
-        }
-        if (likeButton.getButton().isSelected()){
-
-        }
-        if (dislikeButton.getButton().isSelected()){
-
-        }
-        if (viewOtherAccount.getButton().isSelected()){
-            //OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(String user);
-            //otherAccountPresenter.updatePage("loadAccount", paths[0]);
+        if (e.getSource() == viewOtherAccount.getButton()){
+            mainPagePreseter.updatePage(this.displayUser, "otherAccount", this.paths[0]);
             this.layout.show(this.masterPanel, "otherAccount");
         }
     }
     public void updatePage(Object[] info) {
         //Just switch the user
-        this.displayUser = (User) info[0];
-        this.nameTextField.setText(displayUser.getDisplayName().toString());
+        if(info != null){
+            this.displayUser = (User) info[0];
+        }
+        this.nameTextField.setText(displayUser.getDisplayName().getData().toString());
     }
 
 }

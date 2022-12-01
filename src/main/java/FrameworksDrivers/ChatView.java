@@ -8,10 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ChatView implements ActionListener, View {
 
@@ -30,6 +27,7 @@ public class ChatView implements ActionListener, View {
     private Map<JPanel, String> map = new HashMap<>();
     private JButton backButton;
     private JPanel chatListPanel;
+    boolean hasCurrentUsers;
 
     public ChatView(JPanel masterPanel, CardLayout layout) {
         //initialize overall jpanel
@@ -57,7 +55,7 @@ public class ChatView implements ActionListener, View {
         chatContainer.setLayout(chatLayout);
         chatContainer.setBackground(Color.YELLOW);
         chatContainer.setBounds(0, 0, 400, 600);
-        this.panel.add(chatContainer);
+        this.panel.add(chatContainer, "bob joe");
 
         this.chatLayout.show(chatContainer, "bob joe");
 
@@ -88,21 +86,28 @@ public class ChatView implements ActionListener, View {
         System.out.println("clicked");
         if (source == backButton) {
             System.out.println("clicked");
-            this.layout.show(this.masterPanel, "otherAccount");
+            ChatViewPresenter presenter = new ChatViewPresenter(this);
+            presenter.updatePage("mainpageView", this.paths[0]);
+            this.layout.show(this.masterPanel, "mainpageView");
         }
         else if (source == sendButton) { // send button is clicked
             ChatViewPresenter presenter = new ChatViewPresenter(this);
             String message = textBox.getText();
             System.out.println(message);
             presenter.sendMessage(currUsers, message);
+            String[] tempUsers = currUsers.clone();
+            presenter.render();
+//            currUsers = tempUsers;
+
         }
         else { // one of the chatButtons must've been clicked
             JButton currButton = (JButton) source;
-            String buttonString = currButton.getText();
+            String buttonString = Character.toString(currButton.getText().charAt(0));
 
             //updates the currUsers of the currentChatroom
             currUsers = chatNumToUsers.get(buttonString);
-
+            ChatViewPresenter presenter = new ChatViewPresenter(this);
+            presenter.render();
             this.chatLayout.show(chatContainer, buttonString);
             System.out.println(buttonString);
             System.out.println(Arrays.toString(currUsers));
@@ -115,46 +120,103 @@ public class ChatView implements ActionListener, View {
         //might want to separate
         int index = 0;
         for (Object chatroomObject : info) {
+
             //new chatroom
             ArrayList<ArrayList<String>> chatroomList = (ArrayList<ArrayList<String>>) chatroomObject;
 
             //create corresponding chatroom button and add to chatListPanel on right of screen
             String user1 = chatroomList.get(0).get(0);
             String user2 = chatroomList.get(1).get(0);
-            if (index == 0) currUsers = new String[] {user1, user2};
 
-            //add key value pair mapping index of chat to the users in the chat
-            chatNumToUsers.put(String.valueOf(index), new String[] {user1, user2});
+            if (index == 0 && !this.hasCurrentUsers){
+                this.currUsers = new String[] {user1, user2};
+                this.hasCurrentUsers = true;
+            }
+            if(Arrays.equals(currUsers, new String[] {user1, user2})){
+                //create corresponding chat panel that will appear on the left-hand side when corresponding
+                //chat button is pressed.
+                JPanel currChatPanel = new JPanel();
+                currChatPanel.setLayout(new GridLayout(0, 1));
+                currChatPanel.setBackground(Color.CYAN);
 
-            JButton currChatButton = new JButton(String.valueOf(index));
-            currChatButton.addActionListener(this);
-            chatButtons.add(currChatButton);
-            chatListPanel.add(currChatButton);
+                //iterate through the messages of the current chatroom
+                for (int i = 2; i < chatroomList.size(); i++) {
+                    ArrayList<String> currMessageList = chatroomList.get(i);
+                    //example textMessage: clark: hello kevin
+                    String textMessage = currMessageList.get(0) + ": " + currMessageList.get(1);
+                    Label currLabel = new Label();
 
-            //create corresponding chat panel that will appear on the left-hand side when corresponding
-            //chat button is pressed.
-            JPanel currChatPanel = new JPanel();
-            currChatPanel.setLayout(new GridLayout(0, 1));
-            currChatPanel.setBackground(Color.CYAN);
+                    // bounds don't matter because of grid layout for panel
+                    currLabel.createLabel(0, 0, 50, 50,
+                            currChatPanel, textMessage);
+                    currChatPanel.revalidate();
+                    currChatPanel.repaint();
+                    this.panel.remove(this.chatContainer);
+                    this.chatContainer = new JPanel();
+                    this.chatContainer.setLayout(this.chatLayout);
+                    this.chatContainer.setBackground(Color.YELLOW);
+                    this.chatContainer.setBounds(0, 0, 400, 600);
 
-            //iterate through the messages of the current chatroom
-            for (int i = 2; i < chatroomList.size(); i++) {
-                ArrayList<String> currMessageList = chatroomList.get(i);
-                //example textMessage: clark: hello kevin
-                String textMessage = currMessageList.get(0) + ": " + currMessageList.get(1);
-                Label currLabel = new Label();
-
-                // bounds don't matter because of grid layout for panel
-                currLabel.createLabel(0, 0, 50, 50,
-                        currChatPanel, textMessage + index);
+                    this.panel.add(chatContainer, "bob joe");
+                    this.chatContainer.add(currChatPanel, String.valueOf(index));
+                    this.map.put(currChatPanel, String.valueOf(index));
+                    this.chatContainer.revalidate();
+                    this.chatContainer.repaint();
+                }
             }
 
-            chatContainer.add(currChatPanel, String.valueOf(index));
-            map.put(currChatPanel, String.valueOf(index));
+            //add key value pair mapping index of chat to the users in the chat
+            this.chatNumToUsers.put(String.valueOf(index), new String[] {user1, user2});
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(index);
+            stringBuilder.append(user1);
+            stringBuilder.append(" ");
+            stringBuilder.append(user2);
 
+            JButton currChatButton = new JButton(stringBuilder.toString());
+            currChatButton.addActionListener(this);
+            if(this.chatButtons.size() > 0){
+                int chatButtonsSize = this.chatButtons.size();
+                int unequalButtons = 0;
+                for(int i = 0; i < chatButtonsSize; i++){
+                    JButton button = this.chatButtons.get(i);
+                    String[] users = button.getText().split(" ");
+                    users = this.chatNumToUsers.get(Character.toString(button.getText().charAt(0)));
+                    HashSet<String> set1 = new HashSet<String>(Arrays.asList(users));
+                    HashSet<String> set2 = new HashSet<String>(Arrays.asList(user1, user2));
+                    if(!set1.equals(set2)){
+                        unequalButtons += 1;
+                    }
+                    System.out.println(set2.equals(set1));
+                }
+                if(unequalButtons == chatButtonsSize){
+                    this.chatButtons.add(currChatButton);
+                    this.chatListPanel.add(currChatButton);
+                }
+            }
+            else{
+                this.chatButtons.add(currChatButton);
+                this.chatListPanel.add(currChatButton);
+            }
             index++;
-        }
+            }
+
+        this.textBox.setText("");
+        this.panel.add(chatContainer);
+        this.panel.revalidate();
+        this.panel.repaint();
+        this.chatLayout.show(chatContainer, "bob joe");
+        selectCurrentUserButton();
 
         System.out.println(Arrays.toString(currUsers));
+
+    }
+    public void selectCurrentUserButton(){
+        for(JButton button: this.chatButtons){
+            String[] users = this.chatNumToUsers.get(Character.toString(button.getText().charAt(0)));
+            if(Arrays.equals(this.currUsers, users)){
+                button.setSelected(true);
+            }
+        }
     }
 }

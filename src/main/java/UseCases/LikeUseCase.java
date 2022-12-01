@@ -11,5 +11,6 @@ public class LikeUseCase {
         UserEdge userEdge = editGraph.getEdge(currentUser, likedUser);
         userEdge.likes(likedUser);
         new SaveGraph(editGraph);
+        if(userEdge.getLikeBackwards() && userEdge.getLikesForward()){ new MatchUseCase(currentUser, likedUser); }
     }
 }

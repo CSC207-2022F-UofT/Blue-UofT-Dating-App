@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 public class Button {
     JButton button;
+    int index;
 
     /**
      * Returns class variable button
@@ -30,6 +31,15 @@ public class Button {
         jpanel.add(button);
         button.setBounds(boundX, boundY, boundWidth, boundHeight);
         button.setLocation(new Point(boundX, boundY));
+
+    }
+    public void createButton(JPanel jpanel, String buttonText, int boundX,
+                             int boundY, int boundWidth, int boundHeight, int index) {
+        button = new JButton(buttonText);
+        jpanel.add(button);
+        button.setBounds(boundX, boundY, boundWidth, boundHeight);
+        button.setLocation(new Point(boundX, boundY));
+        this.index = index;
 
     }
     public void setHorizontalAlignment(String align) {
