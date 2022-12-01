@@ -125,7 +125,7 @@ public class LogInView implements ActionListener, View {
             String pass = textFieldPass.getTextField().getText();
             LoginPresenter logPresenter = new LoginPresenter();
 
-            logPresenter.updatePage("MainPage", this.paths[0], name, pass);
+            //logPresenter.updatePage("MainPage", this.paths[0], name, pass);
             this.layout.show(this.masterPanel, "accountView");
 
 
@@ -134,7 +134,7 @@ public class LogInView implements ActionListener, View {
             // case evt.getSource() == signUpB
             // update page to SignUpView
             LoginPresenter logPresenter = new LoginPresenter();
-            logPresenter.updatePage("signUpView", this.paths[1], "", "");
+            //logPresenter.updatePage("signUpView", this.paths[1], "", "");
             this.layout.show(this.masterPanel, "signUpView");
         }
 

@@ -94,28 +94,26 @@ public class SignUpView implements View, ActionListener {
         }
 
         if (info[0] instanceof User) {
-
-            // UserEditPresenter editPresenter = new UserEditPresenter();
-            // editPresenter.updatePage();
-
+            UserEditView userEditPage = new UserEditView(this.masterPanel, this.layout, (User)info[0]);
+            userEditPage.updatePage(null);
             // change to user edit page
-            // this.layout.show(this.masterPanel, "");
+            this.layout.show(this.masterPanel, "userEditView");
         }
-
     }
-
 
 
     @Override
     public void actionPerformed(ActionEvent evt) {
 
         if (evt.getSource() == regB.getButton()) {
+            SignUpView newView = new SignUpView(this.masterPanel, this.layout);
+
             String nameEntered = textFieldUser.getTextField().getText();
             String pass1 = textFieldPass1.getTextField().getText();
             String pass2 = textFieldPass2.getTextField().getText();
 
             UserRegPresenter regPresenter = new UserRegPresenter();
-            regPresenter.switchPage(nameEntered, pass1, pass2);
+            regPresenter.switchPage(nameEntered, pass1, pass2, newView);
         }
 
     }

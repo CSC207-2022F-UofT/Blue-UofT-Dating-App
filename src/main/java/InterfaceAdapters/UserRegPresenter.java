@@ -31,6 +31,7 @@ public class UserRegPresenter {
         User newUser = editedGraph.getUserByString(userRegInteractor.create(requestModel));
         CurrentUser currentUser = new CurrentUser();
         currentUser.setUser(newUser.getUsername());
+        currentUser.logIn();
         User[] message = new User[] {newUser};
         signup.updatePage(message);
 
