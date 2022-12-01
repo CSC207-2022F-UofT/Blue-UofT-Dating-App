@@ -8,7 +8,6 @@ import Entities.User;
 import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.textField;
-import InterfaceAdapters.UserEditPresenter;
 import InterfaceAdapters.UserRegPresenter;
 
 
