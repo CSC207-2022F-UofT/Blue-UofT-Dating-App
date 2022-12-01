@@ -5,6 +5,7 @@ import Entities.Chatroom;
 import Entities.Message;
 import Entities.User;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
+import InterfaceAdapters.MainPagePresenter;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import InterfaceAdapters.ChatViewPresenter;
 import UseCases.ChatUseCases.ChatRenderUseCase;
@@ -32,6 +33,7 @@ public class ViewUI {
         LogInView logInView = new LogInView(this.masterPanel, this.layout);
         ChatView chatView = new ChatView(this.masterPanel, this.layout);
         SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
+        MainPageView mainPageView = new MainPageView();
 
         currView = chatView;
 
@@ -44,9 +46,11 @@ public class ViewUI {
         otherAccount.sendPaths(otherAccountPaths);
         Object[] userEditPaths = {accountView};
         userEditView.sendPaths(userEditPaths);
-        Object[] LogInPath = {accountView,signUpView};
+        Object[] LogInPath = {mainPageView,signUpView};
         logInView.sendPaths(LogInPath);
 //        Object[] chatViewPaths = {MainPageView};
+        Object[] SignUpPath = {userEditView};
+        signUpView.sendPaths(SignUpPath);
 
         JScrollPane scroller = new JScrollPane( this.masterPanel);
         this.layout.show(this.masterPanel, "userEditView");

@@ -1,11 +1,15 @@
 package FrameworksDrivers;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import Entities.User;
 import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.textField;
+import InterfaceAdapters.UserEditPresenter;
+import InterfaceAdapters.UserRegPresenter;
 
 
 public class SignUpView implements View, ActionListener {
@@ -71,21 +75,47 @@ public class SignUpView implements View, ActionListener {
         this.paths = paths;
     }
 
+    /**
+     *
+     * @param info contains one of the two error messages or a user object
+     *             used to identify what changes need to be make besides refreshing current page
+     */
+
     @Override
     public void updatePage(Object[] info) {
-        ...
+
+        // refresh page
+        this.newPanel.revalidate();
+        this.newPanel.repaint();
+
+        // if sign up is unsuccessful, show message
+        if (info[0] == "passNoMatch" || info[0] == "userExists") {
+            JOptionPane.showMessageDialog(null, info[0]);
+        }
+
+        if (info[0] instanceof User) {
+
+            // UserEditPresenter editPresenter = new UserEditPresenter();
+            // editPresenter.updatePage();
+
+            // change to user edit page
+            // this.layout.show(this.masterPanel, "");
+        }
+
     }
+
+
 
     @Override
     public void actionPerformed(ActionEvent evt) {
 
         if (evt.getSource() == regB.getButton()) {
+            String nameEntered = textFieldUser.getTextField().getText();
+            String pass1 = textFieldPass1.getTextField().getText();
+            String pass2 = textFieldPass2.getTextField().getText();
 
-            try {
-                ...;
-            } catch (Exception e) {
-                ...
-            }
+            UserRegPresenter regPresenter = new UserRegPresenter();
+            regPresenter.switchPage(nameEntered, pass1, pass2);
         }
 
     }
