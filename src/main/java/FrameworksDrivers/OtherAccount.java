@@ -15,11 +15,12 @@ public class OtherAccount implements ActionListener, View {
     private JPanel panel;
 
     private Object[] paths;
+    private Button backToMain;
     private Label bio;
     private Label name;
     private Label location;
-
     private Label[] textBank;
+    private String prevpage;
     public OtherAccount(JPanel masterPanel, CardLayout layout) {
         this.masterPanel = masterPanel;
         this.layout = layout;
@@ -36,33 +37,33 @@ public class OtherAccount implements ActionListener, View {
 
         //Person information
         JPanel lower = new JPanel();
-        Label nameLabel = new Label();
-        nameLabel.createLabelCentered(40, 40, 40, 40, null, "Name", Color.blue);
-        Label locationLabel = new Label();
-        locationLabel.createLabelCentered(40, 40, 40, 40, null, "location", Color.blue);
+        this.name  = new Label();
+        this.name.createLabelCentered(40, 40, 40, 40, null, "Name", Color.blue);
+        this.location = new Label();
+        this.location.createLabelCentered(40, 40, 40, 40, null, "location", Color.blue);
         JPanel topInfo = new JPanel();
         topInfo.setPreferredSize(new Dimension(600, 100));
         topInfo.setLayout(new GridLayout(1, 2));
 
         //name location
-        topInfo.add(nameLabel.getLabel());
-        topInfo.add(locationLabel.getLabel());
+        topInfo.add(this.name.getLabel());
+        topInfo.add(this.location.getLabel());
         lower.add(topInfo);
 
         //biograph
         JPanel botInfo = new JPanel();
         botInfo.setPreferredSize(new Dimension(400, 200));
         botInfo.setLayout(new BoxLayout(botInfo, BoxLayout.Y_AXIS));
-        Label biography = new Label();
-        biography.createLabel(100, 100, 100, 100, botInfo, "<html> hi </html>");
-        biography.setHorizontalAlignment("left");
-        biography.setVerticalAlignment("top");
+        this.bio = new Label();
+        this.bio.createLabel(100, 100, 100, 100, botInfo, "<html> hi </html>");
+        this.bio.setHorizontalAlignment("left");
+        this.bio.setVerticalAlignment("top");
         lower.add(botInfo);
 
         JPanel buttonAlign = new JPanel();
         buttonAlign.setPreferredSize(new Dimension(600, 20));
         buttonAlign.setLayout(new BoxLayout(buttonAlign, BoxLayout.X_AXIS));
-        Button backToMain = new Button();
+        backToMain = new Button();
         backToMain.createButton(buttonAlign, "Back", 20, 20, 10, 10);
         backToMain.getButton().addActionListener(this);
         backToMain.setHorizontalAlignment("left");
@@ -84,22 +85,17 @@ public class OtherAccount implements ActionListener, View {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //create presenter
-
-        MainPagePresenter presenter = new MainPagePresenter();
-        System.out.print("test");
-        //this.paths[0] refers to te first path in the paths array, which is testAccount.
-        //presenter.updatePage("testAccount", this.paths[0]);
-
-        //switches the panel
-        //this.layout.show(this.masterPanel, "testAccount");
-
+        if(e.getSource() == this.backToMain.getButton()){
+            OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(this.name.getLabel().getText());
+            this.layout.show(this.masterPanel, "mainpageView");
+        }
     }
 
     public void updatePage(Object[] info){
+
         this.name.getLabel().setText((String) info[0]);
         this.bio.getLabel().setText((String) info[1]);
-        this.bio.getLabel().setText("<html>" + (String) info[2] + "</html>");
+       // this.bio.getLabel().setText("<html>" + (String) info[2] + "</html>");
 
         //updates panel VVVVV
         this.panel.revalidate();

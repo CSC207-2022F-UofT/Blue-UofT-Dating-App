@@ -4,7 +4,7 @@ import Entities.UserGraph;
 
 import java.io.*;
 
-public class UserGraphReadWriter implements ReadWriter{
+public class UserGraphReadWriter implements SaveableToFile, ReadableFromFile{
 
     @Override
     public void saveToFile(String filePath, Object users) throws IOException {

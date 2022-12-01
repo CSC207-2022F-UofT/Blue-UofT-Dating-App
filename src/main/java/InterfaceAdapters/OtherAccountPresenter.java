@@ -1,6 +1,9 @@
 package InterfaceAdapters;
+import FrameworksDrivers.MainPageView;
 import FrameworksDrivers.OtherAccount;
 import UseCases.OtherAccountCases;
+import com.sun.tools.javac.Main;
+
 public class OtherAccountPresenter{
     private String user;
     public OtherAccountPresenter(String user) {
@@ -12,9 +15,13 @@ public class OtherAccountPresenter{
                 OtherAccount account = (OtherAccount) pageObject;
                 OtherAccountCases updateCase = new OtherAccountCases();
 
-                //Not sure if mainpageview will send displayname or username, will chance once I know.
-                //String[] updateInformation = updateCase.getUserInfo(this.user);
-                //account.updatePage(updateInformation);
+                String[] updateInformation = updateCase.getUserInfo(this.user);
+                account.updatePage(updateInformation);
+            case "mainpageView":
+                MainPageView mainPageView = (MainPageView) pageObject;
+                mainPageView.updatePage(null);
+
         }
+
     }
 }

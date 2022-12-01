@@ -1,15 +1,18 @@
 package FrameworksDrivers;
 
-import Entities.CurrentUser;
-import Entities.Chatroom;
-import Entities.Message;
-import Entities.User;
+import Entities.*;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
+import InterfaceAdapters.ChatGateway;
 import InterfaceAdapters.MainPagePresenter;
+import UseCases.DataRetrieval.CurrentGraph;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import InterfaceAdapters.ChatViewPresenter;
 import UseCases.ChatUseCases.ChatRenderUseCase;
 import UseCases.ChatUseCases.ChatRepoUseCase;
+import UseCases.DataRetrieval.SaveChats;
+import UseCases.DataRetrieval.SaveGraph;
+import UseCases.LikeUseCase;
+import UseCases.PracticeGraphCreator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,32 +31,63 @@ public class ViewUI {
         this.masterPanel.setPreferredSize(new Dimension(600, 800));;
         //initial panel
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
-        AccountView accountView = new AccountView(this.masterPanel, this.layout);
+
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
-        LogInView logInView = new LogInView(this.masterPanel, this.layout);
+//        LogInView logInView = new LogInView(this.masterPanel, this.layout);
         ChatView chatView = new ChatView(this.masterPanel, this.layout);
-        SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
-        MainPageView mainPageView = new MainPageView();
+//        SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
+
+        MainPageView mainPageView = new MainPageView(this.masterPanel, this.layout);
+        //SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
 
         currView = chatView;
 
 
         // Main Page
-        Object[] mainPagePaths = {};
+
+
+
 //        Send the paths to other pages that your page will have
 //        I.E login -> main
-        Object[] otherAccountPaths = {};
+        Object[] mainPagePaths = {otherAccount, chatView, userEditView, mainPageView};
+        mainPageView.sendPaths(mainPagePaths);
+        Object[] otherAccountPaths = {mainPageView};
         otherAccount.sendPaths(otherAccountPaths);
-        Object[] userEditPaths = {accountView};
+        Object[] userEditPaths = {mainPageView};
         userEditView.sendPaths(userEditPaths);
-        Object[] LogInPath = {mainPageView,signUpView};
-        logInView.sendPaths(LogInPath);
-//        Object[] chatViewPaths = {MainPageView};
-        Object[] SignUpPath = {userEditView};
-        signUpView.sendPaths(SignUpPath);
+//        Object[] LogInPath = {accountView,signUpView};
+//        logInView.sendPaths(LogInPath);
+        Object[] chatViewPaths = {mainPageView};
+        chatView.sendPaths(chatViewPaths);
+
+        ////////////////////////////////////////////////////////////////////////////////////////
+        UserGraph practicegraph = PracticeGraphCreator.createGraph();
+        new SaveGraph(practicegraph);
+        CurrentUser currentUser = new CurrentUser();
+        currentUser.setUser(new Username(CurrentGraph.getGraph().getUsernames().get(0)));
+        User u1 = new User("clark", "12345");
+        User u2 = new User("kevin", "54321");
+        u1.setDisplayName("clark");
+        u2.setDisplayName("kevin");
+        practicegraph.addUser(u1);
+        practicegraph.addUser(u2);
+        new SaveGraph(practicegraph);
+
+        Chatroom test1 = new Chatroom(u1, u2);
+        test1.addMessage(new Message(u1, "hello joe"));
+        test1.addMessage(new Message(u2, "hello bob"));
+        ChatRepoUseCase repo = new ChatRepoUseCase();
+        repo.addChatroom(test1);
+        new SaveChats(repo);
+        mainPageView.updatePage(new Object[]{CurrentGraph.getGraph().getUser(currentUser.getUser())});
+        LikeUseCase likeUseCase = new LikeUseCase();
+        likeUseCase.updateEdge(u2, CurrentGraph.getGraph().getUser(currentUser.getUser()));
+        LikeUseCase likeUseCase2 = new LikeUseCase();
+        likeUseCase2.updateEdge(u1, CurrentGraph.getGraph().getUser(currentUser.getUser()));
+        ///////////////////////////////////////////////////////////////////////////////////////////////
 
         JScrollPane scroller = new JScrollPane( this.masterPanel);
-        this.layout.show(this.masterPanel, "userEditView");
+        this.layout.show(this.masterPanel, "mainpageView");
         this.frame.add(scroller);
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
         this.frame.setTitle("MainPage");
@@ -65,22 +99,7 @@ public class ViewUI {
     }
 
     public static void main(String[] args) {
-        User u1 = new User("clark", "12345");
-        User u2 = new User("kevin", "54321");
-        Chatroom test = new Chatroom(u1, u2);
-        test.addMessage(new Message(u1, "hello kevin"));
-        test.addMessage(new Message(u2, "hello clark"));
-
-        u1 = new User("bob", "12345");
-        u2 = new User("joe", "54321");
-        Chatroom test2 = new Chatroom(u1, u2);
-        test2.addMessage(new Message(u1, "hello joe"));
-        test2.addMessage(new Message(u2, "hello bob"));
-
         ViewUI UI = new ViewUI();
-        ChatRepoUseCase repo = new ChatRepoUseCase();
-        repo.addChatroom(test);
-        repo.addChatroom(test2);
 
         ChatViewPresenter presenter = new ChatViewPresenter(UI.currView);
         presenter.render();

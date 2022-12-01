@@ -19,10 +19,7 @@ public class UserEdge implements Serializable {
         this.hiddenForwards = false;
         this.hiddenBackwards = false;
     }
-    public boolean hasMatch(){
-        // Returns whether a match exists between two users
-        return this.likeForwards || this.likeBackwards;
-    }
+
     public void likes(User liked){
         //In this case 'likes' is like a verb, the passed in user is 'liked' by the other user.
         if(Objects.equals(this.users[0].getUsername().getData(), liked.getUsername().getData())){ this.likeBackwards = true;}
@@ -51,4 +48,12 @@ public class UserEdge implements Serializable {
                 (Objects.equals(this.users[0].getUsername().getData(), user2.getUsername().getData()) &&
                         Objects.equals(this.users[1].getUsername().getData(), user1.getUsername().getData()));
     }
+    public boolean getLikesForward(){
+        return this.likeForwards;
+    }
+
+    public boolean getLikeBackwards() {
+        return likeBackwards;
+    }
+
 }
