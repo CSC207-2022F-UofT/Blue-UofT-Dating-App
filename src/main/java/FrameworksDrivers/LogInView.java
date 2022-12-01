@@ -9,8 +9,7 @@ import Entities.User;
 import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.textField;
-import InterfaceAdapters.LoginPresenter;
-import InterfaceAdapters.UserEditPresenter;
+import InterfaceAdapters.UserLogPresenter;
 
 /**
  *  An UI class implements <i>ActionListener</i> and <i>View</i> to create the login page
@@ -123,7 +122,7 @@ public class LogInView implements ActionListener, View {
             // pass to LogInUseCase
             String name = textFieldUser.getTextField().getText();
             String pass = textFieldPass.getTextField().getText();
-            LoginPresenter logPresenter = new LoginPresenter();
+            UserLogPresenter logPresenter = new UserLogPresenter();
 
             //logPresenter.updatePage("MainPage", this.paths[0], name, pass);
             this.layout.show(this.masterPanel, "accountView");
@@ -133,7 +132,7 @@ public class LogInView implements ActionListener, View {
         } else if (evt.getSource() == signUpB.getButton()){
             // case evt.getSource() == signUpB
             // update page to SignUpView
-            LoginPresenter logPresenter = new LoginPresenter();
+            UserLogPresenter logPresenter = new UserLogPresenter();
             //logPresenter.updatePage("signUpView", this.paths[1], "", "");
             this.layout.show(this.masterPanel, "signUpView");
         }
