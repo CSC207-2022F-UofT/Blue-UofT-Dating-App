@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class UserGraph implements Serializable {
 private ArrayList<User> users;
-private static final long serialVersionUID = 1L;
+//private static final long serialVersionUID = 1L;
 private ArrayList<UserEdge> userEdges;
     public UserGraph(){
         this.users = new ArrayList<>();
@@ -23,7 +23,7 @@ private ArrayList<UserEdge> userEdges;
         this.users = users;
         this.userEdges = userEdges;
     }
-    public static boolean userInGraph(User userCheck) {
+    public boolean userInGraph(User userCheck) {
         //checks if username
         for (User user : this.users) {
             if(Objects.equals(user.getUsername().getData(), userCheck.getUsername().getData())){

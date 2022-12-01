@@ -1,5 +1,7 @@
 package InterfaceAdapters;
 
+//import FrameworksDrivers.LogInView;
+
 import FrameworksDrivers.LogInView;
 
 public class LoginPresenter {
@@ -15,7 +17,7 @@ public class LoginPresenter {
             case "signUpView":
                 LogInView login = (LogInView) pageObject;
 
-                login.updatePage("SignUp");
+                login.updatePage(new Object[0]);
         }
     }
 

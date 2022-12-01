@@ -1,14 +1,18 @@
 package FrameworksDrivers;
-import InterfaceAdapters.MainPagePresenter;
-import InterfaceAdapters.OtherAccountPresenter;
+
 import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.Button;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-
+/**
+ * The OtherAccount class generates another users profile to display
+ * that is chosen by the user
+ */
 public class OtherAccount implements ActionListener, View {
     private JPanel masterPanel;
     private CardLayout layout;
@@ -19,7 +23,20 @@ public class OtherAccount implements ActionListener, View {
     private Label name;
     private Label location;
 
-    private Label[] textBank;
+    private ArrayList<Label> interstsLabels;
+    private ArrayList<Label> attributesLabels;
+    private ArrayList<Label> courseLabels;
+    private JPanel interstPanel;
+    private JPanel attributesPanel;
+    private JPanel coursesPanel;
+
+    private String prevpage;
+    /**
+     * Initalizes OtherAccount page
+     *
+     * @parem masterPanel Panel that holds OtherAccount and other pages
+     * @parem layout Manager that controls which panel is shown
+     */
     public OtherAccount(JPanel masterPanel, CardLayout layout) {
         this.masterPanel = masterPanel;
         this.layout = layout;
@@ -27,7 +44,7 @@ public class OtherAccount implements ActionListener, View {
         //Add ur code for your panel below VVVVV
         this.panel = new JPanel();
         JPanel inner = new JPanel();
-        inner.setPreferredSize(new Dimension(600, 750));
+        inner.setPreferredSize(new Dimension(600, 600));
         inner.setLayout(new GridLayout(2, 1));
 
         //photo
@@ -36,47 +53,118 @@ public class OtherAccount implements ActionListener, View {
 
         //Person information
         JPanel lower = new JPanel();
-        Label nameLabel = new Label();
-        nameLabel.createLabelCentered(40, 40, 40, 40, null, "Name", Color.blue);
-        Label locationLabel = new Label();
-        locationLabel.createLabelCentered(40, 40, 40, 40, null, "location", Color.blue);
+        this.name = new Label();
+        this.name.createLabelCentered(40, 40, 40, 40, null, "Name", Color.blue);
+        this.location = new Label();
+        this.location.createLabelCentered(40, 40, 40, 40, null, "location", Color.blue);
         JPanel topInfo = new JPanel();
         topInfo.setPreferredSize(new Dimension(600, 100));
         topInfo.setLayout(new GridLayout(1, 2));
 
         //name location
-        topInfo.add(nameLabel.getLabel());
-        topInfo.add(locationLabel.getLabel());
+        topInfo.add(this.name.getLabel());
+        topInfo.add(this.location.getLabel());
         lower.add(topInfo);
 
         //biograph
         JPanel botInfo = new JPanel();
         botInfo.setPreferredSize(new Dimension(400, 200));
         botInfo.setLayout(new BoxLayout(botInfo, BoxLayout.Y_AXIS));
-        Label biography = new Label();
-        biography.createLabel(100, 100, 100, 100, botInfo, "<html> hi </html>");
-        biography.setHorizontalAlignment("left");
-        biography.setVerticalAlignment("top");
+        this.bio = new Label();
+        this.bio.createLabel(100, 100, 100, 100, botInfo, "<html> hi </html>");
+        this.bio.setHorizontalAlignment("left");
+        this.bio.setVerticalAlignment("top");
         lower.add(botInfo);
 
+        //intersts
+        JPanel interestsHolder = new JPanel();
+        interestsHolder.setBackground(Color.BLUE);
+        Label interestTitle = new Label();
+        interestTitle.createLabelCentered(5, 5, 5, 5, null, "Interests", Color.white);
+
+        this.interstPanel = new JPanel();
+        this.interstPanel.setLayout(new GridLayout(0, 3));
+
+        for (int i = 0; i <= 10; i++) {
+            Label label = new Label();
+            label.createLabelCentered(40, 40, 40, 40, null, "snow", Color.blue);
+            label.setSize(100, 50);
+            this.interstPanel.add(label.getLabel());
+        }
+
+        interestsHolder.add(interestTitle.getLabel());
+        interestsHolder.add(this.interstPanel);
+
+
+        //attributes
+        JPanel attrHolder = new JPanel();
+        attrHolder.setBackground(Color.BLUE);
+        Label attributesTitle = new Label();
+        attributesTitle.createLabelCentered(5, 5, 5, 5, null, "Attributes", Color.white);
+
+        this.attributesPanel = new JPanel();
+        this.attributesPanel.setLayout(new GridLayout(0, 3));
+
+        for (int i = 0; i <= 17; i++) {
+            Label label = new Label();
+            label.createLabelCentered(40, 40, 40, 40, null, "snow", Color.blue);
+            label.setSize(100, 50);
+            this.attributesPanel.add(label.getLabel());
+        }
+
+        attrHolder.add(attributesTitle.getLabel());
+        attrHolder.add(this.attributesPanel);
+
+        //courses
+        JPanel coursesHolder = new JPanel();
+        coursesHolder.setBackground(Color.BLUE);
+        Label coursesTitle = new Label();
+        coursesTitle.createLabelCentered(5, 5, 5, 5, null, "Courses   ", Color.white);
+
+        this.coursesPanel = new JPanel();
+        this.coursesPanel.setLayout(new GridLayout(0, 3));
+
+        for (int i = 0; i <= 4; i++) {
+            Label label = new Label();
+            label.createLabelCentered(40, 40, 40, 40, null, "snow", Color.blue);
+            label.setSize(100, 50);
+            this.coursesPanel.add(label.getLabel());
+        }
+
+        coursesHolder.add(coursesTitle.getLabel());
+        coursesHolder.add(this.coursesPanel);
+
+
         JPanel buttonAlign = new JPanel();
-        buttonAlign.setPreferredSize(new Dimension(600, 20));
-        buttonAlign.setLayout(new BoxLayout(buttonAlign, BoxLayout.X_AXIS));
+        buttonAlign.setLayout(new FlowLayout(FlowLayout.LEFT));
+        buttonAlign.setPreferredSize(new Dimension(600, 35));
         Button backToMain = new Button();
-        backToMain.createButton(buttonAlign, "Back", 20, 20, 10, 10);
+        backToMain.createButton(buttonAlign, "Back", 30, 30, 30, 30);
         backToMain.getButton().addActionListener(this);
-        backToMain.setHorizontalAlignment("left");
+
 
         this.panel.add(buttonAlign);
         this.panel.add(inner);
         inner.add(upper);
         inner.add(lower);
+        this.panel.add(interestsHolder);
+        this.panel.add(attrHolder);
+        this.panel.add(coursesHolder);
 
+        JScrollPane scroller = new JScrollPane(this.panel,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.Y_AXIS));
 
-        this.masterPanel.add(this.panel, "otherAccount");
+        this.masterPanel.add(scroller, "otherAccount");
+
     }
 
-
+    /**
+     * Updates
+     *
+     * @parem paths References to pages that OtherAccount may switch to
+     */
     public void sendPaths(Object[] paths) {
         //gets paths to other pages
         this.paths = paths;
@@ -84,29 +172,67 @@ public class OtherAccount implements ActionListener, View {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //create presenter
+        if (prevpage.equals("main")) {
 
-        MainPagePresenter presenter = new MainPagePresenter();
-        System.out.print("test");
-        //this.paths[0] refers to te first path in the paths array, which is testAccount.
-        //presenter.updatePage("testAccount", this.paths[0]);
+        } else {
 
-        //switches the panel
-        //this.layout.show(this.masterPanel, "testAccount");
+        }
 
     }
 
-    public void updatePage(Object[] info){
+    /**
+     * Gets and updates OtherAccount page with new user information when user switches to it
+     *
+     * @param info Object array that contains all the needed information to update OtherAccount
+     */
+    public void updatePage(Object[] info) {
         this.name.getLabel().setText((String) info[0]);
-        this.bio.getLabel().setText((String) info[1]);
-        this.bio.getLabel().setText("<html>" + (String) info[2] + "</html>");
+        this.location.getLabel().setText((String) info[1]);
+        this.bio.getLabel().setText("<html>" + info[2] + "</html>");
+
+        ArrayList<String> intersts = (ArrayList<String>) info[3];
+        ArrayList<String> attributes = (ArrayList<String>) info[4];
+        ArrayList<String> courses = (ArrayList<String>) info[5];
+
+        for (Label interstsLabel : interstsLabels) {
+            this.interstPanel.remove(interstsLabel.getLabel());
+        }
+        for (String interst : intersts) {
+            Label label = new Label();
+            label.createLabelCentered(40, 40, 40, 40, null, interst, Color.blue);
+            label.setSize(100, 50);
+            interstsLabels.add(label);
+            this.interstPanel.add(label.getLabel());
+        }
+
+
+        for (Label attributesLabel : attributesLabels) {
+            this.attributesPanel.remove(attributesLabel.getLabel());
+        }
+        for (String attribute : attributes) {
+            Label label = new Label();
+            label.createLabelCentered(40, 40, 40, 40, null, "atr", Color.blue);
+            label.setSize(100, 50);
+            label.setText(attribute);
+            attributesLabels.add(label);
+            this.attributesPanel.add(label.getLabel());
+        }
+
+        for (Label courseLabel : courseLabels) {
+            this.coursesPanel.remove(courseLabel.getLabel());
+        }
+        for (String course : courses) {
+            Label label = new Label();
+            label.createLabelCentered(40, 40, 40, 40, null, "crs", Color.blue);
+            label.setSize(100, 50);
+            label.setText(course);
+            courseLabels.add(label);
+            this.coursesPanel.add(label.getLabel());
+        }
+
 
         //updates panel VVVVV
         this.panel.revalidate();
+
     }
-
 }
-
-
-
-//zzz
