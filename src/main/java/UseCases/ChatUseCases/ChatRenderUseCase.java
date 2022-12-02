@@ -5,49 +5,50 @@ import InterfaceAdapters.ChatViewPresenter;
 import UseCases.UserGraphReadWriter;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 public class ChatRenderUseCase {
 
     // assume that ChatRepo exist (static container)
 
-    public ChatRenderResponseModel render() {
+    public ChatRenderResponseModel render(User user) {
 
-        ArrayList<Chatroom> chatrooms = new ArrayList<>();
+        Map<Set<User>, Chatroom> map = ChatRepoUseCase.getUserChatrooms(user);
 
-        // make sure to pass the current user's username to the presenter
-        // make sure to pass the current user's username to the presenter
-        // make sure to pass the current user's username to the presenter
+        ArrayList<ArrayList<ArrayList<String>>> responseModel = new ArrayList<>();
 
-        // for user in this user neighbors
-        // check match
-        // if match
-        // if match in csv for chatrooms
-        // retrieve
+        for (Map.Entry<Set<User>, Chatroom> set : map.entrySet()) {
 
-        // dumb examples
-        User u1 = new User("clark", "12345");
-        User u2 = new User("kevin", "54321");
-        Chatroom test = new Chatroom(u1, u2);
-        test.addMessage(new Message(u1, "hello kevin"));
-        test.addMessage(new Message(u2, "hello clark"));
-        chatrooms.add(new Chatroom(u1, u2));
-
-        ArrayList<Object> responseModel = new ArrayList<>();
-
-        for (Chatroom chatroom: chatrooms) {
-            ArrayList<Object> currList = new ArrayList<>();
-            Object[] users = chatroom.getUsers().toArray();
+            ArrayList<ArrayList<String>> currChatroomList = new ArrayList<>();
+            Chatroom chatroom= set.getValue();
+            Object[] users = set.getKey().toArray();
             User user1 = (User) users[0];
             User user2 = (User) users[1];
+            String username1 = user1.getUsername().getData();
+            String username2 = user2.getUsername().getData();
 
-            currList.add(user1.getUsername());
-            currList.add(user2.getUsername());
-            for (Message message : chatroom.getConversation()) {
-                currList.add(new Object[]{message.getMessageUser().getUsername(), message.getMessageText()});
+            ArrayList<String> username1List = new ArrayList<>();
+            ArrayList<String> username2List = new ArrayList<>();
+            username1List.add(username1);
+            username2List.add(username2);
+
+            //added just now
+            currChatroomList.add(username1List);
+            currChatroomList.add(username2List);
+            ArrayList<Message> convo = (ArrayList<Message>) chatroom.getConversation();
+
+            for (Message m : convo) {
+                ArrayList<String> messageList = new ArrayList<>();
+                String messageUser = m.getMessageUser().getUsername().getData();
+                String message = m.getMessageText();
+                messageList.add(messageUser);
+                messageList.add(message);
+                currChatroomList.add(messageList);
             }
-            responseModel.add(currList);
+            responseModel.add(currChatroomList);
         }
-        // make sure to pass the current user's username to the presenter
+
         return new ChatRenderResponseModel(responseModel);
     }
 }

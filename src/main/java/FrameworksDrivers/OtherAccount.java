@@ -19,6 +19,7 @@ public class OtherAccount implements ActionListener, View {
     private JPanel panel;
 
     private Object[] paths;
+    private Button backToMain;
     private Label bio;
     private Label name;
     private Label location;
@@ -229,8 +230,6 @@ public class OtherAccount implements ActionListener, View {
             courseLabels.add(label);
             this.coursesPanel.add(label.getLabel());
         }
-
-
         //updates panel VVVVV
         this.panel.revalidate();
 

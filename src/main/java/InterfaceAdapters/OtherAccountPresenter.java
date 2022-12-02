@@ -1,5 +1,4 @@
 package InterfaceAdapters;
-
 import FrameworksDrivers.OtherAccount;
 import UseCases.OtherAccountCases;
 
@@ -31,7 +30,5 @@ public class OtherAccountPresenter {
 
         Object[] updateInformation = updateCase.getUserInfo(this.user);
         account.updatePage(updateInformation);
-
-
     }
 }
