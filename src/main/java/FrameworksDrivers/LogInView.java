@@ -4,12 +4,19 @@ package FrameworksDrivers;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import Entities.User;
 import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.textField;
 import InterfaceAdapters.LoginPresenter;
+import InterfaceAdapters.UserEditPresenter;
 
-
+/**
+ *  An UI class implements <i>ActionListener</i> and <i>View</i> to create the login page
+ *  for the program. This contains the creation of all components using and is responsible
+ *  to any valid action on the page.
+ */
 public class LogInView implements ActionListener, View {
     Button logInB, signUpB;
 
@@ -21,6 +28,10 @@ public class LogInView implements ActionListener, View {
 
     private Object[] paths;
 
+    /**
+     * @param masterPanel the masterPanel that contains the page
+     * @param layout layout of the masterPanel
+     */
     public LogInView(JPanel masterPanel, CardLayout layout){
         //create page to display created element
         this.masterPanel = masterPanel;
@@ -62,18 +73,45 @@ public class LogInView implements ActionListener, View {
         this.masterPanel.add(newPanel, "");
     }
 
+    /**
+     *
+     * @param paths contains the paths to other pages
+     */
     public void sendPaths(Object[] paths){
         // obtain path to other pages
         this.paths = paths;
     }
 
 
+    /**
+     *
+     * @param info if info contains some strings, dialog box with string message
+     */
     @Override
     public void updatePage(Object[] info) {
-        //LoginPresenter logPresenter = new LoginPresenter();
-        ...
+
+        if (info[0] == "userNotExists" || info[0] == "userPasswordNoMatch") {
+            JOptionPane.showMessageDialog(null, info[0]);
+        }
+
+        this.newPanel.revalidate();
+        this.newPanel.repaint();
+
+        if (info[0] instanceof User) {
+            // change to main page
+            // update current user to user
+            // set log in to true
+            //
+
+            this.layout.show(this.masterPanel, "mainPageView");
+
+        }
     }
 
+    /**
+     *
+     * @param evt the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent evt) {
         // define action performed when button clicked
@@ -83,26 +121,21 @@ public class LogInView implements ActionListener, View {
         if (evt.getSource() == logInB.getButton()) {
             // check info entered
             // pass to LogInUseCase
+            String name = textFieldUser.getTextField().getText();
+            String pass = textFieldPass.getTextField().getText();
+            LoginPresenter logPresenter = new LoginPresenter();
 
-            try {
-                //String exist  = new UserRegGateway().... ;
-                ...
-                LoginPresenter logPresenter = new LoginPresenter();
-                logPresenter.updatePage("accountView", this.paths[1]);
-                this.layout.show(this.masterPanel, "accountView");
+            //logPresenter.updatePage("MainPage", this.paths[0], name, pass);
+            this.layout.show(this.masterPanel, "accountView");
 
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
 
             // pop dialog user doesn't exist
         } else if (evt.getSource() == signUpB.getButton()){
             // case evt.getSource() == signUpB
             // update page to SignUpView
             LoginPresenter logPresenter = new LoginPresenter();
-            logPresenter.updatePage("signUpView", this.paths[2]);
+            //logPresenter.updatePage("signUpView", this.paths[1], "", "");
             this.layout.show(this.masterPanel, "signUpView");
-
         }
 
     }
