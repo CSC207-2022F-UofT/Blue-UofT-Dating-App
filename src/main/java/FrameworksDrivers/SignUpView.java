@@ -62,11 +62,11 @@ public class SignUpView implements View, ActionListener {
 
         regB = new Button();
         regB.createButton(newPanel, "Register", 40, 40, 40, 40);
-
+        regB.getButton().addActionListener(this);
 
 
         newPanel.setBackground(Color.lightGray);
-        this.masterPanel.add(newPanel, "");
+        this.masterPanel.add(newPanel, "signupView");
     }
 
     public void sendPaths(Object[] paths){
@@ -93,8 +93,9 @@ public class SignUpView implements View, ActionListener {
         }
 
         if (info[0] instanceof User) {
-            UserEditView userEditPage = new UserEditView(this.masterPanel, this.layout, (User)info[0]);
-            userEditPage.updatePage(null);
+            // UserEditView userEditPage = new UserEditView(this.masterPanel, this.layout, (User)info[0]);
+            UserEditView userEditView = (UserEditView) this.paths[0];
+            userEditView.updatePage(info);
             // change to user edit page
             this.layout.show(this.masterPanel, "userEditView");
         }
@@ -105,14 +106,13 @@ public class SignUpView implements View, ActionListener {
     public void actionPerformed(ActionEvent evt) {
 
         if (evt.getSource() == regB.getButton()) {
-            SignUpView newView = new SignUpView(this.masterPanel, this.layout);
 
             String nameEntered = textFieldUser.getTextField().getText();
             String pass1 = textFieldPass1.getTextField().getText();
             String pass2 = textFieldPass2.getTextField().getText();
 
             UserRegPresenter regPresenter = new UserRegPresenter();
-            regPresenter.switchPage(nameEntered, pass1, pass2, newView);
+            regPresenter.switchPage(nameEntered, pass1, pass2, this);
         }
 
     }

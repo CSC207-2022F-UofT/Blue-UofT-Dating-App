@@ -142,10 +142,14 @@ public class MainPageView implements ActionListener, View {
     }
     public void updatePage(Object[] info) {
         //Just switch the user
-        if(info != null){
-            this.displayUser = (User) info[0];
+        if(info == null){
+            MainPagePresenter mainPagePresenter = new MainPagePresenter();
+            mainPagePresenter.updatePage(null, "mainpageView", this);
         }
-        this.nameTextField.setText(displayUser.getDisplayName().getData().toString());
+        else {
+            this.displayUser = (User) info[0];
+            this.nameTextField.setText(displayUser.getDisplayName().getData().toString());
+        }
     }
 
 }

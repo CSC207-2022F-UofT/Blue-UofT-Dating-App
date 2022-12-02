@@ -29,4 +29,8 @@ public class SaveGraph {
      * @see    User
      * @see    UserGraph
      */
+    public static void main(String[] args) {
+        UserGraph userGraph1 = new UserGraph();
+        new SaveGraph(userGraph1);
+    }
 }
