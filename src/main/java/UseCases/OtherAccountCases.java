@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OtherAccountCases {
-    public String[] getUserInfo(String userid) {
+    public Object[] getUserInfo(String userid) {
         try {
-            String[] userInfo = new String[6];
+            Object[] userInfo = new Object[6];
             UserGraphReadWriter reader = new UserGraphReadWriter();
             UserGraph graph = reader.readFromFile("userGraph.ser");
             User userclass = graph.getUserByString(userid);
@@ -27,58 +27,42 @@ public class OtherAccountCases {
             userInfo[1] = location;
             userInfo[2] = bio;
 
-            String courseString = "";
+            ArrayList<String> courseString = new ArrayList<>();
             Courses courses = userclass.getCourses();
             if (!courses.hidden) {
                 ArrayList<Course> courseList = courses.data;
-                for (int i = 0; i < courseList.size(); i++) {
-                    Course course = courseList.get(i);
+                for (Course course : courseList) {
                     if (!course.hidden) {
-                        if (courseString.equals("")) {
-                            courseString += ", " + course.data;
-                        }
-                        else {
-                            courseString += course.data;
-                        }
+                        courseString.add(course.data.code);
                     }
                 }
             }
-
-            String interstsString = "";
+            ArrayList<String> interstsList = new ArrayList<>();
             Interests intersts = userclass.getInterests();
             if (!intersts.hidden) {
                 HashMap<Integer, Boolean> map = intersts.data;
                 for (int i = 0; i <= 50; i++) {
                     if (!map.get(i)) {
-                        if (interstsString.equals("")) {
-                            interstsString += ", " + intersts.getInterestAt(i);
-                        }
-                        else {
-                            interstsString +=  intersts.getInterestAt(i);
-                        }
+                        interstsList.add(intersts.getInterestAt(i));
                     }
                 }
             }
 
             Attributes attributes = userclass.getAttributes();
-            String attributesString = "";
+            ArrayList<String> attributesList= new ArrayList<>();
             if (!attributes.hidden) {
                 HashMap<Integer, ArrayList<Object>> map = attributes.data;
                 for (int i = 0; i <= 13; i++) {
                     ArrayList<Object> atr = map.get(i);
                     if (!(boolean) atr.get(1)) {
-                        if (attributesString.equals("")) {
-                            attributesString += attributes.getTypeAt(i) + ": " + atr.get(0);
-                        }
-                        else {
-                            attributesString += ", " + attributes.getTypeAt(i) + ": " + atr.get(0);
-                        }
+                        attributesList.add(attributes.getTypeAt(i) + ": " + attributes.getValueAt(i, (int) atr.get(0)));
                     }
                 }
             }
-            userInfo[3] = courseString;
-            userInfo[4] = interstsString;
-            userInfo[5] = attributesString;
+
+            userInfo[3] = interstsList;
+            userInfo[4] = attributesList;
+            userInfo[5] = courseString;
 
             return userInfo;
         }
