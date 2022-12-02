@@ -24,7 +24,7 @@ public class UserEditPresenter {
         User user = new CurrentUserGateway().getCurrentUser();
         UserEditInteractor userEditInteractor = new UserEditInteractor(data, editedGraph, user);
         new SaveGraph(editedGraph);
-        this.updatePage("mainpageView", pageObject);
+        this.updatePage("otherAccount", pageObject);
     }
 
     public void updatePage(String page, Object pageObject) {
@@ -33,8 +33,11 @@ public class UserEditPresenter {
                  MainPageView mainPageView = (MainPageView) pageObject;
                 //Would call UseCase and Presenter interface here to get data from entities VVV
                 //send it back up to ui, update the next page to be loaded VVV
-
                 mainPageView.updatePage(null);
+                break;
+            case "otherAccount":
+                OtherAccount otherAccount = (OtherAccount) pageObject;
+                otherAccount.updatePage(null);
                 break;
         }
     }

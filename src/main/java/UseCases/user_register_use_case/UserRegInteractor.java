@@ -1,40 +1,34 @@
 package UseCases.user_register_use_case;
 import Entities.User;
-import Entities.UserGraph;
+import Entities.UserDataClasses.UserFactory;
 import InterfaceAdapters.UserRegPresenter;
-import UseCases.DataRetrieval.CurrentGraph;
-import UseCases.DataRetrieval.SaveGraph;
-import UseCases.DataRetrieval.UserRegGateway;
-
-public class UserRegInteractor implements UserRegInputBoundary{
-    /**
-     * This class will connect whether a username is valid, and the passwords match to create a new User
-     * @param userRegGateway a User or null
-     * @param presenter      presenter for registering a new User
-     * @return               the view corresponding to the validity of the User's registration info
-     * @see                  UserRegGateway
-     * @see                  UserRegPresenter
-     */
-    final UserRegGateway userRegGateway;
-
-    public UserRegInteractor() {
-
-        this.userRegGateway = new UserRegGateway();
-    }
-    @Override
-    public String create(UserRegRequestModel requestModel) {
-        if (!requestModel.getPassword().equals(requestModel.getRepeatPassword())) {
-            return "passNoMatch";
-        }
-        if (userRegGateway.getUserExists(requestModel.getName())) {
-            return "userExists";
-        }
-
-        User user = new User(requestModel.getName(), requestModel.getPassword());
-        UserGraph graph = CurrentGraph.getGraph();
-        graph.addUser(user);
-        new SaveGraph(graph);
-        UserRegResponseModel responseModel = new UserRegResponseModel(user.getUsername().toString());
-        return responseModel.getLogin();
-    }
+//this class normally will implement UserRegInputBoundary interface, it is currently underconstruction tho.
+public class UserRegInteractor {
+//    final UserRegGateway userRegGateway;
+//    final UserFactory userFactory;
+//    final UserRegPresenter presenter;
+//
+//    public UserRegInteractor(UserRegGateway userRegGateway, UserFactory userFactory, UserRegPresenter presenter) {
+//        this.userRegGateway = userRegGateway;
+//        this.userFactory = userFactory;
+//        this.presenter = presenter;
+//    }
+//
+//    @Override
+//    public UserRegResponseModel create(UserRegRequestModel requestModel) {
+//        if (userRegGateway.existsByName(UserRegRequestModel.getName().toString())) {
+//            return InterfaceAdapters.UserRegPresenter.prepareFailView("Username already exists.");
+//        }
+//        else if (!requestModel.getPassword().equals(requestModel.getRepeatPassword())) {
+//            return InterfaceAdapters.UserRegPresenter.prepareFailView("Passwords don't match.");
+//        }
+//
+//        User user = userFactory.createUser(requestModel.getName(), requestModel.getPassword());
+//
+//        UserRegDsRequestModel userDsModel = new UserRegDsRequestModel(requestModel.getName().toString(), requestModel.getPassword());
+//        userRegGateway.save(userDsModel);
+//
+//        UserRegResponseModel accountResponseModel = new UserRegResponseModel(user.getUsername().toString());
+//        return UserRegPresenter.prepareSuccessView(accountResponseModel);
+//    }
 }
