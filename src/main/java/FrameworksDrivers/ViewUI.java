@@ -30,7 +30,7 @@ public class ViewUI {
         this.masterPanel.setLayout(layout);
         this.masterPanel.setPreferredSize(new Dimension(600, 800));;
         //initial panel
-        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
+        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout);
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
         LogInView logInView = new LogInView(this.masterPanel, this.layout);
         ChatView chatView = new ChatView(this.masterPanel, this.layout);

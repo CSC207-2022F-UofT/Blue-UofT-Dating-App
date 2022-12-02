@@ -1,19 +1,16 @@
 package UseCases;
 
-import Entities.CurrentUser;
 import Entities.User;
 import Entities.UserDataClasses.HideableUserDataClasses.Attributes;
 import Entities.UserDataClasses.HideableUserDataClasses.Courses;
-import Entities.UserDataClasses.HideableUserDataClasses.Interests;
 import Entities.UserDataClasses.PrivateUserDataClasses.Preferences;
 import Entities.UserGraph;
-import InterfaceAdapters.UserEditPresenter;
 
 public class UserEditInteractor {
-    UserEditRequestModel userInput;
+    UserEditModel userInput;
     UserGraph currGraph;
     User user;
-    public UserEditInteractor(UserEditRequestModel userInput, UserGraph currGraph, User user){
+    public UserEditInteractor(UserEditModel userInput, UserGraph currGraph, User user){
         this.user = user;
         this.userInput = userInput;
         this.currGraph = currGraph;

@@ -1,25 +1,18 @@
 package InterfaceAdapters;
 
 import Entities.User;
-import Entities.UserDataClasses.PublicUserDataClasses.Bio;
 import Entities.UserGraph;
-import FrameworksDrivers.AccountView;
 import FrameworksDrivers.MainPageView;
-import FrameworksDrivers.OtherAccount;
-import FrameworksDrivers.View;
 import UseCases.DataRetrieval.CurrentGraph;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import UseCases.DataRetrieval.SaveGraph;
 import UseCases.UserEditInteractor;
-import UseCases.UserEditRequestModel;
-
-import javax.print.attribute.standard.MediaSize;
-import java.util.ArrayList;
-import java.util.HashMap;
+import UseCases.UserEditModel;
+import UseCases.UserEditResponseModel;
 
 public class UserEditPresenter {
 
-    public void saveUserInfo(UserEditRequestModel data, Object pageObject){
+    public void saveUserInfo(UserEditModel data, Object pageObject){
         UserGraph editedGraph = CurrentGraph.getGraph();
         User user = new CurrentUserGateway().getCurrentUser();
         UserEditInteractor userEditInteractor = new UserEditInteractor(data, editedGraph, user);
@@ -39,9 +32,10 @@ public class UserEditPresenter {
         }
     }
 
-    public User getCurrentUser(){
+    public UserEditResponseModel getCurrentUser(){
         CurrentUserGateway currentUserGateway = new CurrentUserGateway();
-        return currentUserGateway.getCurrentUser();
+        UserEditResponseModel userEditResponseModel = new UserEditResponseModel(currentUserGateway.getCurrentUser());
+        return userEditResponseModel;
     }
 
 }
