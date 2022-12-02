@@ -22,6 +22,11 @@ public class SignUpView implements View, ActionListener {
 
     private Object[] paths;
 
+    /**
+     * Create the new sing up page
+     * @param masterPanel the masterPanel that contains the page
+     * @param layout layout of the masterPanel
+     */
     public SignUpView(JPanel masterPanel, CardLayout layout) {
         //create page to display created element
         this.masterPanel = masterPanel;
@@ -69,13 +74,19 @@ public class SignUpView implements View, ActionListener {
         this.masterPanel.add(newPanel, "signupView");
     }
 
+
+    /**
+     *  Used to establish the connection to other connecting pages
+     * @param paths contains the paths to other pages
+     */
     public void sendPaths(Object[] paths){
         // obtain path to other pages
         this.paths = paths;
     }
 
     /**
-     *
+     * refresh the page and display dialog box for message(if any)
+     * if login is successful, change the page to UserEdit View
      * @param info contains one of the two error messages or a user object
      *             used to identify what changes need to be make besides refreshing current page
      */
@@ -101,6 +112,11 @@ public class SignUpView implements View, ActionListener {
         }
     }
 
+    /**
+     * handle users' button click action
+     * obtain information entered by the user and pass to the presenter
+     * @param evt the event to be processed
+     */
 
     @Override
     public void actionPerformed(ActionEvent evt) {

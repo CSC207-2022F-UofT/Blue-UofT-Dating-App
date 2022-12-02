@@ -36,7 +36,7 @@ public class UserRegRequestModel {
 
     String getPassword() {
 
-        return password;
+        return this.password;
     }
 
     void setPassword(String password) {

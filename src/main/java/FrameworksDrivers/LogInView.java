@@ -9,8 +9,8 @@ import Entities.User;
 import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.textField;
-import InterfaceAdapters.LoginPresenter;
-import InterfaceAdapters.UserEditPresenter;
+import InterfaceAdapters.MainPagePresenter;
+import InterfaceAdapters.UserLogPresenter;
 
 /**
  *  An UI class implements <i>ActionListener</i> and <i>View</i> to create the login page
@@ -29,6 +29,8 @@ public class LogInView implements ActionListener, View {
     private Object[] paths;
 
     /**
+     *
+     * Create the new login page
      * @param masterPanel the masterPanel that contains the page
      * @param layout layout of the masterPanel
      */
@@ -74,7 +76,7 @@ public class LogInView implements ActionListener, View {
     }
 
     /**
-     *
+     * Used to establish the connection to other connecting pages
      * @param paths contains the paths to other pages
      */
     public void sendPaths(Object[] paths){
@@ -84,13 +86,14 @@ public class LogInView implements ActionListener, View {
 
 
     /**
-     *
+     * responsible for refreshing the screen, prompt given message, or switch the
+     * screen
      * @param info if info contains some strings, dialog box with string message
      */
     @Override
     public void updatePage(Object[] info) {
 
-        if (info[0] == "userNotExists" || info[0] == "userPasswordNoMatch") {
+        if (info[0] == "userDoesNotExists" || info[0] == "passwordIncorrect") {
             JOptionPane.showMessageDialog(null, info[0]);
         }
 
@@ -101,7 +104,8 @@ public class LogInView implements ActionListener, View {
             // change to main page
             // update current user to user
             // set log in to true
-            //
+            MainPagePresenter mainPagePresenter = new MainPagePresenter();
+            mainPagePresenter.updatePage((User)info[0], "mainpageView", this.paths[0]);
 
             this.layout.show(this.masterPanel, "mainPageView");
 
@@ -109,6 +113,9 @@ public class LogInView implements ActionListener, View {
     }
 
     /**
+     * handles the action performed by the user on login page
+     * detect the button being clicked and call the presenter to determine
+     * what to react
      *
      * @param evt the event to be processed
      */
@@ -116,6 +123,7 @@ public class LogInView implements ActionListener, View {
     public void actionPerformed(ActionEvent evt) {
         // define action performed when button clicked
         // create presenter
+        LogInView newView = new LogInView(this.masterPanel, this.layout);
 
 
         if (evt.getSource() == logInB.getButton()) {
@@ -123,17 +131,17 @@ public class LogInView implements ActionListener, View {
             // pass to LogInUseCase
             String name = textFieldUser.getTextField().getText();
             String pass = textFieldPass.getTextField().getText();
-            LoginPresenter logPresenter = new LoginPresenter();
-
-            //logPresenter.updatePage("MainPage", this.paths[0], name, pass);
-            this.layout.show(this.masterPanel, "accountView");
+            UserLogPresenter logPresenter = new UserLogPresenter();
+            logPresenter.switchPage(name, pass, "logInView", newView);
+            this.layout.show(this.masterPanel, "mainpageView");
 
 
             // pop dialog user doesn't exist
         } else if (evt.getSource() == signUpB.getButton()){
             // case evt.getSource() == signUpB
             // update page to SignUpView
-            LoginPresenter logPresenter = new LoginPresenter();
+            UserLogPresenter logPresenter = new UserLogPresenter();
+            logPresenter.switchPage(null,null, "signUpView", newView);
             //logPresenter.updatePage("signUpView", this.paths[1], "", "");
             this.layout.show(this.masterPanel, "signUpView");
         }
