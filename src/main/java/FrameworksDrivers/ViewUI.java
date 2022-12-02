@@ -4,6 +4,7 @@ import Entities.*;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
 import InterfaceAdapters.ChatGateway;
 import InterfaceAdapters.MainPagePresenter;
+import InterfaceAdapters.UserLogPresenter;
 import UseCases.DataRetrieval.CurrentGraph;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import InterfaceAdapters.ChatViewPresenter;
@@ -33,14 +34,12 @@ public class ViewUI {
         UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
 
         OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
-//        LogInView logInView = new LogInView(this.masterPanel, this.layout);
+        LogInView logInView = new LogInView(this.masterPanel, this.layout);
         ChatView chatView = new ChatView(this.masterPanel, this.layout);
-//        SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
-
+        SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
         MainPageView mainPageView = new MainPageView(this.masterPanel, this.layout);
-        //SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
 
-        currView = chatView;
+        currView = logInView;
 
 
         // Main Page
@@ -55,10 +54,13 @@ public class ViewUI {
         otherAccount.sendPaths(otherAccountPaths);
         Object[] userEditPaths = {mainPageView};
         userEditView.sendPaths(userEditPaths);
-//        Object[] LogInPath = {accountView,signUpView};
-//        logInView.sendPaths(LogInPath);
-        Object[] chatViewPaths = {mainPageView};
-        chatView.sendPaths(chatViewPaths);
+        Object[] logInPath = {mainPageView,signUpView};
+        logInView.sendPaths(logInPath);
+        Object[] signUpPath = {userEditView};
+        signUpView.sendPaths(signUpPath);
+
+ //       Object[] chatViewPaths = {mainPageView};
+  //      chatView.sendPaths(chatViewPaths);
 
         ////////////////////////////////////////////////////////////////////////////////////////
         UserGraph practicegraph = PracticeGraphCreator.createGraph();
@@ -87,7 +89,7 @@ public class ViewUI {
         ///////////////////////////////////////////////////////////////////////////////////////////////
 
         JScrollPane scroller = new JScrollPane( this.masterPanel);
-        this.layout.show(this.masterPanel, "mainpageView");
+        this.layout.show(this.masterPanel, "signUpView");
         this.frame.add(scroller);
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
         this.frame.setTitle("MainPage");
@@ -100,7 +102,6 @@ public class ViewUI {
 
     public static void main(String[] args) {
         ViewUI UI = new ViewUI();
-
         ChatViewPresenter presenter = new ChatViewPresenter(UI.currView);
         presenter.render();
     }
