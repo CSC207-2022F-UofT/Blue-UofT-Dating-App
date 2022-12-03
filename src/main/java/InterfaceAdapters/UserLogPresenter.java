@@ -27,7 +27,7 @@ public class UserLogPresenter {
         switch (page) {
             case "signUpView":
                 SignUpView signView = (SignUpView) pageObject;
-                Object[] info = {};
+                Object[] info = {null};
                 signView.updatePage(info);
                 break;
 
@@ -40,23 +40,24 @@ public class UserLogPresenter {
                 LogInView logView = (LogInView) pageObject;
 
                 if ("userDoesNotExist".equals(userLogInteractor.log(logRequestModel))){
-                    String[] message = {"userDoesn'tExist"};
+                    String[] message = {"userDoesNotExist"};
                     logView.updatePage(message);
                 }
 
-                if("passwordIncorrect".equals(userLogInteractor.log(logRequestModel))){
+                else if("passwordIncorrect".equals(userLogInteractor.log(logRequestModel))){
                     String[] message = {"passwordIncorrect"};
                     logView.updatePage(message);
                 }
-
-                UserGraph graph = CurrentGraph.getGraph();
-                User attemptUser = graph.getUserByString(name);
-                CurrentUser currentUser = new CurrentUser();
-                currentUser.setUser(attemptUser.getUsername());
-                currentUser.logIn();
-                User[] message = {attemptUser};
-                logView.updatePage(message);
-                break;
+                else {
+                    UserGraph graph = CurrentGraph.getGraph();
+                    User attemptUser = graph.getUserByString(name);
+                    CurrentUser currentUser = new CurrentUser();
+                    currentUser.setUser(attemptUser.getUsername());
+                    currentUser.logIn();
+                    User[] message = {attemptUser};
+                    logView.updatePage(message);
+                    break;
+                }
         }
 
     }

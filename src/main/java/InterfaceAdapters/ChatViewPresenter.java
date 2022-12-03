@@ -8,6 +8,7 @@ import UseCases.ChatUseCases.*;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import UseCases.DataRetrieval.SaveChats;
 import UseCases.DataRetrieval.SaveGraph;
+import com.sun.tools.javac.Main;
 
 import java.util.ArrayList;
 
@@ -37,13 +38,10 @@ public class ChatViewPresenter implements ChatViewPresenterInterface {
     public void updatePage(String page, Object pageObject) {
         switch (page) {
             case "mainpageView":
+                new SaveChats(new ChatRepoUseCase());
                 MainPageView mainPageView = (MainPageView) pageObject;
-                //Would call UseCase and Presenter interface here to get data from entities VVV
-                //send it back up to ui, update the next page to be loaded VVV
-                Object[] objects = new Object[1];
-                CurrentUserGateway currentUserGateway = new CurrentUserGateway();
-                objects[0] = currentUserGateway.getCurrentUser();
-                mainPageView.updatePage(objects);
+                MainPagePresenter mainPagePresenter = new MainPagePresenter();
+                mainPagePresenter.updatePage(null, "mainpageView", mainPageView);
                 break;
         }
     }

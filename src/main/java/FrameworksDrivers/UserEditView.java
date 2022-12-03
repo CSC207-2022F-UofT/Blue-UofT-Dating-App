@@ -21,6 +21,7 @@ import java.util.HashMap;
 
 public class UserEditView implements ActionListener, View {
     private JPanel masterPanel;
+    private boolean newUser = true;
     private CardLayout layout;
     private JPanel panel;
     private Object[] paths;
@@ -245,16 +246,25 @@ public class UserEditView implements ActionListener, View {
                     attributeDictData, breakersDictData, hiddenDictData);
             userEditPresenter.saveUserInfo(data, this.paths[0]);
             this.layout.show(this.masterPanel, "mainpageView");
+            this.newUser = false;
         }
         else if(e.getSource() == buttonBack.getButton()){
-            UserEditPresenter userEditPresenter = new UserEditPresenter();
-            userEditPresenter.updatePage("mainpageView", this.paths[0]);
-            this.layout.show(this.masterPanel, "mainpageView");
+            if(newUser){
+                JOptionPane.showMessageDialog(null, "Please create a profile.");
+            }
+            else {
+                UserEditPresenter userEditPresenter = new UserEditPresenter();
+                userEditPresenter.updatePage("mainpageView", this.paths[0]);
+                this.layout.show(this.masterPanel, "mainpageView");
+            }
         }
     }
 
     @Override
     public void updatePage(Object[] info) {
+        if(info[0].equals("New")){
+            this.newUser = true;
+        }
         UserEditPresenter userEditPresenter = new UserEditPresenter();
         UserEditResponseModel userEditResponseModel = userEditPresenter.getCurrentUser();
         this.nameField.setText(userEditResponseModel.name);

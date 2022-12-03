@@ -67,12 +67,12 @@ public class LogInView implements ActionListener, View {
 
         logInB = new Button();
         logInB.createButton(newPanel, "Log In", 40, 40, 40, 40);
+        logInB.getButton().addActionListener(this);
         signUpB = new Button();
         signUpB.createButton(newPanel, "Sign Up", 40, 40, 40, 40);
-
-
+        signUpB.getButton().addActionListener(this);
         newPanel.setBackground(Color.lightGray);
-        this.masterPanel.add(newPanel, "");
+        this.masterPanel.add(newPanel, "loginView");
     }
 
     /**
@@ -93,21 +93,19 @@ public class LogInView implements ActionListener, View {
     @Override
     public void updatePage(Object[] info) {
 
-        if (info[0] == "userDoesNotExists" || info[0] == "passwordIncorrect") {
+        if (info[0].equals("userDoesNotExist") || info[0].equals("passwordIncorrect")) {
             JOptionPane.showMessageDialog(null, info[0]);
+
+            this.newPanel.revalidate();
+            this.newPanel.repaint();
         }
-
-        this.newPanel.revalidate();
-        this.newPanel.repaint();
-
-        if (info[0] instanceof User) {
+        else if (info[0] instanceof User) {
             // change to main page
             // update current user to user
             // set log in to true
             MainPagePresenter mainPagePresenter = new MainPagePresenter();
-            mainPagePresenter.updatePage((User)info[0], "mainpageView", this.paths[0]);
-
-            this.layout.show(this.masterPanel, "mainPageView");
+            mainPagePresenter.updatePage((User)info[0], "mainpageView", this.paths[1]);
+            this.layout.show(this.masterPanel, "mainpageView");
 
         }
     }
@@ -123,25 +121,25 @@ public class LogInView implements ActionListener, View {
     public void actionPerformed(ActionEvent evt) {
         // define action performed when button clicked
         // create presenter
-        LogInView newView = new LogInView(this.masterPanel, this.layout);
 
 
-        if (evt.getSource() == logInB.getButton()) {
+        if (evt.getSource() == this.logInB.getButton()) {
             // check info entered
             // pass to LogInUseCase
             String name = textFieldUser.getTextField().getText();
             String pass = textFieldPass.getTextField().getText();
             UserLogPresenter logPresenter = new UserLogPresenter();
-            logPresenter.switchPage(name, pass, "logInView", newView);
-            this.layout.show(this.masterPanel, "mainpageView");
+            logPresenter.switchPage(name, pass, "logInView", this);
+
 
 
             // pop dialog user doesn't exist
-        } else if (evt.getSource() == signUpB.getButton()){
+        }
+        else if (evt.getSource() == this.signUpB.getButton()){
             // case evt.getSource() == signUpB
             // update page to SignUpView
             UserLogPresenter logPresenter = new UserLogPresenter();
-            logPresenter.switchPage(null,null, "signUpView", newView);
+            logPresenter.switchPage(null,null, "signUpView", this.paths[0]);
             //logPresenter.updatePage("signUpView", this.paths[1], "", "");
             this.layout.show(this.masterPanel, "signUpView");
         }

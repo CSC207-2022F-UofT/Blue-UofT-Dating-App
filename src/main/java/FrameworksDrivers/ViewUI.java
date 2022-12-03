@@ -4,13 +4,10 @@ import Entities.*;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
 import InterfaceAdapters.ChatGateway;
 import InterfaceAdapters.MainPagePresenter;
-import UseCases.DataRetrieval.CurrentGraph;
-import UseCases.DataRetrieval.CurrentUserGateway;
+import UseCases.DataRetrieval.*;
 import InterfaceAdapters.ChatViewPresenter;
 import UseCases.ChatUseCases.ChatRenderUseCase;
 import UseCases.ChatUseCases.ChatRepoUseCase;
-import UseCases.DataRetrieval.SaveChats;
-import UseCases.DataRetrieval.SaveGraph;
 import UseCases.LikeUseCase;
 import UseCases.PracticeGraphCreator;
 
@@ -36,7 +33,6 @@ public class ViewUI {
         ChatView chatView = new ChatView(this.masterPanel, this.layout);
         MainPageView mainPageView = new MainPageView(this.masterPanel, this.layout);
         SignUpView signUpView = new SignUpView(this.masterPanel, this.layout);
-
         currView = chatView;
 
 
@@ -52,7 +48,7 @@ public class ViewUI {
         otherAccount.sendPaths(otherAccountPaths);
         Object[] userEditPaths = {mainPageView};
         userEditView.sendPaths(userEditPaths);
-        Object[] logInPath = {signUpView};
+        Object[] logInPath = {signUpView, mainPageView};
         logInView.sendPaths(logInPath);
         Object[] chatViewPaths = {mainPageView};
         chatView.sendPaths(chatViewPaths);
@@ -87,7 +83,7 @@ public class ViewUI {
         ///////////////////////////////////////////////////////////////////////////////////////////////
 
         JScrollPane scroller = new JScrollPane( this.masterPanel);
-        this.layout.show(this.masterPanel, "signupView");
+        this.layout.show(this.masterPanel, "loginView");
         this.frame.add(scroller);
         this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
         this.frame.setTitle("MainPage");
@@ -99,5 +95,6 @@ public class ViewUI {
 
     public static void main(String[] args) {
         ViewUI UI = new ViewUI();
+        new GetChats();
     }
 }

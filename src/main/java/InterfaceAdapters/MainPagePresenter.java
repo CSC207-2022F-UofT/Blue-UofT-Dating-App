@@ -6,6 +6,7 @@ import FrameworksDrivers.UserEditView;
 import UseCases.ChatUseCases.ChatRenderUseCase;
 import UseCases.ChatUseCases.ChatRepoUseCase;
 import UseCases.DataRetrieval.CurrentUserGateway;
+import UseCases.DisplayUserModel;
 import UseCases.LikeUseCase;
 import FrameworksDrivers.MainPageView;
 
@@ -37,11 +38,14 @@ public class MainPagePresenter {
                 break;
             case "usereditView":
                 UserEditView userEditView = (UserEditView) pageObject;
-                userEditView.updatePage(null);
+                Object[] info = new Object[1];
+                info[0] = "Old";
+                userEditView.updatePage(info);
                 break;
             case "otherAccount":
                 OtherAccount otherAccount = (OtherAccount) pageObject;
-                otherAccount.updatePage(new String[]{(displayedUser.getDisplayName().data), (displayedUser.getBio().data)});
+                OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(displayedUser.getUsername().getData());
+                otherAccountPresenter.updatePage("loginView", otherAccount);
                 break;
 
         }

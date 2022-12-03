@@ -1,5 +1,8 @@
 package InterfaceAdapters;
+import FrameworksDrivers.MainPageView;
 import FrameworksDrivers.OtherAccount;
+import UseCases.DataRetrieval.CurrentUserGateway;
+import UseCases.DisplayUserModel;
 import UseCases.OtherAccountCases;
 
 /**
@@ -23,12 +26,19 @@ public class OtherAccountPresenter {
      *
      * @parem pageObject reference to page being switched to
      */
-    public void updatePage(Object pageObject) {
+    public void updatePage(String page, Object pageObject) {
+        switch (page){
+            case "mainpageView":
+                MainPageView mainPageView = (MainPageView) pageObject;
+                mainPageView.updatePage(null);
+                break;
+            case "loginView":
+                OtherAccount account = (OtherAccount) pageObject;
+                DisplayUserModel displayUserModel = new DisplayUserModel(this.user);
+                Object[] updateInformation = displayUserModel.getModel();
+                account.updatePage(updateInformation);
+                break;
+        }
 
-        OtherAccount account = (OtherAccount) pageObject;
-        OtherAccountCases updateCase = new OtherAccountCases();
-
-        Object[] updateInformation = updateCase.getUserInfo(this.user);
-        account.updatePage(updateInformation);
     }
 }

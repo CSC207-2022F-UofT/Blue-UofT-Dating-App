@@ -71,7 +71,7 @@ public class SignUpView implements View, ActionListener {
 
 
         newPanel.setBackground(Color.lightGray);
-        this.masterPanel.add(newPanel, "signupView");
+        this.masterPanel.add(newPanel, "signUpView");
     }
 
 
@@ -106,7 +106,9 @@ public class SignUpView implements View, ActionListener {
         if (info[0] instanceof User) {
             // UserEditView userEditPage = new UserEditView(this.masterPanel, this.layout, (User)info[0]);
             UserEditView userEditView = (UserEditView) this.paths[0];
-            userEditView.updatePage(info);
+            String[] newUser = new String[1];
+            newUser[0] = "New";
+            userEditView.updatePage(newUser);
             // change to user edit page
             this.layout.show(this.masterPanel, "userEditView");
         }

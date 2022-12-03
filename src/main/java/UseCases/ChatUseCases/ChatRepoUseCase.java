@@ -17,8 +17,8 @@ import java.util.*;
 public class ChatRepoUseCase implements Serializable {
     //class for checking if a chatroom exists
 
-    private static final Map<Set<User>, Chatroom> currChatrooms = new HashMap<>();
-
+    private static Map<Set<User>, Chatroom> currChatrooms = new HashMap<>();
+    private Map<Set<User>, Chatroom> instanceChatrooms = new HashMap<>();
     //will get called from chat reg, assume that the chatroom is legit
 
     /**
@@ -95,5 +95,10 @@ public class ChatRepoUseCase implements Serializable {
         }
         return userChatrooms;
     }
-
+    public void savingChats(){
+        this.instanceChatrooms = currChatrooms;
+    }
+    public void readingChats(){
+        currChatrooms = this.instanceChatrooms;
+    }
 }
