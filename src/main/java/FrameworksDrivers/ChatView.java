@@ -74,12 +74,10 @@ public class ChatView implements ActionListener, View {
 
         this.masterPanel.add(this.panel, "chatView");
     }
-
     // yo what is object paths used for
     public void sendPaths(Object[] paths) {
         this.paths = paths;
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
@@ -98,7 +96,6 @@ public class ChatView implements ActionListener, View {
             String[] tempUsers = currUsers.clone();
             presenter.render();
 //            currUsers = tempUsers;
-
         }
         else { // one of the chatButtons must've been clicked
             JButton currButton = (JButton) source;
@@ -112,17 +109,13 @@ public class ChatView implements ActionListener, View {
             System.out.println(Arrays.toString(currUsers));
         }
     }
-
     @Override
     public void updatePage(Object[] info) {
-
         //might want to separate
         int index = 0;
         for (Object chatroomObject : info) {
-
             //new chatroom
             ArrayList<ArrayList<String>> chatroomList = (ArrayList<ArrayList<String>>) chatroomObject;
-
             //create corresponding chatroom button and add to chatListPanel on right of screen
             String user1 = chatroomList.get(0).get(0);
             String user2 = chatroomList.get(1).get(0);
@@ -149,7 +142,6 @@ public class ChatView implements ActionListener, View {
                             currChatPanel, textMessage);
                     currChatPanel.revalidate();
                     currChatPanel.repaint();
-
                 }
                 this.panel.remove(this.chatContainer);
                 this.chatContainer = new JPanel();
@@ -163,11 +155,9 @@ public class ChatView implements ActionListener, View {
                 this.chatContainer.revalidate();
                 this.chatContainer.repaint();
             }
-
             //add key value pair mapping index of chat to the users in the chat
             this.chatNumToUsers.put(String.valueOf(index), new String[] {user1, user2});
             String stringBuilder = index + user1 + " " + user2;
-
             JButton currChatButton = new JButton(stringBuilder);
             currChatButton.addActionListener(this);
             if(this.chatButtons.size() > 0){
@@ -195,16 +185,13 @@ public class ChatView implements ActionListener, View {
             }
             index++;
             }
-
         this.textBox.setText("");
         this.panel.add(chatContainer);
         this.panel.revalidate();
         this.panel.repaint();
         this.chatLayout.show(chatContainer, "bob joe");
         selectCurrentUserButton();
-
         System.out.println(Arrays.toString(currUsers));
-
     }
     public void selectCurrentUserButton(){
         for(JButton button: this.chatButtons){
