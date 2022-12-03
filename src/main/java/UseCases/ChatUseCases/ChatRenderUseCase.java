@@ -52,3 +52,4 @@ public class ChatRenderUseCase {
         return new ChatRenderResponseModel(responseModel);
     }
 }
+
