@@ -19,7 +19,7 @@ public class ChatView implements ActionListener, View {
     private textField textBox;
     private JButton sendButton;
     private String[] currUsers;
-    private Map<String, String[]> chatNumToUsers = new HashMap<>();
+    protected Map<String, String[]> chatNumToUsers = new HashMap<>();
     private Object[] paths;
 
     protected ArrayList<JButton> chatButtons = new ArrayList<>();
