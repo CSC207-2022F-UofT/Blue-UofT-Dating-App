@@ -25,9 +25,8 @@ public class UserEdge implements Serializable {
         if(Objects.equals(this.users[0].getUsername().getData(), liked.getUsername().getData())){ this.likeBackwards = true;}
         else{ this.likeForwards = true;}
     }
-    public void setWeight(float newWeight){
-        this.weight = newWeight;
-    }
+    public void setWeight(float newWeight){ this.weight = newWeight;}
+    public float getWeight(){ return this.weight;}
     public void hideInFeed(User hidden){
         //Same logic as likes method, the passed in user is wanting to be hidden by the other user.
         if(Objects.equals(this.users[0].getUsername().getData(), hidden.getUsername().getData())){ this.hiddenBackwards = true;}

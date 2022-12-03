@@ -3,19 +3,19 @@ package InterfaceAdapters;
 import Entities.User;
 import Entities.UserGraph;
 import FrameworksDrivers.MainPageView;
+import UseCases.*;
 import UseCases.DataRetrieval.CurrentGraph;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import UseCases.DataRetrieval.SaveGraph;
-import UseCases.UserEditInteractor;
-import UseCases.UserEditModel;
-import UseCases.UserEditResponseModel;
 
 public class UserEditPresenter {
 
     public void saveUserInfo(UserEditModel data, Object pageObject){
         UserGraph editedGraph = CurrentGraph.getGraph();
         User user = new CurrentUserGateway().getCurrentUser();
-        UserEditInteractor userEditInteractor = new UserEditInteractor(data, editedGraph, user);
+        new UserEditInteractor(data, editedGraph, user);
+        new UpdateCompatabilities(editedGraph);
+        new UpdateGraph(editedGraph);
         new SaveGraph(editedGraph);
         this.updatePage("mainpageView", pageObject);
     }
@@ -26,7 +26,6 @@ public class UserEditPresenter {
                  MainPageView mainPageView = (MainPageView) pageObject;
                 //Would call UseCase and Presenter interface here to get data from entities VVV
                 //send it back up to ui, update the next page to be loaded VVV
-
                 mainPageView.updatePage(null);
                 break;
         }

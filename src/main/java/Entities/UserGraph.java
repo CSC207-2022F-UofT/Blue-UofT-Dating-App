@@ -100,4 +100,5 @@ private ArrayList<UserEdge> userEdges;
         }
         return null;
     }
+    public ArrayList<User> getUsers(){ return this.users;}
 }
