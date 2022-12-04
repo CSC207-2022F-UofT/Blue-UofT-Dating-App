@@ -1,6 +1,5 @@
 package FrameworksDrivers;
 
-import Entities.User;
 import Entities.UserDataClasses.UserDataDictionaries.AttributeValueDict;
 import Entities.UserDataClasses.UserDataDictionaries.AttributesDict;
 import Entities.UserDataClasses.UserDataDictionaries.InterestsDict;

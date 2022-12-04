@@ -10,7 +10,7 @@ import UseCases.OtherAccountCases;
  * and handle use cases, and update OtherAccount with new information.
  */
 public class OtherAccountPresenter {
-    private String user;
+    private final String user;
 
     /**
      * Initializes OtherAccountPresenter

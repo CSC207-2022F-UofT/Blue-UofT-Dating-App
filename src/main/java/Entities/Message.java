@@ -20,10 +20,10 @@ public class Message implements Serializable {
     //need which user sent the message as well as what the message is
 
     //the user who sent the message
-    private User user;
+    private final User user;
 
     //the contents of the message
-    private String message;
+    private final String message;
 
     /**
      * Constructor for Message.

@@ -9,13 +9,11 @@ import java.io.IOException;
 
 public class SaveGraph {
 
-    private UserGraph userGraph;
     UserGraphReadWriter readWriter = new UserGraphReadWriter();
 
     public SaveGraph(UserGraph userGraph) {
-        this.userGraph = userGraph;
         try {
-            readWriter.saveToFile("userGraph.ser", this.userGraph);
+            readWriter.saveToFile("userGraph.ser", userGraph);
         } catch (IOException e) {
             System.out.println("User list did not save.");
         }

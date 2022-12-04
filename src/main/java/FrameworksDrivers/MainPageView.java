@@ -16,7 +16,6 @@ public class MainPageView implements ActionListener, View {
     Button logOut;
     private Label bioTextField;
     private JPanel masterPanel;
-    private JPanel panel;
     private Object[] paths;
     User displayUser;
     private CardLayout layout;
@@ -32,7 +31,7 @@ public class MainPageView implements ActionListener, View {
     public MainPageView(JPanel masterPanel, CardLayout layout){
         this.masterPanel = masterPanel;
         this.layout = layout;
-        this.panel = new JPanel();
+        JPanel panel = new JPanel();
 
         // Create Lower Panel
         JPanel lowerPanel = new JPanel();
@@ -107,11 +106,11 @@ public class MainPageView implements ActionListener, View {
 
 
         // Adding all panels to the masterPanel
-        this.panel.add(lowerPanel);
-        this.panel.add(middlePanel);
-        this.panel.add(topPanel);
-        this.panel.add(namePanel);
-        this.masterPanel.add(this.panel, "mainpageView");
+        panel.add(lowerPanel);
+        panel.add(middlePanel);
+        panel.add(topPanel);
+        panel.add(namePanel);
+        this.masterPanel.add(panel, "mainpageView");
     }
 
     public void sendPaths(Object[] paths) {

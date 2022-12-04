@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class UserEdge implements Serializable {
-    private User[] users;
+    private final User[] users;
     private float weight;
     private boolean hiddenForwards;
     private boolean hiddenBackwards;
