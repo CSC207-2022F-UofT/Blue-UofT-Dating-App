@@ -73,7 +73,7 @@ public class SignUpView implements View, ActionListener {
 
     @Override
     public void updatePage(Object[] info) {
-        ...
+        //...
     }
 
     @Override
@@ -82,9 +82,9 @@ public class SignUpView implements View, ActionListener {
         if (evt.getSource() == regB.getButton()) {
 
             try {
-                ...;
+                //...;
             } catch (Exception e) {
-                ...
+                //...
             }
         }
 

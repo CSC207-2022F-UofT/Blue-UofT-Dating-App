@@ -71,7 +71,7 @@ public class LogInView implements ActionListener, View {
     @Override
     public void updatePage(Object[] info) {
         //LoginPresenter logPresenter = new LoginPresenter();
-        ...
+        //...
     }
 
     @Override
@@ -86,7 +86,7 @@ public class LogInView implements ActionListener, View {
 
             try {
                 //String exist  = new UserRegGateway().... ;
-                ...
+                //...
                 LoginPresenter logPresenter = new LoginPresenter();
                 logPresenter.updatePage("accountView", this.paths[1]);
                 this.layout.show(this.masterPanel, "accountView");
