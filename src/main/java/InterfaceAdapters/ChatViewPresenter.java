@@ -14,15 +14,25 @@ import com.sun.tools.javac.Main;
 
 import java.util.ArrayList;
 
-public class ChatViewPresenter implements ChatViewPresenterInterface {
+/**
+ * Calls use case methods and updates ChatView with new information.
+ */
+public class ChatViewPresenter {
     private final View currView;
 
+    /**
+     * Initializes ChatViewPresenter
+     *
+     * @param currView the reference to the ChatView object
+     */
     public ChatViewPresenter(View currView) {
         this.currView = currView;
     }
 
-    // updates chatView with array of Chatroom objects
-    @Override
+    /**
+     * Updates chatView with array of Chatroom objects
+     * Calls render method of ChatRenderUseCase and updates the Chat page with the response model
+     */
     public void render() {
         CurrentUserGateway currentUserGateway = new CurrentUserGateway();
         User currentUser = currentUserGateway.getCurrentUser();
@@ -30,6 +40,12 @@ public class ChatViewPresenter implements ChatViewPresenterInterface {
         currView.updatePage(responseModel.getChatrooms().toArray());
     }
 
+    /**
+     * Updates chatView with array of Chatroom objects
+     * Calls render method of ChatRenderUseCase and updates the Chat page with the response model
+     * @param users String array with two usernames corresponding to the sender and recipient of the text message
+     * @param message the message that is sent between the users
+     */
     public void sendMessage(String[] users, String message) {
         SendMessageUseCase useCase = new SendMessageUseCase();
         String user1 = users[0];
@@ -37,6 +53,12 @@ public class ChatViewPresenter implements ChatViewPresenterInterface {
         useCase.addMessage(user1, user2, message);
         new SaveChats(new ChatRepoUseCase());
     }
+
+    /**
+     * Updates the page that is specified by the inputs
+     * @param page the string name of the page to be updated
+     * @param pageObject the instance of the page to be updated
+     */
     public void updatePage(String page, Object pageObject) {
         switch (page) {
             case "mainpageView":

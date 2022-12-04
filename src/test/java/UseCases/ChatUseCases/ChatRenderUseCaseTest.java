@@ -3,16 +3,20 @@ package UseCases.ChatUseCases;
 import Entities.Chatroom;
 import Entities.Message;
 import Entities.User;
-import InterfaceAdapters.ChatViewPresenter;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class for ChatRenderUseCase
+ */
 class ChatRenderUseCaseTest {
 
+    /**
+     * Hard codes the repo that stores the raw chatroom data
+     */
     private void createRepo() {
         User u1 = new User("clark", "12345");
         User u2 = new User("kevin", "54321");
@@ -31,6 +35,9 @@ class ChatRenderUseCaseTest {
         repo.addChatroom(test2);
     }
 
+    /**
+     * Checks that the ChatRenderUseCase returns the correct ResponseModel with current user "clark"
+     */
     @Test
     void testChatroom1Render() {
         createRepo();
@@ -69,11 +76,11 @@ class ChatRenderUseCaseTest {
                 actualUsername.equals(expectedUsername2));
     }
 
+    /**
+     * Checks that the ChatRenderUseCase returns the correct ResponseModel with current user "bob"
+     */
     @Test
     void testChatroom2Render() {
-//        createRepo();
-
-        //create expected output array
         ArrayList<ArrayList<ArrayList<String>>> expectedOutput = new ArrayList<>();
         ArrayList<ArrayList<String>> expectedChatrooms = new ArrayList<>();
         ArrayList<String> user1 = new ArrayList<>();
