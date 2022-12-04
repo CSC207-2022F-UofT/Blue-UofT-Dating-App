@@ -136,7 +136,6 @@ public class LogInView implements ActionListener, View {
             UserLogPresenter logPresenter = new UserLogPresenter();
             logPresenter.switchPage(name, pass, "logInView", this);
 
-
             // pop dialog user doesn't exist
         }
         else if (evt.getSource() == this.signUpB.getButton()){
