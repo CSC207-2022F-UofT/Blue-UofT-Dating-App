@@ -26,15 +26,16 @@ public class UserRegInteractor implements UserRegInputBoundary{
         if (!requestModel.getPassword().equals(requestModel.getRepeatPassword())) {
             return "passNoMatch";
         }
-        if (userRegGateway.getUserExists(requestModel.getName())) {
+        else if (userRegGateway.getUserExists(requestModel.getName())) {
             return "userExists";
         }
-
-        User user = new User(requestModel.getName(), requestModel.getPassword());
-        UserGraph graph = CurrentGraph.getGraph();
-        graph.addUser(user);
-        new SaveGraph(graph);
-        UserRegResponseModel responseModel = new UserRegResponseModel(user.getUsername().toString());
-        return responseModel.getLogin();
+        else{
+            User user = new User(requestModel.getName(), requestModel.getPassword());
+            UserGraph graph = CurrentGraph.getGraph();
+            graph.addUser(user);
+            new SaveGraph(graph);
+            UserRegResponseModel responseModel = new UserRegResponseModel(user.getUsername().toString());
+            return responseModel.getLogin();
+        }
     }
 }

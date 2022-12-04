@@ -1,13 +1,12 @@
 package InterfaceAdapters;
 import Entities.User;
-import FrameworksDrivers.ChatView;
-import FrameworksDrivers.OtherAccount;
-import FrameworksDrivers.UserEditView;
+import FrameworksDrivers.*;
 import UseCases.ChatUseCases.ChatRenderUseCase;
 import UseCases.ChatUseCases.ChatRepoUseCase;
 import UseCases.DataRetrieval.CurrentUserGateway;
+import UseCases.DisplayUserModel;
 import UseCases.LikeUseCase;
-import FrameworksDrivers.MainPageView;
+import UseCases.LogOutCurrentUser;
 
 import java.util.ArrayList;
 
@@ -25,25 +24,27 @@ public class MainPagePresenter {
 
         switch (page) {
             case "mainpageView":
-                neighboursIndex += 1;
-                MainPageView mainPage = (MainPageView) pageObject;
+                View mainPage = (View) pageObject;
                 userData[0] = nextUser;
                 mainPage.updatePage(userData);
+                neighboursIndex += 1;
                 break;
             case "chatView":
-                ChatView chatView = (ChatView) pageObject;
+                View chatView = (View) pageObject;
                 ChatRenderUseCase chatRenderUseCase = new ChatRenderUseCase();
                 chatView.updatePage(chatRenderUseCase.render(currentUser).getChatrooms().toArray());
                 break;
             case "usereditView":
-                UserEditView userEditView = (UserEditView) pageObject;
-                userEditView.updatePage(null);
+                View userEditView = (View) pageObject;
+                Object[] info = new Object[1];
+                info[0] = "Old";
+                userEditView.updatePage(info);
                 break;
             case "otherAccount":
-                OtherAccount otherAccount = (OtherAccount) pageObject;
-                otherAccount.updatePage(new String[]{(displayedUser.getDisplayName().data), (displayedUser.getBio().data)});
+                View otherAccount = (View) pageObject;
+                OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(displayedUser.getUsername().getData());
+                otherAccountPresenter.updatePage("loginView", otherAccount);
                 break;
-
         }
     }
     public void Like(User matchedUser){
@@ -52,6 +53,12 @@ public class MainPagePresenter {
         LikeUseCase updateLike = new LikeUseCase();
         updateLike.updateEdge(currentUser, matchedUser);
 
+    }
+
+    public void logOut(Object pageObject) {
+        new LogOutCurrentUser();
+        ChatViewPresenter chatViewPresenter = new ChatViewPresenter((View) pageObject);
+        chatViewPresenter.updatePage("logOut", pageObject);
     }
 }
 

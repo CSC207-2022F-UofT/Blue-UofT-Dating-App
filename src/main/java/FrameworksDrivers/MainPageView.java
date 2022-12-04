@@ -6,14 +6,17 @@ import java.awt.event.ActionListener;
 
 import Entities.User;
 import FrameworksDrivers.UIElements.Button;
+import FrameworksDrivers.UIElements.Label;
+import FrameworksDrivers.UIElements.textArea;
 import FrameworksDrivers.UIElements.textField;
 import InterfaceAdapters.MainPagePresenter;
 import InterfaceAdapters.OtherAccountPresenter;
 import com.sun.tools.javac.Main;
 
 public class MainPageView implements ActionListener, View {
+    Button logOut;
+    private textArea bioTextField;
     private JPanel masterPanel;
-    private JPanel panel;
     private Object[] paths;
     User displayUser;
     private CardLayout layout;
@@ -29,7 +32,7 @@ public class MainPageView implements ActionListener, View {
     public MainPageView(JPanel masterPanel, CardLayout layout){
         this.masterPanel = masterPanel;
         this.layout = layout;
-        this.panel = new JPanel();
+        JPanel panel = new JPanel();
 
         // Create Lower Panel
         JPanel lowerPanel = new JPanel();
@@ -83,6 +86,9 @@ public class MainPageView implements ActionListener, View {
 
         // Add this button to the top panel
         topPanel.add(viewOtherAccount.getButton());
+        logOut = new Button();
+        logOut.createButton(lowerPanel, "Log Out", 500,0,200,100);
+        logOut.getButton().addActionListener(this);
 
         // Create Name Text Panel
         JPanel namePanel = new JPanel();
@@ -92,16 +98,22 @@ public class MainPageView implements ActionListener, View {
         nameTextField.createTextField(namePanel,150,200,300,200);
         nameTextField.setText(" ");
 
+        bioTextField = new textArea();
+        bioTextField.createTextArea(namePanel, "",150, 200, 400, 500);
+        bioTextField.getTextArea().setEnabled(false);
+        bioTextField.getTextArea().setWrapStyleWord(true);
+
         // Add Text Field to the Panel
         namePanel.add(nameTextField.getTextField());
+        namePanel.add(bioTextField.getTextArea());
 
 
         // Adding all panels to the masterPanel
-        this.panel.add(lowerPanel);
-        this.panel.add(middlePanel);
-        this.panel.add(topPanel);
-        this.panel.add(namePanel);
-        this.masterPanel.add(this.panel, "mainpageView");
+        panel.add(lowerPanel);
+        panel.add(middlePanel);
+        panel.add(topPanel);
+        panel.add(namePanel);
+        this.masterPanel.add(panel, "mainpageView");
     }
 
     public void sendPaths(Object[] paths) {
@@ -139,13 +151,24 @@ public class MainPageView implements ActionListener, View {
             mainPagePreseter.updatePage(this.displayUser, "otherAccount", this.paths[0]);
             this.layout.show(this.masterPanel, "otherAccount");
         }
+        if(e.getSource() == logOut.getButton()){
+            mainPagePreseter.logOut(this.paths[1]);
+            this.layout.show(this.masterPanel, "loginView");
+
+        }
     }
     public void updatePage(Object[] info) {
         //Just switch the user
-        if(info != null){
-            this.displayUser = (User) info[0];
+        if(info == null){
+            MainPagePresenter mainPagePresenter = new MainPagePresenter();
+            mainPagePresenter.updatePage(null, "mainpageView", this);
         }
-        this.nameTextField.setText(displayUser.getDisplayName().getData().toString());
+        else {
+            this.displayUser = (User) info[0];
+            this.nameTextField.setText(displayUser.getDisplayName().getData());
+            this.bioTextField.setText(displayUser.getBio().getData());
+            this.bioTextField.getTextArea().setForeground(Color.BLACK);
+        }
     }
 
 }

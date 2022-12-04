@@ -51,14 +51,4 @@ public class ChatRenderUseCase {
 
         return new ChatRenderResponseModel(responseModel);
     }
-
-    //        ArrayList<Chatroom> chatrooms = new ArrayList<>();
-//
-//        // dumb examples
-//        User u1 = new User("clark", "12345");
-//        User u2 = new User("kevin", "54321");
-//        Chatroom test = new Chatroom(u1, u2);
-//        test.addMessage(new Message(u1, "hello kevin"));
-//        test.addMessage(new Message(u2, "hello clark"));
-//        chatrooms.add(new Chatroom(u1, u2));
 }

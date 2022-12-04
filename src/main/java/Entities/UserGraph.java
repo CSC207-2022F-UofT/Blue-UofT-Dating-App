@@ -5,6 +5,7 @@ import Entities.UserDataClasses.UserData;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class UserGraph implements Serializable {
@@ -45,21 +46,6 @@ private ArrayList<UserEdge> userEdges;
 
     }
     }
-    public void deleteUser(User user){
-        //This method likely won't be used that much, likely more common to just use the hidden method.
-        for(UserEdge edge: this.userEdges){
-            if(Objects.equals(edge.getUsers()[0].getUsername().getData(), user.getUsername().getData())){
-                edge.getUsers()[1].removeNeighbor(user);
-                this.userEdges.remove(edge);
-            }
-            else if(Objects.equals(edge.getUsers()[1].getUsername().getData(), user.getUsername().getData())){
-                edge.getUsers()[0].removeNeighbor(user);
-                this.userEdges.remove(edge);
-            }
-        }
-        this.users.remove(user);
-    }
-
     private UserEdge createEdge(User user1, User user2){
         //Precondition: No edge exists between user1 and user2
         //              user1 in users, user2 in users
@@ -99,5 +85,25 @@ private ArrayList<UserEdge> userEdges;
             }
         }
         return null;
+    }
+    public ArrayList<User> getUsers(){ return this.users;}
+    public boolean deleteEdge(UserEdge userEdge){
+        for(int i = 0; i < this.userEdges.size(); i++){
+            UserEdge userEdge1 = this.userEdges.get(i);
+            if(Arrays.equals(userEdge.getUsers(), userEdge1.getUsers())){
+                this.userEdges.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean deleteUser(User user){
+        for(int i = 0; i < this.users.size(); i++){
+            if(this.users.get(i).getUsername().getData().equals(user.getUsername().getData())){
+                this.users.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 }
