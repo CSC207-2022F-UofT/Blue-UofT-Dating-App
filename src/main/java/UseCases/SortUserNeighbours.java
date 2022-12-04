@@ -24,7 +24,7 @@ public class SortUserNeighbours{
     private ArrayList<User> sortedNeighbours(){
         ArrayList<User> sortedList = new ArrayList<>();
 
-        for(int i = 0; i <= this.currentUser.getNeighbors().size(); i++){
+        for(int i = 0; i < this.currentUser.getNeighbors().size(); i++){
             sortedList.add(this.getMaxUser(i, this.currentUser.getNeighbors().size()));
         }
         return sortedList;
