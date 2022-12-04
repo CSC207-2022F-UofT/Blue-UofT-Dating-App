@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import Entities.User;
 import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.Label;
+import FrameworksDrivers.UIElements.textArea;
 import FrameworksDrivers.UIElements.textField;
 import InterfaceAdapters.MainPagePresenter;
 import InterfaceAdapters.OtherAccountPresenter;
@@ -14,7 +15,7 @@ import com.sun.tools.javac.Main;
 
 public class MainPageView implements ActionListener, View {
     Button logOut;
-    private Label bioTextField;
+    private textArea bioTextField;
     private JPanel masterPanel;
     private Object[] paths;
     User displayUser;
@@ -97,12 +98,14 @@ public class MainPageView implements ActionListener, View {
         nameTextField.createTextField(namePanel,150,200,300,200);
         nameTextField.setText(" ");
 
-        bioTextField = new Label();
-        bioTextField.createLabel(150, 200, 300, 300, namePanel, "");
+        bioTextField = new textArea();
+        bioTextField.createTextArea(namePanel, "",150, 200, 400, 500);
+        bioTextField.getTextArea().setEnabled(false);
+        bioTextField.getTextArea().setWrapStyleWord(true);
 
         // Add Text Field to the Panel
         namePanel.add(nameTextField.getTextField());
-        namePanel.add(bioTextField.getLabel());
+        namePanel.add(bioTextField.getTextArea());
 
 
         // Adding all panels to the masterPanel
@@ -164,6 +167,7 @@ public class MainPageView implements ActionListener, View {
             this.displayUser = (User) info[0];
             this.nameTextField.setText(displayUser.getDisplayName().getData());
             this.bioTextField.setText(displayUser.getBio().getData());
+            this.bioTextField.getTextArea().setForeground(Color.BLACK);
         }
     }
 
