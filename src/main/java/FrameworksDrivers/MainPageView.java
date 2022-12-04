@@ -6,12 +6,15 @@ import java.awt.event.ActionListener;
 
 import Entities.User;
 import FrameworksDrivers.UIElements.Button;
+import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.textField;
 import InterfaceAdapters.MainPagePresenter;
 import InterfaceAdapters.OtherAccountPresenter;
 import com.sun.tools.javac.Main;
 
 public class MainPageView implements ActionListener, View {
+    Button logOut;
+    private Label bioTextField;
     private JPanel masterPanel;
     private JPanel panel;
     private Object[] paths;
@@ -83,6 +86,9 @@ public class MainPageView implements ActionListener, View {
 
         // Add this button to the top panel
         topPanel.add(viewOtherAccount.getButton());
+        logOut = new Button();
+        logOut.createButton(lowerPanel, "Log Out", 500,0,200,100);
+        logOut.getButton().addActionListener(this);
 
         // Create Name Text Panel
         JPanel namePanel = new JPanel();
@@ -92,8 +98,12 @@ public class MainPageView implements ActionListener, View {
         nameTextField.createTextField(namePanel,150,200,300,200);
         nameTextField.setText(" ");
 
+        bioTextField = new Label();
+        bioTextField.createLabel(150, 200, 300, 300, namePanel, "");
+
         // Add Text Field to the Panel
         namePanel.add(nameTextField.getTextField());
+        namePanel.add(bioTextField.getLabel());
 
 
         // Adding all panels to the masterPanel
@@ -139,6 +149,11 @@ public class MainPageView implements ActionListener, View {
             mainPagePreseter.updatePage(this.displayUser, "otherAccount", this.paths[0]);
             this.layout.show(this.masterPanel, "otherAccount");
         }
+        if(e.getSource() == logOut.getButton()){
+            mainPagePreseter.logOut(this.paths[1]);
+            this.layout.show(this.masterPanel, "loginView");
+
+        }
     }
     public void updatePage(Object[] info) {
         //Just switch the user
@@ -148,7 +163,8 @@ public class MainPageView implements ActionListener, View {
         }
         else {
             this.displayUser = (User) info[0];
-            this.nameTextField.setText(displayUser.getDisplayName().getData().toString());
+            this.nameTextField.setText(displayUser.getDisplayName().getData());
+            this.bioTextField.setText(displayUser.getBio().getData());
         }
     }
 

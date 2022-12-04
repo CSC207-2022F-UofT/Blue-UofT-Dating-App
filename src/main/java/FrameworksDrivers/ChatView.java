@@ -124,7 +124,7 @@ public class ChatView implements ActionListener, View {
                 this.currUsers = new String[] {user1, user2};
                 this.hasCurrentUsers = true;
             }
-            if(Arrays.equals(currUsers, new String[] {user1, user2})){
+            if(Arrays.asList(currUsers).equals(Arrays.asList(user1, user2))){
                 //create corresponding chat panel that will appear on the left-hand side when corresponding
                 //chat button is pressed.
                 JPanel currChatPanel = new JPanel();
@@ -149,7 +149,7 @@ public class ChatView implements ActionListener, View {
                 this.chatContainer.setBackground(Color.YELLOW);
                 this.chatContainer.setBounds(0, 0, 400, 600);
 
-                this.panel.add(chatContainer, "bob joe");
+                this.panel.add(chatContainer, String.valueOf(index));
                 this.chatContainer.add(currChatPanel, String.valueOf(index));
                 this.map.put(currChatPanel, String.valueOf(index));
                 this.chatContainer.revalidate();
@@ -189,7 +189,7 @@ public class ChatView implements ActionListener, View {
         this.panel.add(chatContainer);
         this.panel.revalidate();
         this.panel.repaint();
-        this.chatLayout.show(chatContainer, "bob joe");
+        this.chatLayout.show(chatContainer, String.valueOf(index));
         selectCurrentUserButton();
         System.out.println(Arrays.toString(currUsers));
     }
@@ -197,8 +197,23 @@ public class ChatView implements ActionListener, View {
         for(JButton button: this.chatButtons){
             String[] users = this.chatNumToUsers.get(Character.toString(button.getText().charAt(0)));
             if(Arrays.equals(this.currUsers, users)){
-                button.setSelected(true);
+                button.setBackground(Color.lightGray);
+            }
+            else{
+                button.setBackground(Color.white);
             }
         }
+    }
+    public void logOut(){
+        this.currUsers = null;
+        this.hasCurrentUsers = false;
+        this.panel.remove(this.chatListPanel);
+        this.chatListPanel = new JPanel();
+        this.chatListPanel.setBackground(Color.RED);
+        this.chatListPanel.setBounds(400, 0, 200, 800);
+        this.chatListPanel.setLayout(new GridLayout(0, 1));
+        this.panel.add(chatListPanel);
+        this.chatNumToUsers.clear();
+        this.chatButtons.clear();
     }
 }

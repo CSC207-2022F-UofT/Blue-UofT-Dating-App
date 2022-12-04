@@ -1,9 +1,12 @@
 package InterfaceAdapters;
 
+import Entities.CurrentUser;
 import Entities.User;
 import Entities.UserGraph;
 import FrameworksDrivers.MainPageView;
+import FrameworksDrivers.View;
 import UseCases.*;
+import UseCases.ChatUseCases.ChatRepoUseCase;
 import UseCases.DataRetrieval.CurrentGraph;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import UseCases.DataRetrieval.SaveGraph;
@@ -33,8 +36,15 @@ public class UserEditPresenter {
 
     public UserEditResponseModel getCurrentUser(){
         CurrentUserGateway currentUserGateway = new CurrentUserGateway();
-        UserEditResponseModel userEditResponseModel = new UserEditResponseModel(currentUserGateway.getCurrentUser());
-        return userEditResponseModel;
+        return new UserEditResponseModel(currentUserGateway.getCurrentUser());
+    }
+    public void deleteAccount(Object pageObject){
+        new DeleteCurrentAccount();
+        ChatRepoUseCase chatRepoUseCase = new ChatRepoUseCase();
+        CurrentUser currentUser = new CurrentUser();
+        chatRepoUseCase.deleteUserChats(currentUser.getUser().getData());
+        ChatViewPresenter chatViewPresenter = new ChatViewPresenter((View) pageObject);
+        chatViewPresenter.updatePage("logOut", pageObject);
     }
 
 }

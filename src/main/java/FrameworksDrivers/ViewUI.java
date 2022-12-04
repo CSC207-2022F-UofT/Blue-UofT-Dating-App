@@ -42,11 +42,11 @@ public class ViewUI {
 
 //        Send the paths to other pages that your page will have
 //        I.E login -> main
-        Object[] mainPagePaths = {otherAccount, chatView, userEditView, mainPageView};
+        Object[] mainPagePaths = {otherAccount, chatView, userEditView, mainPageView, logInView};
         mainPageView.sendPaths(mainPagePaths);
         Object[] otherAccountPaths = {mainPageView};
         otherAccount.sendPaths(otherAccountPaths);
-        Object[] userEditPaths = {mainPageView};
+        Object[] userEditPaths = {mainPageView, logInView};
         userEditView.sendPaths(userEditPaths);
         Object[] logInPath = {signUpView, mainPageView};
         logInView.sendPaths(logInPath);

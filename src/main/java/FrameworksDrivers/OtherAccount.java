@@ -108,7 +108,7 @@ public class OtherAccount implements ActionListener, View {
         attributesTitle.createLabelCentered(5, 5, 5, 5, null, "Attributes", Color.white);
 
         this.attributesPanel = new JPanel();
-        this.attributesPanel.setLayout(new GridLayout(0, 3));
+        this.attributesPanel.setLayout(new GridLayout(0, 1));
 
         for (int i = 0; i <= 17; i++) {
             Label label = new Label();
@@ -217,7 +217,7 @@ public class OtherAccount implements ActionListener, View {
         for (String attribute : attributes) {
             Label label = new Label();
             label.createLabelCentered(40, 40, 40, 40, null, "atr", Color.blue);
-            label.setSize(100, 50);
+            label.setSize(300, 50);
             label.setText(attribute);
             attributesLabels.add(label);
             this.attributesPanel.add(label.getLabel());

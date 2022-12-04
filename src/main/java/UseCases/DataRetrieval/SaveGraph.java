@@ -2,6 +2,7 @@ package UseCases.DataRetrieval;
 
 import Entities.User;
 import Entities.UserGraph;
+import UseCases.ChatUseCases.ChatRepoUseCase;
 import UseCases.UserGraphReadWriter;
 
 import java.io.IOException;
@@ -31,6 +32,9 @@ public class SaveGraph {
      */
     public static void main(String[] args) {
         UserGraph userGraph1 = new UserGraph();
+        ChatRepoUseCase.resetChats();
+        ChatRepoUseCase chatRepoUseCase = new ChatRepoUseCase();
+        new SaveChats(chatRepoUseCase);
         new SaveGraph(userGraph1);
     }
 }

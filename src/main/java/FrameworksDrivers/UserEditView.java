@@ -21,6 +21,7 @@ import java.util.HashMap;
 
 public class UserEditView implements ActionListener, View {
     private JPanel masterPanel;
+
     private boolean newUser = true;
     private CardLayout layout;
     private JPanel panel;
@@ -45,6 +46,7 @@ public class UserEditView implements ActionListener, View {
     CheckBox[] attributesHidden;
     Button buttonSubmit;
     Button buttonBack;
+    Button deleteAccount;
     CheckBox[] interests;
     Label titleLabel;
     ArrayList<Icon> photos;
@@ -147,15 +149,11 @@ public class UserEditView implements ActionListener, View {
                 items+=1;
             }
         }
-
         dealbreakerLabel = new Label();
         dealbreakerLabel.createLabel(100, 560, 500, 30 ,this.panel, "Deal-breakers");
         dealbreakerLabel.setFontSize(20);
-
-
         dealbreakerLabels = new Label[14];
         dealbreakerRadioButtons = new RadioButton[14][];
-
         int itemsd = 0;
         for(int i = 0; i<=5; i++){
             dealbreakerLabels[i] = new Label();
@@ -182,27 +180,22 @@ public class UserEditView implements ActionListener, View {
                 itemsd+=1;
             }
         }
-
-
-
         buttonSubmit = new Button();
         buttonSubmit.createButton(this.panel, "Submit Changes", 550, 1500, 200, 30);
         buttonSubmit.getButton().addActionListener(this);
         buttonSubmit.getButton().setBackground(g);
-
         buttonBack = new Button();
         buttonBack.createButton(this.panel, "Back", 50, 1500, 200, 30);
         buttonBack.getButton().addActionListener(this);
         buttonBack.getButton().setBackground(r);
-
-
-
-
+        deleteAccount = new Button();
+        deleteAccount.createButton(this.panel, "Delete Account", 200, 1500, 200, 30);
+        deleteAccount.getButton().addActionListener(this);
+        deleteAccount.getButton().setBackground(Color.RED);
         JScrollPane scroller = new JScrollPane(this.panel);
         this.panel.setBackground(Color.lightGray);
         this.masterPanel.add(scroller, "userEditView");
     }
-
     public void sendPaths(Object[] paths) {
         this.paths = paths;
     }
@@ -213,7 +206,6 @@ public class UserEditView implements ActionListener, View {
             String bioData = this.bioField.getTextArea().getText();
             String coursesMetaData = this.courseField.getTextArea().getText().replace(" ","");
             String[] coursesData = coursesMetaData.split(",");
-
             HashMap<Integer, Boolean> interestsDictData = new HashMap<Integer, Boolean>();
             for(int i = 0; i <= 49; i++){
                 CheckBox interest = this.interests[i];
@@ -231,7 +223,6 @@ public class UserEditView implements ActionListener, View {
                 hiddenDictData.put(i, this.attributesHidden[i].getCheckBox().isSelected());
                 attributeDictData.put(i, attributeIndex);
             }
-
             ArrayList<ArrayList<Integer>> breakersDictData = new ArrayList<ArrayList<Integer>>();
             for(int i = 0; i <= 13; i++){
                 int breakerIndex = 0;
@@ -240,7 +231,6 @@ public class UserEditView implements ActionListener, View {
                     if(this.dealbreakerRadioButtons[i][j].getRadioButton().isSelected()){ breakersDictData.get(i).add(j);}
                 }
             }
-
             UserEditPresenter userEditPresenter = new UserEditPresenter();
             UserEditModel data = new UserEditModel(nameData, bioData, coursesData, interestsDictData,
                     attributeDictData, breakersDictData, hiddenDictData);
@@ -258,8 +248,12 @@ public class UserEditView implements ActionListener, View {
                 this.layout.show(this.masterPanel, "mainpageView");
             }
         }
+        else if(e.getSource() == deleteAccount.getButton()){
+            UserEditPresenter userEditPresenter = new UserEditPresenter();
+            userEditPresenter.deleteAccount(this.paths[1]);
+            this.layout.show(this.masterPanel, "loginView");
+        }
     }
-
     @Override
     public void updatePage(Object[] info) {
         if(info[0].equals("New")){

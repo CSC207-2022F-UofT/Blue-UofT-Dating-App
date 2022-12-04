@@ -2,6 +2,7 @@ package UseCases.ChatUseCases;
 
 import Entities.Chatroom;
 import Entities.User;
+import UseCases.DataRetrieval.SaveChats;
 
 import java.io.Serializable;
 import java.util.*;
@@ -100,5 +101,15 @@ public class ChatRepoUseCase implements Serializable {
     }
     public void readingChats(){
         currChatrooms = this.instanceChatrooms;
+    }
+    public static void resetChats(){ currChatrooms = new HashMap<>();}
+    public void deleteUserChats(String user){
+        Set<Set<User>> cloneKeys = new HashSet<>(currChatrooms.keySet());
+        for(Set<User> set: cloneKeys){
+            HashSet<String> usernames = new HashSet<>();
+            for(User chatUser: set){ usernames.add(chatUser.getUsername().getData());}
+            if(usernames.contains(user)){ currChatrooms.remove(set);}
+        }
+        new SaveChats(this);
     }
 }

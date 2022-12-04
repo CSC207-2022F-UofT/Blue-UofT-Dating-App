@@ -1,14 +1,12 @@
 package InterfaceAdapters;
 import Entities.User;
-import FrameworksDrivers.ChatView;
-import FrameworksDrivers.OtherAccount;
-import FrameworksDrivers.UserEditView;
+import FrameworksDrivers.*;
 import UseCases.ChatUseCases.ChatRenderUseCase;
 import UseCases.ChatUseCases.ChatRepoUseCase;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import UseCases.DisplayUserModel;
 import UseCases.LikeUseCase;
-import FrameworksDrivers.MainPageView;
+import UseCases.LogOutCurrentUser;
 
 import java.util.ArrayList;
 
@@ -47,7 +45,6 @@ public class MainPagePresenter {
                 OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(displayedUser.getUsername().getData());
                 otherAccountPresenter.updatePage("loginView", otherAccount);
                 break;
-
         }
     }
     public void Like(User matchedUser){
@@ -56,6 +53,12 @@ public class MainPagePresenter {
         LikeUseCase updateLike = new LikeUseCase();
         updateLike.updateEdge(currentUser, matchedUser);
 
+    }
+
+    public void logOut(Object pageObject) {
+        new LogOutCurrentUser();
+        ChatViewPresenter chatViewPresenter = new ChatViewPresenter((View) pageObject);
+        chatViewPresenter.updatePage("logOut", pageObject);
     }
 }
 

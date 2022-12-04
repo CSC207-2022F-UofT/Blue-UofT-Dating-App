@@ -2,6 +2,7 @@ package InterfaceAdapters;
 
 
 import Entities.User;
+import FrameworksDrivers.ChatView;
 import FrameworksDrivers.MainPageView;
 import FrameworksDrivers.View;
 import UseCases.ChatUseCases.*;
@@ -43,6 +44,10 @@ public class ChatViewPresenter implements ChatViewPresenterInterface {
                 MainPagePresenter mainPagePresenter = new MainPagePresenter();
                 mainPagePresenter.updatePage(null, "mainpageView", mainPageView);
                 break;
+            case "logOut":
+                ChatView chatView = (ChatView) pageObject;
+                chatView.logOut();
+
         }
     }
 }

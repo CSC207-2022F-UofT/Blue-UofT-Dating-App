@@ -12,6 +12,7 @@ import InterfaceAdapters.UserRegPresenter;
 
 
 public class SignUpView implements View, ActionListener {
+    Button logb;
     Button regB;
 
     JPanel masterPanel, newPanel;
@@ -69,7 +70,9 @@ public class SignUpView implements View, ActionListener {
         regB.createButton(newPanel, "Register", 40, 40, 40, 40);
         regB.getButton().addActionListener(this);
 
-
+        logb = new Button();
+        logb.createButton(newPanel, "Already have an account?", 40, 40,40,40);
+        logb.getButton().addActionListener(this);
         newPanel.setBackground(Color.lightGray);
         this.masterPanel.add(newPanel, "signUpView");
     }
@@ -131,6 +134,11 @@ public class SignUpView implements View, ActionListener {
 
             UserRegPresenter regPresenter = new UserRegPresenter();
             regPresenter.switchPage(nameEntered, pass1, pass2, this);
+        }
+        else if(evt.getSource() == logb.getButton()){
+            UserRegPresenter regPresenter = new UserRegPresenter();
+            regPresenter.updatePage("loginView" ,this.paths[1]);
+            this.layout.show(this.masterPanel, "loginView");
         }
 
     }

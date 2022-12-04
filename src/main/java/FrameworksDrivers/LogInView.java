@@ -95,7 +95,7 @@ public class LogInView implements ActionListener, View {
 
         if (info[0].equals("userDoesNotExist") || info[0].equals("passwordIncorrect")) {
             JOptionPane.showMessageDialog(null, info[0]);
-
+            this.textFieldPass.setText("");
             this.newPanel.revalidate();
             this.newPanel.repaint();
         }
@@ -107,6 +107,11 @@ public class LogInView implements ActionListener, View {
             mainPagePresenter.updatePage((User)info[0], "mainpageView", this.paths[1]);
             this.layout.show(this.masterPanel, "mainpageView");
 
+        }
+        else if(info[0].equals("Reload")){
+            this.textFieldPass.setText("");
+            this.newPanel.revalidate();
+            this.newPanel.repaint();
         }
     }
 

@@ -4,6 +4,7 @@ import Entities.CurrentUser;
 import Entities.User;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
 import Entities.UserGraph;
+import FrameworksDrivers.LogInView;
 import FrameworksDrivers.SignUpView;
 import FrameworksDrivers.View;
 import UseCases.DataRetrieval.CurrentGraph;
@@ -39,5 +40,16 @@ public class UserRegPresenter {
 
         }
 
+    }
+
+
+    public void updatePage(String page, Object pageObject){
+        switch (page) {
+            case "loginView":
+                LogInView logInView = (LogInView) pageObject;
+                Object[] info = new Object[1];
+                info[0] = "Reload";
+                logInView.updatePage(info);
+        }
     }
 }
