@@ -53,7 +53,7 @@ public class UserRegRequestModel {
      */
     public String getPassword() {
 
-        return password;
+        return this.password;
     }
 
     /**

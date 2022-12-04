@@ -18,7 +18,6 @@ public class Label {
      * Creates a label and (optionally) adds it to an existing Dialog Box.
      * @param jpanel
      * @param labelText
-     * @param foregroundColor
      */
     public void createLabel(int boundX, int boundY, int boundWidth, int boundHeight, JPanel jpanel, String labelText) {
         label = new JLabel(labelText);
@@ -57,6 +56,14 @@ public class Label {
         else {
             this.label.setVerticalAlignment(SwingConstants.BOTTOM);
         }
+    }
+
+    public void setText(String text) {
+        this.label.setText(text);
+    }
+
+    public void setSize(int width, int height) {
+        this.label.setPreferredSize(new Dimension(width, height));
     }
 
     public void setFontSize(int size) {

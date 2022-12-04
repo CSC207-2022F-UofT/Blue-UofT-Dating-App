@@ -33,6 +33,7 @@ public class ChatGateway implements ReadWriter {
         //read from file
 
         ChatRepoUseCase chatRepoUseCase = (ChatRepoUseCase) input.readObject();
+        chatRepoUseCase.readingChats();
         input.close();
         return chatRepoUseCase;
     }
@@ -50,6 +51,8 @@ public class ChatGateway implements ReadWriter {
         OutputStream file = new FileOutputStream(filepath);
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);
+        ChatRepoUseCase chatRepoUseCase1 = (ChatRepoUseCase) chatRepoUseCase;
+        chatRepoUseCase1.savingChats();
 
         // serialize the Graph
         output.writeObject(chatRepoUseCase);

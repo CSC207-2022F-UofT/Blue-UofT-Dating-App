@@ -367,12 +367,13 @@ public class User implements Serializable {
 
     // // UserGraph Methods
     public void addNeighbor(User otherUser){
-        neighbors.add(otherUser);
+        this.neighbors.add(otherUser);
     }
     public void removeNeighbor(User otherUser){
-        neighbors.remove(otherUser);
+        this.neighbors.remove(otherUser);
     }
     public void removeAllNeighbors(){
-        neighbors.clear();
+        this.neighbors.clear();
     }
+    public void setNeighbors(ArrayList<User> newNeighbours){ this.neighbors = newNeighbours;}
 }

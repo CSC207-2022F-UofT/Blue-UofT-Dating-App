@@ -25,10 +25,10 @@ public class Chatroom implements Serializable {
     //object representing chat between two users
 
     //most important attribute
-    private List<Message> conversation;
+    private final List<Message> conversation;
 
     //users in the chatroom
-    private Set<User> users;
+    private final Set<User> users;
 
     //precondition: user1 and user2 have matched / like each other
 
@@ -84,8 +84,5 @@ public class Chatroom implements Serializable {
 
     //could be used to get the most recent text to update view instead of re-rendering entire conversation with
     //every new text
-//    public Message getMostRecentText() {
-//        return this.conversation.get(this.conversation.size() - 1);
-//    }
 }
 
