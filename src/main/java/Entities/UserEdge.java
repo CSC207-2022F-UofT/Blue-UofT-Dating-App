@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class UserEdge implements Serializable {
-    private User[] users;
+    private final User[] users;
     private float weight;
     private boolean hiddenForwards;
     private boolean hiddenBackwards;
@@ -19,15 +19,14 @@ public class UserEdge implements Serializable {
         this.hiddenForwards = false;
         this.hiddenBackwards = false;
     }
-    public boolean hasMatch(){
-        // Returns whether a match exists between two users
-        return this.likeForwards || this.likeBackwards;
-    }
+
     public void likes(User liked){
         //In this case 'likes' is like a verb, the passed in user is 'liked' by the other user.
         if(Objects.equals(this.users[0].getUsername().getData(), liked.getUsername().getData())){ this.likeBackwards = true;}
         else{ this.likeForwards = true;}
     }
+    public void setWeight(float newWeight){ this.weight = newWeight;}
+    public float getWeight(){ return this.weight;}
     public void hideInFeed(User hidden){
         //Same logic as likes method, the passed in user is wanting to be hidden by the other user.
         if(Objects.equals(this.users[0].getUsername().getData(), hidden.getUsername().getData())){ this.hiddenBackwards = true;}
@@ -48,4 +47,12 @@ public class UserEdge implements Serializable {
                 (Objects.equals(this.users[0].getUsername().getData(), user2.getUsername().getData()) &&
                         Objects.equals(this.users[1].getUsername().getData(), user1.getUsername().getData()));
     }
+    public boolean getLikesForward(){
+        return this.likeForwards;
+    }
+
+    public boolean getLikeBackwards() {
+        return likeBackwards;
+    }
+
 }

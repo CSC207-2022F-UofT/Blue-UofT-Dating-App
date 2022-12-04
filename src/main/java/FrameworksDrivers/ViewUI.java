@@ -1,56 +1,71 @@
 package FrameworksDrivers;
 
-import Entities.User;
+import Entities.*;
+import Entities.UserDataClasses.PrivateUserDataClasses.Username;
+import InterfaceAdapters.ChatGateway;
+import InterfaceAdapters.MainPagePresenter;
+import UseCases.DataRetrieval.*;
+import InterfaceAdapters.ChatViewPresenter;
+import UseCases.ChatUseCases.ChatRenderUseCase;
+import UseCases.ChatUseCases.ChatRepoUseCase;
+import UseCases.LikeUseCase;
+import UseCases.PracticeGraphCreator;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ViewUI {
 
-    //creates initial frame
-    private JFrame frame = new JFrame();
-    //master panel
-    private JPanel masterPanel = new JPanel();
-    private CardLayout layout = new CardLayout();
     public ViewUI() {
         //master panel
-        this.masterPanel.setLayout(layout);
-        this.masterPanel.setPreferredSize(new Dimension(600, 800));;
-
+        CardLayout layout = new CardLayout();//master panel
+        JPanel masterPanel = new JPanel();
+        masterPanel.setLayout(layout);
+        masterPanel.setPreferredSize(new Dimension(600, 800));;
         //initial panel
-        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
-        AccountView accountView = new AccountView(this.masterPanel, this.layout);
-        OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
-        LogInView logInView = new LogInView(this.masterPanel);
-        ChatView chatView = new ChatView(this.masterPanel, this.layout);
-        SignUpView signUpView = new SignUpView(this.masterPanel);
-
+        UserEditView userEditView = new UserEditView(masterPanel, layout);
+        OtherAccount otherAccount =  new OtherAccount(masterPanel, layout);
+        LogInView logInView = new LogInView(masterPanel, layout);
+        ChatView chatView = new ChatView(masterPanel, layout);
+        MainPageView mainPageView = new MainPageView(masterPanel, layout);
+        SignUpView signUpView = new SignUpView(masterPanel, layout);
 
 
         // Main Page
-        Object[] mainPagePaths = {};
-        //Send the paths to other pages that your page will have
-        //I.E login -> main
-        Object[] otherAccountPaths = {};
+
+
+
+//        Send the paths to other pages that your page will have
+//        I.E login -> main
+        Object[] mainPagePaths = {otherAccount, chatView, userEditView, mainPageView, logInView};
+        mainPageView.sendPaths(mainPagePaths);
+        Object[] otherAccountPaths = {mainPageView};
         otherAccount.sendPaths(otherAccountPaths);
-        Object[] userEditPaths = {accountView};
+        Object[] userEditPaths = {mainPageView, chatView};
         userEditView.sendPaths(userEditPaths);
-        Object[] LogInPath = {accountView,signUpView};
-        logInView.sendPaths(LogInPath);
-        JScrollPane scroller = new JScrollPane( this.masterPanel );
-        this.frame.add(scroller);
-        this.frame.setDefaultCloseOperation(this.frame.EXIT_ON_CLOSE);
-        this.frame.setTitle("MainPage");
-        this.frame.pack();
-        this.frame.setVisible(true);
-        this.frame.setResizable(true);
+        Object[] logInPath = {signUpView, mainPageView};
+        logInView.sendPaths(logInPath);
+        Object[] chatViewPaths = {mainPageView};
+        chatView.sendPaths(chatViewPaths);
+        Object[] signUpPaths = {userEditView, logInView};
+        signUpView.sendPaths(signUpPaths);
 
 
+        JScrollPane scroller = new JScrollPane(masterPanel);
+        layout.show(masterPanel, "loginView");
+        //creates initial frame
+        JFrame frame = new JFrame();
+        frame.add(scroller);
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        frame.setTitle("MainPage");
+        frame.pack();
+        frame.setVisible(true);
+        frame.setResizable(true);
     }
+
 
     public static void main(String[] args) {
         ViewUI UI = new ViewUI();
+        new GetChats();
     }
-
-
 }

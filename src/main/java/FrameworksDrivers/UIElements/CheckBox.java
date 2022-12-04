@@ -12,4 +12,7 @@ public class CheckBox {
         checkBox.setBounds(boundX,boundY,boundWidth,boundHeight);
         jpanel.add(checkBox);
     }
+    public void setChecked(Boolean checked){
+        checkBox.setSelected(checked);
+    }
 }

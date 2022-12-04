@@ -1,6 +1,5 @@
 package FrameworksDrivers;
 
-import Entities.User;
 import Entities.UserDataClasses.UserDataDictionaries.AttributeValueDict;
 import Entities.UserDataClasses.UserDataDictionaries.AttributesDict;
 import Entities.UserDataClasses.UserDataDictionaries.InterestsDict;
@@ -9,6 +8,8 @@ import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.Icon;
 import FrameworksDrivers.UIElements.Label;
 import InterfaceAdapters.UserEditPresenter;
+import UseCases.UserEditModel;
+import UseCases.UserEditResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,10 +20,11 @@ import java.util.HashMap;
 
 public class UserEditView implements ActionListener, View {
     private JPanel masterPanel;
+
+    private boolean newUser = true;
     private CardLayout layout;
     private JPanel panel;
     private Object[] paths;
-    private User user;
     textField nameField;
     textArea bioField;
     textArea courseField;
@@ -43,12 +45,12 @@ public class UserEditView implements ActionListener, View {
     CheckBox[] attributesHidden;
     Button buttonSubmit;
     Button buttonBack;
+    Button deleteAccount;
     CheckBox[] interests;
     Label titleLabel;
     ArrayList<Icon> photos;
 
-    public UserEditView(JPanel masterPanel, CardLayout layout, User user){
-        this.user = user;
+    public UserEditView(JPanel masterPanel, CardLayout layout){
         this.masterPanel = masterPanel;
         this.layout = layout;
         this.panel = new JPanel();
@@ -70,15 +72,13 @@ public class UserEditView implements ActionListener, View {
 
         nameField = new textField();
         nameField.createTextField(this.panel, 20, 90, 300, 30);
-        nameField.setText(this.user.getDisplayName().getData());
 
         bioLabel = new Label();
         bioLabel.createLabel(600, 50, 300, 30 ,this.panel, "Bio");
         bioLabel.setFontSize(20);
 
         bioField = new textArea();
-        bioField.createTextArea(this.panel, this.user.getBio().getData(), 480, 90, 300, 100);
-        bioField.setText(this.user.getUsername().getData());
+        bioField.createTextArea(this.panel, "", 480, 90, 300, 100);
 
         interestsLabel = new Label();
         interestsLabel.createLabel(20, 120, 300, 30, this.panel, "Interests");
@@ -87,14 +87,15 @@ public class UserEditView implements ActionListener, View {
         interests = new CheckBox[50];
         for(int i = 0; i <= 25; i++){
               interests[i] = new CheckBox();
+              Boolean checked = false;
                interests[i].createCheckbox(this.panel, InterestsDict.interestMap.get(i), 20, 150 + 15*i,
-                    150, 12, this.user.getInterests().getData().get(i));
+                    150, 12, false);
 
         }
         for(int i = 26; i <= 49; i++){
             interests[i] = new CheckBox();
             interests[i].createCheckbox(this.panel, InterestsDict.interestMap.get(i), 170, 150 + 15*i - 390,
-                    150, 12, this.user.getInterests().getData().get(i));
+                    150, 12, false);
 
         }
         coursesLabel = new Label();
@@ -102,7 +103,7 @@ public class UserEditView implements ActionListener, View {
         coursesLabel.setFontSize(20);
 
         courseField = new textArea();
-        courseField.createTextArea(this.panel, this.user.getCourses().toString(), 480, 230, 300, 70);
+        courseField.createTextArea(this.panel, "", 480, 230, 300, 70);
 
 
         attributeLabel = new Label();
@@ -120,7 +121,8 @@ public class UserEditView implements ActionListener, View {
             attributesLabel[i] = new Label();
             attributesLabel[i].createLabel(400, 350 + 15*items, 300, 30, this.panel, attributesDict.attributeAt(i));
             attributesHidden[i] = new CheckBox();
-            attributesHidden[i].createCheckbox(this.panel, "Hidden", 500,360+15*items,70,20,false);
+            attributesHidden[i].createCheckbox(this.panel, "Hidden", 500,360+15*items,70,20,
+                    false);
             items += 1;
             attributesRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
             for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
@@ -135,7 +137,8 @@ public class UserEditView implements ActionListener, View {
             attributesLabel[i] = new Label();
             attributesLabel[i].createLabel(600, 350 + 15*items, 300, 30, this.panel, attributesDict.attributeAt(i));
             attributesHidden[i] = new CheckBox();
-            attributesHidden[i].createCheckbox(this.panel, "Hidden", 700,360+15*items,70,10,false);
+            attributesHidden[i].createCheckbox(this.panel, "Hidden", 700,360+15*items,70,10,
+                    false);
             items += 1;
             attributesRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
             for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
@@ -145,15 +148,11 @@ public class UserEditView implements ActionListener, View {
                 items+=1;
             }
         }
-
         dealbreakerLabel = new Label();
         dealbreakerLabel.createLabel(100, 560, 500, 30 ,this.panel, "Deal-breakers");
         dealbreakerLabel.setFontSize(20);
-
-
         dealbreakerLabels = new Label[14];
         dealbreakerRadioButtons = new RadioButton[14][];
-
         int itemsd = 0;
         for(int i = 0; i<=5; i++){
             dealbreakerLabels[i] = new Label();
@@ -180,46 +179,102 @@ public class UserEditView implements ActionListener, View {
                 itemsd+=1;
             }
         }
-
-
-
         buttonSubmit = new Button();
         buttonSubmit.createButton(this.panel, "Submit Changes", 550, 1500, 200, 30);
         buttonSubmit.getButton().addActionListener(this);
         buttonSubmit.getButton().setBackground(g);
-
         buttonBack = new Button();
         buttonBack.createButton(this.panel, "Back", 50, 1500, 200, 30);
         buttonBack.getButton().addActionListener(this);
         buttonBack.getButton().setBackground(r);
-
-
-
-
-        JScrollPane scroller = new JScrollPane( this.panel );
+        deleteAccount = new Button();
+        deleteAccount.createButton(this.panel, "Delete Account", 200, 1500, 200, 30);
+        deleteAccount.getButton().addActionListener(this);
+        deleteAccount.getButton().setBackground(Color.RED);
+        JScrollPane scroller = new JScrollPane(this.panel);
         this.panel.setBackground(Color.lightGray);
-        this.masterPanel.add(scroller, "");
+        this.masterPanel.add(scroller, "userEditView");
     }
-
     public void sendPaths(Object[] paths) {
         this.paths = paths;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonSubmit.getButton()) {
-
+            String nameData = this.nameField.getTextField().getText();
+            String bioData = this.bioField.getTextArea().getText();
+            String coursesMetaData = this.courseField.getTextArea().getText().replace(" ","");
+            String[] coursesData = coursesMetaData.split(",");
+            HashMap<Integer, Boolean> interestsDictData = new HashMap<Integer, Boolean>();
+            for(int i = 0; i <= 49; i++){
+                CheckBox interest = this.interests[i];
+                if(interest.getCheckBox().isSelected()){
+                    interestsDictData.put(i, true);
+                }
+            }
+            HashMap<Integer, Integer> attributeDictData = new HashMap<Integer,Integer>();
+            HashMap<Integer, Boolean> hiddenDictData = new HashMap<Integer, Boolean>();
+            for(int i = 0; i <= 13; i++){
+                int attributeIndex = 0;
+                for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
+                    if(this.attributesRadioButtons[i][j].getRadioButton().isSelected()){ attributeIndex = j;}
+                }
+                hiddenDictData.put(i, this.attributesHidden[i].getCheckBox().isSelected());
+                attributeDictData.put(i, attributeIndex);
+            }
+            ArrayList<ArrayList<Integer>> breakersDictData = new ArrayList<ArrayList<Integer>>();
+            for(int i = 0; i <= 13; i++){
+                int breakerIndex = 0;
+                breakersDictData.add(i, new ArrayList<Integer>());
+                for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
+                    if(this.dealbreakerRadioButtons[i][j].getRadioButton().isSelected()){ breakersDictData.get(i).add(j);}
+                }
+            }
+            UserEditPresenter userEditPresenter = new UserEditPresenter();
+            UserEditModel data = new UserEditModel(nameData, bioData, coursesData, interestsDictData,
+                    attributeDictData, breakersDictData, hiddenDictData);
+            userEditPresenter.saveUserInfo(data, this.paths[0]);
+            this.layout.show(this.masterPanel, "mainpageView");
+            this.newUser = false;
         }
         else if(e.getSource() == buttonBack.getButton()){
+            if(newUser){
+                JOptionPane.showMessageDialog(null, "Please create a profile.");
+            }
+            else {
+                UserEditPresenter userEditPresenter = new UserEditPresenter();
+                userEditPresenter.updatePage("mainpageView", this.paths[0]);
+                this.layout.show(this.masterPanel, "mainpageView");
+            }
+        }
+        else if(e.getSource() == deleteAccount.getButton()){
             UserEditPresenter userEditPresenter = new UserEditPresenter();
-            userEditPresenter.updatePage("testAccount", this.paths[1]);
-            this.layout.show(this.masterPanel, "otherAccount");
+            userEditPresenter.deleteAccount(this.paths[1]);
+            this.layout.show(this.masterPanel, "loginView");
         }
     }
-
     @Override
     public void updatePage(Object[] info) {
+        if(info[0].equals("New")){
+            this.newUser = true;
+        }
         UserEditPresenter userEditPresenter = new UserEditPresenter();
-        this.user = userEditPresenter.getCurrentUser();
+        UserEditResponseModel userEditResponseModel = userEditPresenter.getCurrentUser();
+        this.nameField.setText(userEditResponseModel.name);
+        this.bioField.setText(userEditResponseModel.bio);
+        this.courseField.setText(userEditResponseModel.courses);
+        for(int i = 0; i <= 49; i++){
+            this.interests[i].setChecked(userEditResponseModel.interestsDict.containsKey(i));
+        }
+        for(int i = 0; i <= 13; i++){
+            this.attributesHidden[i].setChecked((boolean) userEditResponseModel.attributeDict.get(i).get(1));
+            for(int j: AttributeValueDict.valuesMap.get(i).keySet()){
+                this.attributesRadioButtons[i][j].setChecked((int) userEditResponseModel.attributeDict.get(i).get(0) == j);
+                this.dealbreakerRadioButtons[i][j].setChecked(userEditResponseModel.breakersDict.get(i).contains(j));
+            }
+        }
+        this.panel.revalidate();
+        this.panel.repaint();
     }
 }
 
