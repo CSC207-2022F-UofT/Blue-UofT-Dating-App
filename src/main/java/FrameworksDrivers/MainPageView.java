@@ -6,29 +6,38 @@ import java.awt.event.ActionListener;
 
 import Entities.User;
 import FrameworksDrivers.UIElements.Button;
-import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.textArea;
 import FrameworksDrivers.UIElements.textField;
 import InterfaceAdapters.MainPagePresenter;
-import InterfaceAdapters.OtherAccountPresenter;
-import com.sun.tools.javac.Main;
 
+/**
+ *  MainPageView is a UI class which implements <i>ActionListener</i> and <i>View</i> to create the main page
+ *  for the whole program. This contains the creation of all components such as buttons, textfields etc. that are to be
+ *  displayed on the main page and are responsible for the actions different actions to be performed.
+ *
+ * @author aryaman
+ */
 public class MainPageView implements ActionListener, View {
-    Button logOut;
-    private textArea bioTextField;
     private JPanel masterPanel;
     private Object[] paths;
-    User displayUser;
     private CardLayout layout;
-
+    private textArea bioTextField;
+    User displayUser;
     Button homeButton;
     Button chatButton;
     Button myProfileButton;
     Button likeButton;
     Button dislikeButton;
     Button viewOtherAccount;
+    Button logOut;
     textField nameTextField;
 
+    /**
+     *
+     * Create the main page
+     * @param masterPanel the masterPanel that contains the page
+     * @param layout layout of the masterPanel
+     */
     public MainPageView(JPanel masterPanel, CardLayout layout){
         this.masterPanel = masterPanel;
         this.layout = layout;
@@ -84,7 +93,7 @@ public class MainPageView implements ActionListener, View {
         viewOtherAccount.createButton(lowerPanel, "View Profile", 400,0,200,100);
         viewOtherAccount.getButton().addActionListener(this);
 
-        // Add this button to the top panel
+        // Add viewOtherAccount button to the top panel
         topPanel.add(viewOtherAccount.getButton());
         logOut = new Button();
         logOut.createButton(lowerPanel, "Log Out", 500,0,200,100);
@@ -98,15 +107,15 @@ public class MainPageView implements ActionListener, View {
         nameTextField.createTextField(namePanel,150,200,300,200);
         nameTextField.setText(" ");
 
+        // Create Bio Text Field
         bioTextField = new textArea();
         bioTextField.createTextArea(namePanel, "",150, 200, 400, 500);
         bioTextField.getTextArea().setEnabled(false);
         bioTextField.getTextArea().setWrapStyleWord(true);
 
-        // Add Text Field to the Panel
+        // Add Text Fields to the namePanel
         namePanel.add(nameTextField.getTextField());
         namePanel.add(bioTextField.getTextArea());
-
 
         // Adding all panels to the masterPanel
         panel.add(lowerPanel);
@@ -116,47 +125,65 @@ public class MainPageView implements ActionListener, View {
         this.masterPanel.add(panel, "mainpageView");
     }
 
+
+    /**
+     * sendPaths method is used to establish the connection to other connecting pages
+     * @param paths contains the paths to other pages
+     */
     public void sendPaths(Object[] paths) {
         this.paths = paths;
     }
 
+    /**
+     * actionPerformed handles the action performed by the user on the main page. actionPerformed detects the buttons
+     * being clicked and calls the subsequent relevant presenters to determine how to react and where to send the user
+     * or when to update the page on different times.
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         //create presenter
-        MainPagePresenter mainPagePreseter = new MainPagePresenter();
+        MainPagePresenter mainPagePresenter = new MainPagePresenter();
 
 
         // All button cases
         if (e.getSource() == homeButton.getButton()){
-            mainPagePreseter.updatePage(this.displayUser, "mainpageView",this.paths[3]);
+            mainPagePresenter.updatePage(this.displayUser, "mainpageView",this.paths[3]);
             this.layout.show(this.masterPanel, "mainpageView");
         }
         if (e.getSource() == chatButton.getButton()){
-            mainPagePreseter.updatePage(this.displayUser, "chatView", this.paths[1]);
+            mainPagePresenter.updatePage(this.displayUser, "chatView", this.paths[1]);
             this.layout.show(this.masterPanel, "chatView");
         }
         if (e.getSource() == myProfileButton.getButton()){
-            mainPagePreseter.updatePage(this.displayUser, "usereditView", this.paths[2]);
+            mainPagePresenter.updatePage(this.displayUser, "usereditView", this.paths[2]);
             this.layout.show(this.masterPanel, "userEditView");
         }
 
         if (e.getSource() == likeButton.getButton()){
-            mainPagePreseter.Like(this.displayUser);
-            mainPagePreseter.updatePage(this.displayUser, "mainpageView", this.paths[3]);
+            mainPagePresenter.Like(this.displayUser);
+            mainPagePresenter.updatePage(this.displayUser, "mainpageView", this.paths[3]);
         }
         if (e.getSource() == dislikeButton.getButton()){
-            mainPagePreseter.updatePage(this.displayUser, "mainpageView", this.paths[3]);
+            mainPagePresenter.updatePage(this.displayUser, "mainpageView", this.paths[3]);
         }
         if (e.getSource() == viewOtherAccount.getButton()){
-            mainPagePreseter.updatePage(this.displayUser, "otherAccount", this.paths[0]);
+            mainPagePresenter.updatePage(this.displayUser, "otherAccount", this.paths[0]);
             this.layout.show(this.masterPanel, "otherAccount");
         }
         if(e.getSource() == logOut.getButton()){
-            mainPagePreseter.logOut(this.paths[1]);
+            mainPagePresenter.logOut(this.paths[1]);
             this.layout.show(this.masterPanel, "loginView");
 
         }
     }
+
+    /**
+     * The updatePage method is responsible for refreshing and updating the screen with the new user displayed whenever
+     * prompted to do so.
+     * @param info info contains a User which is essentially the next user to be presented on the main page
+     */
     public void updatePage(Object[] info) {
         //Just switch the user
         if(info == null){
