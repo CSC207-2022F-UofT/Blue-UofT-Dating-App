@@ -24,7 +24,7 @@ public class CompatibilityFunction {
                     return weight;
                 }}
             for(int k = 0; k < user2Preferences.getData().get(i).size(); k++){
-                if(user2.containsAttribute(i, user1Preferences.getData().get(i).get(k))){
+                if(user1.containsAttribute(i, user2Preferences.getData().get(i).get(k))){
                     return weight;
                 }}
         }

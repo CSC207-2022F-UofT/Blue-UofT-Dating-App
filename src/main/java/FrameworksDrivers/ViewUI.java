@@ -41,7 +41,7 @@ public class ViewUI {
         mainPageView.sendPaths(mainPagePaths);
         Object[] otherAccountPaths = {mainPageView};
         otherAccount.sendPaths(otherAccountPaths);
-        Object[] userEditPaths = {mainPageView, logInView};
+        Object[] userEditPaths = {mainPageView, chatView};
         userEditView.sendPaths(userEditPaths);
         Object[] logInPath = {signUpView, mainPageView};
         logInView.sendPaths(logInPath);

@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public class ChatView implements ActionListener, View {
+public class ChatView implements ActionListener, View, ChatViewInterface {
 
     private JPanel masterPanel;
     private CardLayout layout;

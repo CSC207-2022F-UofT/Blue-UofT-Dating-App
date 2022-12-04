@@ -19,18 +19,17 @@ public class UserRegPresenter {
         UserRegInteractor userRegInteractor = new UserRegInteractor();
         String response = userRegInteractor.create(requestModel);
         if ("passNoMatch".equals(response)) {
-            SignUpView signup = (SignUpView) pageObject;
+            View signup = (View) pageObject;
             String[] message = new String[] {"passNoMatch"};
             signup.updatePage(message);
         }
         else if ("userExists".equals(response)) {
-            SignUpView signup = (SignUpView) pageObject;
+            View signup = (View) pageObject;
             String[] message = new String[] {"userExists"};
             signup.updatePage(message);
         }
         else{
             SignUpView signup = (SignUpView) pageObject;
-            UserGraph editedGraph = CurrentGraph.getGraph();
             CurrentUser currentUser = new CurrentUser();
             currentUser.setUser(new Username(name));
             currentUser.logIn();
@@ -46,7 +45,7 @@ public class UserRegPresenter {
     public void updatePage(String page, Object pageObject){
         switch (page) {
             case "loginView":
-                LogInView logInView = (LogInView) pageObject;
+                View logInView = (View) pageObject;
                 Object[] info = new Object[1];
                 info[0] = "Reload";
                 logInView.updatePage(info);

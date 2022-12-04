@@ -3,6 +3,7 @@ package InterfaceAdapters;
 import Entities.CurrentUser;
 import Entities.User;
 import Entities.UserGraph;
+import FrameworksDrivers.ChatViewInterface;
 import FrameworksDrivers.MainPageView;
 import FrameworksDrivers.View;
 import UseCases.*;
@@ -26,7 +27,7 @@ public class UserEditPresenter {
     public void updatePage(String page, Object pageObject) {
         switch (page) {
             case "mainpageView":
-                 MainPageView mainPageView = (MainPageView) pageObject;
+                 View mainPageView = (View) pageObject;
                 //Would call UseCase and Presenter interface here to get data from entities VVV
                 //send it back up to ui, update the next page to be loaded VVV
                 mainPageView.updatePage(null);
@@ -43,7 +44,7 @@ public class UserEditPresenter {
         ChatRepoUseCase chatRepoUseCase = new ChatRepoUseCase();
         CurrentUser currentUser = new CurrentUser();
         chatRepoUseCase.deleteUserChats(currentUser.getUser().getData());
-        ChatViewPresenter chatViewPresenter = new ChatViewPresenter((View) pageObject);
+        ChatViewPresenter chatViewPresenter = new ChatViewPresenter((ChatViewInterface) pageObject);
         chatViewPresenter.updatePage("logOut", pageObject);
     }
 

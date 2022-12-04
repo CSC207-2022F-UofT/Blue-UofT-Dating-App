@@ -1,6 +1,7 @@
 package InterfaceAdapters;
 import FrameworksDrivers.MainPageView;
 import FrameworksDrivers.OtherAccount;
+import FrameworksDrivers.View;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import UseCases.DisplayUserModel;
 import UseCases.OtherAccountCases;
@@ -29,11 +30,11 @@ public class OtherAccountPresenter {
     public void updatePage(String page, Object pageObject) {
         switch (page){
             case "mainpageView":
-                MainPageView mainPageView = (MainPageView) pageObject;
+                View mainPageView = (View) pageObject;
                 mainPageView.updatePage(null);
                 break;
             case "loginView":
-                OtherAccount account = (OtherAccount) pageObject;
+                View account = (View) pageObject;
                 DisplayUserModel displayUserModel = new DisplayUserModel(this.user);
                 Object[] updateInformation = displayUserModel.getModel();
                 account.updatePage(updateInformation);
