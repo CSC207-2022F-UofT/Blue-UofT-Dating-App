@@ -2,6 +2,7 @@ package FrameworksDrivers;
 
 import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.Button;
+import InterfaceAdapters.OtherAccountPresenter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,6 +42,9 @@ public class OtherAccount implements ActionListener, View {
     public OtherAccount(JPanel masterPanel, CardLayout layout) {
         this.masterPanel = masterPanel;
         this.layout = layout;
+        this.interstsLabels = new ArrayList<>();
+        this.courseLabels = new ArrayList<>();
+        this.attributesLabels = new ArrayList<>();
 
         //Add ur code for your panel below VVVVV
         this.panel = new JPanel();
@@ -88,7 +92,7 @@ public class OtherAccount implements ActionListener, View {
 
         for (int i = 0; i <= 10; i++) {
             Label label = new Label();
-            label.createLabelCentered(40, 40, 40, 40, null, "snow", Color.blue);
+            label.createLabelCentered(40, 40, 40, 40, null, "", Color.blue);
             label.setSize(100, 50);
             this.interstPanel.add(label.getLabel());
         }
@@ -104,11 +108,11 @@ public class OtherAccount implements ActionListener, View {
         attributesTitle.createLabelCentered(5, 5, 5, 5, null, "Attributes", Color.white);
 
         this.attributesPanel = new JPanel();
-        this.attributesPanel.setLayout(new GridLayout(0, 3));
+        this.attributesPanel.setLayout(new GridLayout(0, 1));
 
         for (int i = 0; i <= 17; i++) {
             Label label = new Label();
-            label.createLabelCentered(40, 40, 40, 40, null, "snow", Color.blue);
+            label.createLabelCentered(40, 40, 40, 40, null, "", Color.blue);
             label.setSize(100, 50);
             this.attributesPanel.add(label.getLabel());
         }
@@ -127,7 +131,7 @@ public class OtherAccount implements ActionListener, View {
 
         for (int i = 0; i <= 4; i++) {
             Label label = new Label();
-            label.createLabelCentered(40, 40, 40, 40, null, "snow", Color.blue);
+            label.createLabelCentered(40, 40, 40, 40, null, "", Color.blue);
             label.setSize(100, 50);
             this.coursesPanel.add(label.getLabel());
         }
@@ -139,9 +143,9 @@ public class OtherAccount implements ActionListener, View {
         JPanel buttonAlign = new JPanel();
         buttonAlign.setLayout(new FlowLayout(FlowLayout.LEFT));
         buttonAlign.setPreferredSize(new Dimension(600, 35));
-        Button backToMain = new Button();
-        backToMain.createButton(buttonAlign, "Back", 30, 30, 30, 30);
-        backToMain.getButton().addActionListener(this);
+        this.backToMain = new Button();
+        this.backToMain.createButton(buttonAlign, "Back", 30, 30, 30, 30);
+        this.backToMain.getButton().addActionListener(this);
 
 
         this.panel.add(buttonAlign);
@@ -173,10 +177,10 @@ public class OtherAccount implements ActionListener, View {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (prevpage.equals("main")) {
-
-        } else {
-
+        if(e.getSource() == this.backToMain.getButton()){
+            OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(this.name.getLabel().getText());
+            otherAccountPresenter.updatePage("mainpageView", this.paths[0]);
+            this.layout.show(this.masterPanel, "mainpageView");
         }
 
     }
@@ -213,7 +217,7 @@ public class OtherAccount implements ActionListener, View {
         for (String attribute : attributes) {
             Label label = new Label();
             label.createLabelCentered(40, 40, 40, 40, null, "atr", Color.blue);
-            label.setSize(100, 50);
+            label.setSize(300, 50);
             label.setText(attribute);
             attributesLabels.add(label);
             this.attributesPanel.add(label.getLabel());

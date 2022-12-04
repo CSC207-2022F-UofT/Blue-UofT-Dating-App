@@ -6,6 +6,7 @@ import Entities.UserGraph;
 import FrameworksDrivers.LogInView;
 
 import FrameworksDrivers.SignUpView;
+import FrameworksDrivers.View;
 import UseCases.DataRetrieval.CurrentGraph;
 import UserLogUseCase.UserLogInteractor;
 import UserLogUseCase.UserLogRequestModel;
@@ -26,8 +27,8 @@ public class UserLogPresenter {
     public void switchPage(String name, String pass, String page, Object pageObject ) {
         switch (page) {
             case "signUpView":
-                SignUpView signView = (SignUpView) pageObject;
-                Object[] info = {};
+                View signView = (View) pageObject;
+                Object[] info = {null};
                 signView.updatePage(info);
                 break;
 
@@ -37,26 +38,27 @@ public class UserLogPresenter {
             }
                 UserLogRequestModel logRequestModel = new UserLogRequestModel(name, pass);
                 UserLogInteractor userLogInteractor = new UserLogInteractor();
-                LogInView logView = (LogInView) pageObject;
+                View logView = (View) pageObject;
 
                 if ("userDoesNotExist".equals(userLogInteractor.log(logRequestModel))){
-                    String[] message = {"userDoesn'tExist"};
+                    String[] message = {"userDoesNotExist"};
                     logView.updatePage(message);
                 }
 
-                if("passwordIncorrect".equals(userLogInteractor.log(logRequestModel))){
+                else if("passwordIncorrect".equals(userLogInteractor.log(logRequestModel))){
                     String[] message = {"passwordIncorrect"};
                     logView.updatePage(message);
                 }
-
-                UserGraph graph = CurrentGraph.getGraph();
-                User attemptUser = graph.getUserByString(name);
-                CurrentUser currentUser = new CurrentUser();
-                currentUser.setUser(attemptUser.getUsername());
-                currentUser.logIn();
-                User[] message = {attemptUser};
-                logView.updatePage(message);
-                break;
+                else {
+                    UserGraph graph = CurrentGraph.getGraph();
+                    User attemptUser = graph.getUserByString(name);
+                    CurrentUser currentUser = new CurrentUser();
+                    currentUser.setUser(attemptUser.getUsername());
+                    currentUser.logIn();
+                    User[] message = {attemptUser};
+                    logView.updatePage(message);
+                    break;
+                }
         }
 
     }

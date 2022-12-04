@@ -12,6 +12,7 @@ import InterfaceAdapters.UserRegPresenter;
 
 
 public class SignUpView implements View, ActionListener {
+    Button logb;
     Button regB;
 
     JPanel masterPanel, newPanel;
@@ -67,11 +68,13 @@ public class SignUpView implements View, ActionListener {
 
         regB = new Button();
         regB.createButton(newPanel, "Register", 40, 40, 40, 40);
+        regB.getButton().addActionListener(this);
 
-
-
+        logb = new Button();
+        logb.createButton(newPanel, "Already have an account?", 40, 40,40,40);
+        logb.getButton().addActionListener(this);
         newPanel.setBackground(Color.lightGray);
-        this.masterPanel.add(newPanel, "");
+        this.masterPanel.add(newPanel, "signUpView");
     }
 
 
@@ -104,8 +107,11 @@ public class SignUpView implements View, ActionListener {
         }
 
         if (info[0] instanceof User) {
-            UserEditView userEditPage = new UserEditView(this.masterPanel, this.layout, (User)info[0]);
-            userEditPage.updatePage(null);
+            // UserEditView userEditPage = new UserEditView(this.masterPanel, this.layout, (User)info[0]);
+            UserEditView userEditView = (UserEditView) this.paths[0];
+            String[] newUser = new String[1];
+            newUser[0] = "New";
+            userEditView.updatePage(newUser);
             // change to user edit page
             this.layout.show(this.masterPanel, "userEditView");
         }
@@ -121,14 +127,18 @@ public class SignUpView implements View, ActionListener {
     public void actionPerformed(ActionEvent evt) {
 
         if (evt.getSource() == regB.getButton()) {
-            SignUpView newView = new SignUpView(this.masterPanel, this.layout);
 
             String nameEntered = textFieldUser.getTextField().getText();
             String pass1 = textFieldPass1.getTextField().getText();
             String pass2 = textFieldPass2.getTextField().getText();
 
             UserRegPresenter regPresenter = new UserRegPresenter();
-            regPresenter.switchPage(nameEntered, pass1, pass2, newView);
+            regPresenter.switchPage(nameEntered, pass1, pass2, this);
+        }
+        else if(evt.getSource() == logb.getButton()){
+            UserRegPresenter regPresenter = new UserRegPresenter();
+            regPresenter.updatePage("loginView" ,this.paths[1]);
+            this.layout.show(this.masterPanel, "loginView");
         }
 
     }
