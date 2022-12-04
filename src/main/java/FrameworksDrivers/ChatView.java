@@ -9,6 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
+/**
+ *  A UI class that implements <i>ActionListener</i> and <i>View</i> to create the Chat page
+ *  for the program. This class contains all the necessary UI components and relevant methods to update the view.
+ */
 public class ChatView implements ActionListener, View {
 
     private JPanel masterPanel;
@@ -27,6 +31,12 @@ public class ChatView implements ActionListener, View {
     private JButton backButton;
     private JPanel chatListPanel;
     boolean hasCurrentUsers;
+
+    /**
+     * Creates the Chat page with the relevant JPanels, back button, send button, and text field.
+     * @param masterPanel the masterPanel that contains the page
+     * @param layout layout of the masterPanel
+     */
 
     public ChatView(JPanel masterPanel, CardLayout layout) {
         //initialize overall jpanel
@@ -79,6 +89,12 @@ public class ChatView implements ActionListener, View {
         this.paths = paths;
     }
 
+    /**
+     * Handles button clicks on the Chat page
+     * Determines which button clicked and performs the corresponding actions
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
@@ -113,6 +129,13 @@ public class ChatView implements ActionListener, View {
         }
     }
 
+    /**
+     * Updates page based on the chatroom data that is passed from ChatRenderUseCase
+     * In particular, it adds the buttons and panels for each chatroom between the user and their matches
+     * as well as updating the messages
+     *
+     * @param info the array representation of the chatroom data
+     */
     @Override
     public void updatePage(Object[] info) {
 

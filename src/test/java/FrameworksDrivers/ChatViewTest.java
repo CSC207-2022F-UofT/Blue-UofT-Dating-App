@@ -1,11 +1,6 @@
 package FrameworksDrivers;
 
-import Entities.Chatroom;
-import Entities.Message;
-import Entities.User;
-import UseCases.ChatUseCases.ChatRepoUseCase;
 import org.junit.jupiter.api.Test;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,8 +9,14 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class for ChatView
+ */
 class ChatViewTest {
 
+    /**
+     * Hard codes the input parameter that the ChatView updatePage() methods uses
+     */
     private Object[] createInput() {
         Object[] input = new Object[2];
         ArrayList<ArrayList<String>> expectedChatroom1 = new ArrayList<>();
@@ -61,6 +62,9 @@ class ChatViewTest {
         return input;
     }
 
+    /**
+     * Checks if the number of chat buttons in ChatView is equal to the number of chatrooms created
+     */
     @Test
     void testChatListPanel() {
         Object[] input = createInput();
@@ -72,6 +76,9 @@ class ChatViewTest {
         assertEquals(expectedNumButtons, chatView.chatButtons.size());
     }
 
+    /**
+     * Checks if the chatNumToUsers hashmap is what we expect in ChatView after page is updated
+     */
     @Test
     void testChatNumToUsers() {
         Object[] input = createInput();

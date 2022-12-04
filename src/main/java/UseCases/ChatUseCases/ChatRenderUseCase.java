@@ -8,10 +8,18 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * This class is responsible for converting the chatroom entities to data the presenter can use to update the chat page
+ */
 public class ChatRenderUseCase {
 
     // assume that ChatRepo exist (static container)
 
+    /**
+     * This class is responsible for converting the raw chatroom entities into
+     * data the presenter can use to update the chat page
+     * @param user the current User that is logged in to the program
+     */
     public ChatRenderResponseModel render(User user) {
 
         Map<Set<User>, Chatroom> map = ChatRepoUseCase.getUserChatrooms(user);
