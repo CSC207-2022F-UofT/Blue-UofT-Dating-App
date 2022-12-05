@@ -13,7 +13,7 @@ import InterfaceAdapters.MainPagePresenter;
 import InterfaceAdapters.UserLogPresenter;
 
 /**
- *  An UI class implements <i>ActionListener</i> and <i>View</i> to create the login page
+ *  A UI class implements <i>ActionListener</i> and <i>View</i> to create the login page
  *  for the program. This contains the creation of all components using and is responsible
  *  to any valid action on the page.
  */
@@ -135,8 +135,6 @@ public class LogInView implements ActionListener, View {
             String pass = textFieldPass.getTextField().getText();
             UserLogPresenter logPresenter = new UserLogPresenter();
             logPresenter.switchPage(name, pass, "logInView", this);
-
-
 
             // pop dialog user doesn't exist
         }

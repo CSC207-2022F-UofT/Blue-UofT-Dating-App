@@ -1,15 +1,6 @@
 package FrameworksDrivers;
-
-import Entities.*;
-import Entities.UserDataClasses.PrivateUserDataClasses.Username;
-import InterfaceAdapters.ChatGateway;
-import InterfaceAdapters.MainPagePresenter;
 import UseCases.DataRetrieval.*;
-import InterfaceAdapters.ChatViewPresenter;
-import UseCases.ChatUseCases.ChatRenderUseCase;
-import UseCases.ChatUseCases.ChatRepoUseCase;
-import UseCases.LikeUseCase;
-import UseCases.PracticeGraphCreator;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,9 +23,6 @@ public class ViewUI {
 
 
         // Main Page
-
-
-
 //        Send the paths to other pages that your page will have
 //        I.E login -> main
         Object[] mainPagePaths = {otherAccount, chatView, userEditView, mainPageView, logInView};

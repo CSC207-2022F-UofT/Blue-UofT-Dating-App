@@ -69,4 +69,8 @@ public class Label {
     public void setFontSize(int size) {
         this.label.setFont(new Font("", Font.PLAIN, size));
     }
+
+    public void setVisibile(boolean bool) {
+        this.label.setVisible(bool);
+    }
 }

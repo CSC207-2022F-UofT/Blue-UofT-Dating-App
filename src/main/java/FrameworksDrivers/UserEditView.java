@@ -121,7 +121,7 @@ public class UserEditView implements ActionListener, View {
             attributesLabel[i] = new Label();
             attributesLabel[i].createLabel(400, 350 + 15*items, 300, 30, this.panel, attributesDict.attributeAt(i));
             attributesHidden[i] = new CheckBox();
-            attributesHidden[i].createCheckbox(this.panel, "Hidden", 500,360+15*items,70,20,
+            attributesHidden[i].createCheckbox(this.panel, "Shown", 500,360+15*items,70,20,
                     false);
             items += 1;
             attributesRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
@@ -137,7 +137,7 @@ public class UserEditView implements ActionListener, View {
             attributesLabel[i] = new Label();
             attributesLabel[i].createLabel(600, 350 + 15*items, 300, 30, this.panel, attributesDict.attributeAt(i));
             attributesHidden[i] = new CheckBox();
-            attributesHidden[i].createCheckbox(this.panel, "Hidden", 700,360+15*items,70,10,
+            attributesHidden[i].createCheckbox(this.panel, "Shown", 700,360+15*items,70,10,
                     false);
             items += 1;
             attributesRadioButtons[i] = new RadioButton[AttributeValueDict.valuesMap.get(i).keySet().size()];
@@ -255,9 +255,7 @@ public class UserEditView implements ActionListener, View {
     }
     @Override
     public void updatePage(Object[] info) {
-        if(info[0].equals("New")){
-            this.newUser = true;
-        }
+        this.newUser = info[0].equals("New");
         UserEditPresenter userEditPresenter = new UserEditPresenter();
         UserEditResponseModel userEditResponseModel = userEditPresenter.getCurrentUser();
         this.nameField.setText(userEditResponseModel.name);
