@@ -18,6 +18,7 @@ public class MainPagePresenter {
         User currentUser = currentUserGateway.getCurrentUser();
         ArrayList<User> lst = currentUser.getNeighbors();
         if(lst.size() <= neighboursIndex){neighboursIndex = 0;}
+        else if(neighboursIndex < 0){neighboursIndex = 0;}
         User nextUser = lst.get(neighboursIndex);
 
         Object[] userData = new Object[1];
@@ -33,17 +34,20 @@ public class MainPagePresenter {
                 View chatView = (View) pageObject;
                 ChatRenderUseCase chatRenderUseCase = new ChatRenderUseCase();
                 chatView.updatePage(chatRenderUseCase.render(currentUser).getChatrooms().toArray());
+                neighboursIndex -= 1;
                 break;
             case "usereditView":
                 View userEditView = (View) pageObject;
                 Object[] info = new Object[1];
                 info[0] = "Old";
                 userEditView.updatePage(info);
+                neighboursIndex -= 1;
                 break;
             case "otherAccount":
                 View otherAccount = (View) pageObject;
                 OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(displayedUser.getUsername().getData());
-                otherAccountPresenter.updatePage("loginView", otherAccount);
+                otherAccountPresenter.updatePage("otherView", otherAccount);
+                neighboursIndex -= 1;
                 break;
         }
     }

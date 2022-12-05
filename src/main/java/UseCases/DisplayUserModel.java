@@ -27,7 +27,7 @@ public class DisplayUserModel {
         }
         this.courses.add("");
         this.interests.add("");
-        this.name = user.getUsername().getData();
+        this.name = user.getDisplayName().getData();
         this.location = user.getLocation().getData();
         this.bio = user.getBio().getData();
         new AttributesDict();

@@ -25,14 +25,14 @@ public class SortUserNeighbours{
         ArrayList<User> sortedList = new ArrayList<>();
 
         for(int i = 0; i < this.currentUser.getNeighbors().size(); i++){
-            sortedList.add(this.getMaxUser(i, this.currentUser.getNeighbors().size()));
+            sortedList.add(this.getMaxUser(i, this.currentUser.getNeighbors().size() - 1));
         }
         return sortedList;
     }
     private User getMaxUser(int b, int e){
         User maxUser = this.currentUser.getNeighbors().get(b);
         float maxWeight = this.userGraph.getEdge(this.currentUser, maxUser).getWeight();
-        for(int i = b + 1; i < e; i++){
+        for(int i = b + 1; i <= e; i++){
             User otherUser = this.currentUser.getNeighbors().get(i);
             float otherUserWeight = this.userGraph.getEdge(this.currentUser, otherUser).getWeight();
             if(otherUserWeight > maxWeight){
