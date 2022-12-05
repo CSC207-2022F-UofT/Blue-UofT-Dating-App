@@ -32,9 +32,6 @@ public class ViewUI {
 
 
         // Main Page
-
-
-
 //        Send the paths to other pages that your page will have
 //        I.E login -> main
         Object[] mainPagePaths = {otherAccount, chatView, userEditView, mainPageView, logInView};
