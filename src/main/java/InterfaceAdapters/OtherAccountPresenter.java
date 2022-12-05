@@ -33,7 +33,7 @@ public class OtherAccountPresenter {
                 View mainPageView = (View) pageObject;
                 mainPageView.updatePage(null);
                 break;
-            case "loginView":
+            case "otherView":
                 View account = (View) pageObject;
                 DisplayUserModel displayUserModel = new DisplayUserModel(this.user);
                 Object[] updateInformation = displayUserModel.getModel();
