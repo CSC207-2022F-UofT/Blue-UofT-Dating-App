@@ -13,7 +13,7 @@ import java.util.*;
  *  A UI class that implements <i>ActionListener</i> and <i>View</i> to create the Chat page
  *  for the program. This class contains all the necessary UI components and relevant methods to update the view.
  */
-public class ChatView implements ActionListener, View {
+public class ChatView implements ActionListener, View, ChatViewInterface {
 
     private JPanel masterPanel;
     private CardLayout layout;
@@ -233,12 +233,30 @@ public class ChatView implements ActionListener, View {
         System.out.println(Arrays.toString(currUsers));
 
     }
+
     public void selectCurrentUserButton(){
         for(JButton button: this.chatButtons){
             String[] users = this.chatNumToUsers.get(Character.toString(button.getText().charAt(0)));
             if(Arrays.equals(this.currUsers, users)){
-                button.setSelected(true);
+                button.setBackground(Color.lightGray);
+            }
+            else{
+                button.setBackground(Color.white);
             }
         }
+    }
+
+    @Override
+    public void logOut(){
+        this.currUsers = null;
+        this.hasCurrentUsers = false;
+        this.panel.remove(this.chatListPanel);
+        this.chatListPanel = new JPanel();
+        this.chatListPanel.setBackground(Color.RED);
+        this.chatListPanel.setBounds(400, 0, 200, 800);
+        this.chatListPanel.setLayout(new GridLayout(0, 1));
+        this.panel.add(chatListPanel);
+        this.chatNumToUsers.clear();
+        this.chatButtons.clear();
     }
 }
