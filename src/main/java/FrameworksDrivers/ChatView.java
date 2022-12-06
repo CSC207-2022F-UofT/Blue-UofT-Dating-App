@@ -200,13 +200,12 @@ public class ChatView implements ActionListener, View {
             if(this.chatButtons.size() > 0){
                 int chatButtonsSize = this.chatButtons.size();
                 int unequalButtons = 0;
-                for(int i = 0; i < chatButtonsSize; i++){
-                    JButton button = this.chatButtons.get(i);
+                for (JButton button : this.chatButtons) {
                     String[] users = button.getText().split(" ");
                     users = this.chatNumToUsers.get(Character.toString(button.getText().charAt(0)));
                     HashSet<String> set1 = new HashSet<String>(Arrays.asList(users));
                     HashSet<String> set2 = new HashSet<String>(Arrays.asList(user1, user2));
-                    if(!set1.equals(set2)){
+                    if (!set1.equals(set2)) {
                         unequalButtons += 1;
                     }
                     System.out.println(set2.equals(set1));
@@ -233,6 +232,10 @@ public class ChatView implements ActionListener, View {
         System.out.println(Arrays.toString(currUsers));
 
     }
+
+    /**
+     * Selects the current chat button so that it turns grey
+     */
     public void selectCurrentUserButton(){
         for(JButton button: this.chatButtons){
             String[] users = this.chatNumToUsers.get(Character.toString(button.getText().charAt(0)));
