@@ -3,11 +3,13 @@ package Entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * UserEdge class representing the edge in a UserGraph. Stores users in a User array, and contains information about
+ * their compatibility and relationship.
+ */
 public class UserEdge implements Serializable {
     private final User[] users;
     private float weight;
-    private boolean hiddenForwards;
-    private boolean hiddenBackwards;
     private boolean likeForwards;
     private boolean likeBackwards;
     public UserEdge(User user1, User user2) {
@@ -16,26 +18,22 @@ public class UserEdge implements Serializable {
         this.users[1] = user2;
         this.likeForwards = false;
         this.likeBackwards = false;
-        this.hiddenForwards = false;
-        this.hiddenBackwards = false;
     }
 
+    /** Sets the appropriate like boolean to true, depending on who was the "liked user.
+     * @param liked This represents the user who was "liked"
+     */
     public void likes(User liked){
         //In this case 'likes' is like a verb, the passed in user is 'liked' by the other user.
         if(Objects.equals(this.users[0].getUsername().getData(), liked.getUsername().getData())){ this.likeBackwards = true;}
         else{ this.likeForwards = true;}
     }
+
+    /** Setter for the compatibility.
+     * @param newWeight flaat of the new weight.
+     */
     public void setWeight(float newWeight){ this.weight = newWeight;}
     public float getWeight(){ return this.weight;}
-    public void hideInFeed(User hidden){
-        //Same logic as likes method, the passed in user is wanting to be hidden by the other user.
-        if(Objects.equals(this.users[0].getUsername().getData(), hidden.getUsername().getData())){ this.hiddenBackwards = true;}
-        else{ this.hiddenForwards = true;}
-    }
-    public void unhideInFeed(User unhidden){
-        if(Objects.equals(this.users[0].getUsername().getData(), unhidden.getUsername().getData())){ this.hiddenBackwards = false;}
-        else{ this.hiddenForwards = false;}
-    }
     public User[] getUsers(){
         return this.users;
     }

@@ -1,5 +1,4 @@
 package UseCases.DataRetrieval;
-
 import Entities.User;
 import Entities.UserGraph;
 
