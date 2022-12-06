@@ -15,21 +15,19 @@ import java.util.*;
  */
 public class ChatView implements ActionListener, View {
 
-    private JPanel masterPanel;
-    private CardLayout layout;
-    private CardLayout chatLayout = new CardLayout();
+    private final JPanel masterPanel;
+    private final CardLayout layout;
+    private final CardLayout chatLayout = new CardLayout();
     private JPanel chatContainer;
-    private JPanel panel;
-    private textField textBox;
-    private JButton sendButton;
+    private final JPanel panel;
+    private final textField textBox;
+    private final JButton sendButton;
     private String[] currUsers;
     protected Map<String, String[]> chatNumToUsers = new HashMap<>();
     private Object[] paths;
-
     protected ArrayList<JButton> chatButtons = new ArrayList<>();
-    private Map<JPanel, String> map = new HashMap<>();
-    private JButton backButton;
-    private JPanel chatListPanel;
+    private final JButton backButton;
+    private final JPanel chatListPanel;
     boolean hasCurrentUsers;
 
     /**
@@ -37,7 +35,6 @@ public class ChatView implements ActionListener, View {
      * @param masterPanel the masterPanel that contains the page
      * @param layout layout of the masterPanel
      */
-
     public ChatView(JPanel masterPanel, CardLayout layout) {
         //initialize overall jpanel
         this.masterPanel = masterPanel;
@@ -86,7 +83,7 @@ public class ChatView implements ActionListener, View {
 
     /**
      * Initializes the paths attribute to the path object argument
-     * @param paths
+     * @param paths contains the paths to other pages
      */
     public void sendPaths(Object[] paths) {
         this.paths = paths;
@@ -206,7 +203,6 @@ public class ChatView implements ActionListener, View {
 
             this.panel.add(chatContainer, "bob joe");
             this.chatContainer.add(currChatPanel, String.valueOf(index));
-            this.map.put(currChatPanel, String.valueOf(index));
             this.chatContainer.revalidate();
             this.chatContainer.repaint();
         }
@@ -246,7 +242,6 @@ public class ChatView implements ActionListener, View {
             this.chatListPanel.add(currChatButton);
         }
     }
-
 
     /**
      * Selects the current chat button so that it turns grey
