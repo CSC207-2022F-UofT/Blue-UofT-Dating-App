@@ -34,7 +34,7 @@ public class UserRegInteractor implements UserRegInputBoundary{
             UserGraph graph = CurrentGraph.getGraph();
             graph.addUser(user);
             new SaveGraph(graph);
-            UserRegResponseModel responseModel = new UserRegResponseModel(user.getUsername().toString());
+            UserRegResponseModel responseModel = new UserRegResponseModel(user.getUsername().getData());
             return responseModel.getLogin();
         }
     }
