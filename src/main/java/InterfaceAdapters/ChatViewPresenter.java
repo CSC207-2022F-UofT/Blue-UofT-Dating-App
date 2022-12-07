@@ -2,11 +2,11 @@ package InterfaceAdapters;
 
 
 import Entities.User;
-import frameworksdrivers.ChatViewInterface;
-import frameworksdrivers.View;
-import usecases.ChatUseCases.*;
-import usecases.DataRetrieval.CurrentUserGateway;
-import usecases.DataRetrieval.SaveChats;
+import FrameWorksDrivers.ChatViewInterface;
+import FrameWorksDrivers.View;
+import UseCases.ChatUseCases.*;
+import UseCases.DataRetrieval.CurrentUserGateway;
+import UseCases.DataRetrieval.SaveChats;
 
 public class ChatViewPresenter implements ChatViewPresenterInterface {
     private final View currView;

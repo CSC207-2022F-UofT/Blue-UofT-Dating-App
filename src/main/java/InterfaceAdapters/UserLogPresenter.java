@@ -4,8 +4,8 @@ import Entities.CurrentUser;
 import Entities.User;
 import Entities.UserGraph;
 
-import frameworksdrivers.View;
-import usecases.DataRetrieval.CurrentGraph;
+import FrameWorksDrivers.View;
+import UseCases.DataRetrieval.CurrentGraph;
 import UserLogUseCase.UserLogInteractor;
 import UserLogUseCase.UserLogRequestModel;
 

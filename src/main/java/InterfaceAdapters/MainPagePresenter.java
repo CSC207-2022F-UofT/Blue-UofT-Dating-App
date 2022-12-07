@@ -1,10 +1,10 @@
 package InterfaceAdapters;
 import Entities.User;
-import frameworksdrivers.*;
-import usecases.ChatUseCases.ChatRenderUseCase;
-import usecases.DataRetrieval.CurrentUserGateway;
-import usecases.LikeUseCase;
-import usecases.LogOutCurrentUser;
+import FrameWorksDrivers.*;
+import UseCases.ChatUseCases.ChatRenderUseCase;
+import UseCases.DataRetrieval.CurrentUserGateway;
+import UseCases.LikeUseCase;
+import UseCases.LogOutCurrentUser;
 
 import java.util.ArrayList;
 

@@ -3,13 +3,13 @@ package InterfaceAdapters;
 import Entities.CurrentUser;
 import Entities.User;
 import Entities.UserGraph;
-import frameworksdrivers.ChatViewInterface;
-import frameworksdrivers.View;
-import usecases.*;
-import usecases.ChatUseCases.ChatRepoUseCase;
-import usecases.DataRetrieval.CurrentGraph;
-import usecases.DataRetrieval.CurrentUserGateway;
-import usecases.DataRetrieval.SaveGraph;
+import FrameWorksDrivers.ChatViewInterface;
+import FrameWorksDrivers.View;
+import UseCases.*;
+import UseCases.ChatUseCases.ChatRepoUseCase;
+import UseCases.DataRetrieval.CurrentGraph;
+import UseCases.DataRetrieval.CurrentUserGateway;
+import UseCases.DataRetrieval.SaveGraph;
 
 public class UserEditPresenter {
 

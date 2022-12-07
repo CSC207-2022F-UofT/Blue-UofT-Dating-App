@@ -1,7 +1,7 @@
 package InterfaceAdapters;
 
-import usecases.ChatUseCases.ChatRepoUseCase;
-import usecases.ReadWriter;
+import UseCases.ChatUseCases.ChatRepoUseCase;
+import UseCases.ReadWriter;
 
 import java.io.*;
 

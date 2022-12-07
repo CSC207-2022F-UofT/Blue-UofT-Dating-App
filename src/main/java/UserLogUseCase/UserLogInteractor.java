@@ -1,8 +1,8 @@
 package UserLogUseCase;
 
-import usecases.DataRetrieval.UserLogGateway;
-import usecases.DataRetrieval.UserRegGateway;
-import usecases.user_register_use_case.UserRegResponseModel;
+import UseCases.DataRetrieval.UserLogGateway;
+import UseCases.DataRetrieval.UserRegGateway;
+import UseCases.user_register_use_case.UserRegResponseModel;
 
 public class UserLogInteractor implements UserLogInputBoundary{
 
