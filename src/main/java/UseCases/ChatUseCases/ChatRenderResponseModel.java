@@ -7,7 +7,6 @@ import java.util.ArrayList;
  */
 public class ChatRenderResponseModel {
 
-
     private final ArrayList<ArrayList<ArrayList<String>>> chatrooms;
 
     /**

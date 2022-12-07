@@ -226,8 +226,8 @@ public class ChatView implements ActionListener, View {
             for (JButton button : this.chatButtons) {
                 String[] users = button.getText().split(" ");
                 users = this.chatNumToUsers.get(Character.toString(button.getText().charAt(0)));
-                HashSet<String> set1 = new HashSet<String>(Arrays.asList(users));
-                HashSet<String> set2 = new HashSet<String>(Arrays.asList(user1, user2));
+                HashSet<String> set1 = new HashSet<>(Arrays.asList(users));
+                HashSet<String> set2 = new HashSet<>(Arrays.asList(user1, user2));
                 if (!set1.equals(set2)) {
                     unequalButtons += 1;
                 }
