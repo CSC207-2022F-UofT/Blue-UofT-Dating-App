@@ -1,9 +1,8 @@
 package UseCases;
 
-import Entities.User;
-import Entities.UserDataClasses.PrivateUserDataClasses.Preferences;
-import java.io.*;
 import Entities.UserGraph;
+
+import java.io.IOException;
 
 public class PracticeGraphReadWrite {
     UserGraphReadWriter readWriter = new UserGraphReadWriter();

@@ -1,17 +1,15 @@
 package FrameworksDrivers;
+
+import Entities.User;
+import FrameworksDrivers.UIElements.Button;
+import FrameworksDrivers.UIElements.textArea;
+import FrameworksDrivers.UIElements.textField;
+import InterfaceAdapters.MainPagePresenter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import Entities.User;
-import FrameworksDrivers.UIElements.Button;
-import FrameworksDrivers.UIElements.Label;
-import FrameworksDrivers.UIElements.textArea;
-import FrameworksDrivers.UIElements.textField;
-import InterfaceAdapters.MainPagePresenter;
-import InterfaceAdapters.OtherAccountPresenter;
-import com.sun.tools.javac.Main;
 
 public class MainPageView implements ActionListener, View {
     Button logOut;

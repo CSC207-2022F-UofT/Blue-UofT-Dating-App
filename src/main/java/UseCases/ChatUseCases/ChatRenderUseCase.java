@@ -1,8 +1,8 @@
 package UseCases.ChatUseCases;
 
-import Entities.*;
-import InterfaceAdapters.ChatViewPresenter;
-import UseCases.UserGraphReadWriter;
+import Entities.Chatroom;
+import Entities.Message;
+import Entities.User;
 
 import java.util.ArrayList;
 import java.util.Map;

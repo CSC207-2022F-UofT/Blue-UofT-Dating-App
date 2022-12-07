@@ -1,7 +1,5 @@
 package UseCases.ChatUseCases;
 
-import Entities.Chatroom;
-
 import java.util.ArrayList;
 
 public class ChatRenderResponseModel {

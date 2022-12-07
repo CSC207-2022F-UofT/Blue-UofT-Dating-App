@@ -1,6 +1,5 @@
 package UseCases;
 
-import Entities.Chatroom;
 import Entities.User;
 import UseCases.ChatUseCases.ChatRegUseCase;
 import UseCases.ChatUseCases.ChatRepoUseCase;

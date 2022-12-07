@@ -1,6 +1,5 @@
 package Entities;
 
-import Entities.UserDataClasses.CourseCode;
 import Entities.UserDataClasses.HideableUserDataClasses.Attributes;
 import Entities.UserDataClasses.HideableUserDataClasses.Course;
 import Entities.UserDataClasses.HideableUserDataClasses.Courses;
@@ -10,10 +9,8 @@ import Entities.UserDataClasses.PrivateUserDataClasses.PostalCode;
 import Entities.UserDataClasses.PrivateUserDataClasses.Preferences;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
 import Entities.UserDataClasses.PublicUserDataClasses.*;
-import Entities.UserDataClasses.UserData;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 

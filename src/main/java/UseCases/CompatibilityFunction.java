@@ -2,7 +2,6 @@
 package UseCases;
 
 import Entities.User;
-import Entities.UserDataClasses.HideableUserDataClasses.Courses;
 import Entities.UserDataClasses.HideableUserDataClasses.Interests;
 import Entities.UserDataClasses.PrivateUserDataClasses.Preferences;
 import Entities.UserDataClasses.UserDataDictionaries.InterestsDict;
