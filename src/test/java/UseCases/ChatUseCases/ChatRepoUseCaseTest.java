@@ -55,7 +55,7 @@ public class ChatRepoUseCaseTest {
 
         Chatroom fetchedChatroom = chatRepoUseCase.getChatroom(my_set);
 
-        Assertions.assertTrue(fetchedChatroom.getUsers().equals(my_set));
+        Assertions.assertEquals(fetchedChatroom.getUsers(),my_set);
     }
 
     @Test

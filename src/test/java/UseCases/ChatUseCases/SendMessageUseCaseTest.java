@@ -8,8 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class SendMessageUseCaseTest {
 
     @Test
@@ -30,7 +28,7 @@ public class SendMessageUseCaseTest {
         ug.addUser(u1);
         ug.addUser(u2);
 
-        SaveGraph sg = new SaveGraph(ug);
+        new SaveGraph(ug);
 
         //u1 is current user
         CurrentUser CU = new CurrentUser();

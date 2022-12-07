@@ -41,8 +41,8 @@ public class Chatroom implements Serializable {
      * @param user2 A User object representing the other of the two users in the chatroom.
      */
     public Chatroom(User user1, User user2) {
-        this.conversation = new ArrayList<Message>();
-        this.users = new HashSet<User>();
+        this.conversation = new ArrayList<>();
+        this.users = new HashSet<>();
         this.users.add(user1);
         this.users.add(user2);
     }
