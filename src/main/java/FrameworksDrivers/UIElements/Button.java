@@ -2,15 +2,16 @@ package FrameworksDrivers.UIElements;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
+ /**
+ * UI element button class which holds a JButton.
+ */
 public class Button {
     JButton button;
-    int index;
 
     /**
      * Returns class variable button
-     * @return
+     * @return the JButton which this object holds
      */
     public JButton getButton() {
         return button;
@@ -18,42 +19,20 @@ public class Button {
 
     /**
      * Creates a JButton UI component with an image icon
-     * @param jpanel
-     * @param buttonText
-     * @param boundX
-     * @param boundY
-     * @param boundWidth
-     * @param boundHeight
+     * @param jPanel jPanel to which the new button is being added
+     * @param buttonText button's text
+     * @param boundX button's x location
+     * @param boundY button's y location
+     * @param boundWidth button's width
+     * @param boundHeight button's height
      */
-    public void createButton(JPanel jpanel, String buttonText, int boundX,
+    public void createButton(JPanel jPanel, String buttonText, int boundX,
                                      int boundY, int boundWidth, int boundHeight) {
         button = new JButton(buttonText);
-        jpanel.add(button);
+        jPanel.add(button);
         button.setBounds(boundX, boundY, boundWidth, boundHeight);
         button.setLocation(new Point(boundX, boundY));
 
     }
-    public void createButton(JPanel jpanel, String buttonText, int boundX,
-                             int boundY, int boundWidth, int boundHeight, int index) {
-        button = new JButton(buttonText);
-        jpanel.add(button);
-        button.setBounds(boundX, boundY, boundWidth, boundHeight);
-        button.setLocation(new Point(boundX, boundY));
-        this.index = index;
-
-    }
-    public void setHorizontalAlignment(String align) {
-        if (align.equals("left")) {
-            this.button.setHorizontalAlignment(SwingConstants.LEFT);
-        }
-        else if (align.equals("center")) {
-            this.button.setHorizontalAlignment(SwingConstants.CENTER);
-        }
-        else {
-            this.button.setHorizontalAlignment(SwingConstants.RIGHT);
-        }
-    }
-
-
 }
 
