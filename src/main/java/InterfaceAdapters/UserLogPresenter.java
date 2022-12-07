@@ -1,15 +1,11 @@
 package InterfaceAdapters;
 
-import Entities.CurrentUser;
 import Entities.User;
-import Entities.UserGraph;
-import FrameworksDrivers.LogInView;
 
-import FrameworksDrivers.SignUpView;
 import FrameworksDrivers.View;
-import UseCases.DataRetrieval.CurrentGraph;
 import UserLogUseCase.UserLogInteractor;
 import UserLogUseCase.UserLogRequestModel;
+import UserLogUseCase.UserLogResponseModel;
 
 public class UserLogPresenter {
 
@@ -50,11 +46,8 @@ public class UserLogPresenter {
                     logView.updatePage(message);
                 }
                 else {
-                    UserGraph graph = CurrentGraph.getGraph();
-                    User attemptUser = graph.getUserByString(name);
-                    CurrentUser currentUser = new CurrentUser();
-                    currentUser.setUser(attemptUser.getUsername());
-                    currentUser.logIn();
+                    UserLogResponseModel responseModel = new UserLogResponseModel();
+                    User attemptUser = responseModel.response(name);
                     User[] message = {attemptUser};
                     logView.updatePage(message);
                     break;

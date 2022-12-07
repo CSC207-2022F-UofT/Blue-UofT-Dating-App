@@ -28,6 +28,11 @@ public class OtherAccount implements ActionListener, View {
     private ArrayList<Label> interstsLabels;
     private ArrayList<Label> attributesLabels;
     private ArrayList<Label> courseLabels;
+
+    private Label interestTitle;
+    private Label attributesTitle;
+    private Label coursesTitle;
+
     private JPanel interstPanel;
     private JPanel attributesPanel;
     private JPanel coursesPanel;
@@ -84,7 +89,7 @@ public class OtherAccount implements ActionListener, View {
         //intersts
         JPanel interestsHolder = new JPanel();
         interestsHolder.setBackground(Color.BLUE);
-        Label interestTitle = new Label();
+        this.interestTitle = new Label();
         interestTitle.createLabelCentered(5, 5, 5, 5, null, "Interests", Color.white);
 
         this.interstPanel = new JPanel();
@@ -94,6 +99,7 @@ public class OtherAccount implements ActionListener, View {
             Label label = new Label();
             label.createLabelCentered(40, 40, 40, 40, null, "", Color.blue);
             label.setSize(100, 50);
+            this.interstsLabels.add(label);
             this.interstPanel.add(label.getLabel());
         }
 
@@ -104,7 +110,7 @@ public class OtherAccount implements ActionListener, View {
         //attributes
         JPanel attrHolder = new JPanel();
         attrHolder.setBackground(Color.BLUE);
-        Label attributesTitle = new Label();
+        this.attributesTitle = new Label();
         attributesTitle.createLabelCentered(5, 5, 5, 5, null, "Attributes", Color.white);
 
         this.attributesPanel = new JPanel();
@@ -114,6 +120,7 @@ public class OtherAccount implements ActionListener, View {
             Label label = new Label();
             label.createLabelCentered(40, 40, 40, 40, null, "", Color.blue);
             label.setSize(100, 50);
+            this.attributesLabels.add(label);
             this.attributesPanel.add(label.getLabel());
         }
 
@@ -123,7 +130,7 @@ public class OtherAccount implements ActionListener, View {
         //courses
         JPanel coursesHolder = new JPanel();
         coursesHolder.setBackground(Color.BLUE);
-        Label coursesTitle = new Label();
+        this.coursesTitle = new Label();
         coursesTitle.createLabelCentered(5, 5, 5, 5, null, "Courses   ", Color.white);
 
         this.coursesPanel = new JPanel();
@@ -133,6 +140,7 @@ public class OtherAccount implements ActionListener, View {
             Label label = new Label();
             label.createLabelCentered(40, 40, 40, 40, null, "", Color.blue);
             label.setSize(100, 50);
+            this.courseLabels.add(label);
             this.coursesPanel.add(label.getLabel());
         }
 
@@ -199,9 +207,17 @@ public class OtherAccount implements ActionListener, View {
         ArrayList<String> attributes = (ArrayList<String>) info[4];
         ArrayList<String> courses = (ArrayList<String>) info[5];
 
+        this.interstPanel.setVisible(intersts.size() > 1);
+        this.interestTitle.setVisibile(intersts.size() > 1);
+        this.attributesPanel.setVisible(attributes.size() > 1);
+        this.attributesTitle.setVisibile(attributes.size() > 1);
+        this.coursesPanel.setVisible(courses.size() > 1);
+        this.coursesTitle.setVisibile(courses.size() > 1);
+
         for (Label interstsLabel : interstsLabels) {
             this.interstPanel.remove(interstsLabel.getLabel());
         }
+        interstsLabels = new ArrayList<Label>();
         for (String interst : intersts) {
             Label label = new Label();
             label.createLabelCentered(40, 40, 40, 40, null, interst, Color.blue);
@@ -214,6 +230,7 @@ public class OtherAccount implements ActionListener, View {
         for (Label attributesLabel : attributesLabels) {
             this.attributesPanel.remove(attributesLabel.getLabel());
         }
+        attributesLabels = new ArrayList<Label>();
         for (String attribute : attributes) {
             Label label = new Label();
             label.createLabelCentered(40, 40, 40, 40, null, "atr", Color.blue);
@@ -226,6 +243,7 @@ public class OtherAccount implements ActionListener, View {
         for (Label courseLabel : courseLabels) {
             this.coursesPanel.remove(courseLabel.getLabel());
         }
+        courseLabels = new ArrayList<Label>();
         for (String course : courses) {
             Label label = new Label();
             label.createLabelCentered(40, 40, 40, 40, null, "crs", Color.blue);

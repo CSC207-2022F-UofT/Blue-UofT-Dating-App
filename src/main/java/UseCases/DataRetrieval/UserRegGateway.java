@@ -15,6 +15,6 @@ public class UserRegGateway {
      */
 
     public boolean getUserExists(String newName) {
-        return CurrentGraph.getGraph().getUserByString(newName) != null;
+        return (CurrentGraph.getGraph().getUserByString(newName) != null);
     }
 }
