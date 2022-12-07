@@ -2,17 +2,20 @@ package UseCases.DataRetrieval;
 
 import Entities.CurrentUser;
 import Entities.User;
-import Entities.UserDataClasses.PrivateUserDataClasses.Username;
 import Entities.UserDataClasses.UserData;
 import Entities.UserGraph;
-import UseCases.UserGraphReadWriter;
 
-import java.io.IOException;
-
+/**
+ * Retrieves the user object with username CurrentUser.currUsername from CurrentGraph.
+ */
 public class CurrentUserGateway {
     UserData<String> username;
     UserGraph readGraph;
-    User user;
+
+    /**
+     * Retrieves the current user object.
+     * @return current Uer object
+     */
     public User getCurrentUser(){
         CurrentUser currentUser = new CurrentUser();
         username = currentUser.getUser();

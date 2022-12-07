@@ -3,6 +3,9 @@ package UseCases;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ *  Compacts user data into one class.
+ */
 public class UserEditModel {
     String bio;
     String name;

@@ -1,13 +1,13 @@
 package UseCases;
-
 import Entities.CurrentUser;
 import Entities.User;
 import Entities.UserGraph;
-import UseCases.DataRetrieval.CurrentGraph;
-import UseCases.DataRetrieval.CurrentUserGateway;
 
-public class UpdateCompatabilities {
-    public UpdateCompatabilities(UserGraph currentGraph){
+/**
+ * Updates the compatibilities between the current user and all of its neighbours.
+ */
+public class UpdateCompatibility {
+    public UpdateCompatibility(UserGraph currentGraph){
         CurrentUser user = new CurrentUser();
         User currentUser = currentGraph.getUser(user.getUser());
         for(User otherUser: currentUser.getNeighbors()){
