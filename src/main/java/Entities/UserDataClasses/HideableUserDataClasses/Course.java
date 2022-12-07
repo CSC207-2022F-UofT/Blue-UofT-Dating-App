@@ -14,9 +14,4 @@ public class Course extends HideableData<CourseCode> implements Serializable {
         this.data = courseCode;
         this.hidden = true;
     }
-    public Course(CourseCode courseCode, boolean hidden){
-        super(courseCode);
-        this.data = courseCode;
-        this.hidden = hidden;
-    }
 }

@@ -25,11 +25,6 @@ public class Attributes extends HideableData<HashMap<Integer, ArrayList<Object>>
         }
         this.hidden = false;
     }
-    public Attributes(boolean hidden){
-        super(new HashMap<Integer, ArrayList<Object>>(), hidden);
-        this.data = super.data;
-        this.hidden = hidden;
-    }
 
     // Methods
     public void addAttribute(Integer attributeKey, Integer valueKey){
@@ -75,9 +70,7 @@ public class Attributes extends HideableData<HashMap<Integer, ArrayList<Object>>
     public void showAttribute(Integer attributeKey){
         this.data.get(attributeKey).set(1, false);
     }
-    public void setAttributeVisibility(Integer attributeKey, boolean hidden){
-        this.data.get(attributeKey).set(1, hidden);
-    }
+
     public String getTypeAt(int attributeKey){
         AttributesDict dict = new AttributesDict();
         return dict.attributeAt(attributeKey);

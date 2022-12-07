@@ -23,20 +23,23 @@ public class CompatibilityFunction {
                 if(user1.containsAttribute(i, user2Preferences.getData().get(i).get(k))){
                     return weight;
                 }}
-            for(int k = 0; k < user2Preferences.getData().get(i).size(); k++){
-                if(user1.containsAttribute(i, user2Preferences.getData().get(i).get(k))){
+        }
+
+        for(int i = 0; i < user1Preferences.getData().size(); i++){
+            for(int k = 0; k < user1Preferences.getData().get(i).size(); k++){
+                if(user2.containsAttribute(i, user1Preferences.getData().get(i).get(k))){
                     return weight;
                 }}
         }
 
-        Interests user1Interests = user1.getInterests();
-        Interests user2Interests = user2.getInterests();
+        new InterestsDict();
         int numInterests = InterestsDict.interestMap.size();
         weight += .5;
 
         for(int i = 0; i < numInterests; i++){
-            if(user2.containsInterest(i) & user1.containsInterest(i)){
+            if(user2.containsInterest(i) && user1.containsInterest(i)){
                 weight += .5 / numInterests;
+                System.out.println(true);
             }
         }
         return weight;

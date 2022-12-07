@@ -18,11 +18,6 @@ public class Interests extends HideableData<HashMap<Integer, Boolean>> implement
         this.data = super.data;
         this.hidden = false;
     }
-    public Interests(boolean hidden){
-        super(new HashMap<Integer, Boolean>(), hidden);
-        this.data = super.data;
-        this.hidden = hidden;
-    }
 
     // Methods
     public void addInterest(Integer interestKey){
@@ -49,9 +44,6 @@ public class Interests extends HideableData<HashMap<Integer, Boolean>> implement
     }
     public void showInterest(Integer interestKey){
         this.data.replace(interestKey, false);
-    }
-    public void setInterestVisibility(Integer interestKey, boolean hidden){
-        this.data.replace(interestKey, hidden);
     }
     public String getInterestAt(Integer interestKey){
         InterestsDict dict = new InterestsDict();
