@@ -1,12 +1,10 @@
 package InterfaceAdapters;
 import Entities.User;
-import FrameworksDrivers.*;
-import UseCases.ChatUseCases.ChatRenderUseCase;
-import UseCases.ChatUseCases.ChatRepoUseCase;
-import UseCases.DataRetrieval.CurrentUserGateway;
-import UseCases.DisplayUserModel;
-import UseCases.LikeUseCase;
-import UseCases.LogOutCurrentUser;
+import frameworksdrivers.*;
+import usecases.ChatUseCases.ChatRenderUseCase;
+import usecases.DataRetrieval.CurrentUserGateway;
+import usecases.LikeUseCase;
+import usecases.LogOutCurrentUser;
 
 import java.util.ArrayList;
 
@@ -42,6 +40,7 @@ public class MainPagePresenter {
                 break;
             case "otherAccount":
                 View otherAccount = (View) pageObject;
+                System.out.println(displayedUser.getUsername().getData());
                 OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(displayedUser.getUsername().getData());
                 otherAccountPresenter.updatePage("loginView", otherAccount);
                 break;

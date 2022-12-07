@@ -3,11 +3,9 @@ package InterfaceAdapters;
 import Entities.CurrentUser;
 import Entities.User;
 import Entities.UserGraph;
-import FrameworksDrivers.LogInView;
 
-import FrameworksDrivers.SignUpView;
-import FrameworksDrivers.View;
-import UseCases.DataRetrieval.CurrentGraph;
+import frameworksdrivers.View;
+import usecases.DataRetrieval.CurrentGraph;
 import UserLogUseCase.UserLogInteractor;
 import UserLogUseCase.UserLogRequestModel;
 

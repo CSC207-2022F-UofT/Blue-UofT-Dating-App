@@ -1,7 +1,6 @@
-import Entities.UserGraph;
-import UseCases.PracticeGraphCreator;
-import UseCases.PracticeGraphReadWrite;
-import FrameworksDrivers.UserEditView;
+import usecases.PracticeGraphCreator;
+import usecases.PracticeGraphReadWrite;
+
 public class Main {
     public static void main(String[] args) {
 

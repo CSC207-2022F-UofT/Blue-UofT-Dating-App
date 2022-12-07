@@ -2,17 +2,11 @@ package InterfaceAdapters;
 
 
 import Entities.User;
-import FrameworksDrivers.ChatView;
-import FrameworksDrivers.ChatViewInterface;
-import FrameworksDrivers.MainPageView;
-import FrameworksDrivers.View;
-import UseCases.ChatUseCases.*;
-import UseCases.DataRetrieval.CurrentUserGateway;
-import UseCases.DataRetrieval.SaveChats;
-import UseCases.DataRetrieval.SaveGraph;
-import com.sun.tools.javac.Main;
-
-import java.util.ArrayList;
+import frameworksdrivers.ChatViewInterface;
+import frameworksdrivers.View;
+import usecases.ChatUseCases.*;
+import usecases.DataRetrieval.CurrentUserGateway;
+import usecases.DataRetrieval.SaveChats;
 
 public class ChatViewPresenter implements ChatViewPresenterInterface {
     private final View currView;
