@@ -1,6 +1,5 @@
 package InterfaceAdapters;
 
-
 import Entities.User;
 import FrameworksDrivers.ChatViewInterface;
 import FrameworksDrivers.View;

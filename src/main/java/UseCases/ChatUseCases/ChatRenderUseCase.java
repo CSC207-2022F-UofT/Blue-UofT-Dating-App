@@ -13,8 +13,6 @@ import java.util.Set;
  */
 public class ChatRenderUseCase {
 
-    // assume that ChatRepo exist (static container)
-
     /**
      * This class is responsible for converting the raw chatroom entities into
      * data the presenter can use to update the chat page
