@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class AttributesDict {
     public static final HashMap<Integer, String> attributesMap =
-            new HashMap<Integer, String>();
+            new HashMap<>();
 
     public AttributesDict(){
         attributesMap.put(0, "Gender");

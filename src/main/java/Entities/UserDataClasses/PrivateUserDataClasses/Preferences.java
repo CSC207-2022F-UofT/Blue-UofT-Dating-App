@@ -15,10 +15,10 @@ public class Preferences extends UserData<ArrayList<ArrayList<Integer>>> {
 
     // Constructor
     public Preferences(){
-        super(new ArrayList<ArrayList<Integer>>());
+        super(new ArrayList<>());
         this.data = super.data;
         for(int i = 0; i <= 13; i++){
-            this.data.add(new ArrayList<Integer>());
+            this.data.add(new ArrayList<>());
         }
     }
 
@@ -34,10 +34,12 @@ public class Preferences extends UserData<ArrayList<ArrayList<Integer>>> {
         // and AttributesValueDict. If a value in valueKeys is already present in
         // this.data, do not add it again.
         if(valueKeys.size() > 0) {
-            for (int i = 0; i < valueKeys.size(); i++) {
-                if (!(this.data.get(preferenceKey).contains(valueKeys.get(i)))){
-                    this.data.get(preferenceKey).add(valueKeys.get(i));
-                }}}
+            for (Integer valueKey : valueKeys) {
+                if (!(this.data.get(preferenceKey).contains(valueKey))) {
+                    this.data.get(preferenceKey).add(valueKey);
+                }
+            }
+        }
     }
     public void removePreferences(Integer preferenceKey, ArrayList<Integer> valueKeys){
         // Removes preferences in <valueKeys> (e.g. brown, blue, green) from attribute

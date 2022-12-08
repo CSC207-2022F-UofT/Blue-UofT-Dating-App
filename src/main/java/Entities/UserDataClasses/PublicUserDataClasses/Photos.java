@@ -10,7 +10,7 @@ public class Photos extends UserData<ArrayList<Photo>> implements Serializable {
 
     // Constructors
     public Photos(){
-        super(new ArrayList<Photo>());
+        super(new ArrayList<>());
         this.data = super.data;
     }
     public Photos(ArrayList<Photo> photos){
@@ -18,12 +18,12 @@ public class Photos extends UserData<ArrayList<Photo>> implements Serializable {
         this.data = photos;
     }
     public Photos(Photo photo){
-        super(new ArrayList<Photo>());
+        super(new ArrayList<>());
         super.data.add(photo);
         this.data = super.data;
     }
     public Photos(String photo){
-        super(new ArrayList<Photo>());
+        super(new ArrayList<>());
         super.data.add(new Photo(photo));
         this.data = super.data;
     }

@@ -12,30 +12,15 @@ public class Courses extends HideableData<ArrayList<Course>> implements Serializ
 
     // Constructors
     public Courses(){
-        super(new ArrayList<Course>());
+        super(new ArrayList<>());
         this.data = super.data;
-    }
-
-    public Courses(ArrayList<Course> courses){
-        super(courses);
-        this.data = courses;
-        this.hidden = true;
-    }
-    public Courses(Course course){
-        super(new ArrayList<Course>());
-        super.data.add(course);
-        this.data = super.data;
-        this.hidden = true;
     }
     public Courses(String[] courseStrings){
-        super(new ArrayList<Course>());
+        super(new ArrayList<>());
         for(String courseCodeData: courseStrings){
             super.data.add(new Course(new CourseCode(courseCodeData)));
         }
         this.data = super.data;
-
-
-
     }
 
     // Methods
