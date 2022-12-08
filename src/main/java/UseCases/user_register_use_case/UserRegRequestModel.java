@@ -1,6 +1,10 @@
 package UseCases.user_register_use_case;
 
+/**
+ * This class will hold all the information the user has inputted to register a new account
+ */
 public class UserRegRequestModel {
+
     /**
      * this class will hold all the info the user inputted to register a new account
      */
@@ -30,15 +34,13 @@ public class UserRegRequestModel {
      * Getter for the password
      * @return the password the User wants to use
      */
+
     public String getPassword() {
 
         return this.password;
     }
 
     /**
-     * Getter for the repeated password
-     * @return the repeated password the User wants to use
-     */
     public String getRepeatPassword() {
 
         return this.repeatPassword;
