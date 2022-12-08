@@ -42,10 +42,10 @@ public class ChatRepoUseCase implements Serializable {
      * @return Boolean representing whether a Chatroom object exists or not.
      */
     public boolean checkForExistingChatroom(Set<User> users) {
-        Set<String> userSet = new HashSet<String>();
+        Set<String> userSet = new HashSet<>();
         for(User user: users){userSet.add(user.getUsername().getData());}
         for(Set<User> userChats: currChatrooms.keySet()){
-            HashSet<String> userChatsUsernames = new HashSet<String>();
+            HashSet<String> userChatsUsernames = new HashSet<>();
             for(User user: userChats){userChatsUsernames.add(user.getUsername().getData());}
             if(userChatsUsernames.equals(userSet)){
                 return true;
@@ -64,10 +64,10 @@ public class ChatRepoUseCase implements Serializable {
      * @return Chatroom corresponding to the input Set of users in the static Map.
      */
     public Chatroom getChatroom(Set<User> users) {
-        Set<String> userSet = new HashSet<String>();
+        Set<String> userSet = new HashSet<>();
         for(User user: users){userSet.add(user.getUsername().getData());}
         for(Set<User> userChats: currChatrooms.keySet()){
-            HashSet<String> userChatsUsernames = new HashSet<String>();
+            HashSet<String> userChatsUsernames = new HashSet<>();
             for(User user: userChats){userChatsUsernames.add(user.getUsername().getData());}
             if(userChatsUsernames.equals(userSet)){return currChatrooms.get(userChats);}
         }
@@ -77,14 +77,21 @@ public class ChatRepoUseCase implements Serializable {
         return getChatroom(users);
     }
 
+    ///**
+     //* Get all the chatrooms that currently exist.
+     //*
+     //* @return A Map mapping sets of Users to their Chatroom objects.
+     //*/
+    //public static Map<Set<User>, Chatroom> getAllChatrooms() {
+    //    return currChatrooms;
+    //}
+
     /**
-     * Get all the chatrooms that currently exist.
+     * Returns all the chatrooms that include the given user.
      *
-     * @return A Map mapping sets of Users to their Chatroom objects.
+     * @param user The user whose chatrooms are desired.
+     * @return A Map mapping a set of Users to their Chatrooms.
      */
-    public static Map<Set<User>, Chatroom> getAllChatrooms() {
-        return currChatrooms;
-    }
     public static Map<Set<User>, Chatroom> getUserChatrooms(User user){
         Map<Set<User>, Chatroom> userChatrooms = new HashMap<>();
         for(Set<User> users: currChatrooms.keySet()){
@@ -96,13 +103,31 @@ public class ChatRepoUseCase implements Serializable {
         }
         return userChatrooms;
     }
+
+    /**
+     * Updates the instance chatrooms of a ChatRepoUseCase object from the current stored chatrooms.
+     */
     public void savingChats(){
         this.instanceChatrooms = currChatrooms;
     }
+
+    /**
+     * Updates the current stored chatrooms from the instance chatrooms of a ChatRepoUseCase object.
+     */
     public void readingChats(){
         currChatrooms = this.instanceChatrooms;
     }
+
+    /**
+     * Resets the current stored chatrooms.
+     */
     public static void resetChats(){ currChatrooms = new HashMap<>();}
+
+    /**
+     * Deletes all the chatrooms containing a specified User.
+     *
+     * @param user The User whose chats need to be deleted.
+     */
     public void deleteUserChats(String user){
         Set<Set<User>> cloneKeys = new HashSet<>(currChatrooms.keySet());
         for(Set<User> set: cloneKeys){
