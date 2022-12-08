@@ -40,9 +40,6 @@ public class SendMessageUseCaseTest {
         // u1 - clark sends the message
         String message = "hi kein how are you";
 
-        // does not work currently as there's issues with usergraph i.e. usergraph does not contain the test users
-        // created above. do we need to use users that already exist in user graph?
-
         SendMessageUseCase sendMessageUseCase = new SendMessageUseCase();
         sendMessageUseCase.addMessage(u1.getUsername().getData(), u2.getUsername().getData(), message); // null pointer exception
 
