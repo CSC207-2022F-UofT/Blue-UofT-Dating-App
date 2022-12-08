@@ -62,6 +62,7 @@ public class MainPagePresenter {
         new LogOutCurrentUser();
         ChatViewPresenter chatViewPresenter = new ChatViewPresenter((View) pageObject);
         chatViewPresenter.updatePage("logOut", pageObject);
+        neighboursIndex = 0;
     }
 }
 

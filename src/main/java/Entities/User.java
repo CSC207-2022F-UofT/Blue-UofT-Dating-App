@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class User implements Serializable {
+public class User implements Serializable, Cloneable{
 
     private final Username username;
     private Password password;
@@ -404,4 +404,15 @@ public class User implements Serializable {
         this.neighbors.remove(otherUser);
     }
     public void setNeighbors(ArrayList<User> newNeighbours){ this.neighbors = newNeighbours;}
+
+    @Override
+    public User clone() {
+        try {
+            User clone = (User) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }
