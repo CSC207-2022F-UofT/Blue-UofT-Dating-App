@@ -1,160 +1,170 @@
 package FrameworksDrivers;
-
-import Entities.User;
-import FrameworksDrivers.UIElements.Button;
-import FrameworksDrivers.UIElements.textArea;
-import FrameworksDrivers.UIElements.textField;
-import InterfaceAdapters.MainPagePresenter;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import Entities.User;
+import FrameworksDrivers.UIElements.Button;
+import FrameworksDrivers.UIElements.Label;
+import InterfaceAdapters.MainPagePresenter;
+
+/**
+ *  MainPageView is a UI class which implements <i>ActionListener</i> and <i>View</i> to create the main page
+ *  for the whole program. This contains the creation of all components such as buttons, textfields etc. that are to be
+ *  displayed on the main page and are responsible for the actions different actions to be performed.
+ *
+ * @author aryaman
+ */
 public class MainPageView implements ActionListener, View {
-    Button logOut;
-    private textArea bioTextField;
     private JPanel masterPanel;
     private Object[] paths;
-    User displayUser;
     private CardLayout layout;
-
+    User displayUser;
     Button homeButton;
     Button chatButton;
     Button myProfileButton;
     Button likeButton;
     Button dislikeButton;
     Button viewOtherAccount;
-    textField nameTextField;
+    Button logOut;
+    Label logo;
+    Label tagLine;
+    Label displayedName;
+    Label bio;
 
+    /**
+     *
+     * Create the main page
+     * @param masterPanel the masterPanel that contains the page
+     * @param layout layout of the masterPanel
+     */
     public MainPageView(JPanel masterPanel, CardLayout layout){
         this.masterPanel = masterPanel;
         this.layout = layout;
         JPanel panel = new JPanel();
-
-        // Create Lower Panel
-        JPanel lowerPanel = new JPanel();
-        lowerPanel.setLayout(new GridLayout(1, 3));
+        panel.setLayout(null);
 
         // Create HomeButton
         homeButton = new Button();
-        homeButton.createButton(lowerPanel, "Home", 0,600,200,200);
+        homeButton.createButton(panel, "Home", 0,600,200,200);
         homeButton.getButton().addActionListener(this);
 
         // Create ChatButton
         chatButton = new Button();
-        chatButton.createButton(lowerPanel, "Chats", 200,600,200,200);
+        chatButton.createButton(panel, "Chats", 200,600,200,200);
         chatButton.getButton().addActionListener(this);
 
         // Create MyProfileButton
         myProfileButton = new Button();
-        myProfileButton.createButton(lowerPanel, "My Profile", 400,600,200,200);
+        myProfileButton.createButton(panel, "My Profile", 400,600,200,200);
         myProfileButton.getButton().addActionListener(this);
-
-        // Add these buttons to the lower panel
-        lowerPanel.add(homeButton.getButton());
-        lowerPanel.add(chatButton.getButton());
-        lowerPanel.add(myProfileButton.getButton());
-
-        // Create Middle Panel
-        JPanel middlePanel = new JPanel();
-        lowerPanel.setLayout(new GridLayout(1, 2));
 
         // Create like button
         likeButton = new Button();
-        likeButton.createButton(lowerPanel, "Like", 0,500,300,100);
+        likeButton.createButton(panel, "Like", 0,500,300,100);
         likeButton.getButton().addActionListener(this);
 
         // Create like button
         dislikeButton = new Button();
-        dislikeButton.createButton(lowerPanel, "Dislike", 300,500,300,100);
+        dislikeButton.createButton(panel, "Dislike", 300,500,300,100);
         dislikeButton.getButton().addActionListener(this);
-
-        // Add these buttons to the middle panel
-        middlePanel.add(likeButton.getButton());
-        middlePanel.add(dislikeButton.getButton());
-
-        // Create Top Panel
-        JPanel topPanel = new JPanel();
 
         // Create viewOtherAccount Button
         viewOtherAccount = new Button();
-        viewOtherAccount.createButton(lowerPanel, "View Profile", 400,0,200,100);
+        viewOtherAccount.createButton(panel, "View Profile", 400,0,200,100);
         viewOtherAccount.getButton().addActionListener(this);
 
-        // Add this button to the top panel
-        topPanel.add(viewOtherAccount.getButton());
+        // Create logOut Button
         logOut = new Button();
-        logOut.createButton(lowerPanel, "Log Out", 500,0,200,100);
+        logOut.createButton(panel, "Log Out", 0,0,200,100);
         logOut.getButton().addActionListener(this);
 
-        // Create Name Text Panel
-        JPanel namePanel = new JPanel();
+        // Create Logo Label
+        logo = new Label();
+        logo.createLabelCentered(250,0,100,100, panel, "Blue", Color.blue);
+        logo.setFontSize(40);
 
-        // Create Text Field
-        nameTextField = new textField();
-        nameTextField.createTextField(namePanel,150,200,300,200);
-        nameTextField.setText(" ");
+        // Create TagLine Label
+        tagLine = new Label();
+        tagLine.createLabel(225,30,300,100,panel,"Grindin' through the pain");
 
-        bioTextField = new textArea();
-        bioTextField.createTextArea(namePanel, "",150, 200, 400, 500);
-        bioTextField.getTextArea().setEnabled(false);
-        bioTextField.getTextArea().setWrapStyleWord(true);
+        // Create DisplayedName Label
+        displayedName = new Label();
+        displayedName.createLabel(100,200,400,200,panel," ");
+        displayedName.setFontSize(35);
+        displayedName.setHorizontalAlignment("center");
+        displayedName.setVerticalAlignment("center");
 
-        // Add Text Field to the Panel
-        namePanel.add(nameTextField.getTextField());
-        namePanel.add(bioTextField.getTextArea());
+        // Create Bio Label
+        bio = new Label();
+        bio.createLabel(100,250,400,200,panel," ");
+        bio.setFontSize(15);
+        bio.setHorizontalAlignment("center");
+        bio.setVerticalAlignment("center");
 
-
-        // Adding all panels to the masterPanel
-        panel.add(lowerPanel);
-        panel.add(middlePanel);
-        panel.add(topPanel);
-        panel.add(namePanel);
+        // Adding panel to masterpanel
         this.masterPanel.add(panel, "mainpageView");
     }
 
+
+    /**
+     * sendPaths method is used to establish the connection to other connecting pages
+     * @param paths contains the paths to other pages
+     */
     public void sendPaths(Object[] paths) {
         this.paths = paths;
     }
 
+    /**
+     * actionPerformed handles the action performed by the user on the main page. actionPerformed detects the buttons
+     * being clicked and calls the subsequent relevant presenters to determine how to react and where to send the user
+     * or when to update the page on different times.
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         //create presenter
-        MainPagePresenter mainPagePreseter = new MainPagePresenter();
+        MainPagePresenter mainPagePresenter = new MainPagePresenter();
 
 
         // All button cases
         if (e.getSource() == homeButton.getButton()){
-            mainPagePreseter.updatePage(this.displayUser, "mainpageView",this.paths[3]);
+            mainPagePresenter.updatePage(this.displayUser, "mainpageView",this.paths[3]);
             this.layout.show(this.masterPanel, "mainpageView");
         }
         if (e.getSource() == chatButton.getButton()){
-            mainPagePreseter.updatePage(this.displayUser, "chatView", this.paths[1]);
+            mainPagePresenter.updatePage(this.displayUser, "chatView", this.paths[1]);
             this.layout.show(this.masterPanel, "chatView");
         }
         if (e.getSource() == myProfileButton.getButton()){
-            mainPagePreseter.updatePage(this.displayUser, "usereditView", this.paths[2]);
+            mainPagePresenter.updatePage(this.displayUser, "usereditView", this.paths[2]);
             this.layout.show(this.masterPanel, "userEditView");
         }
-
         if (e.getSource() == likeButton.getButton()){
-            mainPagePreseter.Like(this.displayUser);
-            mainPagePreseter.updatePage(this.displayUser, "mainpageView", this.paths[3]);
+            mainPagePresenter.Like(this.displayUser);
+            mainPagePresenter.updatePage(this.displayUser, "mainpageView", this.paths[3]);
         }
         if (e.getSource() == dislikeButton.getButton()){
-            mainPagePreseter.updatePage(this.displayUser, "mainpageView", this.paths[3]);
+            mainPagePresenter.updatePage(this.displayUser, "mainpageView", this.paths[3]);
         }
         if (e.getSource() == viewOtherAccount.getButton()){
-            mainPagePreseter.updatePage(this.displayUser, "otherAccount", this.paths[0]);
+            mainPagePresenter.updatePage(this.displayUser, "otherAccount", this.paths[0]);
             this.layout.show(this.masterPanel, "otherAccount");
         }
         if(e.getSource() == logOut.getButton()){
-            mainPagePreseter.logOut(this.paths[1]);
+            mainPagePresenter.logOut(this.paths[1]);
             this.layout.show(this.masterPanel, "loginView");
 
         }
     }
+
+    /**
+     * The updatePage method is responsible for refreshing and updating the screen with the new user displayed whenever
+     * prompted to do so.
+     * @param info info contains a User which is essentially the next user to be presented on the main page
+     */
     public void updatePage(Object[] info) {
         //Just switch the user
         if(info == null){
@@ -163,9 +173,8 @@ public class MainPageView implements ActionListener, View {
         }
         else {
             this.displayUser = (User) info[0];
-            this.nameTextField.setText(displayUser.getDisplayName().getData());
-            this.bioTextField.setText(displayUser.getBio().getData());
-            this.bioTextField.getTextArea().setForeground(Color.BLACK);
+            this.displayedName.setText(displayUser.getDisplayName().getData());
+            this.bio.setText(displayUser.getBio().getData());
         }
     }
 
