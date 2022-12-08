@@ -28,7 +28,7 @@ public class ChatView implements ActionListener, View, ChatViewInterface {
     private Object[] paths;
     protected ArrayList<JButton> chatButtons = new ArrayList<>();
     private final JButton backButton;
-    private final JPanel chatListPanel;
+    private JPanel chatListPanel;
     boolean hasCurrentUsers;
 
     /**

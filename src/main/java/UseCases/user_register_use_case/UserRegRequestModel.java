@@ -34,13 +34,15 @@ public class UserRegRequestModel {
      * Getter for the password
      * @return the password the User wants to use
      */
-
     public String getPassword() {
 
         return this.password;
     }
 
     /**
+     *
+     * @return
+     */
     public String getRepeatPassword() {
 
         return this.repeatPassword;
