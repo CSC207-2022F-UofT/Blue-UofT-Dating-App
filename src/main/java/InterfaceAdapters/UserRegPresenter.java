@@ -5,9 +5,9 @@ import Entities.User;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
 import FrameworksDrivers.SignUpView;
 import FrameworksDrivers.View;
-import UseCases.DataRetrieval.CurrentUserGateway;
-import UseCases.user_register_use_case.UserRegInteractor;
-import UseCases.user_register_use_case.UserRegRequestModel;
+import UseCases.dataretrieval.CurrentUserGateway;
+import UseCases.userregister.UserRegInteractor;
+import UseCases.userregister.UserRegRequestModel;
 
 
 public class UserRegPresenter {

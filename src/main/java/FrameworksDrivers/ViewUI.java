@@ -1,6 +1,6 @@
 package FrameworksDrivers;
 
-import UseCases.DataRetrieval.GetChats;
+import UseCases.dataretrieval.GetChats;
 import javax.swing.*;
 import java.awt.*;
 

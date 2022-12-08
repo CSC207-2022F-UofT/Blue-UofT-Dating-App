@@ -1,11 +1,9 @@
 package UseCases.ChatUseCases;
 import Entities.UserGraph;
-import UseCases.DataRetrieval.CurrentGraph;
-import UseCases.DataRetrieval.SaveGraph;
+import UseCases.dataretrieval.CurrentGraph;
+import UseCases.dataretrieval.SaveGraph;
 import UseCases.PracticeGraphCreator;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 

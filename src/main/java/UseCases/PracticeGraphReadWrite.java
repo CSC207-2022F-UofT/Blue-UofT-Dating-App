@@ -1,5 +1,6 @@
 package UseCases;
 
+import UseCases.dataretrieval.UserGraphReadWriter;
 import Entities.UserGraph;
 
 import java.io.IOException;

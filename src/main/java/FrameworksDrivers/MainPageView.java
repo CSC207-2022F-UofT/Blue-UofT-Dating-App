@@ -156,10 +156,8 @@ public class MainPageView implements ActionListener, View {
         if(e.getSource() == logOut.getButton()){
             mainPagePresenter.logOut(this.paths[1]);
             this.layout.show(this.masterPanel, "loginView");
-
         }
     }
-
     /**
      * The updatePage method is responsible for refreshing and updating the screen with the new user displayed whenever
      * prompted to do so.

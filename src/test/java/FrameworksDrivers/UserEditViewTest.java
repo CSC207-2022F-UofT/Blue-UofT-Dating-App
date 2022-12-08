@@ -4,7 +4,7 @@ import Entities.User;
 import Entities.UserDataClasses.CourseCode;
 import Entities.UserDataClasses.HideableUserDataClasses.Course;
 import Entities.UserDataClasses.HideableUserDataClasses.Interests;
-import UseCases.UserEditResponseModel;
+import UseCases.useredit.UserEditResponseModel;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
@@ -17,7 +17,7 @@ class UserEditViewTest {
         interests.add(3);
         Interests interests1 = new Interests();
         interests1.addInterests(interests);
-        testUser.setInterests(interests1);
+        testUser.setInterests(interests1.getData());
 
         ArrayList<ArrayList<Integer>> attributes = new ArrayList<>();
         ArrayList<Integer> attribute1 = new ArrayList<>();

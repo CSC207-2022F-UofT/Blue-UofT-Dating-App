@@ -1,7 +1,10 @@
 package UseCases.ChatUseCases;
 
 import Entities.*;
-import UseCases.DataRetrieval.SaveGraph;
+import UseCases.chat.ChatRegUseCase;
+import UseCases.chat.ChatRepoUseCase;
+import UseCases.chat.SendMessageUseCase;
+import UseCases.dataretrieval.SaveGraph;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.HashSet;

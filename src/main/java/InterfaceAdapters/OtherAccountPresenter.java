@@ -1,7 +1,7 @@
 package InterfaceAdapters;
 
 import FrameworksDrivers.View;
-import UseCases.DisplayUserModel;
+import UseCases.otheraccount.DisplayUserModel;
 
 /**
  * OtherAccountPresenter used to take inputs from FrameWorkDrivers, select

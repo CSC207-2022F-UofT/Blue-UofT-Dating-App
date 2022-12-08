@@ -3,12 +3,12 @@ package InterfaceAdapters;
 import Entities.User;
 import FrameworksDrivers.ChatViewInterface;
 import FrameworksDrivers.View;
-import UseCases.ChatUseCases.ChatRenderResponseModel;
-import UseCases.ChatUseCases.ChatRenderUseCase;
-import UseCases.ChatUseCases.ChatRepoUseCase;
-import UseCases.ChatUseCases.SendMessageUseCase;
-import UseCases.DataRetrieval.CurrentUserGateway;
-import UseCases.DataRetrieval.SaveChats;
+import UseCases.chat.ChatRenderResponseModel;
+import UseCases.chat.ChatRenderUseCase;
+import UseCases.chat.ChatRepoUseCase;
+import UseCases.chat.SendMessageUseCase;
+import UseCases.dataretrieval.CurrentUserGateway;
+import UseCases.dataretrieval.SaveChats;
 
 /**
  * Calls use case methods and updates ChatView with new information.

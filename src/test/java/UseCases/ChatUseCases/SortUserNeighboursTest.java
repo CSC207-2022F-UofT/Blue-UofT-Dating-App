@@ -2,10 +2,9 @@ package UseCases.ChatUseCases;
 
 import Entities.User;
 import Entities.UserGraph;
-import UseCases.DataRetrieval.CurrentGraph;
-import UseCases.DataRetrieval.SaveGraph;
+import UseCases.dataretrieval.CurrentGraph;
 import UseCases.PracticeGraphCreator;
-import UseCases.SortUserNeighbours;
+import UseCases.useredit.SortUserNeighbours;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class SortUserNeighboursTest {

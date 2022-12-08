@@ -1,6 +1,7 @@
 package InterfaceAdapters;
 
 import Entities.CurrentUser;
+import UseCases.PracticeGraphCreator;
 import Entities.User;
 import Entities.UserDataClasses.CourseCode;
 import Entities.UserDataClasses.HideableUserDataClasses.Course;
@@ -8,11 +9,12 @@ import Entities.UserDataClasses.HideableUserDataClasses.Interests;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
 import Entities.UserDataClasses.UserDataDictionaries.AttributeValueDict;
 import Entities.UserGraph;
-import FrameworksDrivers.UIElements.CheckBox;
-import UseCases.*;
-import UseCases.DataRetrieval.CurrentGraph;
-import UseCases.DataRetrieval.CurrentUserGateway;
-import UseCases.DataRetrieval.SaveGraph;
+import UseCases.dataretrieval.CurrentGraph;
+import UseCases.dataretrieval.SaveGraph;
+import UseCases.useredit.DeleteCurrentAccount;
+import UseCases.useredit.UserEditInteractor;
+import UseCases.useredit.UserEditModel;
+import UseCases.useredit.UserEditResponseModel;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ class UserEditPresenterTest {
         interests.add(3);
         Interests interests1 = new Interests();
         interests1.addInterests(interests);
-        testUser.setInterests(interests1);
+        testUser.setInterests(interests1.getData());
 
         ArrayList<ArrayList<Integer>> attributes = new ArrayList<>();
         ArrayList<Integer> attribute1 = new ArrayList<>();

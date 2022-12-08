@@ -133,6 +133,10 @@ public class User implements Serializable, Cloneable{
     public void setCourses(Courses newCourses) {
         this.courses = newCourses;
     }
+    public void setCourses(ArrayList<Course> newCourses) {
+
+        this.courses = new Courses(newCourses);
+    }
 
     public void setInterests(HashMap<Integer, Boolean> newInterests) {
         this.interests = new Interests();

@@ -1,6 +1,7 @@
 package UseCases;
 
 import Entities.User;
+import UseCases.useredit.CompatibilityFunction;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 

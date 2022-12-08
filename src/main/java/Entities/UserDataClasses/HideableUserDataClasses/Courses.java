@@ -23,6 +23,11 @@ public class Courses extends HideableData<ArrayList<Course>> implements Serializ
         this.data = super.data;
     }
 
+    public Courses(ArrayList<Course> newCourses) {
+        super(newCourses);
+        this.data = super.data;
+    }
+
     // Methods
     public void addCourse(Course course){
         this.data.add(course);

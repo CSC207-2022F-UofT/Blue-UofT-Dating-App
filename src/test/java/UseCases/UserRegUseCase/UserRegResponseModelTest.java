@@ -1,5 +1,5 @@
 package UseCases.UserRegUseCase;
-import UseCases.user_register_use_case.UserRegResponseModel;
+import UseCases.userregister.UserRegResponseModel;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

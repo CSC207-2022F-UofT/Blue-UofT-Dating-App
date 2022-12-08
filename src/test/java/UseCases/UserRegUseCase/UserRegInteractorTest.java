@@ -1,11 +1,9 @@
 package UseCases.UserRegUseCase;
 
-import Entities.User;
 import Entities.UserGraph;
-import UseCases.DataRetrieval.CurrentGraph;
-import UseCases.DataRetrieval.SaveGraph;
-import UseCases.user_register_use_case.UserRegInteractor;
-import UseCases.user_register_use_case.UserRegRequestModel;
+import UseCases.dataretrieval.SaveGraph;
+import UseCases.userregister.UserRegInteractor;
+import UseCases.userregister.UserRegRequestModel;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

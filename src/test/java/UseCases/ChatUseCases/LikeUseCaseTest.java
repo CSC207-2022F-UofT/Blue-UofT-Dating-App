@@ -2,9 +2,9 @@ package UseCases.ChatUseCases;
 import Entities.User;
 import Entities.UserEdge;
 import Entities.UserGraph;
-import UseCases.DataRetrieval.CurrentGraph;
-import UseCases.DataRetrieval.SaveGraph;
-import UseCases.LikeUseCase;
+import UseCases.dataretrieval.CurrentGraph;
+import UseCases.dataretrieval.SaveGraph;
+import UseCases.mainpage.LikeUseCase;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

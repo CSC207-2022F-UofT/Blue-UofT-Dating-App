@@ -7,8 +7,8 @@ import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.*;
 import InterfaceAdapters.UserEditPresenter;
-import UseCases.UserEditModel;
-import UseCases.UserEditResponseModel;
+import UseCases.useredit.UserEditModel;
+import UseCases.useredit.UserEditResponseModel;
 
 import javax.swing.*;
 import java.awt.*;

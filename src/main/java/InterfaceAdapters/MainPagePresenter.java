@@ -2,10 +2,10 @@ package InterfaceAdapters;
 
 import Entities.User;
 import FrameworksDrivers.View;
-import UseCases.ChatUseCases.ChatRenderUseCase;
-import UseCases.DataRetrieval.CurrentUserGateway;
-import UseCases.LikeUseCase;
-import UseCases.LogOutCurrentUser;
+import UseCases.chat.ChatRenderUseCase;
+import UseCases.dataretrieval.CurrentUserGateway;
+import UseCases.mainpage.LikeUseCase;
+import UseCases.mainpage.LogOutCurrentUser;
 import java.util.ArrayList;
 
 

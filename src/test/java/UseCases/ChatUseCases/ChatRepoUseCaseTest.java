@@ -2,6 +2,8 @@ package UseCases.ChatUseCases;
 
 import Entities.Chatroom;
 import Entities.User;
+import UseCases.chat.ChatRegUseCase;
+import UseCases.chat.ChatRepoUseCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

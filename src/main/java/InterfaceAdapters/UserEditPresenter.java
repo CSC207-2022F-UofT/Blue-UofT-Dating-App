@@ -4,11 +4,11 @@ import Entities.CurrentUser;
 import Entities.UserGraph;
 import FrameworksDrivers.ChatViewInterface;
 import FrameworksDrivers.View;
-import UseCases.ChatUseCases.ChatRepoUseCase;
-import UseCases.DataRetrieval.CurrentGraph;
-import UseCases.DataRetrieval.CurrentUserGateway;
-import UseCases.DataRetrieval.SaveGraph;
-import UseCases.*;
+import UseCases.chat.ChatRepoUseCase;
+import UseCases.dataretrieval.CurrentGraph;
+import UseCases.dataretrieval.CurrentUserGateway;
+import UseCases.dataretrieval.SaveGraph;
+import UseCases.useredit.*;
 
 /**
  * Presenter for the UserEditView page. Because this project implements MVP, this class also serves the function

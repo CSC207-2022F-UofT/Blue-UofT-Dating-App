@@ -1,5 +1,5 @@
 package UseCases.UserRegUseCase;
-import UseCases.user_register_use_case.UserRegRequestModel;
+import UseCases.userregister.UserRegRequestModel;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
