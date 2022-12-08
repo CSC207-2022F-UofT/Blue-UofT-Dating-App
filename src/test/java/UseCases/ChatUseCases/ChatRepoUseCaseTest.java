@@ -85,24 +85,4 @@ public class ChatRepoUseCaseTest {
         Assertions.assertTrue(actual);
     }
 
-//    @Test
-//    void savingChatsTest(){
-//
-//    }
-//
-//    @Test
-//    void readingChatsTest(){
-//
-//    }
-//
-//    @Test
-//    void resetChatsTest(){
-//
-//    }
-//
-//    @Test
-//    void deleteUserChats(){
-//
-//    }
-
 }
