@@ -1,16 +1,17 @@
 package UseCases.DataRetrieval;
 
-import Entities.User;
 import Entities.UserGraph;
 import UseCases.ChatUseCases.ChatRepoUseCase;
 import UseCases.UserGraphReadWriter;
 
 import java.io.IOException;
 
+/**
+ * Saves the which is passed into its constructor to the file "userGraph.ser"
+ */
 public class SaveGraph {
 
     UserGraphReadWriter readWriter = new UserGraphReadWriter();
-
     public SaveGraph(UserGraph userGraph) {
         try {
             readWriter.saveToFile("userGraph.ser", userGraph);
@@ -20,13 +21,7 @@ public class SaveGraph {
     }
 
     /**
-     * this method will update the graph of users with a new User
-     *      * @see User
-     *      * @see UserGraph
-     * @throws RuntimeException throws runtime exception
-     * @return                  whether a user with the newName exists
-     * @see    User
-     * @see    UserGraph
+     * Sets userGraph.ser and chats.ser to a new UserGraph and ChatRepoUseCase
      */
     public static void main(String[] args) {
         UserGraph userGraph1 = new UserGraph();

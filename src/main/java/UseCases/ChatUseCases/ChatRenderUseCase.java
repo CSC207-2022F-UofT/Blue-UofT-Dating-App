@@ -1,8 +1,8 @@
 package UseCases.ChatUseCases;
 
-import Entities.*;
-import InterfaceAdapters.ChatViewPresenter;
-import UseCases.UserGraphReadWriter;
+import Entities.Chatroom;
+import Entities.Message;
+import Entities.User;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -12,8 +12,6 @@ import java.util.Set;
  * This class is responsible for converting the chatroom entities to data the presenter can use to update the chat page
  */
 public class ChatRenderUseCase {
-
-    // assume that ChatRepo exist (static container)
 
     /**
      * This class is responsible for converting the raw chatroom entities into

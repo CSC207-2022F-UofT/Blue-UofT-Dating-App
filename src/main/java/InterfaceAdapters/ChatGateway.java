@@ -21,8 +21,8 @@ public class ChatGateway implements ReadWriter {
      *
      * @param filepath The filepath to the .ser file storing ChatRepoUseCase.
      * @return  The ChatRepoUseCase object stored in the file at filepath.
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException if some input/output error occurs while reading from the file.
+     * @throws ClassNotFoundException if the class the object is being loaded into cannot be found
      */
     @Override
     public ChatRepoUseCase readFromFile(String filepath) throws IOException, ClassNotFoundException {
@@ -44,7 +44,7 @@ public class ChatGateway implements ReadWriter {
      *
      * @param filepath The filepath to the .ser file storing the input object.
      * @param chatRepoUseCase ChatRepoUseCase object that needs to be serialized.
-     * @throws IOException
+     * @throws IOException if some input/output error occurs while writing to the file.
      */
     @Override
     public void saveToFile(String filepath, Object chatRepoUseCase) throws IOException {

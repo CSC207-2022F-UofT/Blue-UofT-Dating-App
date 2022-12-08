@@ -1,19 +1,23 @@
 package UseCases.DataRetrieval;
-
-import Entities.User;
 import Entities.UserGraph;
 import UseCases.UserGraphReadWriter;
 
 import java.io.IOException;
 
+/**
+ * Retrieves the most up to date userGraph object.
+ */
 public class CurrentGraph {
 
+    /** Reads the userGraph file and retrieves the most up-to-date graph.
+     * @return UserGraph which was read from userGraoh. ser
+     */
     public static UserGraph getGraph() {
         UserGraphReadWriter readWriter = new UserGraphReadWriter();
         UserGraph readGraph = null;
 
         try {
-            readGraph = (UserGraph) readWriter.readFromFile("userGraph.ser");
+            readGraph = readWriter.readFromFile("userGraph.ser");
         } catch (
                 IOException e) {
             System.out.println("User list did not read.");

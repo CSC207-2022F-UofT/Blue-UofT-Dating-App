@@ -1,7 +1,7 @@
 package FrameworksDrivers;
 
-import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.Button;
+import FrameworksDrivers.UIElements.Label;
 import InterfaceAdapters.OtherAccountPresenter;
 
 import javax.swing.*;
@@ -15,29 +15,27 @@ import java.util.ArrayList;
  * that is chosen by the user
  */
 public class OtherAccount implements ActionListener, View {
-    private JPanel masterPanel;
-    private CardLayout layout;
-    private JPanel panel;
+    private final JPanel masterPanel;
+    private final CardLayout layout;
+    private final JPanel panel;
 
     private Object[] paths;
-    private Button backToMain;
-    private Label bio;
-    private Label name;
-    private Label location;
+    private final Button backToMain;
+    private final Label bio;
+    private final Label name;
+    private final Label location;
 
     private ArrayList<Label> interstsLabels;
     private ArrayList<Label> attributesLabels;
     private ArrayList<Label> courseLabels;
 
-    private Label interestTitle;
-    private Label attributesTitle;
-    private Label coursesTitle;
+    private final Label interestTitle;
+    private final Label attributesTitle;
+    private final Label coursesTitle;
 
-    private JPanel interstPanel;
-    private JPanel attributesPanel;
-    private JPanel coursesPanel;
-
-    private String prevpage;
+    private final JPanel interstPanel;
+    private final JPanel attributesPanel;
+    private final JPanel coursesPanel;
     /**
      * Initalizes OtherAccount page
      *
@@ -207,12 +205,12 @@ public class OtherAccount implements ActionListener, View {
         ArrayList<String> attributes = (ArrayList<String>) info[4];
         ArrayList<String> courses = (ArrayList<String>) info[5];
 
-        this.interstPanel.setVisible(intersts.size() > 1);
-        this.interestTitle.setVisibile(intersts.size() > 1);
+        this.interstPanel.setVisible(intersts.size() > 0);
+        this.interestTitle.setVisible(intersts.size() > 0);
         this.attributesPanel.setVisible(attributes.size() > 1);
-        this.attributesTitle.setVisibile(attributes.size() > 1);
+        this.attributesTitle.setVisible(attributes.size() > 1);
         this.coursesPanel.setVisible(courses.size() > 1);
-        this.coursesTitle.setVisibile(courses.size() > 1);
+        this.coursesTitle.setVisible(courses.size() > 1);
 
         for (Label interstsLabel : interstsLabels) {
             this.interstPanel.remove(interstsLabel.getLabel());

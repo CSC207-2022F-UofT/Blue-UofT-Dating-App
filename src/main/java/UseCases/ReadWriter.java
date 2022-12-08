@@ -1,7 +1,4 @@
 package UseCases;
-import Entities.UserGraph;
-
-import java.io.IOException;
 
 /**
  * ReadWriter is an interface for reading from and writing to
