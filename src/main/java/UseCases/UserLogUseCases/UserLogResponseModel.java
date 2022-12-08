@@ -1,4 +1,4 @@
-package UserLogUseCase;
+package UseCases.UserLogUseCases;
 
 import Entities.CurrentUser;
 import Entities.User;

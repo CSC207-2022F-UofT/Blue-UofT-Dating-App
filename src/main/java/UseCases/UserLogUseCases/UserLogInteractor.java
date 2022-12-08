@@ -1,4 +1,4 @@
-package UserLogUseCase;
+package UseCases.UserLogUseCases;
 
 import UseCases.DataRetrieval.UserLogGateway;
 import UseCases.DataRetrieval.UserRegGateway;

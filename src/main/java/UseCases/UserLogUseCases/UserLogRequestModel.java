@@ -1,9 +1,9 @@
-package UserLogUseCase;
+package UseCases.UserLogUseCases;
 
 public class UserLogRequestModel {
 
-    private String name;
-    private String pass;
+    private final String name;
+    private final String pass;
 
     /**
      * constructor for the UserLogRequestModel
@@ -13,7 +13,6 @@ public class UserLogRequestModel {
     public UserLogRequestModel(String name, String pass){
         this.name = name;
         this.pass = pass;
-
     }
 
     /**
@@ -24,15 +23,6 @@ public class UserLogRequestModel {
         return this.name;
     }
 
-    /**
-     * setter method for username in the UserLogRequestModel
-     * (build for testing purposes)
-     * @param name username that will be assigned to the name attribute in the model
-     */
-    void setName(String name) {
-
-        this.name = name;
-    }
 
     /**
      * getter method for password in the UserLogRequestModel
@@ -43,13 +33,4 @@ public class UserLogRequestModel {
         return this.pass;
     }
 
-    /**
-     * the setter method for the pass attribute in the model
-     * (build for testing purposes)
-     * @param pass the password that will be assigned to the pass attribute
-     */
-    void setPassword(String pass) {
-
-        this.pass = pass;
-    }
 }
