@@ -1,18 +1,11 @@
 package InterfaceAdapters;
 
-
 import Entities.User;
-import FrameworksDrivers.ChatView;
 import FrameworksDrivers.ChatViewInterface;
-import FrameworksDrivers.MainPageView;
 import FrameworksDrivers.View;
 import UseCases.ChatUseCases.*;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import UseCases.DataRetrieval.SaveChats;
-import UseCases.DataRetrieval.SaveGraph;
-import com.sun.tools.javac.Main;
-
-import java.util.ArrayList;
 
 /**
  * Calls use case methods and updates ChatView with new information.
