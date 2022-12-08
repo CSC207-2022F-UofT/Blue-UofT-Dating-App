@@ -6,22 +6,14 @@ package UseCases.user_register_use_case;
 public class UserRegRequestModel {
 
     /**
-     * The username the new user has inputted
+     * this class will hold all the info the user inputted to register a new account
      */
-    private String name;
+    private final String name;
+    private final String password;
+    private final String repeatPassword;
 
     /**
-     * The password the new user has inputted
-     */
-    private String password;
-
-    /**
-     * The password the new user has inputted, a repeated time
-     */
-    private String repeatPassword;
-
-    /**
-     * This method contains getters and setters for the info the new user has inputted; Setters are used for testing
+     * this method contains getters and setters for the info the new User inputted
      */
     public UserRegRequestModel(String name, String password, String repeatPassword) {
         this.name = name;
@@ -30,13 +22,18 @@ public class UserRegRequestModel {
     }
 
     /**
-     * This will get the username that the new user has inputted
-     * @return the username the new user wants to use
+     * Getter for the username
+     * @return the name the User wants to use
      */
     public String getName() {
 
         return this.name;
     }
+
+    /**
+     * Getter for the password
+     * @return the password the User wants to use
+     */
 
     public String getPassword() {
 
@@ -44,11 +41,8 @@ public class UserRegRequestModel {
     }
 
     /**
-     * This will get the repeated input of the password the new user wants to use
-     * @return the second time the user entered the password they want to use
-     */
     public String getRepeatPassword() {
 
-        return repeatPassword;
+        return this.repeatPassword;
     }
 }
