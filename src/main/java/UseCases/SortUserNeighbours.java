@@ -12,34 +12,38 @@ public class SortUserNeighbours{
     public SortUserNeighbours(String user, UserGraph userGraph){
         this.currentUser = userGraph.getUserByString(user);
         this.userGraph = userGraph;
-        this.currentUser.setNeighbors(sortedNeighbours());
+        sortedNeighbours();
         new SaveGraph(userGraph);
     }
     public SortUserNeighbours(User user, UserGraph userGraph){
         this.currentUser = user;
         this.userGraph = userGraph;
-        this.currentUser.setNeighbors(sortedNeighbours());
+        sortedNeighbours();
         new SaveGraph(userGraph);
     }
-    private ArrayList<User> sortedNeighbours(){
-        ArrayList<User> sortedList = new ArrayList<>();
-
+    private void sortedNeighbours(){
         for(int i = 0; i < this.currentUser.getNeighbors().size(); i++){
-            sortedList.add(this.getMaxUser(i, this.currentUser.getNeighbors().size() - 1));
+            int swapIndex = this.getMaxUser(i, this.currentUser.getNeighbors().size() - 1);
+            User userI = this.currentUser.getNeighbors().get(i);
+            User userSwap = this.currentUser.getNeighbors().get(swapIndex);
+
+            this.currentUser.getNeighbors().set(i, userSwap);
+            this.currentUser.getNeighbors().set(swapIndex, userI);
         }
-        return sortedList;
     }
-    private User getMaxUser(int b, int e){
+    private int getMaxUser(int b, int e){
         User maxUser = this.currentUser.getNeighbors().get(b);
         float maxWeight = this.userGraph.getEdge(this.currentUser, maxUser).getWeight();
+        int maxUserIndex = b;
         for(int i = b + 1; i <= e; i++){
             User otherUser = this.currentUser.getNeighbors().get(i);
             float otherUserWeight = this.userGraph.getEdge(this.currentUser, otherUser).getWeight();
             if(otherUserWeight > maxWeight){
                 maxWeight = otherUserWeight;
                 maxUser = otherUser;
+                maxUserIndex = i;
             }
         }
-        return maxUser;
+        return maxUserIndex;
     }
 }

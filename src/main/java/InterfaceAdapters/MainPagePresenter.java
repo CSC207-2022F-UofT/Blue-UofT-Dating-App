@@ -1,6 +1,7 @@
 package InterfaceAdapters;
+
 import Entities.User;
-import FrameworksDrivers.*;
+import FrameworksDrivers.View;
 import UseCases.ChatUseCases.ChatRenderUseCase;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import UseCases.LikeUseCase;
@@ -86,6 +87,7 @@ public class MainPagePresenter {
         new LogOutCurrentUser();
         ChatViewPresenter chatViewPresenter = new ChatViewPresenter((View) pageObject);
         chatViewPresenter.updatePage("logOut", pageObject);
+        neighboursIndex = 0;
     }
 }
 

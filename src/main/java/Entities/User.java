@@ -1,6 +1,5 @@
 package Entities;
 
-import Entities.UserDataClasses.CourseCode;
 import Entities.UserDataClasses.HideableUserDataClasses.Attributes;
 import Entities.UserDataClasses.HideableUserDataClasses.Course;
 import Entities.UserDataClasses.HideableUserDataClasses.Courses;
@@ -10,14 +9,12 @@ import Entities.UserDataClasses.PrivateUserDataClasses.PostalCode;
 import Entities.UserDataClasses.PrivateUserDataClasses.Preferences;
 import Entities.UserDataClasses.PrivateUserDataClasses.Username;
 import Entities.UserDataClasses.PublicUserDataClasses.*;
-import Entities.UserDataClasses.UserData;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class User implements Serializable {
+public class User implements Serializable, Cloneable{
 
     private final Username username;
     private Password password;
@@ -52,7 +49,7 @@ public class User implements Serializable {
         this.attributes = new Attributes();
 
         // Other
-        this.neighbors = new ArrayList<User>();
+        this.neighbors = new ArrayList<>();
     }
 
     // Getters
@@ -103,45 +100,26 @@ public class User implements Serializable {
     }
 
     // Setters
+    /**
+     * sets password to string newPassword
+     * @param newPassword new password
+     */
     public void setPassword(String newPassword) {
         this.password = new Password(newPassword);
     }
-
-    public void setPassword(Password newPassword) {
-        this.password = newPassword;
-    }
-
     public void setDisplayName(String newDisplayName) {
         this.displayName = new DisplayName(newDisplayName);
     }
-
-    public void setDisplayName(DisplayName newDisplayName) {
-        this.displayName = newDisplayName;
-    }
-
     public void setBio(String newBio) {
         this.bio = new Bio(newBio);
     }
-
-    public void setBio(Bio newBio) {
-        this.bio = newBio;
-    }
-
     public void setLocation(String newLocation) {
         this.location = new Location(newLocation);
-    }
-
-    public void setLocation(Location newLocation) {
-        this.location = newLocation;
     }
 
     public void setPostalCode(String newPostalCode) {
         // Precondition: newPostalCode is of the format a1b2c3
         this.postalCode = new PostalCode(newPostalCode);
-    }
-
-    public void setPostalCode(PostalCode newPostalCode) {
-        this.postalCode = newPostalCode;
     }
 
     public void setPhotos(ArrayList<Photo> newPhotos) {
@@ -150,10 +128,6 @@ public class User implements Serializable {
 
     public void setPhotos(Photos newPhotos) {
         this.photos = newPhotos;
-    }
-
-    public void setCourses(ArrayList<Course> newCourses) {
-        this.courses = new Courses(newCourses);
     }
 
     public void setCourses(Courses newCourses) {
@@ -166,22 +140,8 @@ public class User implements Serializable {
         this.interests.data = newInterests;
     }
 
-    public void setInterests(Interests newInterests) {
-        this.interests = newInterests;
-    }
-
-    public void setAttributes(HashMap<Integer, ArrayList<Object>> newAttributes) {
-        this.attributes = new Attributes();
-        this.attributes.setData(newAttributes);
-    }
-
     public void setAttributes(Attributes newAttributes) {
         this.attributes = newAttributes;
-    }
-
-    public void setPreferences(ArrayList<ArrayList<Integer>> newPreferences) {
-        this.preferences = new Preferences();
-        this.preferences.setData(newPreferences);
     }
 
     public void setPreferences(Preferences newPreferences) {
@@ -234,10 +194,18 @@ public class User implements Serializable {
     }
 
     // Interests
+
+    /**
+     * Adds <newInterest> to this User's Interests
+     * @param newInterest Interest key to add
+     */
     public void addInterest(int newInterest) {
         this.interests.addInterest(newInterest);
     }
-
+    /**
+     * Adds <newInterests> to this User's Interests
+     * @param newInterests Interest keys to add
+     */
     public void addInterests(ArrayList<Integer> newInterests) {
         this.interests.addInterests(newInterests);
     }
@@ -253,11 +221,24 @@ public class User implements Serializable {
     public String getInterestAt(int interestKey) {
         return this.interests.getInterestAt(interestKey);
     }
+
+    /**
+     * Return whether this User has the interest at key <interestKey> in
+     * its Interests
+     * @param interestKey Key corresponding to an interest in InterestsDict
+     * @return whether this User has the interest
+     */
     public boolean containsInterest(int interestKey){
         return this.interests.data.containsKey(interestKey);
     }
 
     // Attributes
+    /**
+     * Adds value <attributeValue> of type <attributeType> to this User's
+     * Attributes (brown of eye color, red of hair color, etc.)
+     * @param attributeType Key corresponding to trait
+     * @param attributeValue Key corresponding to value of trait
+     */
     public void addAttribute(int attributeType, int attributeValue) {
         this.attributes.addAttribute(attributeType, attributeValue);
     }
@@ -281,6 +262,15 @@ public class User implements Serializable {
     public String getAttributeValue(int attributeType, int attributeValue){
         return this.attributes.getValueAt(attributeType, attributeValue);
     }
+
+    /**
+     * Return whether this User has value <attributeValue> of type
+     * <attributeType> in its Attributes (brown of eye color,
+     * red of hair color, etc.)
+     * @param attributeType Key corresponding to trait
+     * @param attributeValue Key corresponding to value of trait
+     * @return Whether this User has the specified attribute
+     */
     public boolean containsAttribute(int attributeType, int attributeValue){
         if(this.attributes.getData().containsKey(attributeType)){
             return this.attributes.getData().get(attributeType).contains(attributeValue);
@@ -289,74 +279,115 @@ public class User implements Serializable {
     }
 
     // Preferences
+
+    /**
+     * Adds value <attributeValue> of type <attributeType> to this User's
+     * Preferences (brown of eye color, red of hair color, etc.)
+     * @param attributeType Key corresponding to trait
+     * @param attributeValue Key corresponding to value of trait
+     */
     public void addPreference(int attributeType, int attributeValue) {
-        ArrayList<Integer> valueList = new ArrayList<Integer>();
+        ArrayList<Integer> valueList = new ArrayList<>();
         valueList.add(attributeValue);
-        this.preferences.addPreferences(attributeType, valueList);
-    }
-    public void addPreferences(int attributeType, ArrayList<Integer> valueList) {
         this.preferences.addPreferences(attributeType, valueList);
     }
     public void removePreference(int attributeType, int attributeValue) {
         // Use when you want to remove one value in a preference but keep
         // the others
-        ArrayList<Integer> valueList = new ArrayList<Integer>();
+        ArrayList<Integer> valueList = new ArrayList<>();
         valueList.add(attributeValue);
         this.preferences.removePreferences(attributeType, valueList);
     }
+
     public void removePreferences(int attributeType, ArrayList<Integer> valueList) {
         // Use when you want to remove some values in a preference but keep
         // the others
         this.preferences.removePreferences(attributeType, valueList);
     }
-    public void removeEntirePreference(int attributeType) {
-        // Use when you want to remove a preference type entirely
-        this.preferences.removeEntirePreference(attributeType);
-    }
+    /**
+     * Return the String trait of the <attributeKey> in AttributesDict
+     * @param attributeKey Key corresponding to trait
+     * @return the String trait (eye color, height, etc.)
+     */
     public String getPreferenceType(int attributeKey) {
         return this.preferences.getTypeAt(attributeKey);
     }
+
+    /**
+     * Return the String value of the <attributeValue> key of the <attributeType>
+     *     HashMap
+     * @param attributeType Key corresponding to trait
+     * @param attributeValue Key corresponding to value of trait
+     * @return the String value (brown, blue, etc. for trait being eye color)
+     */
     public String getPreferenceValue(int attributeType, int attributeValue){
         return this.preferences.getValueAt(attributeType, attributeValue);
     }
 
     // Hide and Show Methods
+    /**
+     * Hides all interests, even if some aren't hidden
+     */
     public void hideInterests(){
-        Interests userInterests = (Interests) this.interests;
+        Interests userInterests = this.interests;
         userInterests.hide();
         assert this.interests == userInterests;
     }
+    /**
+     * Shows all interests that aren't hidden
+     */
     public void showInterests(){
-        Interests userInterests = (Interests) this.interests;
+        Interests userInterests = this.interests;
         userInterests.show();
         assert this.interests == userInterests;
     }
+    /**
+     * Hides all attributes, even if some aren't hidden
+     */
     public void hideAttributes(){
-        Attributes userAttributes = (Attributes) this.attributes;
+        Attributes userAttributes = this.attributes;
         userAttributes.hide();
         assert this.attributes == userAttributes;
     }
+    /**
+     * Shows all attributes that aren't hidden
+     */
     public void showAttributes(){
-        Attributes userAttributes = (Attributes) this.attributes;
+        Attributes userAttributes = this.attributes;
         userAttributes.show();
         assert this.attributes == userAttributes;
     }
+    /**
+     * Hides all courses, even if some aren't hidden
+     */
     public void hideCourses(){
-        Courses userCourses = (Courses) this.courses;
+        Courses userCourses = this.courses;
         userCourses.hide();
         assert this.courses == userCourses;
     }
+    /**
+     * Shows all courses that aren't hidden
+     */
     public void showCourses(){
-        Courses userCourses = (Courses) this.courses;
+        Courses userCourses = this.courses;
         userCourses.show();
         assert this.courses == userCourses;
     }
+    /**
+     * Sets course's hidden attribute to true
+     * @param course course to be shown
+     */
     public void hideCourse(Course course){
         // precondition: course is already in this User's list of courses
         assert this.courses.data.contains(course);
         int index = this.courses.data.indexOf(course);
         this.courses.data.get(index).hide();
     }
+
+    /**
+     * Sets course's hidden attribute to false
+     * @param course course to be shown
+     */
     public void showCourse(Course course) {
         // precondition: course is already in this User's list of courses
         assert this.courses.data.contains(course);
@@ -372,8 +403,16 @@ public class User implements Serializable {
     public void removeNeighbor(User otherUser){
         this.neighbors.remove(otherUser);
     }
-    public void removeAllNeighbors(){
-        this.neighbors.clear();
-    }
     public void setNeighbors(ArrayList<User> newNeighbours){ this.neighbors = newNeighbours;}
+
+    @Override
+    public User clone() {
+        try {
+            User clone = (User) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

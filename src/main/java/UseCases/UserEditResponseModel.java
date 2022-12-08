@@ -1,12 +1,13 @@
 package UseCases;
 
 import Entities.User;
-import Entities.UserDataClasses.HideableUserDataClasses.Course;
-import Entities.UserDataClasses.UserDataDictionaries.AttributeValueDict;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Creates a response model for a given user.
+ */
 public class UserEditResponseModel {
     public String bio;
     public String name;
