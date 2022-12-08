@@ -185,6 +185,18 @@ public class ChatView implements ActionListener, View, ChatViewInterface {
      * @param index current index in loop iteration in updatePage method
      */
     private void createCurrChatPanels(ArrayList<ArrayList<String>> chatroomList, JPanel currChatPanel, int index) {
+        if(chatroomList.size() == 2){
+            this.panel.remove(this.chatContainer);
+            this.chatContainer = new JPanel();
+            this.chatContainer.setLayout(this.chatLayout);
+            this.chatContainer.setBackground(Color.YELLOW);
+            this.chatContainer.setBounds(0, 0, 400, 600);
+
+            this.panel.add(chatContainer, "bob joe");
+            this.chatContainer.add(currChatPanel, String.valueOf(index));
+            this.chatContainer.revalidate();
+            this.chatContainer.repaint();
+        }
         for (int i = 2; i < chatroomList.size(); i++) {
             ArrayList<String> currMessageList = chatroomList.get(i);
             //example textMessage: clark: hello kevin
