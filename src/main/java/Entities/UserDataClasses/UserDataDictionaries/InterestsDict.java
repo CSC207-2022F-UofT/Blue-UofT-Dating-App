@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class InterestsDict {
     public static final HashMap<Integer, String> interestMap =
-            new HashMap<Integer, String>();
+            new HashMap<>();
 
     public InterestsDict(){
 

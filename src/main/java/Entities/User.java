@@ -194,10 +194,18 @@ public class User implements Serializable {
     }
 
     // Interests
+
+    /**
+     * Adds <newInterest> to this User's Interests
+     * @param newInterest Interest key to add
+     */
     public void addInterest(int newInterest) {
         this.interests.addInterest(newInterest);
     }
-
+    /**
+     * Adds <newInterests> to this User's Interests
+     * @param newInterests Interest keys to add
+     */
     public void addInterests(ArrayList<Integer> newInterests) {
         this.interests.addInterests(newInterests);
     }
