@@ -61,7 +61,7 @@ public class MainPagePresenter {
             case "otherAccount":
                 View otherAccount = (View) pageObject;
                 OtherAccountPresenter otherAccountPresenter = new OtherAccountPresenter(displayedUser.getUsername().getData());
-                otherAccountPresenter.updatePage("loginView", otherAccount);
+                otherAccountPresenter.updatePage("otherView", otherAccount);
                 break;
         }
     }
