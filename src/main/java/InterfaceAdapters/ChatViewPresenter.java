@@ -3,7 +3,10 @@ package InterfaceAdapters;
 import Entities.User;
 import FrameworksDrivers.ChatViewInterface;
 import FrameworksDrivers.View;
-import UseCases.ChatUseCases.*;
+import UseCases.ChatUseCases.ChatRenderResponseModel;
+import UseCases.ChatUseCases.ChatRenderUseCase;
+import UseCases.ChatUseCases.ChatRepoUseCase;
+import UseCases.ChatUseCases.SendMessageUseCase;
 import UseCases.DataRetrieval.CurrentUserGateway;
 import UseCases.DataRetrieval.SaveChats;
 

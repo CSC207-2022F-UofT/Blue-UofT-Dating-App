@@ -1,10 +1,9 @@
 package InterfaceAdapters;
+
 import Entities.User;
-import FrameworksDrivers.*;
+import FrameworksDrivers.View;
 import UseCases.ChatUseCases.ChatRenderUseCase;
-import UseCases.ChatUseCases.ChatRepoUseCase;
 import UseCases.DataRetrieval.CurrentUserGateway;
-import UseCases.DisplayUserModel;
 import UseCases.LikeUseCase;
 import UseCases.LogOutCurrentUser;
 

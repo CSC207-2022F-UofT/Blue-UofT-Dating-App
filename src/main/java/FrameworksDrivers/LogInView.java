@@ -1,16 +1,17 @@
 package FrameworksDrivers;
 
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-
 import Entities.User;
 import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.textField;
 import InterfaceAdapters.MainPagePresenter;
 import InterfaceAdapters.UserLogPresenter;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *  A UI class implements <i>ActionListener</i> and <i>View</i> to create the login page

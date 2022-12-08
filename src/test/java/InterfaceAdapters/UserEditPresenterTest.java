@@ -113,11 +113,13 @@ class UserEditPresenterTest {
     }
     @Test
     void deleteUser(){
+        UserGraph currentGraph = CurrentGraph.getGraph();
         UserGraph userGraph = PracticeGraphCreator.createGraph();
         new SaveGraph(userGraph);
         CurrentUser currentUser = new CurrentUser();
         currentUser.setUser(new Username("Ewan"));
         new DeleteCurrentAccount();
         assertEquals(1, CurrentGraph.getGraph().getUsers().size());
+        new SaveGraph(currentGraph);
     }
 }

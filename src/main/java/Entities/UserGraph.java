@@ -1,5 +1,7 @@
 package Entities;
+
 import Entities.UserDataClasses.UserData;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,8 +14,8 @@ import java.util.Objects;
  * The only methods of this class are getters and setters.
  */
 public class UserGraph implements Serializable {
-private final ArrayList<User> users;
-private final ArrayList<UserEdge> userEdges;
+    private final ArrayList<User> users;
+    private final ArrayList<UserEdge> userEdges;
 
     /**
      * Different constructors for user graph

@@ -1,11 +1,11 @@
 package UseCases;
+
 import Entities.User;
 import Entities.UserDataClasses.HideableUserDataClasses.Attributes;
-import Entities.UserDataClasses.HideableUserDataClasses.Interests;
-import Entities.UserDataClasses.UserData;
-import Entities.UserGraph;
 import Entities.UserDataClasses.HideableUserDataClasses.Course;
 import Entities.UserDataClasses.HideableUserDataClasses.Courses;
+import Entities.UserDataClasses.HideableUserDataClasses.Interests;
+import Entities.UserGraph;
 
 import java.io.IOException;
 import java.util.ArrayList;
