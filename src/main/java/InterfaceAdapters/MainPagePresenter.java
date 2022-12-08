@@ -65,7 +65,7 @@ public class MainPagePresenter {
         }
     }
     /**
-     * The like method is used when a current user likes a matchedUser and it calls the LikeUseCase to update the edge.
+     * The like method is used when a current user likes a matchedUser, and it calls the LikeUseCase to update the edge.
      *
      * @param matchedUser this is the matched user which was liked by current user
      */

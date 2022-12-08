@@ -6,8 +6,7 @@ import java.awt.event.ActionListener;
 
 import Entities.User;
 import FrameworksDrivers.UIElements.Button;
-import FrameworksDrivers.UIElements.textArea;
-import FrameworksDrivers.UIElements.textField;
+import FrameworksDrivers.UIElements.Label;
 import InterfaceAdapters.MainPagePresenter;
 
 /**
@@ -21,7 +20,6 @@ public class MainPageView implements ActionListener, View {
     private JPanel masterPanel;
     private Object[] paths;
     private CardLayout layout;
-    private textArea bioTextField;
     User displayUser;
     Button homeButton;
     Button chatButton;
@@ -30,7 +28,10 @@ public class MainPageView implements ActionListener, View {
     Button dislikeButton;
     Button viewOtherAccount;
     Button logOut;
-    textField nameTextField;
+    Label logo;
+    Label tagLine;
+    Label displayedName;
+    Label bio;
 
     /**
      *
@@ -42,86 +43,67 @@ public class MainPageView implements ActionListener, View {
         this.masterPanel = masterPanel;
         this.layout = layout;
         JPanel panel = new JPanel();
-
-        // Create Lower Panel
-        JPanel lowerPanel = new JPanel();
-        lowerPanel.setLayout(new GridLayout(1, 3));
+        panel.setLayout(null);
 
         // Create HomeButton
         homeButton = new Button();
-        homeButton.createButton(lowerPanel, "Home", 0,600,200,200);
+        homeButton.createButton(panel, "Home", 0,600,200,200);
         homeButton.getButton().addActionListener(this);
 
         // Create ChatButton
         chatButton = new Button();
-        chatButton.createButton(lowerPanel, "Chats", 200,600,200,200);
+        chatButton.createButton(panel, "Chats", 200,600,200,200);
         chatButton.getButton().addActionListener(this);
 
         // Create MyProfileButton
         myProfileButton = new Button();
-        myProfileButton.createButton(lowerPanel, "My Profile", 400,600,200,200);
+        myProfileButton.createButton(panel, "My Profile", 400,600,200,200);
         myProfileButton.getButton().addActionListener(this);
-
-        // Add these buttons to the lower panel
-        lowerPanel.add(homeButton.getButton());
-        lowerPanel.add(chatButton.getButton());
-        lowerPanel.add(myProfileButton.getButton());
-
-        // Create Middle Panel
-        JPanel middlePanel = new JPanel();
-        lowerPanel.setLayout(new GridLayout(1, 2));
 
         // Create like button
         likeButton = new Button();
-        likeButton.createButton(lowerPanel, "Like", 0,500,300,100);
+        likeButton.createButton(panel, "Like", 0,500,300,100);
         likeButton.getButton().addActionListener(this);
 
         // Create like button
         dislikeButton = new Button();
-        dislikeButton.createButton(lowerPanel, "Dislike", 300,500,300,100);
+        dislikeButton.createButton(panel, "Dislike", 300,500,300,100);
         dislikeButton.getButton().addActionListener(this);
-
-        // Add these buttons to the middle panel
-        middlePanel.add(likeButton.getButton());
-        middlePanel.add(dislikeButton.getButton());
-
-        // Create Top Panel
-        JPanel topPanel = new JPanel();
 
         // Create viewOtherAccount Button
         viewOtherAccount = new Button();
-        viewOtherAccount.createButton(lowerPanel, "View Profile", 400,0,200,100);
+        viewOtherAccount.createButton(panel, "View Profile", 400,0,200,100);
         viewOtherAccount.getButton().addActionListener(this);
 
-        // Add viewOtherAccount button to the top panel
-        topPanel.add(viewOtherAccount.getButton());
+        // Create logOut Button
         logOut = new Button();
-        logOut.createButton(lowerPanel, "Log Out", 500,0,200,100);
+        logOut.createButton(panel, "Log Out", 0,0,200,100);
         logOut.getButton().addActionListener(this);
 
-        // Create Name Text Panel
-        JPanel namePanel = new JPanel();
+        // Create Logo Label
+        logo = new Label();
+        logo.createLabelCentered(250,0,100,100, panel, "Blue", Color.blue);
+        logo.setFontSize(40);
 
-        // Create Text Field
-        nameTextField = new textField();
-        nameTextField.createTextField(namePanel,150,200,300,200);
-        nameTextField.setText(" ");
+        // Create TagLine Label
+        tagLine = new Label();
+        tagLine.createLabel(225,30,300,100,panel,"Grindin' through the pain");
 
-        // Create Bio Text Field
-        bioTextField = new textArea();
-        bioTextField.createTextArea(namePanel, "",150, 200, 400, 500);
-        bioTextField.getTextArea().setEnabled(false);
-        bioTextField.getTextArea().setWrapStyleWord(true);
+        // Create DisplayedName Label
+        displayedName = new Label();
+        displayedName.createLabel(100,200,400,200,panel," ");
+        displayedName.setFontSize(35);
+        displayedName.setHorizontalAlignment("center");
+        displayedName.setVerticalAlignment("center");
 
-        // Add Text Fields to the namePanel
-        namePanel.add(nameTextField.getTextField());
-        namePanel.add(bioTextField.getTextArea());
+        // Create Bio Label
+        bio = new Label();
+        bio.createLabel(100,250,400,200,panel," ");
+        bio.setFontSize(15);
+        bio.setHorizontalAlignment("center");
+        bio.setVerticalAlignment("center");
 
-        // Adding all panels to the masterPanel
-        panel.add(lowerPanel);
-        panel.add(middlePanel);
-        panel.add(topPanel);
-        panel.add(namePanel);
+        // Adding panel to masterpanel
         this.masterPanel.add(panel, "mainpageView");
     }
 
@@ -160,7 +142,6 @@ public class MainPageView implements ActionListener, View {
             mainPagePresenter.updatePage(this.displayUser, "usereditView", this.paths[2]);
             this.layout.show(this.masterPanel, "userEditView");
         }
-
         if (e.getSource() == likeButton.getButton()){
             mainPagePresenter.Like(this.displayUser);
             mainPagePresenter.updatePage(this.displayUser, "mainpageView", this.paths[3]);
@@ -192,9 +173,8 @@ public class MainPageView implements ActionListener, View {
         }
         else {
             this.displayUser = (User) info[0];
-            this.nameTextField.setText(displayUser.getDisplayName().getData());
-            this.bioTextField.setText(displayUser.getBio().getData());
-            this.bioTextField.getTextArea().setForeground(Color.BLACK);
+            this.displayedName.setText(displayUser.getDisplayName().getData());
+            this.bio.setText(displayUser.getBio().getData());
         }
     }
 
