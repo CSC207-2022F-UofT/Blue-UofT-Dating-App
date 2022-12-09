@@ -20,7 +20,7 @@ public class UserLogRequestModel {
      * getter method for username in the UserLogRequestModel
      * @return username as String
      */
-    String getName() {
+    public String getName() {
         return this.name;
     }
 
@@ -38,7 +38,7 @@ public class UserLogRequestModel {
      * getter method for password in the UserLogRequestModel
      * @return the password attribute as String
      */
-    String getPassword() {
+    public String getPassword() {
 
         return this.pass;
     }
