@@ -1,28 +1,13 @@
 
 ## Intructions for TA on running current work
-Currently, all views which can be ran and viewed in a window are UserEditView, LogInView, ChatView and OtherAccount. The functionality of their UI elements is still under construction (eg switching between views and modifying entities), but a bulk of that code is written and can be analyzed. Thus, only one view can be displayed on a given build. TO switch between which view is running, locate the ViewUI class, and comment out all of the view classes which aren't the the one you want to display, as well as all of the path arrays. Here is an example of the relevant code, showing how to run the UserEditView display.
-```java
-        UserEditView userEditView = new UserEditView(this.masterPanel, this.layout, new User(null, null));
-//        AccountView accountView = new AccountView(this.masterPanel, this.layout);
-//        OtherAccount otherAccount =  new OtherAccount(this.masterPanel, this.layout);
-//        LogInView logInView = new LogInView(this.masterPanel);
-//        ChatView chatView = new ChatView(this.masterPanel, this.layout);
-//        SignUpView signUpView = new SignUpView(this.masterPanel);
+To build the project, go to the main folder, the java folder, and finally the Main file. 
+In the Main file run the main method which initializes the front-end and back-end. 
 
-
-
-        // Main Page
-        //Object[] mainPagePaths = {};
-        //Send the paths to other pages that your page will have
-        //I.E login -> main
-//        Object[] otherAccountPaths = {};
-//        otherAccount.sendPaths(otherAccountPaths);
-//        Object[] userEditPaths = {accountView};
-//        userEditView.sendPaths(userEditPaths);
-//        Object[] LogInPath = {accountView,signUpView};
-//        logInView.sendPaths(LogInPath);
-```
-To build the project, run the main method of ViewUI.
+A login screen will appear, and from there you can either log in to a preexisting account or sign up for
+a new account. After logging/signing in to your account, you may choose your interests/preferences which
+will help the program determine whose profiles you will see. After selecting your interests/preferences,
+you can view other users' profiles and like or dislike them. If you match, you may message them in the chat
+page.
 
 # Project Template
 This is a template repository for CSC 207 projects. 
