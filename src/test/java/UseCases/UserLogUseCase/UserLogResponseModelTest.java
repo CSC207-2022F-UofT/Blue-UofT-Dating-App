@@ -24,8 +24,12 @@ public class UserLogResponseModelTest {
         UserRegInteractor interactor = new UserRegInteractor();
         interactor.create(requestModel1);
         UserLogResponseModel responseModel = new UserLogResponseModel();
-
-        Assertions.assertEquals(new User("testU", "1234"),
-                responseModel.response("testU"));
+        User responseUser = responseModel.response("testU");
+        String responseUserName = responseUser.getUsername().data;
+        String responsePass = responseUser.getPassword().data;
+        String expectName = "testU";
+        String expectPass = "1234";
+        Assertions.assertTrue(expectName.equals(responseUserName) &&
+                expectPass.equals(responsePass));
     }
 }
