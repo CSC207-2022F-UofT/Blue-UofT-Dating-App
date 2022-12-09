@@ -1,4 +1,5 @@
 package UseCases.ChatUseCases;
+import Entities.CurrentUser;
 import Entities.User;
 import Entities.UserEdge;
 import Entities.UserGraph;
@@ -31,6 +32,8 @@ public class MatchUseCaseTest {
         testUserGraph.addUser(currentUser);
         testUserGraph.addUser(likedUser);
         new SaveGraph(testUserGraph);
+        CurrentUser currentUser1 = new CurrentUser();
+        currentUser1.setUser(currentUser.getUsername());
         UserEdge userEdge = testUserGraph.getEdge(currentUser, likedUser);
         userEdge.likes(currentUser);
         userEdge.likes(likedUser);
