@@ -1,7 +1,7 @@
 package FrameworksDrivers;
 
-import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.Button;
+import FrameworksDrivers.UIElements.Label;
 import InterfaceAdapters.OtherAccountPresenter;
 
 import javax.swing.*;
@@ -205,8 +205,8 @@ public class OtherAccount implements ActionListener, View {
         ArrayList<String> attributes = (ArrayList<String>) info[4];
         ArrayList<String> courses = (ArrayList<String>) info[5];
 
-        this.interstPanel.setVisible(intersts.size() > 1);
-        this.interestTitle.setVisible(intersts.size() > 1);
+        this.interstPanel.setVisible(intersts.size() > 0);
+        this.interestTitle.setVisible(intersts.size() > 0);
         this.attributesPanel.setVisible(attributes.size() > 1);
         this.attributesTitle.setVisible(attributes.size() > 1);
         this.coursesPanel.setVisible(courses.size() > 1);

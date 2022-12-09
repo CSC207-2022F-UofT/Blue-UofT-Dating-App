@@ -1,14 +1,15 @@
 package FrameworksDrivers;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-
 import Entities.User;
 import FrameworksDrivers.UIElements.Button;
 import FrameworksDrivers.UIElements.Label;
 import FrameworksDrivers.UIElements.textField;
 import InterfaceAdapters.UserRegPresenter;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class SignUpView implements View, ActionListener {

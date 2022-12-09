@@ -1,11 +1,10 @@
 package InterfaceAdapters;
 
 import Entities.User;
-
 import FrameworksDrivers.View;
-import UseCases.UserLogUseCases.UserLogInteractor;
-import UseCases.UserLogUseCases.UserLogRequestModel;
-import UseCases.UserLogUseCases.UserLogResponseModel;
+import UseCases.userlog.UserLogInteractor;
+import UseCases.userlog.UserLogRequestModel;
+import UseCases.userlog.UserLogResponseModel;
 
 public class UserLogPresenter {
 

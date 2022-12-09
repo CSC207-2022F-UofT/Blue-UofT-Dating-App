@@ -1,7 +1,6 @@
 package FrameworksDrivers;
-import UseCases.DataRetrieval.*;
 
-
+import UseCases.dataretrieval.GetChats;
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +11,7 @@ public class ViewUI {
         CardLayout layout = new CardLayout();//master panel
         JPanel masterPanel = new JPanel();
         masterPanel.setLayout(layout);
-        masterPanel.setPreferredSize(new Dimension(600, 800));;
+        masterPanel.setPreferredSize(new Dimension(600, 800));
         //initial panel
         UserEditView userEditView = new UserEditView(masterPanel, layout);
         OtherAccount otherAccount =  new OtherAccount(masterPanel, layout);

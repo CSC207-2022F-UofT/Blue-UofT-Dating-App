@@ -26,7 +26,4 @@ public abstract class HideableData<H> extends UserData<H> implements Serializabl
         this.hidden = false;
     }
 
-    public void setHidden(boolean hidden){
-        this.hidden = hidden;
-    }
 }

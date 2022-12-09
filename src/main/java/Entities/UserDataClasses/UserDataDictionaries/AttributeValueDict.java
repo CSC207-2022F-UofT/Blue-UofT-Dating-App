@@ -4,18 +4,18 @@ import java.util.HashMap;
 
 public class AttributeValueDict {
     public static final HashMap<Integer, HashMap<Integer, String>> valuesMap =
-            new HashMap<Integer, HashMap<Integer, String>>();
+            new HashMap<>();
 
     public AttributeValueDict(){
 
         // Gender
-        valuesMap.put(0, new HashMap<Integer, String>());
+        valuesMap.put(0, new HashMap<>());
         valuesMap.get(0).put(0, "Male");
         valuesMap.get(0).put(1, "Female");
         valuesMap.get(0).put(2, "Other");
 
         // Age
-        valuesMap.put(1, new HashMap<Integer, String>());
+        valuesMap.put(1, new HashMap<>());
         valuesMap.get(1).put(0, "18");
         valuesMap.get(1).put(1, "19");
         valuesMap.get(1).put(2, "20");
@@ -31,7 +31,7 @@ public class AttributeValueDict {
         valuesMap.get(1).put(12, "30+");
 
         // Height
-        valuesMap.put(2, new HashMap<Integer, String>());
+        valuesMap.put(2, new HashMap<>());
         valuesMap.get(2).put(0, "Under 4'10\"");
         valuesMap.get(2).put(1, "4'10\"-5'0\"");
         valuesMap.get(2).put(2, "5'1\"-5'3\"");
@@ -42,7 +42,7 @@ public class AttributeValueDict {
         valuesMap.get(2).put(7, "Over 6'4\"");
 
         // Weight (questionable choice of attribute, we can take it out if we want)
-        valuesMap.put(3, new HashMap<Integer, String>());
+        valuesMap.put(3, new HashMap<>());
         valuesMap.get(3).put(0, "Under 100 lbs");
         valuesMap.get(3).put(1, "100-120 lbs");
         valuesMap.get(3).put(2, "120-140 lbs");
@@ -53,7 +53,7 @@ public class AttributeValueDict {
         valuesMap.get(3).put(7, "Over 250 lbs");
 
         // Hair Color
-        valuesMap.put(4, new HashMap<Integer, String>());
+        valuesMap.put(4, new HashMap<>());
         valuesMap.get(4).put(0, "Light Brown");
         valuesMap.get(4).put(1, "Blonde");
         valuesMap.get(4).put(2, "Black");
@@ -69,7 +69,7 @@ public class AttributeValueDict {
         valuesMap.get(4).put(12, "Other or Multiple");
 
         // Eye Color
-        valuesMap.put(5, new HashMap<Integer, String>());
+        valuesMap.put(5, new HashMap<>());
         valuesMap.get(5).put(0, "Brown");
         valuesMap.get(5).put(1, "Green");
         valuesMap.get(5).put(2, "Blue");
@@ -78,7 +78,7 @@ public class AttributeValueDict {
         valuesMap.get(5).put(5, "Other");
 
         // Sexual Orientation
-        valuesMap.put(6, new HashMap<Integer, String>());
+        valuesMap.put(6, new HashMap<>());
         valuesMap.get(6).put(0, "Straight");
         valuesMap.get(6).put(1, "Gay");
         valuesMap.get(6).put(2, "Lesbian");
@@ -87,7 +87,7 @@ public class AttributeValueDict {
         valuesMap.get(6).put(5, "Other");
 
         // College
-        valuesMap.put(7, new HashMap<Integer, String>());
+        valuesMap.put(7, new HashMap<>());
         valuesMap.get(7).put(0, "Trinity College");
         valuesMap.get(7).put(1, "Victoria College");
         valuesMap.get(7).put(2, "New College");
@@ -98,7 +98,7 @@ public class AttributeValueDict {
         valuesMap.get(7).put(7, "None");
 
         // Program (Couldn't find a good, short list of programs, can add more later)
-        valuesMap.put(8, new HashMap<Integer, String>());
+        valuesMap.put(8, new HashMap<>());
         valuesMap.get(8).put(0, "Math and Physical Sciences");
         valuesMap.get(8).put(1, "Computer Science");
         valuesMap.get(8).put(2, "Life Sciences");
@@ -108,13 +108,13 @@ public class AttributeValueDict {
         valuesMap.get(8).put(6, "Humanities");
 
         // Postal Code
-        valuesMap.put(9, new HashMap<Integer, String>()); // Want to find a numerical way to track someone's location
+        valuesMap.put(9, new HashMap<>()); // Want to find a numerical way to track someone's location
 
         // Where are you from?
-        valuesMap.put(10, new HashMap<Integer, String>()); // Want to find a better way to say this and represent it
+        valuesMap.put(10, new HashMap<>()); // Want to find a better way to say this and represent it
 
         // Ethnicity (I used the Hinge ethnicity list)
-        valuesMap.put(11, new HashMap<Integer, String>());
+        valuesMap.put(11, new HashMap<>());
         valuesMap.get(11).put(0, "White/Caucasian");
         valuesMap.get(11).put(1, "South Asian");
         valuesMap.get(11).put(2, "East Asian");
@@ -126,7 +126,7 @@ public class AttributeValueDict {
         valuesMap.get(11).put(8, "Mixed/Other");
 
         // Religion (also used hinge religion list)
-        valuesMap.put(12, new HashMap<Integer, String>());
+        valuesMap.put(12, new HashMap<>());
         valuesMap.get(12).put(0, "Christian");
         valuesMap.get(12).put(1, "Catholic");
         valuesMap.get(12).put(2, "Muslim");
@@ -137,7 +137,7 @@ public class AttributeValueDict {
         valuesMap.get(12).put(7, "Other");
 
         // What are you looking for?
-        valuesMap.put(13, new HashMap<Integer, String>());
+        valuesMap.put(13, new HashMap<>());
         valuesMap.get(13).put(0, "Life Partner");
         valuesMap.get(13).put(1, "Serious Dating");
         valuesMap.get(13).put(2, "Casual Dating");
