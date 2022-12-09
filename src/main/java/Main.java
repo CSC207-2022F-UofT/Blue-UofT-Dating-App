@@ -1,9 +1,10 @@
+import FrameworksDrivers.ViewUI;
 import UseCases.PracticeGraphCreator;
 import UseCases.PracticeGraphReadWrite;
+import UseCases.dataretrieval.GetChats;
 public class Main {
     public static void main(String[] args) {
-
-        PracticeGraphReadWrite practiceGraphReadWrite = new PracticeGraphReadWrite(PracticeGraphCreator.createGraph());
-
+        new ViewUI();
+        new GetChats();
     }
 }

@@ -1,4 +1,5 @@
 package UseCases.ChatUseCases;
+import Entities.CurrentUser;
 import Entities.User;
 import Entities.UserEdge;
 import Entities.UserGraph;
@@ -22,6 +23,7 @@ public class MatchUseCaseTest {
 
     @Test
     void testMatchCreateChatRoom(){
+        UserGraph realGraph = CurrentGraph.getGraph();
         UserGraph testUserGraph = createTestUserGraph();
 
         // expected action
@@ -30,6 +32,8 @@ public class MatchUseCaseTest {
         testUserGraph.addUser(currentUser);
         testUserGraph.addUser(likedUser);
         new SaveGraph(testUserGraph);
+        CurrentUser currentUser1 = new CurrentUser();
+        currentUser1.setUser(currentUser.getUsername());
         UserEdge userEdge = testUserGraph.getEdge(currentUser, likedUser);
         userEdge.likes(currentUser);
         userEdge.likes(likedUser);
@@ -40,5 +44,6 @@ public class MatchUseCaseTest {
         users.add(currentUser);
         users.add(likedUser);
         assertTrue(chatRepoUseCase.checkForExistingChatroom(users));
+        new SaveGraph(realGraph);
     }
 }

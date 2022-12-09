@@ -1,9 +1,12 @@
 package UseCases.ChatUseCases;
 
 import Entities.*;
+import InterfaceAdapters.ChatGateway;
 import UseCases.chat.ChatRegUseCase;
 import UseCases.chat.ChatRepoUseCase;
 import UseCases.chat.SendMessageUseCase;
+import UseCases.dataretrieval.CurrentGraph;
+import UseCases.dataretrieval.GetChats;
 import UseCases.dataretrieval.SaveGraph;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +18,7 @@ public class SendMessageUseCaseTest {
 
     @Test
     void testaddMessage() {
-
+        UserGraph realGraph = CurrentGraph.getGraph();
         ChatRepoUseCase.resetChats();
 
         //should successfully add a new message to testChatroom
@@ -62,5 +65,6 @@ public class SendMessageUseCaseTest {
         boolean expected = true;
 
         Assertions.assertEquals(expected, actual);
+        new SaveGraph(realGraph);
     }
 }
