@@ -2,7 +2,6 @@ package UseCases.UserLogUseCase;
 
 import Entities.User;
 import Entities.UserGraph;
-import UseCases.dataretrieval.CurrentGraph;
 import UseCases.dataretrieval.SaveGraph;
 import UseCases.userlog.UserLogResponseModel;
 import UseCases.userregister.UserRegInteractor;
@@ -18,7 +17,6 @@ public class UserLogResponseModelTest {
 
     @Test
     public void userLogResponseModelTest(){
-        UserGraph realGraph = CurrentGraph.getGraph();
         UserGraph userGraph = new UserGraph();
         new SaveGraph(userGraph);
         UserRegRequestModel requestModel1 =
@@ -26,9 +24,12 @@ public class UserLogResponseModelTest {
         UserRegInteractor interactor = new UserRegInteractor();
         interactor.create(requestModel1);
         UserLogResponseModel responseModel = new UserLogResponseModel();
-
-        Assertions.assertEquals(new User("testU", "1234").getUsername().getData(),
-                responseModel.response("testU").getUsername().getData());
-        new SaveGraph(realGraph);
+        User responseUser = responseModel.response("testU");
+        String responseUserName = responseUser.getUsername().data;
+        String responsePass = responseUser.getPassword().data;
+        String expectName = "testU";
+        String expectPass = "1234";
+        Assertions.assertTrue(expectName.equals(responseUserName) &&
+                expectPass.equals(responsePass));
     }
 }
