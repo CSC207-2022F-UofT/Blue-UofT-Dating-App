@@ -22,6 +22,7 @@ public class MatchUseCaseTest {
 
     @Test
     void testMatchCreateChatRoom(){
+        UserGraph realGraph = CurrentGraph.getGraph();
         UserGraph testUserGraph = createTestUserGraph();
 
         // expected action
@@ -40,5 +41,6 @@ public class MatchUseCaseTest {
         users.add(currentUser);
         users.add(likedUser);
         assertTrue(chatRepoUseCase.checkForExistingChatroom(users));
+        new SaveGraph(realGraph);
     }
 }

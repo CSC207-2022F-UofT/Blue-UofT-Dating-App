@@ -16,7 +16,6 @@ public class ChatRepoUseCaseTest {
     @Test
     void addChatroomAndCheckForExistingChatroomTest() {
         ChatRepoUseCase.resetChats();
-
         // create test users
         User u1 = new User("clark", "12345");
         User u2 = new User("kevin", "54321");
